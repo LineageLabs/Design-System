@@ -538,18 +538,33 @@
       font-family: inherit;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.15s ease-out, box-shadow 0.15s ease-out;
+      transition: background 0.2s ease-out, box-shadow 0.2s ease-out,
+                  filter 0.2s ease-out, color 0.2s ease-out;
     }
+    .maia-btn:active { filter: brightness(0.92); transition-duration: 0.05s; }
+
     .maia-btn-primary { background: var(--primary); color: var(--primary-foreground); }
-    .maia-btn-primary:hover { background: color-mix(in srgb, var(--primary) 85%, var(--primary-foreground)); }
+    .maia-btn-primary:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 4px 15px color-mix(in srgb, var(--primary) 30%, transparent);
+    }
     .maia-btn-secondary { background: var(--secondary); color: var(--secondary-foreground); }
-    .maia-btn-secondary:hover { background: color-mix(in srgb, var(--secondary) 80%, var(--secondary-foreground)); }
+    .maia-btn-secondary:hover {
+      filter: brightness(0.94);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
     .maia-btn-outline { background: transparent; color: var(--foreground); box-shadow: inset 0 0 0 1px var(--border); }
-    .maia-btn-outline:hover { background: var(--muted); }
+    .maia-btn-outline:hover {
+      background: var(--muted);
+      box-shadow: inset 0 0 0 1px var(--ring), 0 2px 10px rgba(0,0,0,0.04);
+    }
     .maia-btn-destructive { background: var(--destructive); color: #fff; }
-    .maia-btn-destructive:hover { background: color-mix(in srgb, var(--destructive) 85%, #000); }
+    .maia-btn-destructive:hover {
+      filter: brightness(1.15);
+      box-shadow: 0 4px 15px color-mix(in srgb, var(--destructive) 30%, transparent);
+    }
     .maia-btn-ghost { background: transparent; color: var(--foreground); }
-    .maia-btn-ghost:hover { background: var(--muted); }
+    .maia-btn-ghost:hover { background: var(--muted); box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     .maia-btn-sm { padding: 0.375rem 1rem; font-size: 0.8rem; }
     .maia-btn-lg { padding: 0.875rem 2rem; font-size: 1rem; }
 
@@ -565,10 +580,16 @@
       background: color-mix(in srgb, var(--input) 30%, transparent);
       color: var(--foreground);
       outline: none;
-      transition: box-shadow 0.15s ease-out;
+      transition: background 0.2s ease-out, box-shadow 0.25s ease-out;
     }
-    .maia-input:hover { box-shadow: inset 0 0 0 1px var(--border); }
-    .maia-input:focus { box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
+    .maia-input:hover {
+      background: color-mix(in srgb, var(--input) 50%, transparent);
+      box-shadow: 0 0 0 1px var(--border);
+    }
+    .maia-input:focus {
+      background: color-mix(in srgb, var(--input) 40%, transparent);
+      box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    }
     .maia-input::placeholder { color: var(--muted-foreground); }
 
     /* Badges — Maia pill */
@@ -607,6 +628,11 @@
       border-radius: 1rem;
       padding: 1.5rem;
       box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 1px 3px rgba(0,0,0,0.06);
+      transition: box-shadow 0.25s ease-out, filter 0.25s ease-out;
+    }
+    .maia-card-interactive:hover {
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 14%, transparent), 0 8px 25px rgba(0,0,0,0.1);
+      filter: brightness(1.015);
     }
 
     /* Dialog — Maia rounded-4xl */
@@ -675,9 +701,10 @@
       border-radius: 0.5rem;
       cursor: pointer;
       font-family: inherit;
-      transition: background 0.1s ease-out;
+      transition: background 0.15s ease-out, color 0.15s ease-out;
     }
     .maia-dropdown-item:hover { background: var(--muted); }
+    .maia-dropdown-item:active { background: var(--border); transition-duration: 0.05s; }
 
     /* Toast */
     .maia-toast-container {
@@ -711,13 +738,15 @@
     .maia-accordion-item:first-child { border-top: 1px solid var(--border); }
     .maia-accordion-trigger {
       display: flex; width: 100%; align-items: center; justify-content: space-between;
-      padding: 1rem 0;
+      padding: 1rem 0.75rem;
+      margin: 0 -0.75rem;
+      border-radius: 0.5rem;
       font-size: 0.9375rem; font-weight: 600; font-family: inherit;
       border: none; background: transparent; color: var(--foreground);
       cursor: pointer; text-align: left;
-      transition: color 0.15s ease-out;
+      transition: background 0.2s ease-out, color 0.2s ease-out;
     }
-    .maia-accordion-trigger:hover { color: var(--muted-foreground); }
+    .maia-accordion-trigger:hover { background: var(--muted); }
     .maia-accordion-chevron { transition: transform 0.2s ease; flex-shrink: 0; }
     .maia-accordion-item.open .maia-accordion-chevron { transform: rotate(180deg); }
     .maia-accordion-content { overflow: hidden; height: 0; }
@@ -741,9 +770,13 @@
       cursor: pointer;
       border-bottom: 2px solid transparent;
       margin-bottom: -1px;
-      transition: color 0.15s ease-out, border-color 0.15s ease-out;
+      border-radius: 0.375rem 0.375rem 0 0;
+      transition: color 0.2s ease-out, background 0.2s ease-out, border-color 0.2s ease-out;
     }
-    .maia-tab:hover { color: var(--foreground); }
+    .maia-tab:hover:not(.active) {
+      color: var(--foreground);
+      background: color-mix(in srgb, var(--muted) 60%, transparent);
+    }
     .maia-tab.active { color: var(--foreground); border-bottom-color: var(--foreground); font-weight: 600; }
     .maia-tab-panel { display: none; font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; }
     .maia-tab-panel.active { display: block; }
@@ -1334,22 +1367,38 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     /* ==========================================================
        MAIA COMPONENT ANIMATIONS
+       CSS handles colour/filter/shadow transitions.
+       GSAP handles physical transforms (y, scale) for that
+       animated, tactile feel.
        ========================================================== */
 
-    // --- Button press effect (all .maia-press buttons) ---
-    document.querySelectorAll(".maia-press").forEach(btn => {
-      btn.addEventListener("mousedown", () => gsap.to(btn, { scale: 0.97, duration: dur(0.1), ease: "power2.out" }));
-      btn.addEventListener("mouseup", () => gsap.to(btn, { scale: 1, duration: dur(0.1), ease: "power2.out" }));
-      btn.addEventListener("mouseleave", () => gsap.to(btn, { scale: 1, duration: dur(0.1), ease: "power2.out" }));
+    // --- Button hover lift + bouncy press (all .maia-btn) ---
+    document.querySelectorAll(".maia-btn").forEach(btn => {
+      let hovered = false;
+
+      btn.addEventListener("mouseenter", () => {
+        hovered = true;
+        gsap.to(btn, { y: -1, duration: dur(0.2), ease: "power2.out" });
+      });
+      btn.addEventListener("mouseleave", () => {
+        hovered = false;
+        gsap.to(btn, { y: 0, scale: 1, duration: dur(0.25), ease: "power2.out" });
+      });
+      btn.addEventListener("mousedown", () => {
+        gsap.to(btn, { scale: 0.97, y: 0, duration: dur(0.08), ease: "power2.out" });
+      });
+      btn.addEventListener("mouseup", () => {
+        gsap.to(btn, { scale: 1, y: hovered ? -1 : 0, duration: dur(0.2), ease: "back.out(2)" });
+      });
     });
 
-    // --- Card hover-lift ---
+    // --- Card hover-lift (GSAP for y transform, CSS for shadow+filter) ---
     document.querySelectorAll(".maia-hover-lift").forEach(card => {
       card.addEventListener("mouseenter", () => {
-        gsap.to(card, { y: -4, boxShadow: "0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 6px 20px rgba(0,0,0,0.12)", duration: dur(0.2), ease: "power2.out" });
+        gsap.to(card, { y: -4, duration: dur(0.25), ease: "power2.out" });
       });
       card.addEventListener("mouseleave", () => {
-        gsap.to(card, { y: 0, boxShadow: "0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 1px 3px rgba(0,0,0,0.06)", duration: dur(0.2), ease: "power2.out" });
+        gsap.to(card, { y: 0, duration: dur(0.3), ease: "power2.out" });
       });
     });
 
@@ -1401,7 +1450,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         gsap.to(dropdownMenu, { opacity: 0, duration: dur(0.15), ease: "power2.in", onComplete: () => { dropdownMenu.classList.remove("open"); dropdownOpen = false; } });
       } else {
         dropdownMenu.classList.add("open");
-        gsap.fromTo(dropdownMenu, { y: -8, opacity: 0 }, { y: 0, opacity: 1, duration: dur(0.25), ease: "power2.out" });
+        gsap.fromTo(dropdownMenu, { y: -8, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: dur(0.25), ease: "back.out(1.5)" });
         dropdownOpen = true;
       }
     }
@@ -1443,7 +1492,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         toast.innerHTML = '<span class="maia-toast-text">' + message + '</span><button class="maia-toast-close" data-toast-id="' + id + '">✕</button>';
       }
       toastContainer.appendChild(toast);
-      gsap.fromTo(toast, { x: 100, opacity: 0 }, { x: 0, opacity: 1, duration: dur(0.4), ease: "power2.out" });
+      gsap.fromTo(toast, { x: 100, opacity: 0 }, { x: 0, opacity: 1, duration: dur(0.45), ease: "back.out(1.4)" });
       // Auto-dismiss after 3s
       const autoDismiss = setTimeout(() => dismissToast(id), 3000);
       toast.querySelector(".maia-toast-close").addEventListener("click", () => { clearTimeout(autoDismiss); dismissToast(id); });
@@ -1458,16 +1507,26 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
     document.getElementById("toast-fire-btn").addEventListener("click", () => fireToast("Event has been created."));
     document.getElementById("toast-fire-success-btn").addEventListener("click", () => fireToast("Settings saved successfully.", "success"));
 
-    // --- Accordion (expandIn / collapse with scaleY) ---
+    // --- Accordion (expandIn / collapse) + hover chevron nudge ---
     document.querySelectorAll("[data-accordion]").forEach(item => {
       const trigger = item.querySelector(".maia-accordion-trigger");
+      const chevron = item.querySelector(".maia-accordion-chevron");
       const content = item.querySelector(".maia-accordion-content");
       const inner = item.querySelector(".maia-accordion-content-inner");
+
+      // Hover: nudge chevron down
+      trigger.addEventListener("mouseenter", () => {
+        if (!item.classList.contains("open")) {
+          gsap.to(chevron, { y: 2, duration: dur(0.2), ease: "power2.out" });
+        }
+      });
+      trigger.addEventListener("mouseleave", () => {
+        gsap.to(chevron, { y: 0, duration: dur(0.2), ease: "power2.out" });
+      });
 
       trigger.addEventListener("click", () => {
         const isOpen = item.classList.contains("open");
         if (isOpen) {
-          // Collapse
           gsap.to(content, {
             height: 0,
             duration: dur(0.3),
@@ -1475,18 +1534,17 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             onComplete: () => item.classList.remove("open")
           });
         } else {
-          // Expand (expandIn)
           item.classList.add("open");
           const fullHeight = inner.offsetHeight;
           gsap.fromTo(content,
             { height: 0 },
-            { height: fullHeight, duration: dur(0.3), ease: "power2.out", onComplete: () => { content.style.height = "auto"; } }
+            { height: fullHeight, duration: dur(0.35), ease: "power2.out", onComplete: () => { content.style.height = "auto"; } }
           );
         }
       });
     });
 
-    // --- Tabs (fadeIn 150ms) ---
+    // --- Tabs (fadeIn + slide, 200ms) ---
     document.querySelectorAll(".maia-tab").forEach(tab => {
       tab.addEventListener("click", () => {
         const targetId = tab.dataset.tab;
@@ -1494,13 +1552,13 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         document.querySelectorAll(".maia-tab").forEach(t => t.classList.remove("active"));
         document.querySelectorAll(".maia-tab-panel").forEach(p => {
           p.classList.remove("active");
-          p.style.opacity = 0;
+          gsap.set(p, { opacity: 0 });
         });
-        // Activate target
+        // Activate target with slide-up fade
         tab.classList.add("active");
         const panel = document.getElementById(targetId);
         panel.classList.add("active");
-        gsap.fromTo(panel, { opacity: 0 }, { opacity: 1, duration: dur(0.15), ease: "power2.out" });
+        gsap.fromTo(panel, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: dur(0.2), ease: "power2.out" });
       });
     });
   </script>
