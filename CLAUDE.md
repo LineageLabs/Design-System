@@ -42,6 +42,7 @@ and logo assets so every project stays consistent.
 | 7 | `animations/scroll-triggers.js` | GSAP ScrollTrigger pattern factories |
 | 8 | `components/shadcn-customizations.yaml` | What we change from shadcn defaults |
 | 9 | `assets/logos/README.md` | Logo variants, sizes, naming conventions |
+| 10 | `CHANGELOG.md` | Version history — what changed and when |
 
 ## Starting a New Project
 

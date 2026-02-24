@@ -432,5 +432,6 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 | `animations/scroll-triggers.js` | GSAP ScrollTrigger factory functions |
 | `animations/transitions.css` | CSS-only transitions for simple interactions |
 | `components/shadcn-customizations.yaml` | What we change from shadcn defaults |
+| `CHANGELOG.md` | Version history — what changed and when |
 | `assets/logos/README.md` | Logo variants, sizes, naming conventions |
 | `docs/DECISIONS.md` | Design decision log |
