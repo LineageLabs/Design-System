@@ -63,13 +63,28 @@ icons:
 
 maia_style:
   description: "Soft and rounded, with generous spacing"
-  radius: "0.75rem (large)"
+  source: "shadcn-ui/ui → apps/v4/registry/styles/style-maia.css (53.5 KB)"
+  radius: "0.875rem (large)"
   aesthetic: "Consumer-friendly, warm, approachable"
   characteristics:
-    - "Larger border radii — components feel rounded and friendly"
-    - "Generous padding and margins — more breathing room between elements"
-    - "Soft shadows and subtle borders"
+    - "Pill-shaped buttons and inputs (rounded-4xl)"
+    - "Cards and dialogs use rounded-2xl with ring-1 ring-foreground/10 instead of border"
+    - "Inputs have tinted background: bg-input/30"
+    - "Generous spacing: gap-6, py-6 on cards"
     - "Blue-tinted gray palette for a refined, modern feel"
+  component_radii:
+    Button: "rounded-4xl (pill)"
+    Input: "rounded-4xl (pill)"
+    Card: "rounded-2xl + ring-1 ring-foreground/10"
+    Dialog: "rounded-4xl + ring-1 ring-foreground/5"
+    Badge: "rounded-4xl (pill)"
+    Accordion: "rounded-2xl"
+    Avatar: "rounded-full"
+  available_radius_presets:
+    none: "0"
+    small: "0.45rem"
+    medium: "0.625rem (default)"
+    large: "0.875rem (our choice)"
 
 # ==============================================================================
 # COMPONENT ANIMATION ASSIGNMENTS

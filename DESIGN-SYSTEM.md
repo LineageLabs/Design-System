@@ -16,7 +16,7 @@
 | **Body Font** | [Geist Sans](https://vercel.com/font) | Default for all body text, UI elements. |
 | **Headline Font** | [Poppins](https://fonts.google.com/specimen/Poppins) | Used for h1–h4 headings only. |
 | **Icons** | [Hugeicons](https://hugeicons.com/) | Default icon library. |
-| **Border Radius** | Large (`--radius: 0.75rem`) | Maia style — soft and rounded. |
+| **Border Radius** | Large (`--radius: 0.875rem`) | Maia style — soft and rounded. |
 
 ### Theme Configuration
 
@@ -30,7 +30,7 @@ Generated from: `shadcn/create`
 | Theme | Gray |
 | Font | Geist Sans (body) + **Poppins (headlines)** |
 | Icon Library | Hugeicons |
-| Radius | Large (`0.75rem`) |
+| Radius | Large (`0.875rem`) |
 | Menu Accent | Subtle |
 | Menu Color | Default |
 
@@ -140,23 +140,26 @@ code, pre {
 
 ## 4. shadcn/ui Gray Theme Reference
 
-The Gray base color theme uses blue-tinted neutrals (OKLCH hue ~261–265). Key values:
+Source: `shadcn-ui/ui` → `apps/v4/registry/themes.ts` (exact OKLCH values).
+
+The Gray base color uses blue-tinted neutrals (OKLCH hue ~261–265). Key values:
 
 | Token | Light (OKLCH) | Dark (OKLCH) |
 |-------|--------------|-------------|
 | `--background` | `oklch(1 0 0)` | `oklch(0.13 0.028 261.692)` |
 | `--foreground` | `oklch(0.13 0.028 261.692)` | `oklch(0.985 0.002 247.839)` |
-| `--primary` | `oklch(0.21 0.018 262.749)` | `oklch(0.985 0.002 247.839)` |
-| `--secondary` | `oklch(0.967 0.003 264.542)` | `oklch(0.269 0.015 261.692)` |
-| `--muted` | `oklch(0.967 0.003 264.542)` | `oklch(0.269 0.015 261.692)` |
-| `--accent` | `oklch(0.967 0.003 264.542)` | `oklch(0.269 0.015 261.692)` |
-| `--destructive` | `oklch(0.577 0.245 27.325)` | `oklch(0.396 0.141 25.723)` |
-| `--border` | `oklch(0.928 0.006 264.531)` | `oklch(0.269 0.015 261.692)` |
-| `--ring` | `oklch(0.13 0.028 261.692)` | `oklch(0.872 0.01 258.338)` |
-| `--radius` | `0.75rem` | `0.75rem` |
+| `--primary` | `oklch(0.21 0.034 264.665)` | `oklch(0.928 0.006 264.531)` |
+| `--card` | `oklch(1 0 0)` | `oklch(0.21 0.034 264.665)` |
+| `--secondary` | `oklch(0.967 0.003 264.542)` | `oklch(0.278 0.033 256.848)` |
+| `--muted` | `oklch(0.967 0.003 264.542)` | `oklch(0.278 0.033 256.848)` |
+| `--destructive` | `oklch(0.577 0.245 27.325)` | `oklch(0.704 0.191 22.216)` |
+| `--border` | `oklch(0.928 0.006 264.531)` | `oklch(1 0 0 / 10%)` |
+| `--input` | `oklch(0.928 0.006 264.531)` | `oklch(1 0 0 / 15%)` |
+| `--ring` | `oklch(0.707 0.022 261.325)` | `oklch(0.551 0.027 264.364)` |
+| `--radius` | `0.875rem` | `0.875rem` |
 
-**Note:** Unlike the Neutral theme (hue 0), the Gray theme has a subtle blue undertone
-visible in borders, muted surfaces, and secondary elements.
+**Notable:** Dark mode uses **transparency** for borders (`oklch(1 0 0 / 10%)`) and
+inputs (`oklch(1 0 0 / 15%)`). Dark `--card` differs from `--background` (lighter).
 
 **Full list (all 30+ variables):** [`tokens/colors.css`](tokens/colors.css)
 
@@ -244,10 +247,24 @@ Factory function: `createLogoReveal(gsap, options)` in `animations/presets.js`.
 
 ### Maia Style Notes
 
-Maia is "soft and rounded, with generous spacing." Key characteristics:
-- **Border radius**: Large (`--radius: 0.75rem`) — all components feel rounded and friendly
-- **Spacing**: Generous padding and margins throughout — more breathing room
+Maia is "soft and rounded, with generous spacing." Source: `style-maia.css` (53.5 KB).
+
+Key characteristics:
+- **Border radius**: Large (`--radius: 0.875rem`) — components use `rounded-4xl` (pill) and `rounded-2xl`
+- **Spacing**: Generous padding (`gap-6`, `py-6` on cards) — more breathing room
+- **Borders**: Cards/dialogs use `ring-1 ring-foreground/10` instead of `border`
+- **Inputs**: Pill-shaped (`rounded-4xl`) with tinted background (`bg-input/30`)
 - **Aesthetic**: Consumer-friendly, warm, approachable
+
+| Component | Maia Radius | Classic (Vega) |
+|-----------|-------------|----------------|
+| Button | `rounded-4xl` (pill) | `rounded-md` |
+| Input | `rounded-4xl` (pill) | `rounded-md` |
+| Card | `rounded-2xl` | `rounded-xl` |
+| Dialog | `rounded-4xl` | `rounded-lg` |
+| Badge | `rounded-4xl` (pill) | `rounded-md` |
+| Accordion | `rounded-2xl` | `rounded-lg` |
+| Avatar | `rounded-full` | `rounded-full` |
 
 ### Animation Assignments
 

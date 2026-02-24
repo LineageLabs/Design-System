@@ -14,7 +14,7 @@ and logo assets so every project stays consistent.
 |---------|-------|
 | **Style** | Maia — Soft and rounded, generous spacing |
 | **Base Color** | Gray — Blue-tinted neutrals |
-| **Radius** | Large (`--radius: 0.75rem`) |
+| **Radius** | Large (`--radius: 0.875rem`) |
 | **Body Font** | Geist Sans |
 | **Headline Font** | Poppins (h1–h4 only) |
 | **Icons** | Hugeicons |
