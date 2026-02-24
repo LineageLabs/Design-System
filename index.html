@@ -894,6 +894,7 @@
     <nav>
       <a href="#typography">Typography</a>
       <a href="#colors">Colors</a>
+      <a href="#spacing">Spacing</a>
       <a href="#motion">Motion</a>
       <a href="#animations">Animations</a>
       <a href="#components">Components</a>
@@ -984,9 +985,113 @@
       </div>
     </section>
 
+    <!-- SPACING TOKENS -->
+    <section id="spacing">
+      <p class="section-label">Section 03</p>
+      <h2 class="section-title">Spacing</h2>
+      <p class="section-desc">
+        <strong>4px grid</strong> — every value is a multiple of 4px (0.25rem).
+        Maia style means <em>generous spacing</em>: when in doubt, size up.
+      </p>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Base Scale</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>rem</th><th>px</th><th>Tailwind</th><th style="width:40%;">Visual</th></tr></thead>
+          <tbody>
+            <tr><td><code>0.5</code></td><td>0.125</td><td>2</td><td>0.5</td><td><div style="width:2px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>1</code></td><td>0.25</td><td>4</td><td>1</td><td><div style="width:4px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>2</code></td><td>0.5</td><td>8</td><td>2</td><td><div style="width:8px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>3</code></td><td>0.75</td><td>12</td><td>3</td><td><div style="width:12px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>4</code></td><td>1</td><td>16</td><td>4</td><td><div style="width:16px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>5</code></td><td>1.25</td><td>20</td><td>5</td><td><div style="width:20px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>6</code></td><td>1.5</td><td>24</td><td>6</td><td><div style="width:24px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>8</code></td><td>2</td><td>32</td><td>8</td><td><div style="width:32px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>10</code></td><td>2.5</td><td>40</td><td>10</td><td><div style="width:40px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>12</code></td><td>3</td><td>48</td><td>12</td><td><div style="width:48px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>16</code></td><td>4</td><td>64</td><td>16</td><td><div style="width:64px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>20</code></td><td>5</td><td>80</td><td>20</td><td><div style="width:80px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Semantic Tokens</h3>
+      <div class="card-grid reveal" style="margin-bottom:2rem;">
+        <div class="card">
+          <div class="card-title">Inline</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.5rem;">
+            <span><code>inline-xs</code> · 4px · Icon-to-label gap</span>
+            <span><code>inline-sm</code> · 8px · Button icon gap</span>
+            <span><code>inline-md</code> · 12px · Nav link gap</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Component Padding</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.5rem;">
+            <span><code>component-xs</code> · 6px · Badge, dropdown chrome</span>
+            <span><code>component-sm</code> · 10px · Button / input padding</span>
+            <span><code>component-md</code> · 16px · Compact card</span>
+            <span><code>component-lg</code> · 24px · Maia card default</span>
+            <span><code>component-xl</code> · 32px · Dialog / sheet</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Gap (between siblings)</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.5rem;">
+            <span><code>gap-xs</code> · 8px · Tight list items</span>
+            <span><code>gap-sm</code> · 12px · Form fields</span>
+            <span><code>gap-md</code> · 16px · Card grid gap</span>
+            <span><code>gap-lg</code> · 24px · Section content</span>
+            <span><code>gap-xl</code> · 32px · Major blocks</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Section &amp; Page</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.5rem;">
+            <span><code>section-sm</code> · 32px · Compact section</span>
+            <span><code>section-md</code> · 48px · Default section</span>
+            <span><code>section-lg</code> · 80px · Major page section</span>
+            <span><code>section-xl</code> · 96px · Hero / footer</span>
+            <span><code>page-gutter</code> · 24px → 32px</span>
+            <span><code>page-max-width</code> · 1100px</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Component Spacing</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <table class="comp-table">
+          <thead><tr><th>Component</th><th>Padding</th><th>Gap / Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Button</td><td><code>0.625rem 1.25rem</code></td><td>Icon gap: 0.5rem</td></tr>
+            <tr><td>Button sm</td><td><code>0.375rem 1rem</code></td><td>—</td></tr>
+            <tr><td>Button lg</td><td><code>0.875rem 2rem</code></td><td>—</td></tr>
+            <tr><td>Input</td><td><code>0.625rem 1.25rem</code></td><td>Label gap: 0.5rem</td></tr>
+            <tr><td>Card</td><td><code>1.5rem</code> (p-6)</td><td>Internal: 1rem</td></tr>
+            <tr><td>Dialog</td><td><code>2rem</code> (p-8)</td><td>Actions: 0.75rem</td></tr>
+            <tr><td>Sheet</td><td><code>1.5rem</code> (p-6)</td><td>—</td></tr>
+            <tr><td>Dropdown</td><td><code>0.375rem</code> chrome</td><td>Item: 0.5rem 0.75rem</td></tr>
+            <tr><td>Toast</td><td><code>1rem 1.25rem</code></td><td>—</td></tr>
+            <tr><td>Accordion</td><td><code>1rem 0.75rem</code></td><td>Content: 1rem</td></tr>
+            <tr><td>Badge</td><td><code>0.2rem 0.625rem</code></td><td>—</td></tr>
+            <tr><td>Tabs</td><td><code>0.5rem 0.875rem</code></td><td>List gap: 0.25rem</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
+      <div class="card-grid reveal">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">4px grid</div><div class="card-sub">All spacing is a multiple of 4px (0.25rem). No arbitrary values like 0.3rem or 7px.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-yellow);"><div class="card-title">Generous by default</div><div class="card-sub">Maia style. Cards get <code>p-6</code> not <code>p-4</code>. Sections get <code>mb-20</code> not <code>mb-12</code>. When in doubt, size up.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-magenta);"><div class="card-title">Gap over margin</div><div class="card-sub">Use flexbox/grid <code>gap</code> for layout spacing. Avoid margin for sibling separation.</div></div>
+        <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">44px touch targets</div><div class="card-sub">Interactive elements must be &ge;44&times;44px. Use padding or <code>min-height</code> to reach this.</div></div>
+      </div>
+    </section>
+
     <!-- MOTION TOKENS -->
     <section id="motion">
-      <p class="section-label">Section 03</p>
+      <p class="section-label">Section 04</p>
       <h2 class="section-title">Motion Tokens</h2>
       <p class="section-desc">All animations use <strong>GSAP v3</strong>. Every animation must check <code>prefers-reduced-motion</code>.</p>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Durations</h3>
@@ -1022,7 +1127,7 @@
 
     <!-- ANIMATION PRESETS -->
     <section id="animations">
-      <p class="section-label">Section 04</p>
+      <p class="section-label">Section 05</p>
       <h2 class="section-title">Animation Presets</h2>
       <p class="section-desc">Click any card to replay. Presets live in <code>animations/presets.js</code>.</p>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Entrance</h3>
@@ -1064,7 +1169,7 @@
 
     <!-- COMPONENT CUSTOMIZATIONS — LIVE DEMOS -->
     <section id="components">
-      <p class="section-label">Section 05</p>
+      <p class="section-label">Section 06</p>
       <h2 class="section-title">Live Components</h2>
       <p class="section-desc">
         Interactive Maia-styled components with their assigned GSAP animations.
@@ -1296,7 +1401,7 @@
 
     <!-- GET STARTED -->
     <section id="start">
-      <p class="section-label">Section 06</p>
+      <p class="section-label">Section 07</p>
       <h2 class="section-title">Get Started</h2>
       <p class="section-desc">Set up a new project with shadcn/ui Maia + Gray theme.</p>
       <div class="step-list reveal">
@@ -1329,7 +1434,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     <!-- MOBILE EXAMPLE -->
     <section id="mobile-example">
-      <p class="section-label">Section 07</p>
+      <p class="section-label">Section 08</p>
       <h2 class="section-title">Mobile Example</h2>
       <p class="section-desc">
         A realistic mobile app — "Focus" — built entirely from design system components.

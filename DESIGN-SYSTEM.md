@@ -295,7 +295,87 @@ Key characteristics:
 
 ---
 
-## 7. Icons
+## 7. Spacing
+
+Foundation: **4px grid** (0.25rem). Maia style = "generous spacing" — when in doubt, size up.
+
+### Base Scale
+
+| Token | rem | px | Tailwind |
+|-------|-----|----|----------|
+| `0` | `0` | 0 | `0` |
+| `0.5` | `0.125rem` | 2 | `0.5` |
+| `1` | `0.25rem` | 4 | `1` |
+| `1.5` | `0.375rem` | 6 | `1.5` |
+| `2` | `0.5rem` | 8 | `2` |
+| `3` | `0.75rem` | 12 | `3` |
+| `4` | `1rem` | 16 | `4` |
+| `5` | `1.25rem` | 20 | `5` |
+| `6` | `1.5rem` | 24 | `6` |
+| `8` | `2rem` | 32 | `8` |
+| `10` | `2.5rem` | 40 | `10` |
+| `12` | `3rem` | 48 | `12` |
+| `16` | `4rem` | 64 | `16` |
+| `20` | `5rem` | 80 | `20` |
+| `24` | `6rem` | 96 | `24` |
+
+### Semantic Tokens
+
+| Token | Value | Tailwind | Use |
+|-------|-------|----------|-----|
+| `inline-xs` | 4px | `1` | Icon-to-label gap |
+| `inline-sm` | 8px | `2` | Button icon gap, badge padding |
+| `inline-md` | 12px | `3` | Nav link gap, input group spacing |
+| `component-xs` | 6px | `1.5` | Small button, compact badge |
+| `component-sm` | 10px | `2.5` | Button/input vertical padding |
+| `component-md` | 16px | `4` | Card padding (compact), dropdown items |
+| `component-lg` | 24px | `6` | Card padding (Maia default), dialog |
+| `component-xl` | 32px | `8` | Large dialog/sheet, hero card |
+| `gap-xs` | 8px | `2` | Tight list items, badge groups |
+| `gap-sm` | 12px | `3` | Form fields, compact card grids |
+| `gap-md` | 16px | `4` | Default card grid, list gap |
+| `gap-lg` | 24px | `6` | Section content, generous card grids |
+| `gap-xl` | 32px | `8` | Major content block gap |
+| `section-sm` | 32px | `8` | Compact section margin |
+| `section-md` | 48px | `12` | Default section break |
+| `section-lg` | 80px | `20` | Major page section separation |
+| `section-xl` | 96px | `24` | Hero / footer breathing room |
+| `page-gutter` | 24px | `6` | Page horizontal padding (mobile) |
+| `page-gutter-lg` | 32px | `8` | Page horizontal padding (desktop) |
+| `page-max-width` | 1100px | `max-w-6xl` | Maximum content width |
+
+### Component Spacing
+
+| Component | Padding | Gap / Notes |
+|-----------|---------|-------------|
+| **Button** | `0.625rem 1.25rem` | Icon gap: `0.5rem` |
+| **Button sm** | `0.375rem 1rem` | — |
+| **Button lg** | `0.875rem 2rem` | — |
+| **Input** | `0.625rem 1.25rem` | Label gap: `0.5rem` |
+| **Card** | `1.5rem` (p-6) | Internal gap: `1rem` |
+| **Dialog** | `2rem` (p-8) | Action gap: `0.75rem` |
+| **Sheet** | `1.5rem` (p-6) | — |
+| **Dropdown** | `0.375rem` chrome | Item: `0.5rem 0.75rem` |
+| **Toast** | `1rem 1.25rem` | — |
+| **Accordion** | Trigger: `1rem 0.75rem` | Content: `1rem` |
+| **Badge** | `0.2rem 0.625rem` | — |
+| **Tabs** | Trigger: `0.5rem 0.875rem` | List gap: `0.25rem` |
+
+### Guidelines
+
+1. **4px grid.** All spacing must be a multiple of 4px (0.25rem).
+2. **Generous by default.** Cards get `p-6` not `p-4`. Sections get `mb-20` not `mb-12`.
+3. **Use semantic tokens.** Prefer `component-lg` / `gap-md` / `section-lg` over raw values.
+4. **Gap over margin.** Use flexbox/grid `gap` for layout spacing, not margin.
+5. **Don't shrink on mobile.** Component padding stays fixed. Only `page-gutter` and section spacing may compress by one step under 640px.
+6. **44px touch targets.** Interactive elements must be at least 44×44px. Use padding or `min-height`/`min-width` to reach this.
+7. **No arbitrary values.** Never use off-grid values like `0.3rem` or `7px`.
+
+**Full spec:** [`tokens/spacing.yaml`](tokens/spacing.yaml)
+
+---
+
+## 8. Icons
 
 ### Hugeicons
 
@@ -311,7 +391,7 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 
 ---
 
-## 8. Assets & Logos
+## 9. Assets & Logos
 
 ### Required Logo Variants
 
@@ -337,7 +417,7 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 
 ---
 
-## 9. File Map
+## 10. File Map
 
 | File | Purpose |
 |------|---------|
@@ -346,6 +426,7 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 | `tokens/colors.css` | Copy-paste CSS variables (shadcn Gray + brand) |
 | `tokens/brand-colors.yaml` | Brand color palette with usage rules |
 | `tokens/motion.yaml` | Duration, easing, stagger tokens |
+| `tokens/spacing.yaml` | Spacing scale, semantic tokens, component spacing, guidelines |
 | `animations/presets.js` | GSAP animation presets (entrance, exit, hover, scroll, logo) |
 | `animations/scroll-triggers.js` | GSAP ScrollTrigger factory functions |
 | `animations/transitions.css` | CSS-only transitions for simple interactions |
