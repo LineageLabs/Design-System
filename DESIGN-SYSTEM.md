@@ -9,10 +9,30 @@
 
 | Layer | Tool | Reference |
 |-------|------|-----------|
-| **UI Components** | [shadcn/ui](https://ui.shadcn.com/) — Neutral theme | Install per their CLI docs. Use as-is. |
+| **UI Components** | [shadcn/ui](https://ui.shadcn.com/) — Maia style, Gray base color | Install per their CLI docs. Use as-is. |
 | **Styling** | [Tailwind CSS](https://tailwindcss.com/) (v4, OKLCH) | Comes with shadcn. Use their utilities. |
 | **Animation** | [GSAP v3](https://gsap.com/docs/v3/) | `npm install gsap`. Use our presets. |
 | **Color Format** | OKLCH | Current shadcn/Tailwind v4 standard. |
+| **Body Font** | [Geist Sans](https://vercel.com/font) | Default for all body text, UI elements. |
+| **Headline Font** | [Poppins](https://fonts.google.com/specimen/Poppins) | Used for h1–h4 headings only. |
+| **Icons** | [Hugeicons](https://hugeicons.com/) | Default icon library. |
+| **Border Radius** | Large (`--radius: 0.75rem`) | Maia style — soft and rounded. |
+
+### Theme Configuration
+
+Generated from: `shadcn/create`
+
+| Setting | Value |
+|---------|-------|
+| Base | Radix |
+| Style | **Maia** — Soft and rounded, generous spacing |
+| Base Color | **Gray** — Blue-tinted neutral (hue ~262 OKLCH) |
+| Theme | Gray |
+| Font | Geist Sans (body) + **Poppins (headlines)** |
+| Icon Library | Hugeicons |
+| Radius | Large (`0.75rem`) |
+| Menu Accent | Subtle |
+| Menu Color | Default |
 
 ### Cardinal Rules
 
@@ -21,10 +41,54 @@
 3. **GSAP for motion.** Use presets from `animations/presets.js`. Don't invent new durations/easings.
 4. **Respect reduced motion.** Every animation checks `prefers-reduced-motion`.
 5. **Never edit shadcn source.** Customise via CSS overrides, Tailwind composition, or wrapper components.
+6. **Geist for body, Poppins for headlines.** Apply Poppins only to h1–h4 elements.
+7. **Use Hugeicons.** Default icon set for all UI elements and illustrations.
 
 ---
 
-## 2. Brand Colors
+## 2. Typography
+
+### Font Stack
+
+| Role | Font Family | Weight Range | Usage |
+|------|-------------|-------------|-------|
+| **Headlines** (h1–h4) | `"Poppins", sans-serif` | 600–800 | Page titles, section headers, hero text |
+| **Body / UI** | `"Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif` | 400–700 | All body text, buttons, inputs, labels, navigation |
+| **Code** | `"Geist Mono", "SF Mono", "Fira Code", Consolas, monospace` | 400 | Code blocks, inline code, terminal |
+
+### Installation
+
+```html
+<!-- Google Fonts — Poppins (headlines only) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+```
+
+```bash
+# Geist (installed via npm or included with Next.js)
+npm install geist
+```
+
+### CSS Setup
+
+```css
+body {
+  font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Poppins", sans-serif;
+}
+
+code, pre {
+  font-family: "Geist Mono", "SF Mono", "Fira Code", Consolas, monospace;
+}
+```
+
+---
+
+## 3. Brand Colors
 
 > **Rule:** These do NOT replace shadcn tokens. They are additional `--brand-*` CSS
 > custom properties used only when a design explicitly calls for brand treatment.
@@ -74,28 +138,31 @@
 
 ---
 
-## 3. shadcn/ui Default Theme Reference
+## 4. shadcn/ui Gray Theme Reference
 
-The default shadcn Neutral theme values are documented in `tokens/colors.css`. Key values:
+The Gray base color theme uses blue-tinted neutrals (OKLCH hue ~261–265). Key values:
 
 | Token | Light (OKLCH) | Dark (OKLCH) |
 |-------|--------------|-------------|
-| `--background` | `oklch(1 0 0)` | `oklch(0.145 0 0)` |
-| `--foreground` | `oklch(0.145 0 0)` | `oklch(0.985 0 0)` |
-| `--primary` | `oklch(0.205 0 0)` | `oklch(0.985 0 0)` |
-| `--secondary` | `oklch(0.97 0 0)` | `oklch(0.269 0 0)` |
-| `--muted` | `oklch(0.97 0 0)` | `oklch(0.269 0 0)` |
-| `--accent` | `oklch(0.97 0 0)` | `oklch(0.269 0 0)` |
+| `--background` | `oklch(1 0 0)` | `oklch(0.13 0.028 261.692)` |
+| `--foreground` | `oklch(0.13 0.028 261.692)` | `oklch(0.985 0.002 247.839)` |
+| `--primary` | `oklch(0.21 0.018 262.749)` | `oklch(0.985 0.002 247.839)` |
+| `--secondary` | `oklch(0.967 0.003 264.542)` | `oklch(0.269 0.015 261.692)` |
+| `--muted` | `oklch(0.967 0.003 264.542)` | `oklch(0.269 0.015 261.692)` |
+| `--accent` | `oklch(0.967 0.003 264.542)` | `oklch(0.269 0.015 261.692)` |
 | `--destructive` | `oklch(0.577 0.245 27.325)` | `oklch(0.396 0.141 25.723)` |
-| `--border` | `oklch(0.922 0 0)` | `oklch(0.269 0 0)` |
-| `--ring` | `oklch(0.708 0 0)` | `oklch(0.439 0 0)` |
-| `--radius` | `0.625rem` | `0.625rem` |
+| `--border` | `oklch(0.928 0.006 264.531)` | `oklch(0.269 0.015 261.692)` |
+| `--ring` | `oklch(0.13 0.028 261.692)` | `oklch(0.872 0.01 258.338)` |
+| `--radius` | `0.75rem` | `0.75rem` |
+
+**Note:** Unlike the Neutral theme (hue 0), the Gray theme has a subtle blue undertone
+visible in borders, muted surfaces, and secondary elements.
 
 **Full list (all 30+ variables):** [`tokens/colors.css`](tokens/colors.css)
 
 ---
 
-## 4. Animation & Motion
+## 5. Animation & Motion
 
 Foundation: **GSAP v3**. All presets in [`animations/presets.js`](animations/presets.js).
 
@@ -171,9 +238,16 @@ Factory function: `createLogoReveal(gsap, options)` in `animations/presets.js`.
 
 ---
 
-## 5. Component Customizations
+## 6. Component Customizations
 
 > If a component is not listed here, use it exactly as shadcn provides.
+
+### Maia Style Notes
+
+Maia is "soft and rounded, with generous spacing." Key characteristics:
+- **Border radius**: Large (`--radius: 0.75rem`) — all components feel rounded and friendly
+- **Spacing**: Generous padding and margins throughout — more breathing room
+- **Aesthetic**: Consumer-friendly, warm, approachable
 
 ### Animation Assignments
 
@@ -204,7 +278,23 @@ Factory function: `createLogoReveal(gsap, options)` in `animations/presets.js`.
 
 ---
 
-## 6. Assets & Logos
+## 7. Icons
+
+### Hugeicons
+
+| Setting | Value |
+|---------|-------|
+| Library | [Hugeicons](https://hugeicons.com/) |
+| Install | `npm install hugeicons-react` |
+| Import | `import { IconName } from "hugeicons-react"` |
+| Default Size | `20px` (matches shadcn button icon sizing) |
+| Default Stroke | `1.5` |
+
+Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific icon is not available in Hugeicons.
+
+---
+
+## 8. Assets & Logos
 
 ### Required Logo Variants
 
@@ -230,13 +320,13 @@ Factory function: `createLogoReveal(gsap, options)` in `animations/presets.js`.
 
 ---
 
-## 7. File Map
+## 9. File Map
 
 | File | Purpose |
 |------|---------|
 | `CLAUDE.md` | LLM quick-start — read this first |
 | `DESIGN-SYSTEM.md` | This file — complete specification |
-| `tokens/colors.css` | Copy-paste CSS variables (shadcn + brand) |
+| `tokens/colors.css` | Copy-paste CSS variables (shadcn Gray + brand) |
 | `tokens/brand-colors.yaml` | Brand color palette with usage rules |
 | `tokens/motion.yaml` | Duration, easing, stagger tokens |
 | `animations/presets.js` | GSAP animation presets (entrance, exit, hover, scroll, logo) |

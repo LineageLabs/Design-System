@@ -5,6 +5,13 @@
 # This file documents what we CHANGE from shadcn/ui defaults.
 # If a component is not listed here, use it exactly as shadcn provides it.
 #
+# Theme Configuration:
+#   - Style: Maia (soft and rounded, generous spacing)
+#   - Base Color: Gray (blue-tinted neutrals)
+#   - Radius: Large (--radius: 0.75rem)
+#   - Font: Geist Sans (body) + Poppins (headlines h1-h4)
+#   - Icons: Hugeicons
+#
 # Rules:
 #   1. Never edit files inside components/ui/ directly — shadcn CLI must remain updatable
 #   2. Use cn() (from shadcn's lib/utils) for conditional class merging
@@ -15,10 +22,54 @@
 # ==============================================================================
 
 general_rules:
-  - "Use the shadcn Neutral base color theme (default)"
-  - "Keep --radius at 0.625rem (shadcn default) unless a project specifies otherwise"
+  - "Use the shadcn Gray base color theme (Maia style)"
+  - "Set --radius to 0.75rem (large — Maia soft/rounded aesthetic)"
   - "Never override --primary, --background, etc. with brand colors globally"
   - "Apply brand colors via --brand-* custom properties only where designs specify"
+  - "Use Geist Sans for all body text and UI elements"
+  - "Use Poppins (weight 600-800) for h1-h4 headings only"
+  - "Use Hugeicons as the default icon library"
+
+# ==============================================================================
+# TYPOGRAPHY
+# ==============================================================================
+
+typography:
+  body_font: "Geist Sans"
+  headline_font: "Poppins"
+  code_font: "Geist Mono"
+  headline_elements: ["h1", "h2", "h3", "h4"]
+  headline_weights: [600, 700, 800]
+  notes: |
+    Poppins is used ONLY for h1-h4 elements.
+    All other text (body, buttons, inputs, labels, nav) uses Geist Sans.
+    Code blocks use Geist Mono.
+
+# ==============================================================================
+# ICONS
+# ==============================================================================
+
+icons:
+  library: "Hugeicons"
+  package: "hugeicons-react"
+  default_size: "20px"
+  default_stroke: 1.5
+  fallback: "Lucide (only if icon unavailable in Hugeicons)"
+  notes: "Use Hugeicons consistently. Match icon weight to surrounding text weight."
+
+# ==============================================================================
+# MAIA STYLE
+# ==============================================================================
+
+maia_style:
+  description: "Soft and rounded, with generous spacing"
+  radius: "0.75rem (large)"
+  aesthetic: "Consumer-friendly, warm, approachable"
+  characteristics:
+    - "Larger border radii — components feel rounded and friendly"
+    - "Generous padding and margins — more breathing room between elements"
+    - "Soft shadows and subtle borders"
+    - "Blue-tinted gray palette for a refined, modern feel"
 
 # ==============================================================================
 # COMPONENT ANIMATION ASSIGNMENTS

@@ -8,20 +8,33 @@ A reference bank — NOT a custom design system. **shadcn/ui is the design syste
 This repo documents our brand colors, animation standards (GSAP), component customizations,
 and logo assets so every project stays consistent.
 
+## Theme Configuration
+
+| Setting | Value |
+|---------|-------|
+| **Style** | Maia — Soft and rounded, generous spacing |
+| **Base Color** | Gray — Blue-tinted neutrals |
+| **Radius** | Large (`--radius: 0.75rem`) |
+| **Body Font** | Geist Sans |
+| **Headline Font** | Poppins (h1–h4 only) |
+| **Icons** | Hugeicons |
+
 ## Cardinal Rules
 
-1. **Use shadcn/ui as-is.** Install via their CLI. Use the Neutral base color theme. Do not rebuild components from scratch.
+1. **Use shadcn/ui as-is.** Install via their CLI. Use the **Gray** base color theme with **Maia** style. Do not rebuild components from scratch.
 2. **Brand colors are additive.** They do NOT replace `--primary`, `--background`, or any shadcn semantic token. Apply them only when the design explicitly calls for brand colors.
-3. **GSAP for animation.** Use the presets in `animations/presets.js`. Do not invent new easing or duration values — use the tokens in `tokens/motion.yaml`.
-4. **Respect reduced motion.** Every GSAP animation must check `prefers-reduced-motion` and fall back to instant or no animation.
-5. **Never edit shadcn source.** Customise through CSS variable overrides, Tailwind utility composition, or wrapper components.
+3. **Geist for body, Poppins for headlines.** Apply `font-family: "Poppins"` only to h1–h4 elements. Everything else uses Geist Sans.
+4. **Hugeicons for icons.** Use `hugeicons-react` as the default icon library. Fallback to Lucide only if unavailable.
+5. **GSAP for animation.** Use the presets in `animations/presets.js`. Do not invent new easing or duration values — use the tokens in `tokens/motion.yaml`.
+6. **Respect reduced motion.** Every GSAP animation must check `prefers-reduced-motion` and fall back to instant or no animation.
+7. **Never edit shadcn source.** Customise through CSS variable overrides, Tailwind utility composition, or wrapper components.
 
 ## Key Files (read in this order)
 
 | Priority | File | What It Contains |
 |----------|------|-----------------|
-| 1 | `DESIGN-SYSTEM.md` | Full specification — colors, motion, component rules, assets |
-| 2 | `tokens/colors.css` | Copy-paste CSS variables (shadcn defaults + brand color block) |
+| 1 | `DESIGN-SYSTEM.md` | Full specification — colors, typography, motion, component rules, assets |
+| 2 | `tokens/colors.css` | Copy-paste CSS variables (shadcn Gray theme + brand color block) |
 | 3 | `tokens/brand-colors.yaml` | Brand color palette with strict usage rules |
 | 4 | `tokens/motion.yaml` | Duration, easing, and stagger tokens |
 | 5 | `animations/presets.js` | GSAP animation presets — entrance, exit, hover, scroll, logo |
@@ -33,10 +46,14 @@ and logo assets so every project stays consistent.
 
 ```bash
 # 1. Set up your framework (Next.js, Vite, etc.)
-# 2. Install shadcn/ui per https://ui.shadcn.com/docs/installation
-# 3. Install GSAP
-npm install gsap
-# 4. Copy tokens/colors.css into your global stylesheet
-# 5. Import animation presets where needed
+# 2. Install shadcn/ui with Gray base color, Maia style
+npx shadcn@latest init  # Choose: Gray base color, Maia style
+# 3. Install dependencies
+npm install gsap hugeicons-react
+# 4. Add Poppins for headlines
+#    (via Google Fonts link or next/font)
+# 5. Copy tokens/colors.css into your global stylesheet
+# 6. Set font-family: "Poppins" on h1-h4 in your CSS
+# 7. Import animation presets where needed
 import { ENTRANCE, EXIT, HOVER } from "@/design-system/animations/presets";
 ```

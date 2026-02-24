@@ -4,29 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Design System Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <style>
     /* =========================================================
-       COLOR TOKENS — from tokens/colors.css
+       COLOR TOKENS — Gray base color, Maia style
        ========================================================= */
     :root {
-      --radius: 0.625rem;
+      --radius: 0.75rem;
       --background: oklch(1 0 0);
-      --foreground: oklch(0.145 0 0);
+      --foreground: oklch(0.13 0.028 261.692);
       --card: oklch(1 0 0);
-      --card-foreground: oklch(0.145 0 0);
-      --primary: oklch(0.205 0 0);
-      --primary-foreground: oklch(0.985 0 0);
-      --secondary: oklch(0.97 0 0);
-      --secondary-foreground: oklch(0.205 0 0);
-      --muted: oklch(0.97 0 0);
-      --muted-foreground: oklch(0.556 0 0);
-      --border: oklch(0.922 0 0);
-      --ring: oklch(0.708 0 0);
+      --card-foreground: oklch(0.13 0.028 261.692);
+      --primary: oklch(0.21 0.018 262.749);
+      --primary-foreground: oklch(0.985 0.002 247.839);
+      --secondary: oklch(0.967 0.003 264.542);
+      --secondary-foreground: oklch(0.21 0.018 262.749);
+      --muted: oklch(0.967 0.003 264.542);
+      --muted-foreground: oklch(0.551 0.018 264.364);
+      --border: oklch(0.928 0.006 264.531);
+      --ring: oklch(0.13 0.028 261.692);
       --destructive: oklch(0.577 0.245 27.325);
 
-      /* Brand — light */
       --brand-surface: #FAFAFA;
       --brand-surface-grey: #EAEAEA;
       --brand-highlight-yellow: #FFD400;
@@ -35,21 +37,20 @@
     }
 
     .dark {
-      --background: oklch(0.145 0 0);
-      --foreground: oklch(0.985 0 0);
-      --card: oklch(0.205 0 0);
-      --card-foreground: oklch(0.985 0 0);
-      --primary: oklch(0.985 0 0);
-      --primary-foreground: oklch(0.205 0 0);
-      --secondary: oklch(0.269 0 0);
-      --secondary-foreground: oklch(0.985 0 0);
-      --muted: oklch(0.269 0 0);
-      --muted-foreground: oklch(0.708 0 0);
-      --border: oklch(0.269 0 0);
-      --ring: oklch(0.439 0 0);
+      --background: oklch(0.13 0.028 261.692);
+      --foreground: oklch(0.985 0.002 247.839);
+      --card: oklch(0.13 0.028 261.692);
+      --card-foreground: oklch(0.985 0.002 247.839);
+      --primary: oklch(0.985 0.002 247.839);
+      --primary-foreground: oklch(0.21 0.018 262.749);
+      --secondary: oklch(0.269 0.015 261.692);
+      --secondary-foreground: oklch(0.985 0.002 247.839);
+      --muted: oklch(0.269 0.015 261.692);
+      --muted-foreground: oklch(0.707 0.015 264.532);
+      --border: oklch(0.269 0.015 261.692);
+      --ring: oklch(0.872 0.01 258.338);
       --destructive: oklch(0.396 0.141 25.723);
 
-      /* Brand — dark */
       --brand-surface: #151515;
       --brand-surface-grey: #EAEAEA;
       --brand-highlight-yellow: #F9DE0A;
@@ -63,7 +64,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--background);
       color: var(--foreground);
       line-height: 1.6;
@@ -71,9 +72,12 @@
                   color 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     }
 
-    h1, h2, h3, h4 { line-height: 1.2; }
+    h1, h2, h3, h4 {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.2;
+    }
     code {
-      font-family: "SF Mono", "Fira Code", Consolas, monospace;
+      font-family: "Geist Mono", "SF Mono", "Fira Code", Consolas, monospace;
       font-size: 0.85em;
       background: var(--muted);
       padding: 0.15em 0.4em;
@@ -92,6 +96,7 @@
     section { margin-bottom: 5rem; }
 
     .section-label {
+      font-family: "Geist Sans", -apple-system, sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -107,6 +112,7 @@
     }
 
     .section-desc {
+      font-family: "Geist Sans", -apple-system, sans-serif;
       color: var(--muted-foreground);
       margin-bottom: 2rem;
       max-width: 60ch;
@@ -139,6 +145,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-family: "Poppins", sans-serif;
       font-weight: 700;
       font-size: 1rem;
       text-decoration: none;
@@ -148,7 +155,7 @@
     .logo-icon {
       width: 28px;
       height: 28px;
-      border-radius: 6px;
+      border-radius: 8px;
       background: var(--foreground);
       display: flex;
       align-items: center;
@@ -157,7 +164,6 @@
     }
 
     .logo-icon svg { color: var(--background); }
-
     .logo-wordmark { font-weight: 700; }
 
     nav {
@@ -183,6 +189,7 @@
       font-size: 0.8rem;
       cursor: pointer;
       font-weight: 500;
+      font-family: inherit;
       transition: background 0.15s ease-out, box-shadow 0.15s ease-out, transform 0.1s ease-out;
     }
     .theme-toggle:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
@@ -191,12 +198,11 @@
     /* =========================================================
        HERO
        ========================================================= */
-    .hero {
-      padding: 5rem 0 4rem;
-    }
+    .hero { padding: 5rem 0 4rem; }
 
     .hero-eyebrow {
       display: inline-block;
+      font-family: "Geist Sans", -apple-system, sans-serif;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -220,6 +226,7 @@
     .hero-title .accent-magenta { color: var(--brand-highlight-magenta); }
 
     .hero-sub {
+      font-family: "Geist Sans", -apple-system, sans-serif;
       font-size: 1.125rem;
       color: var(--muted-foreground);
       max-width: 55ch;
@@ -233,6 +240,7 @@
     }
 
     .tag {
+      font-family: "Geist Sans", -apple-system, sans-serif;
       font-size: 0.75rem;
       font-weight: 600;
       padding: 0.25rem 0.625rem;
@@ -259,13 +267,8 @@
       gap: 1rem;
     }
 
-    .card-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
-    }
-
     .card-title {
+      font-family: "Poppins", sans-serif;
       font-size: 0.875rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
@@ -300,10 +303,7 @@
       border: 1px solid var(--border);
     }
 
-    .swatch-color {
-      height: 72px;
-      width: 100%;
-    }
+    .swatch-color { height: 72px; width: 100%; }
 
     .swatch-info {
       padding: 0.625rem 0.75rem;
@@ -318,27 +318,27 @@
 
     .swatch-hex {
       font-size: 0.72rem;
-      font-family: "SF Mono", Consolas, monospace;
+      font-family: "Geist Mono", "SF Mono", Consolas, monospace;
       color: var(--muted-foreground);
     }
 
     .swatch-var {
       font-size: 0.68rem;
-      font-family: "SF Mono", Consolas, monospace;
+      font-family: "Geist Mono", "SF Mono", Consolas, monospace;
       color: var(--muted-foreground);
       margin-top: 0.15rem;
     }
 
     /* =========================================================
-       MOTION TOKENS TABLE
+       TABLES
        ========================================================= */
-    .token-table {
+    .token-table, .comp-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.875rem;
     }
 
-    .token-table th {
+    .token-table th, .comp-table th {
       text-align: left;
       padding: 0.625rem 1rem;
       background: var(--muted);
@@ -353,27 +353,17 @@
     .token-table th:first-child { border-radius: var(--radius) 0 0 0; }
     .token-table th:last-child  { border-radius: 0 var(--radius) 0 0; }
 
-    .token-table td {
+    .token-table td, .comp-table td {
       padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--border);
       vertical-align: middle;
     }
 
-    .token-table tr:last-child td { border-bottom: none; }
-    .token-table tr:hover td { background: var(--muted); }
+    .token-table tr:last-child td, .comp-table tr:last-child td { border-bottom: none; }
+    .token-table tr:hover td, .comp-table tr:hover td { background: var(--muted); }
 
-    .duration-bar-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .duration-bar {
-      height: 6px;
-      border-radius: 999px;
-      background: var(--brand-highlight-blue);
-      flex-shrink: 0;
-    }
+    .duration-bar-wrap { display: flex; align-items: center; gap: 0.75rem; }
+    .duration-bar { height: 6px; border-radius: 999px; background: var(--brand-highlight-blue); flex-shrink: 0; }
 
     .easing-badge {
       display: inline-block;
@@ -407,43 +397,22 @@
       cursor: pointer;
       transition: border-color 0.15s ease-out;
     }
-
     .demo-card:hover { border-color: var(--brand-highlight-blue); }
 
     .demo-box {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       border-radius: 10px;
       background: var(--foreground);
       flex-shrink: 0;
     }
-
-    .demo-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .demo-sublabel {
-      font-size: 0.7rem;
-      color: var(--muted-foreground);
-      text-align: center;
-    }
-
-    .play-hint {
-      font-size: 0.7rem;
-      color: var(--brand-highlight-blue);
-      font-weight: 500;
-    }
+    .demo-label { font-size: 0.8rem; font-weight: 600; text-align: center; }
+    .demo-sublabel { font-size: 0.7rem; color: var(--muted-foreground); text-align: center; }
+    .play-hint { font-size: 0.7rem; color: var(--brand-highlight-blue); font-weight: 500; }
 
     /* =========================================================
        HOVER DEMO
        ========================================================= */
-    .hover-demo-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    .hover-demo-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
 
     .hover-demo-btn {
       background: var(--foreground);
@@ -468,50 +437,39 @@
     }
 
     /* =========================================================
-       COMPONENT ASSIGNMENT TABLE
+       TYPOGRAPHY PREVIEW
        ========================================================= */
-    .comp-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
+    .type-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
     }
-
-    .comp-table th {
-      text-align: left;
-      padding: 0.625rem 1rem;
-      background: var(--muted);
-      color: var(--muted-foreground);
+    .type-row { display: flex; align-items: baseline; gap: 1rem; }
+    .type-label {
+      font-family: "Geist Mono", monospace;
       font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground);
+      min-width: 60px;
+      flex-shrink: 0;
     }
-
-    .comp-table td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .comp-table tr:last-child td { border-bottom: none; }
-    .comp-table tr:hover td { background: var(--muted); }
 
     .preset-pill {
       display: inline-block;
       font-size: 0.72rem;
       font-weight: 700;
-      font-family: "SF Mono", Consolas, monospace;
+      font-family: "Geist Mono", "SF Mono", Consolas, monospace;
       padding: 0.15rem 0.5rem;
       border-radius: 999px;
       margin: 0.1rem;
     }
-
     .pill-entrance {
       background: color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
       color: var(--brand-highlight-blue);
       border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
     }
-
     .pill-exit {
       background: color-mix(in srgb, var(--brand-highlight-magenta) 12%, transparent);
       color: var(--brand-highlight-magenta);
@@ -519,73 +477,41 @@
     }
 
     /* =========================================================
-       GETTING STARTED — CODE BLOCK
+       CODE BLOCKS
        ========================================================= */
     .code-block {
       background: oklch(0.12 0 0);
       color: oklch(0.9 0 0);
       border-radius: var(--radius);
       padding: 1.5rem;
-      font-family: "SF Mono", "Fira Code", Consolas, monospace;
+      font-family: "Geist Mono", "SF Mono", "Fira Code", Consolas, monospace;
       font-size: 0.82rem;
       line-height: 1.7;
       overflow-x: auto;
       border: 1px solid var(--border);
     }
-
-    .dark .code-block {
-      background: oklch(0.1 0 0);
-      border-color: oklch(0.22 0 0);
-    }
-
+    .dark .code-block { background: oklch(0.1 0 0); border-color: oklch(0.22 0 0); }
     .code-block .cm { color: oklch(0.6 0 0); }
     .code-block .kw { color: var(--brand-highlight-blue); }
     .code-block .st { color: var(--brand-highlight-yellow); }
     .code-block .fn { color: var(--brand-highlight-magenta); }
 
-    .step-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .step {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
+    .step-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .step { display: flex; gap: 1rem; align-items: flex-start; }
     .step-num {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border-radius: 999px;
       background: var(--foreground);
       color: var(--background);
-      font-size: 0.75rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
+      font-size: 0.75rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 0.1rem;
     }
-
     .step-body { flex: 1; }
+    .step-title { font-family: "Poppins", sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
 
-    .step-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 0.35rem;
-    }
-
-    /* =========================================================
-       SCROLL REVEAL — targets
-       ========================================================= */
     .reveal { opacity: 0; }
 
-    /* =========================================================
-       FOOTER
-       ========================================================= */
     footer {
       border-top: 1px solid var(--border);
       padding: 2rem 1.5rem;
@@ -594,9 +520,6 @@
       color: var(--muted-foreground);
     }
 
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
     @media (max-width: 640px) {
       nav a { display: none; }
       .hero-title { font-size: 2rem; }
@@ -605,9 +528,6 @@
 </head>
 <body>
 
-  <!-- ============================================================
-       STICKY HEADER
-       ============================================================ -->
   <header class="site-header">
     <a href="#" class="logo">
       <span class="logo-icon">
@@ -620,8 +540,8 @@
       </span>
       <span class="logo-wordmark">Design System</span>
     </a>
-
     <nav>
+      <a href="#typography">Typography</a>
       <a href="#colors">Colors</a>
       <a href="#motion">Motion</a>
       <a href="#animations">Animations</a>
@@ -633,11 +553,9 @@
 
   <div class="page-wrapper">
 
-    <!-- ============================================================
-         HERO
-         ============================================================ -->
+    <!-- HERO -->
     <div class="hero" id="hero">
-      <span class="hero-eyebrow">Reference · shadcn/ui + GSAP</span>
+      <span class="hero-eyebrow">Reference · shadcn/ui Maia + GSAP</span>
       <h1 class="hero-title" id="hero-title">
         Build consistent.<br>
         Move with <span class="accent-blue">purpose</span>.<br>
@@ -645,735 +563,303 @@
       </h1>
       <p class="hero-sub">
         A living reference for brand colors, GSAP motion presets, and component
-        customizations. <strong>shadcn/ui</strong> is the design system — this repo
-        documents everything we add on top.
+        customizations. <strong>shadcn/ui</strong> (Maia style, Gray theme) is the design
+        system — this repo documents everything we add on top.
       </p>
       <div class="hero-tags">
-        <span class="tag">shadcn/ui · Neutral theme</span>
+        <span class="tag">shadcn/ui · Maia style</span>
+        <span class="tag">Gray base color</span>
+        <span class="tag">Geist + Poppins</span>
+        <span class="tag">Hugeicons</span>
         <span class="tag">Tailwind v4 · OKLCH</span>
         <span class="tag">GSAP v3</span>
-        <span class="tag">Brand colors</span>
-        <span class="tag">Reduced motion safe</span>
+        <span class="tag">Large radius</span>
       </div>
     </div>
 
-    <!-- ============================================================
-         BRAND COLORS
-         ============================================================ -->
-    <section id="colors">
+    <!-- TYPOGRAPHY -->
+    <section id="typography">
       <p class="section-label">Section 01</p>
+      <h2 class="section-title">Typography</h2>
+      <p class="section-desc">
+        <strong>Poppins</strong> for headlines (h1–h4), <strong>Geist Sans</strong> for
+        body text and UI, <strong>Geist Mono</strong> for code.
+      </p>
+      <div class="type-preview reveal">
+        <div class="type-row"><span class="type-label">h1</span><h1 style="font-size:2.25rem;font-weight:800;">The quick brown fox</h1></div>
+        <div class="type-row"><span class="type-label">h2</span><h2 style="font-size:1.75rem;font-weight:700;">The quick brown fox</h2></div>
+        <div class="type-row"><span class="type-label">h3</span><h3 style="font-size:1.25rem;font-weight:700;">The quick brown fox jumps</h3></div>
+        <div class="type-row"><span class="type-label">h4</span><h4 style="font-size:1rem;font-weight:600;">The quick brown fox jumps over</h4></div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="type-row"><span class="type-label">body</span><p>The quick brown fox jumps over the lazy dog. Body text in Geist Sans.</p></div>
+        <div class="type-row"><span class="type-label">code</span><code>const theme = "gray-maia";</code></div>
+      </div>
+      <div class="card-grid" style="margin-top:1.5rem;">
+        <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 600–800<br>h1–h4 only</div></div>
+        <div class="card reveal"><div class="card-title">Body Font</div><div class="card-sub"><strong>Geist Sans</strong> · 400–700<br>All body, buttons, inputs</div></div>
+        <div class="card reveal"><div class="card-title">Code Font</div><div class="card-sub"><strong>Geist Mono</strong> · 400<br>Code blocks, inline <code>code</code></div></div>
+        <div class="card reveal"><div class="card-title">Icons</div><div class="card-sub"><strong>Hugeicons</strong><br><code>npm i hugeicons-react</code></div></div>
+      </div>
+    </section>
+
+    <!-- BRAND COLORS -->
+    <section id="colors">
+      <p class="section-label">Section 02</p>
       <h2 class="section-title">Brand Colors</h2>
       <p class="section-desc">
-        These are <em>additive</em> — they never replace shadcn semantic tokens
-        (<code>--primary</code>, <code>--background</code>, etc.). Apply via
-        <code>--brand-*</code> custom properties only when a design explicitly calls
-        for brand treatment.
+        These are <em>additive</em> — they never replace shadcn semantic tokens.
+        Apply via <code>--brand-*</code> only when a design explicitly calls for brand treatment.
       </p>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem; color:var(--muted-foreground);">
-        Highlights — Light backgrounds
-      </h3>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights — Light backgrounds</h3>
       <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="swatch">
-          <div class="swatch-color" style="background:#FFD400;"></div>
-          <div class="swatch-info">
-            <div class="swatch-name">Yellow</div>
-            <div class="swatch-hex">#FFD400</div>
-            <div class="swatch-var">--brand-highlight-yellow</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#139CFF;"></div>
-          <div class="swatch-info">
-            <div class="swatch-name">Blue</div>
-            <div class="swatch-hex">#139CFF</div>
-            <div class="swatch-var">--brand-highlight-blue</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#FF68E3;"></div>
-          <div class="swatch-info">
-            <div class="swatch-name">Magenta</div>
-            <div class="swatch-hex">#FF68E3</div>
-            <div class="swatch-var">--brand-highlight-magenta</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#FAFAFA; border-bottom:1px solid #eaeaea;"></div>
-          <div class="swatch-info">
-            <div class="swatch-name">Surface</div>
-            <div class="swatch-hex">#FAFAFA</div>
-            <div class="swatch-var">--brand-surface</div>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#EAEAEA;"></div>
-          <div class="swatch-info">
-            <div class="swatch-name">Surface Grey</div>
-            <div class="swatch-hex">#EAEAEA</div>
-            <div class="swatch-var">--brand-surface-grey</div>
-          </div>
-        </div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFD400;"></div><div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#FFD400</div><div class="swatch-var">--brand-highlight-yellow</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#139CFF;"></div><div class="swatch-info"><div class="swatch-name">Blue</div><div class="swatch-hex">#139CFF</div><div class="swatch-var">--brand-highlight-blue</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF68E3;"></div><div class="swatch-info"><div class="swatch-name">Magenta</div><div class="swatch-hex">#FF68E3</div><div class="swatch-var">--brand-highlight-magenta</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FAFAFA;border-bottom:1px solid #eaeaea;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FAFAFA</div><div class="swatch-var">--brand-surface</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EAEAEA;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#EAEAEA</div><div class="swatch-var">--brand-surface-grey</div></div></div>
       </div>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem; color:var(--muted-foreground);">
-        Highlights — Dark backgrounds
-      </h3>
-      <div class="swatch-grid reveal" style="background:#151515; padding:1rem; border-radius:var(--radius); border:1px solid #2a2a2a;">
-        <div class="swatch" style="border-color:#2a2a2a;">
-          <div class="swatch-color" style="background:#F9DE0A;"></div>
-          <div class="swatch-info" style="background:#1e1e1e; color:#fff;">
-            <div class="swatch-name">Yellow</div>
-            <div class="swatch-hex" style="color:#888;">#F9DE0A</div>
-            <div class="swatch-var" style="color:#888;">--brand-highlight-yellow</div>
-          </div>
-        </div>
-        <div class="swatch" style="border-color:#2a2a2a;">
-          <div class="swatch-color" style="background:#2BC3FF;"></div>
-          <div class="swatch-info" style="background:#1e1e1e; color:#fff;">
-            <div class="swatch-name">Blue</div>
-            <div class="swatch-hex" style="color:#888;">#2BC3FF</div>
-            <div class="swatch-var" style="color:#888;">--brand-highlight-blue</div>
-          </div>
-        </div>
-        <div class="swatch" style="border-color:#2a2a2a;">
-          <div class="swatch-color" style="background:#FF68FF;"></div>
-          <div class="swatch-info" style="background:#1e1e1e; color:#fff;">
-            <div class="swatch-name">Magenta</div>
-            <div class="swatch-hex" style="color:#888;">#FF68FF</div>
-            <div class="swatch-var" style="color:#888;">--brand-highlight-magenta</div>
-          </div>
-        </div>
-        <div class="swatch" style="border-color:#2a2a2a;">
-          <div class="swatch-color" style="background:#151515; border-bottom:1px solid #2a2a2a;"></div>
-          <div class="swatch-info" style="background:#1e1e1e; color:#fff;">
-            <div class="swatch-name">Surface</div>
-            <div class="swatch-hex" style="color:#888;">#151515</div>
-            <div class="swatch-var" style="color:#888;">--brand-surface</div>
-          </div>
-        </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights — Dark backgrounds</h3>
+      <div class="swatch-grid reveal" style="background:#151515;padding:1rem;border-radius:var(--radius);border:1px solid #2a2a2a;">
+        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#F9DE0A;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Yellow</div><div class="swatch-hex" style="color:#888;">#F9DE0A</div><div class="swatch-var" style="color:#888;">--brand-highlight-yellow</div></div></div>
+        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#2BC3FF;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Blue</div><div class="swatch-hex" style="color:#888;">#2BC3FF</div><div class="swatch-var" style="color:#888;">--brand-highlight-blue</div></div></div>
+        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#FF68FF;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Magenta</div><div class="swatch-hex" style="color:#888;">#FF68FF</div><div class="swatch-var" style="color:#888;">--brand-highlight-magenta</div></div></div>
+        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#151515;border-bottom:1px solid #2a2a2a;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Surface</div><div class="swatch-hex" style="color:#888;">#151515</div><div class="swatch-var" style="color:#888;">--brand-surface</div></div></div>
       </div>
-
       <div class="divider"></div>
-
       <div class="card-grid">
-        <div class="card" style="border-left: 3px solid var(--brand-highlight-blue);">
-          <div class="card-title">When to use</div>
-          <div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div>
-        </div>
-        <div class="card" style="border-left: 3px solid var(--destructive);">
-          <div class="card-title">When NOT to use</div>
-          <div class="card-sub">Buttons, inputs, cards, body text, borders, error states, focus rings — use shadcn semantic tokens for all standard UI.</div>
-        </div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
+        <div class="card" style="border-left:3px solid var(--destructive);"><div class="card-title">When NOT to use</div><div class="card-sub">Buttons, inputs, cards, body text, borders, error states, focus rings — use shadcn semantic tokens for all standard UI.</div></div>
       </div>
     </section>
 
-    <!-- ============================================================
-         MOTION TOKENS
-         ============================================================ -->
+    <!-- MOTION TOKENS -->
     <section id="motion">
-      <p class="section-label">Section 02</p>
+      <p class="section-label">Section 03</p>
       <h2 class="section-title">Motion Tokens</h2>
-      <p class="section-desc">
-        All animations use <strong>GSAP v3</strong>. Do not invent new durations or
-        easings — use these tokens. Every animation must check
-        <code>prefers-reduced-motion</code>.
-      </p>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem;">Durations</h3>
-      <div class="reveal" style="border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:2rem;">
+      <p class="section-desc">All animations use <strong>GSAP v3</strong>. Every animation must check <code>prefers-reduced-motion</code>.</p>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Durations</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
         <table class="token-table">
-          <thead>
-            <tr>
-              <th>Token</th>
-              <th>Value</th>
-              <th>Visual scale</th>
-              <th>Use</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Token</th><th>Value</th><th>Visual</th><th>Use</th></tr></thead>
           <tbody>
-            <tr>
-              <td><code>instant</code></td>
-              <td>100ms / 0.1s</td>
-              <td><div class="duration-bar-wrap"><div class="duration-bar" style="width:10px;"></div></div></td>
-              <td>Active/pressed states</td>
-            </tr>
-            <tr>
-              <td><code>fast</code></td>
-              <td>150ms / 0.15s</td>
-              <td><div class="duration-bar-wrap"><div class="duration-bar" style="width:15px;"></div></div></td>
-              <td>Hover, toggles, tooltips</td>
-            </tr>
-            <tr>
-              <td><code>normal</code></td>
-              <td>300ms / 0.3s</td>
-              <td><div class="duration-bar-wrap"><div class="duration-bar" style="width:30px;"></div></div></td>
-              <td>Modals, dropdowns, fades</td>
-            </tr>
-            <tr>
-              <td><code>slow</code></td>
-              <td>500ms / 0.5s</td>
-              <td><div class="duration-bar-wrap"><div class="duration-bar" style="width:50px;"></div></div></td>
-              <td>Page sections, large reveals</td>
-            </tr>
-            <tr>
-              <td><code>slower</code></td>
-              <td>700ms / 0.7s</td>
-              <td><div class="duration-bar-wrap"><div class="duration-bar" style="width:70px;"></div></div></td>
-              <td>Staggered sequences</td>
-            </tr>
-            <tr>
-              <td><code>slowest</code></td>
-              <td>1000ms / 1.0s</td>
-              <td><div class="duration-bar-wrap"><div class="duration-bar" style="width:100px;"></div></div></td>
-              <td>Hero/cinematic, logo reveals</td>
-            </tr>
+            <tr><td><code>instant</code></td><td>100ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:10px;"></div></div></td><td>Active/pressed</td></tr>
+            <tr><td><code>fast</code></td><td>150ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:15px;"></div></div></td><td>Hover, toggles</td></tr>
+            <tr><td><code>normal</code></td><td>300ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:30px;"></div></div></td><td>Modals, fades</td></tr>
+            <tr><td><code>slow</code></td><td>500ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:50px;"></div></div></td><td>Page sections</td></tr>
+            <tr><td><code>slower</code></td><td>700ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:70px;"></div></div></td><td>Staggered</td></tr>
+            <tr><td><code>slowest</code></td><td>1000ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:100px;"></div></div></td><td>Hero/cinematic</td></tr>
           </tbody>
         </table>
       </div>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem;">Easings</h3>
-      <div class="reveal" style="border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Easings</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
         <table class="token-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>GSAP</th>
-              <th>Use</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Name</th><th>GSAP</th><th>Use</th></tr></thead>
           <tbody>
-            <tr>
-              <td><span class="easing-badge">out (default)</span></td>
-              <td><code>power2.out</code></td>
-              <td>Entrances, general UI transitions</td>
-            </tr>
-            <tr>
-              <td><span class="easing-badge">in</span></td>
-              <td><code>power2.in</code></td>
-              <td>Exit animations</td>
-            </tr>
-            <tr>
-              <td><span class="easing-badge">in_out</span></td>
-              <td><code>power2.inOut</code></td>
-              <td>Layout shifts, theme toggles</td>
-            </tr>
-            <tr>
-              <td><span class="easing-badge">overshoot</span></td>
-              <td><code>back.out(1.7)</code></td>
-              <td>Modals, playful bounces</td>
-            </tr>
-            <tr>
-              <td><span class="easing-badge">spring</span></td>
-              <td><code>elastic.out(1, 0.3)</code></td>
-              <td>Springy interactions — GSAP only</td>
-            </tr>
-            <tr>
-              <td><span class="easing-badge">bounce</span></td>
-              <td><code>bounce.out</code></td>
-              <td>Bounce landings — GSAP only</td>
-            </tr>
+            <tr><td><span class="easing-badge">out (default)</span></td><td><code>power2.out</code></td><td>Entrances, general UI</td></tr>
+            <tr><td><span class="easing-badge">in</span></td><td><code>power2.in</code></td><td>Exits</td></tr>
+            <tr><td><span class="easing-badge">in_out</span></td><td><code>power2.inOut</code></td><td>Layout shifts</td></tr>
+            <tr><td><span class="easing-badge">overshoot</span></td><td><code>back.out(1.7)</code></td><td>Modals, bounces</td></tr>
+            <tr><td><span class="easing-badge">spring</span></td><td><code>elastic.out(1, 0.3)</code></td><td>Springy — GSAP only</td></tr>
+            <tr><td><span class="easing-badge">bounce</span></td><td><code>bounce.out</code></td><td>Bounce — GSAP only</td></tr>
           </tbody>
         </table>
       </div>
-
-      <div class="card" style="margin-top:1rem; border-left: 3px solid var(--brand-highlight-yellow);">
-        <div class="card-title">Reduced Motion — Mandatory</div>
-        <div class="card-sub">
-          Every animation must check <code>window.matchMedia("(prefers-reduced-motion: reduce)").matches</code>.
-          When active: set all GSAP durations to <code>0</code>, disable ScrollTrigger scrub/parallax,
-          limit opacity fades to 150ms max, disable all transform animations.
-        </div>
-      </div>
+      <div class="card" style="margin-top:1rem;border-left:3px solid var(--brand-highlight-yellow);"><div class="card-title">Reduced Motion — Mandatory</div><div class="card-sub">Every animation must check <code>prefers-reduced-motion</code>. When active: GSAP durations → 0, disable scrub/parallax, limit fades to 150ms, disable transforms.</div></div>
     </section>
 
-    <!-- ============================================================
-         ANIMATION PRESETS
-         ============================================================ -->
+    <!-- ANIMATION PRESETS -->
     <section id="animations">
-      <p class="section-label">Section 03</p>
+      <p class="section-label">Section 04</p>
       <h2 class="section-title">Animation Presets</h2>
-      <p class="section-desc">
-        Click any preset card to see it fire. Presets live in
-        <code>animations/presets.js</code> — import and use via
-        <code>applyPreset(gsap, target, "fadeIn")</code>.
-      </p>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem;">Entrance</h3>
+      <p class="section-desc">Click any card to replay. Presets live in <code>animations/presets.js</code>.</p>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Entrance</h3>
       <div class="demo-grid reveal" style="margin-bottom:2rem;" id="entrance-grid">
-        <div class="demo-card" data-preset="fadeIn">
-          <div class="demo-box" id="demo-fadeIn"></div>
-          <div class="demo-label">fadeIn</div>
-          <div class="demo-sublabel">opacity 0→1 · 300ms</div>
-          <span class="play-hint">Click to replay</span>
-        </div>
-        <div class="demo-card" data-preset="slideInUp">
-          <div class="demo-box" id="demo-slideInUp"></div>
-          <div class="demo-label">slideInUp</div>
-          <div class="demo-sublabel">y:24→0 · 400ms</div>
-          <span class="play-hint">Click to replay</span>
-        </div>
-        <div class="demo-card" data-preset="slideInDown">
-          <div class="demo-box" id="demo-slideInDown"></div>
-          <div class="demo-label">slideInDown</div>
-          <div class="demo-sublabel">y:-24→0 · 400ms</div>
-          <span class="play-hint">Click to replay</span>
-        </div>
-        <div class="demo-card" data-preset="slideInLeft">
-          <div class="demo-box" id="demo-slideInLeft"></div>
-          <div class="demo-label">slideInLeft</div>
-          <div class="demo-sublabel">x:-24→0 · 400ms</div>
-          <span class="play-hint">Click to replay</span>
-        </div>
-        <div class="demo-card" data-preset="slideInRight">
-          <div class="demo-box" id="demo-slideInRight"></div>
-          <div class="demo-label">slideInRight</div>
-          <div class="demo-sublabel">x:24→0 · 400ms</div>
-          <span class="play-hint">Click to replay</span>
-        </div>
-        <div class="demo-card" data-preset="scaleIn">
-          <div class="demo-box" id="demo-scaleIn"></div>
-          <div class="demo-label">scaleIn</div>
-          <div class="demo-sublabel">scale:0.95→1 · 300ms</div>
-          <span class="play-hint">Click to replay</span>
-        </div>
-        <div class="demo-card" data-preset="expandIn">
-          <div class="demo-box" id="demo-expandIn"></div>
-          <div class="demo-label">expandIn</div>
-          <div class="demo-sublabel">scaleY:0→1 · 300ms</div>
-          <span class="play-hint">Click to replay</span>
-        </div>
+        <div class="demo-card" data-preset="fadeIn"><div class="demo-box" id="demo-fadeIn"></div><div class="demo-label">fadeIn</div><div class="demo-sublabel">opacity 0→1 · 300ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="slideInUp"><div class="demo-box" id="demo-slideInUp"></div><div class="demo-label">slideInUp</div><div class="demo-sublabel">y:24→0 · 400ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="slideInDown"><div class="demo-box" id="demo-slideInDown"></div><div class="demo-label">slideInDown</div><div class="demo-sublabel">y:-24→0 · 400ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="slideInLeft"><div class="demo-box" id="demo-slideInLeft"></div><div class="demo-label">slideInLeft</div><div class="demo-sublabel">x:-24→0 · 400ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="slideInRight"><div class="demo-box" id="demo-slideInRight"></div><div class="demo-label">slideInRight</div><div class="demo-sublabel">x:24→0 · 400ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="scaleIn"><div class="demo-box" id="demo-scaleIn"></div><div class="demo-label">scaleIn</div><div class="demo-sublabel">scale:0.95→1 · 300ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="expandIn"><div class="demo-box" id="demo-expandIn"></div><div class="demo-label">expandIn</div><div class="demo-sublabel">scaleY:0→1 · 300ms</div><span class="play-hint">Click to replay</span></div>
       </div>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem;">Exit</h3>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Exit</h3>
       <div class="demo-grid reveal" style="margin-bottom:2rem;" id="exit-grid">
-        <div class="demo-card" data-exit="fadeOut">
-          <div class="demo-box" id="demo-fadeOut"></div>
-          <div class="demo-label">fadeOut</div>
-          <div class="demo-sublabel">opacity 1→0 · 200ms</div>
-          <span class="play-hint">Click to play</span>
-        </div>
-        <div class="demo-card" data-exit="slideOutUp">
-          <div class="demo-box" id="demo-slideOutUp"></div>
-          <div class="demo-label">slideOutUp</div>
-          <div class="demo-sublabel">y:0→-24 · 300ms</div>
-          <span class="play-hint">Click to play</span>
-        </div>
-        <div class="demo-card" data-exit="slideOutDown">
-          <div class="demo-box" id="demo-slideOutDown"></div>
-          <div class="demo-label">slideOutDown</div>
-          <div class="demo-sublabel">y:0→24 · 300ms</div>
-          <span class="play-hint">Click to play</span>
-        </div>
-        <div class="demo-card" data-exit="scaleOut">
-          <div class="demo-box" id="demo-scaleOut"></div>
-          <div class="demo-label">scaleOut</div>
-          <div class="demo-sublabel">scale:1→0.95 · 200ms</div>
-          <span class="play-hint">Click to play</span>
-        </div>
+        <div class="demo-card" data-exit="fadeOut"><div class="demo-box" id="demo-fadeOut"></div><div class="demo-label">fadeOut</div><div class="demo-sublabel">opacity 1→0 · 200ms</div><span class="play-hint">Click to play</span></div>
+        <div class="demo-card" data-exit="slideOutUp"><div class="demo-box" id="demo-slideOutUp"></div><div class="demo-label">slideOutUp</div><div class="demo-sublabel">y:0→-24 · 300ms</div><span class="play-hint">Click to play</span></div>
+        <div class="demo-card" data-exit="slideOutDown"><div class="demo-box" id="demo-slideOutDown"></div><div class="demo-label">slideOutDown</div><div class="demo-sublabel">y:0→24 · 300ms</div><span class="play-hint">Click to play</span></div>
+        <div class="demo-card" data-exit="scaleOut"><div class="demo-box" id="demo-scaleOut"></div><div class="demo-label">scaleOut</div><div class="demo-sublabel">scale:1→0.95 · 200ms</div><span class="play-hint">Click to play</span></div>
       </div>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem;">Hover Interactions</h3>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Hover Interactions</h3>
       <div class="hover-demo-grid reveal" style="align-items:center;">
         <button class="hover-demo-btn" id="hover-lift-btn">Lift on hover</button>
         <button class="hover-demo-btn" id="hover-press-btn">Press on click</button>
         <div class="hover-demo-card" id="hover-glow-card">Glow on hover (brand blue)</div>
       </div>
-
       <div class="divider"></div>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem;">Logo Reveal</h3>
-      <div class="card reveal" style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
-        <div class="logo" id="logo-demo" style="font-size:1.1rem; gap:0.6rem;">
-          <span class="logo-icon logo-icon-demo" style="width:36px; height:36px; border-radius:8px;">
-            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
-              <rect x="2" y="2" width="5" height="5" rx="1"/>
-              <rect x="9" y="2" width="5" height="5" rx="1"/>
-              <rect x="2" y="9" width="5" height="5" rx="1"/>
-              <rect x="9" y="9" width="5" height="5" rx="1"/>
-            </svg>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
+      <div class="card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+        <div class="logo" id="logo-demo" style="font-size:1.1rem;gap:0.6rem;">
+          <span class="logo-icon logo-icon-demo" style="width:36px;height:36px;border-radius:10px;">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
           </span>
           <span class="logo-wordmark logo-wordmark-demo" style="font-size:1.1rem;">Lineage HQ</span>
         </div>
         <button class="theme-toggle" id="logo-replay-btn">Replay logo reveal</button>
-        <div class="card-sub">Icon scales in with <code>back.out(1.7)</code> overshoot, wordmark slides in from left with <code>power2.out</code>.</div>
+        <div class="card-sub">Icon: <code>back.out(1.7)</code>, wordmark: <code>power2.out</code>.</div>
       </div>
     </section>
 
-    <!-- ============================================================
-         COMPONENT CUSTOMIZATIONS
-         ============================================================ -->
+    <!-- COMPONENT CUSTOMIZATIONS -->
     <section id="components">
-      <p class="section-label">Section 04</p>
+      <p class="section-label">Section 05</p>
       <h2 class="section-title">Component Customizations</h2>
-      <p class="section-desc">
-        If a component isn't listed here, use shadcn exactly as provided.
-        Never edit files inside <code>components/ui/</code> — the shadcn CLI
-        must remain updatable.
-      </p>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem;">Animation Assignments</h3>
-      <div class="reveal" style="border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:2rem;">
+      <p class="section-desc">If a component isn't listed, use shadcn as-is. Style: <strong>Maia</strong> (soft, rounded, generous spacing).</p>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Animation Assignments</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
         <table class="comp-table">
-          <thead>
-            <tr>
-              <th>Component</th>
-              <th>Entrance</th>
-              <th>Exit</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Component</th><th>Entrance</th><th>Exit</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr>
-              <td><strong>Dialog / AlertDialog</strong></td>
-              <td><span class="preset-pill pill-entrance">scaleIn</span></td>
-              <td><span class="preset-pill pill-exit">scaleOut</span></td>
-              <td>Slight scale with overshoot</td>
-            </tr>
-            <tr>
-              <td><strong>Sheet (left)</strong></td>
-              <td><span class="preset-pill pill-entrance">slideInLeft</span></td>
-              <td><span class="preset-pill pill-exit">slideOutLeft</span></td>
-              <td>Direction matches open side</td>
-            </tr>
-            <tr>
-              <td><strong>Sheet (right)</strong></td>
-              <td><span class="preset-pill pill-entrance">slideInRight</span></td>
-              <td><span class="preset-pill pill-exit">slideOutRight</span></td>
-              <td>Direction matches open side</td>
-            </tr>
-            <tr>
-              <td><strong>DropdownMenu</strong></td>
-              <td><span class="preset-pill pill-entrance">slideInDown</span></td>
-              <td><span class="preset-pill pill-exit">fadeOut</span></td>
-              <td>Drops down, fades out quickly</td>
-            </tr>
-            <tr>
-              <td><strong>Popover</strong></td>
-              <td><span class="preset-pill pill-entrance">scaleIn</span></td>
-              <td><span class="preset-pill pill-exit">fadeOut</span></td>
-              <td>Scale from trigger point</td>
-            </tr>
-            <tr>
-              <td><strong>Tooltip</strong></td>
-              <td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td>
-              <td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td>
-              <td>Fast — never distracting</td>
-            </tr>
-            <tr>
-              <td><strong>Toast</strong></td>
-              <td><span class="preset-pill pill-entrance">slideInRight</span></td>
-              <td><span class="preset-pill pill-exit">slideOutUp</span></td>
-              <td>Slides in, dismisses upward</td>
-            </tr>
-            <tr>
-              <td><strong>Accordion</strong></td>
-              <td><span class="preset-pill pill-entrance">expandIn</span></td>
-              <td><span style="font-size:0.72rem; color:var(--muted-foreground)">reverse</span></td>
-              <td>Smooth height from top</td>
-            </tr>
-            <tr>
-              <td><strong>Tabs</strong></td>
-              <td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td>
-              <td>—</td>
-              <td>Quick crossfade</td>
-            </tr>
+            <tr><td><strong>Dialog / AlertDialog</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">scaleOut</span></td><td>Scale + overshoot</td></tr>
+            <tr><td><strong>Sheet (left)</strong></td><td><span class="preset-pill pill-entrance">slideInLeft</span></td><td><span class="preset-pill pill-exit">slideOutLeft</span></td><td>Matches open side</td></tr>
+            <tr><td><strong>Sheet (right)</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutRight</span></td><td>Matches open side</td></tr>
+            <tr><td><strong>DropdownMenu</strong></td><td><span class="preset-pill pill-entrance">slideInDown</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Drops down, fades out</td></tr>
+            <tr><td><strong>Popover</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Scale from trigger</td></tr>
+            <tr><td><strong>Tooltip</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>Fast</td></tr>
+            <tr><td><strong>Toast</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutUp</span></td><td>Slides in, dismisses up</td></tr>
+            <tr><td><strong>Accordion</strong></td><td><span class="preset-pill pill-entrance">expandIn</span></td><td><span style="font-size:0.72rem;color:var(--muted-foreground)">reverse</span></td><td>Height from top</td></tr>
+            <tr><td><strong>Tabs</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>Quick crossfade</td></tr>
           </tbody>
         </table>
       </div>
-
-      <h3 style="font-size:0.875rem; font-weight:700; margin-bottom:0.75rem;">Style Overrides</h3>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Style Overrides</h3>
       <div class="card-grid reveal">
-        <div class="card">
-          <div class="card-title">Button</div>
-          <div class="card-sub">
-            Hover: <code>150ms ease-out</code> transition<br>
-            Active: <code>scale(0.97)</code> press effect
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Card</div>
-          <div class="card-sub">
-            Default: <code>shadow-sm</code><br>
-            Interactive hover: <code>shadow-md</code> + lift
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Input</div>
-          <div class="card-sub">
-            Focus ring: <code>ring-2 ring-offset-2 ring-ring</code><br>
-            Uses shadcn <code>--ring</code> variable
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Badge (brand)</div>
-          <div class="card-sub">
-            Use <code>--brand-highlight-*</code> only when design explicitly calls for brand badges.
-          </div>
-        </div>
+        <div class="card"><div class="card-title">Button</div><div class="card-sub">Hover: <code>150ms ease-out</code><br>Active: <code>scale(0.97)</code></div></div>
+        <div class="card"><div class="card-title">Card</div><div class="card-sub">Default: <code>shadow-sm</code><br>Hover: <code>shadow-md</code> + lift</div></div>
+        <div class="card"><div class="card-title">Input</div><div class="card-sub">Focus: <code>ring-2 ring-offset-2</code></div></div>
+        <div class="card"><div class="card-title">Badge (brand)</div><div class="card-sub"><code>--brand-highlight-*</code> only when specified</div></div>
       </div>
     </section>
 
-    <!-- ============================================================
-         GETTING STARTED
-         ============================================================ -->
+    <!-- GET STARTED -->
     <section id="start">
-      <p class="section-label">Section 05</p>
+      <p class="section-label">Section 06</p>
       <h2 class="section-title">Get Started</h2>
-      <p class="section-desc">
-        Set up a new project with shadcn/ui and this design system in five steps.
-      </p>
-
+      <p class="section-desc">Set up a new project with shadcn/ui Maia + Gray theme.</p>
       <div class="step-list reveal">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">Scaffold your framework</div>
-            <div class="code-block"><span class="cm"># Next.js</span>
-npx create-next-app@latest my-app --typescript --tailwind --eslint</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">Install shadcn/ui (Neutral theme)</div>
-            <div class="code-block">npx shadcn@latest init
-<span class="cm"># Choose: Neutral base color, CSS variables: yes</span></div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">Install GSAP</div>
-            <div class="code-block">npm install gsap</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <div class="step-title">Copy brand tokens into your global stylesheet</div>
-            <div class="code-block"><span class="cm">/* Copy tokens/colors.css — Section 2 block into globals.css */</span>
-<span class="kw">:root</span> {
+        <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Scaffold your framework</div><div class="code-block"><span class="cm"># Next.js</span>
+npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Install shadcn/ui (Maia style, Gray base)</div><div class="code-block">npx shadcn@latest init
+<span class="cm"># Choose: Gray base color, Maia style, Large radius</span></div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Install GSAP + Hugeicons</div><div class="code-block">npm install gsap hugeicons-react</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Poppins for headlines</div><div class="code-block"><span class="cm">/* globals.css */</span>
+<span class="kw">h1, h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Copy brand tokens</div><div class="code-block"><span class="kw">:root</span> {
   <span class="fn">--brand-surface</span>: <span class="st">#FAFAFA</span>;
   <span class="fn">--brand-highlight-yellow</span>: <span class="st">#FFD400</span>;
   <span class="fn">--brand-highlight-blue</span>: <span class="st">#139CFF</span>;
   <span class="fn">--brand-highlight-magenta</span>: <span class="st">#FF68E3</span>;
-}
-<span class="kw">.dark</span> {
-  <span class="fn">--brand-surface</span>: <span class="st">#151515</span>;
-  <span class="fn">--brand-highlight-yellow</span>: <span class="st">#F9DE0A</span>;
-  <span class="fn">--brand-highlight-blue</span>: <span class="st">#2BC3FF</span>;
-  <span class="fn">--brand-highlight-magenta</span>: <span class="st">#FF68FF</span>;
-}</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">5</div>
-          <div class="step-body">
-            <div class="step-title">Import animation presets</div>
-            <div class="code-block"><span class="kw">import</span> { <span class="fn">ENTRANCE</span>, <span class="fn">EXIT</span>, <span class="fn">HOVER</span>, <span class="fn">applyPreset</span> } <span class="kw">from</span> <span class="st">"@/design-system/animations/presets"</span>;
-
-<span class="cm">// Apply a preset</span>
-<span class="fn">applyPreset</span>(gsap, element, <span class="st">"slideInUp"</span>);
-
-<span class="cm">// Or use directly</span>
-gsap.<span class="fn">fromTo</span>(el, ENTRANCE.scaleIn.from, ENTRANCE.scaleIn.to);</div>
-          </div>
-        </div>
+}</div></div></div>
+        <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Import animation presets</div><div class="code-block"><span class="kw">import</span> { <span class="fn">ENTRANCE</span>, <span class="fn">EXIT</span>, <span class="fn">HOVER</span> } <span class="kw">from</span> <span class="st">"@/design-system/animations/presets"</span>;</div></div></div>
       </div>
-
-      <div class="card" style="margin-top:2rem; border-left:3px solid var(--brand-highlight-magenta);">
-        <div class="card-title">Key files to reference</div>
+      <div class="card" style="margin-top:2rem;border-left:3px solid var(--brand-highlight-magenta);">
+        <div class="card-title">Key files</div>
         <div class="card-sub" style="margin-top:0.5rem;">
-          <code>DESIGN-SYSTEM.md</code> · Full specification<br>
-          <code>tokens/colors.css</code> · Copy-paste CSS variables<br>
+          <code>DESIGN-SYSTEM.md</code> · Full spec<br>
+          <code>tokens/colors.css</code> · CSS variables (Gray theme)<br>
           <code>tokens/motion.yaml</code> · Duration &amp; easing tokens<br>
           <code>animations/presets.js</code> · GSAP presets<br>
-          <code>animations/scroll-triggers.js</code> · ScrollTrigger factories<br>
-          <code>components/shadcn-customizations.yaml</code> · Component overrides
+          <code>components/shadcn-customizations.yaml</code> · Overrides
         </div>
       </div>
     </section>
 
-  </div><!-- /page-wrapper -->
+  </div>
 
-  <footer>
-    Design System Reference &mdash; shadcn/ui + GSAP &mdash; Updated 2026
-  </footer>
+  <footer>Design System Reference — shadcn/ui Maia + Gray + GSAP — Updated 2026</footer>
 
-  <!-- ============================================================
-       SCRIPTS
-       ============================================================ -->
   <script>
-    // -------------------------------------------------------
-    // Reduced motion check
-    // -------------------------------------------------------
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dur = (d) => reducedMotion ? 0 : d;
 
-    // -------------------------------------------------------
-    // Theme toggle
-    // -------------------------------------------------------
     const html = document.documentElement;
     const toggleBtn = document.getElementById("themeToggle");
     let dark = false;
-
     toggleBtn.addEventListener("click", () => {
       dark = !dark;
       html.classList.toggle("dark", dark);
       toggleBtn.textContent = dark ? "Light mode" : "Dark mode";
     });
 
-    // -------------------------------------------------------
-    // GSAP ScrollTrigger — register plugin
-    // -------------------------------------------------------
     gsap.registerPlugin(ScrollTrigger);
 
-    // -------------------------------------------------------
-    // Hero entrance
-    // -------------------------------------------------------
-    gsap.from("#hero-title", {
-      y: dur(32), opacity: 0, duration: dur(0.7), ease: "power2.out", delay: 0.1
-    });
-    gsap.from(".hero-eyebrow", {
-      y: dur(16), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0
-    });
-    gsap.from(".hero-sub", {
-      y: dur(20), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.25
-    });
-    gsap.from(".hero-tags", {
-      y: dur(16), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.4
-    });
+    gsap.from("#hero-title", { y: dur(32), opacity: 0, duration: dur(0.7), ease: "power2.out", delay: 0.1 });
+    gsap.from(".hero-eyebrow", { y: dur(16), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0 });
+    gsap.from(".hero-sub", { y: dur(20), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.25 });
+    gsap.from(".hero-tags", { y: dur(16), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.4 });
 
-    // -------------------------------------------------------
-    // Logo animation
-    // -------------------------------------------------------
     function playLogoReveal() {
       const tl = gsap.timeline({ delay: 0 });
-      if (reducedMotion) {
-        tl.set(".logo-icon-demo", { opacity: 1, scale: 1 });
-        tl.set(".logo-wordmark-demo", { opacity: 1, x: 0 });
-        return;
-      }
-      tl.from(".logo-icon-demo", {
-        scale: 0, opacity: 0, duration: 0.5, ease: "back.out(1.7)"
-      }).from(".logo-wordmark-demo", {
-        x: -12, opacity: 0, duration: 0.4, ease: "power2.out"
-      }, "-=0.1");
+      if (reducedMotion) { tl.set(".logo-icon-demo",{opacity:1,scale:1}); tl.set(".logo-wordmark-demo",{opacity:1,x:0}); return; }
+      tl.from(".logo-icon-demo", { scale:0, opacity:0, duration:0.5, ease:"back.out(1.7)" })
+        .from(".logo-wordmark-demo", { x:-12, opacity:0, duration:0.4, ease:"power2.out" }, "-=0.1");
     }
-
-    // Play on load (after a short delay)
     setTimeout(playLogoReveal, 600);
-
     document.getElementById("logo-replay-btn").addEventListener("click", () => {
-      gsap.set(".logo-icon-demo", { clearProps: "all" });
-      gsap.set(".logo-wordmark-demo", { clearProps: "all" });
+      gsap.set(".logo-icon-demo", { clearProps:"all" });
+      gsap.set(".logo-wordmark-demo", { clearProps:"all" });
       playLogoReveal();
     });
 
-    // -------------------------------------------------------
-    // ScrollTrigger — stagger reveal for .reveal elements
-    // -------------------------------------------------------
     document.querySelectorAll(".reveal").forEach((el) => {
-      gsap.fromTo(el,
-        { y: dur(30), opacity: 0 },
-        {
-          y: 0, opacity: 1,
-          duration: dur(0.55),
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
+      gsap.fromTo(el, { y: dur(30), opacity: 0 }, {
+        y:0, opacity:1, duration: dur(0.55), ease:"power2.out",
+        scrollTrigger: { trigger:el, start:"top 88%", toggleActions:"play none none none" }
+      });
     });
 
-    // -------------------------------------------------------
-    // Entrance preset demos — click to replay
-    // -------------------------------------------------------
     const ENTRANCE = {
-      fadeIn:      { from: { opacity: 0 },                    to: { opacity: 1,           duration: dur(0.3), ease: "power2.out" } },
-      slideInUp:   { from: { y: 24, opacity: 0 },             to: { y: 0,   opacity: 1,   duration: dur(0.4), ease: "power2.out" } },
-      slideInDown: { from: { y: -24, opacity: 0 },            to: { y: 0,   opacity: 1,   duration: dur(0.4), ease: "power2.out" } },
-      slideInLeft: { from: { x: -24, opacity: 0 },            to: { x: 0,   opacity: 1,   duration: dur(0.4), ease: "power2.out" } },
-      slideInRight:{ from: { x: 24, opacity: 0 },             to: { x: 0,   opacity: 1,   duration: dur(0.4), ease: "power2.out" } },
-      scaleIn:     { from: { scale: 0.95, opacity: 0 },       to: { scale: 1, opacity: 1, duration: dur(0.3), ease: "back.out(1.7)" } },
-      expandIn:    { from: { scaleY: 0, opacity: 0, transformOrigin: "top" }, to: { scaleY: 1, opacity: 1, duration: dur(0.3), ease: "power2.out" } },
+      fadeIn:      { from:{opacity:0},                   to:{opacity:1,          duration:dur(0.3), ease:"power2.out"} },
+      slideInUp:   { from:{y:24,opacity:0},              to:{y:0,  opacity:1,    duration:dur(0.4), ease:"power2.out"} },
+      slideInDown: { from:{y:-24,opacity:0},             to:{y:0,  opacity:1,    duration:dur(0.4), ease:"power2.out"} },
+      slideInLeft: { from:{x:-24,opacity:0},             to:{x:0,  opacity:1,    duration:dur(0.4), ease:"power2.out"} },
+      slideInRight:{ from:{x:24,opacity:0},              to:{x:0,  opacity:1,    duration:dur(0.4), ease:"power2.out"} },
+      scaleIn:     { from:{scale:0.95,opacity:0},        to:{scale:1,opacity:1,  duration:dur(0.3), ease:"back.out(1.7)"} },
+      expandIn:    { from:{scaleY:0,opacity:0,transformOrigin:"top"}, to:{scaleY:1,opacity:1,duration:dur(0.3),ease:"power2.out"} },
     };
-
     const EXIT = {
-      fadeOut:     { from: { opacity: 1 },        to: { opacity: 0,          duration: dur(0.2), ease: "power2.in" } },
-      slideOutUp:  { from: { y: 0, opacity: 1 },  to: { y: -24, opacity: 0,  duration: dur(0.3), ease: "power2.in" } },
-      slideOutDown:{ from: { y: 0, opacity: 1 },  to: { y: 24, opacity: 0,   duration: dur(0.3), ease: "power2.in" } },
-      scaleOut:    { from: { scale: 1, opacity: 1 }, to: { scale: 0.95, opacity: 0, duration: dur(0.2), ease: "power2.in" } },
+      fadeOut:      { from:{opacity:1},       to:{opacity:0,         duration:dur(0.2), ease:"power2.in"} },
+      slideOutUp:   { from:{y:0,opacity:1},   to:{y:-24,opacity:0,   duration:dur(0.3), ease:"power2.in"} },
+      slideOutDown: { from:{y:0,opacity:1},   to:{y:24,opacity:0,    duration:dur(0.3), ease:"power2.in"} },
+      scaleOut:     { from:{scale:1,opacity:1},to:{scale:0.95,opacity:0,duration:dur(0.2),ease:"power2.in"} },
     };
 
     document.querySelectorAll("[data-preset]").forEach((card) => {
-      const name = card.dataset.preset;
-      const box = card.querySelector(".demo-box");
-      const preset = ENTRANCE[name];
-      // Initial play
-      gsap.fromTo(box, { ...preset.from }, { ...preset.to, delay: 0.3 });
-
-      card.addEventListener("click", () => {
-        gsap.set(box, { clearProps: "all" });
-        gsap.fromTo(box, { ...preset.from }, { ...preset.to });
-      });
+      const name = card.dataset.preset, box = card.querySelector(".demo-box"), preset = ENTRANCE[name];
+      gsap.fromTo(box, {...preset.from}, {...preset.to, delay:0.3});
+      card.addEventListener("click", () => { gsap.set(box,{clearProps:"all"}); gsap.fromTo(box,{...preset.from},{...preset.to}); });
     });
 
     document.querySelectorAll("[data-exit]").forEach((card) => {
-      const name = card.dataset.exit;
-      const box = card.querySelector(".demo-box");
-      const preset = EXIT[name];
-
+      const name = card.dataset.exit, box = card.querySelector(".demo-box"), preset = EXIT[name];
       card.addEventListener("click", () => {
-        gsap.set(box, { clearProps: "all", opacity: 1 });
-        gsap.fromTo(box, { ...preset.from }, {
-          ...preset.to,
-          onComplete: () => {
-            gsap.set(box, { clearProps: "all", opacity: 1 });
-          }
-        });
+        gsap.set(box,{clearProps:"all",opacity:1});
+        gsap.fromTo(box,{...preset.from},{...preset.to,onComplete:()=>{gsap.set(box,{clearProps:"all",opacity:1});}});
       });
     });
 
-    // -------------------------------------------------------
-    // Hover preset demos
-    // -------------------------------------------------------
     const liftBtn = document.getElementById("hover-lift-btn");
-    liftBtn.addEventListener("mouseenter", () => {
-      gsap.to(liftBtn, { y: -4, duration: dur(0.2), ease: "power2.out" });
-    });
-    liftBtn.addEventListener("mouseleave", () => {
-      gsap.to(liftBtn, { y: 0, duration: dur(0.2), ease: "power2.out" });
-    });
+    liftBtn.addEventListener("mouseenter", () => { gsap.to(liftBtn,{y:-4,duration:dur(0.2),ease:"power2.out"}); });
+    liftBtn.addEventListener("mouseleave", () => { gsap.to(liftBtn,{y:0,duration:dur(0.2),ease:"power2.out"}); });
 
     const pressBtn = document.getElementById("hover-press-btn");
-    pressBtn.addEventListener("mousedown", () => {
-      gsap.to(pressBtn, { scale: 0.97, duration: dur(0.1), ease: "power2.out" });
-    });
-    pressBtn.addEventListener("mouseup", () => {
-      gsap.to(pressBtn, { scale: 1, duration: dur(0.1), ease: "power2.out" });
-    });
-    pressBtn.addEventListener("mouseleave", () => {
-      gsap.to(pressBtn, { scale: 1, duration: dur(0.1), ease: "power2.out" });
-    });
+    pressBtn.addEventListener("mousedown", () => { gsap.to(pressBtn,{scale:0.97,duration:dur(0.1),ease:"power2.out"}); });
+    pressBtn.addEventListener("mouseup", () => { gsap.to(pressBtn,{scale:1,duration:dur(0.1),ease:"power2.out"}); });
+    pressBtn.addEventListener("mouseleave", () => { gsap.to(pressBtn,{scale:1,duration:dur(0.1),ease:"power2.out"}); });
 
     const glowCard = document.getElementById("hover-glow-card");
-    glowCard.addEventListener("mouseenter", () => {
-      gsap.to(glowCard, {
-        boxShadow: "0 0 20px 4px rgba(43,195,255,0.3)",
-        duration: dur(0.2), ease: "power2.out"
-      });
-    });
-    glowCard.addEventListener("mouseleave", () => {
-      gsap.to(glowCard, {
-        boxShadow: "0 0 0px 0px rgba(43,195,255,0)",
-        duration: dur(0.2), ease: "power2.out"
-      });
-    });
+    glowCard.addEventListener("mouseenter", () => { gsap.to(glowCard,{boxShadow:"0 0 20px 4px rgba(43,195,255,0.3)",duration:dur(0.2),ease:"power2.out"}); });
+    glowCard.addEventListener("mouseleave", () => { gsap.to(glowCard,{boxShadow:"0 0 0px 0px rgba(43,195,255,0)",duration:dur(0.2),ease:"power2.out"}); });
   </script>
 </body>
 </html>
