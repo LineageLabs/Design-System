@@ -318,6 +318,7 @@ Foundation: **4px grid** (0.25rem). Maia style = "generous spacing" — when in 
 | `16` | `4rem` | 64 | `16` |
 | `20` | `5rem` | 80 | `20` |
 | `24` | `6rem` | 96 | `24` |
+| `32` | `8rem` | 128 | `32` |
 
 ### Semantic Tokens
 
@@ -336,10 +337,10 @@ Foundation: **4px grid** (0.25rem). Maia style = "generous spacing" — when in 
 | `gap-md` | 16px | `4` | Default card grid, list gap |
 | `gap-lg` | 24px | `6` | Section content, generous card grids |
 | `gap-xl` | 32px | `8` | Major content block gap |
-| `section-sm` | 32px | `8` | Compact section margin |
-| `section-md` | 48px | `12` | Default section break |
-| `section-lg` | 80px | `20` | Major page section separation |
-| `section-xl` | 96px | `24` | Hero / footer breathing room |
+| `section-sm` | 48px | `12` | Compact section margin |
+| `section-md` | 64px | `16` | Default section break |
+| `section-lg` | 96px | `24` | Major page section separation |
+| `section-xl` | 128px | `32` | Hero / footer breathing room |
 | `page-gutter` | 24px | `6` | Page horizontal padding (mobile) |
 | `page-gutter-lg` | 32px | `8` | Page horizontal padding (desktop) |
 | `page-max-width` | 1100px | `max-w-6xl` | Maximum content width |
@@ -364,7 +365,7 @@ Foundation: **4px grid** (0.25rem). Maia style = "generous spacing" — when in 
 ### Guidelines
 
 1. **4px grid.** All spacing must be a multiple of 4px (0.25rem).
-2. **Generous by default.** Cards get `p-6` not `p-4`. Sections get `mb-20` not `mb-12`.
+2. **Generous by default.** Cards get `p-6` not `p-4`. Sections get `mb-24` not `mb-16`.
 3. **Use semantic tokens.** Prefer `component-lg` / `gap-md` / `section-lg` over raw values.
 4. **Gap over margin.** Use flexbox/grid `gap` for layout spacing, not margin.
 5. **Don't shrink on mobile.** Component padding stays fixed. Only `page-gutter` and section spacing may compress by one step under 640px.

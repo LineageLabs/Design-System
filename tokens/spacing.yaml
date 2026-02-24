@@ -79,6 +79,10 @@ scale:
     rem: "6rem"
     px: 96
     tailwind: "24"
+  "32":
+    rem: "8rem"
+    px: 128
+    tailwind: "32"
 
 # ──────────────────────────────────────────────────────────────────────────────
 # SEMANTIC TOKENS
@@ -147,20 +151,20 @@ semantic:
 
   # Section-level vertical rhythm
   section-sm:
-    value: "2rem"       # 32px — scale 8
-    tailwind: "8"
-    use: "Compact section margin (e.g. within a form)"
-  section-md:
     value: "3rem"       # 48px — scale 12
     tailwind: "12"
+    use: "Compact section margin (e.g. within a form)"
+  section-md:
+    value: "4rem"       # 64px — scale 16
+    tailwind: "16"
     use: "Default section break"
   section-lg:
-    value: "5rem"       # 80px — scale 20
-    tailwind: "20"
-    use: "Major page section separation"
-  section-xl:
     value: "6rem"       # 96px — scale 24
     tailwind: "24"
+    use: "Major page section separation"
+  section-xl:
+    value: "8rem"       # 128px — scale 32
+    tailwind: "32"
     use: "Hero / footer breathing room"
 
   # Page-level
@@ -242,7 +246,7 @@ guidelines:
   maia_principle: >
     Maia style calls for 'generous spacing'. When choosing between two
     reasonable values, pick the larger one. Cards get p-6 not p-4.
-    Sections get mb-20 not mb-12. Give elements room to breathe.
+    Sections get mb-24 not mb-16. Give elements room to breathe.
 
   consistency: >
     Use semantic tokens (component-lg, gap-md, section-lg) rather than
@@ -256,7 +260,7 @@ guidelines:
     compress by one step on screens under 640px.
 
   vertical_rhythm: >
-    Sections are separated by section-lg (5rem). Within a section,
+    Sections are separated by section-lg (6rem). Within a section,
     use gap-lg (1.5rem) between groups and gap-md (1rem) between
     sibling items. Headings have margin-bottom of gap-sm (0.75rem).
 
