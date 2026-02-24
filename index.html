@@ -520,6 +520,260 @@
       color: var(--muted-foreground);
     }
 
+    /* =========================================================
+       MAIA COMPONENT STYLES
+       ========================================================= */
+
+    /* Buttons — Maia pill shape */
+    .maia-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.625rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .maia-btn-primary { background: var(--primary); color: var(--primary-foreground); }
+    .maia-btn-secondary { background: var(--secondary); color: var(--secondary-foreground); }
+    .maia-btn-outline { background: transparent; color: var(--foreground); box-shadow: inset 0 0 0 1px var(--border); }
+    .maia-btn-destructive { background: var(--destructive); color: #fff; }
+    .maia-btn-ghost { background: transparent; color: var(--foreground); }
+    .maia-btn-sm { padding: 0.375rem 1rem; font-size: 0.8rem; }
+    .maia-btn-lg { padding: 0.875rem 2rem; font-size: 1rem; }
+
+    /* Inputs — Maia pill shape with tinted bg */
+    .maia-input {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+      font-family: inherit;
+      background: color-mix(in srgb, var(--input) 30%, transparent);
+      color: var(--foreground);
+      outline: none;
+    }
+    .maia-input:focus { box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
+    .maia-input::placeholder { color: var(--muted-foreground); }
+
+    /* Badges — Maia pill */
+    .maia-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 9999px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .maia-badge-default { background: var(--secondary); color: var(--secondary-foreground); }
+    .maia-badge-outline { background: transparent; color: var(--foreground); box-shadow: inset 0 0 0 1px var(--border); }
+    .maia-badge-yellow {
+      background: color-mix(in srgb, var(--brand-highlight-yellow) 15%, transparent);
+      color: var(--brand-highlight-yellow);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-yellow) 30%, transparent);
+    }
+    .maia-badge-blue {
+      background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent);
+      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
+    }
+    .maia-badge-magenta {
+      background: color-mix(in srgb, var(--brand-highlight-magenta) 15%, transparent);
+      color: var(--brand-highlight-magenta);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-magenta) 30%, transparent);
+    }
+
+    /* Cards — Maia rounded-2xl with ring instead of border */
+    .maia-card {
+      background: var(--card);
+      color: var(--card-foreground);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* Dialog — Maia rounded-4xl */
+    .maia-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .maia-overlay.open { display: flex; }
+    .maia-dialog {
+      background: var(--card);
+      color: var(--card-foreground);
+      border-radius: 2rem;
+      padding: 2rem;
+      width: 90%; max-width: 440px;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 5%, transparent), 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+    .maia-dialog h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .maia-dialog p { font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 1.5rem; }
+    .maia-dialog-actions { display: flex; gap: 0.75rem; justify-content: flex-end; }
+
+    /* Sheet — slides from right */
+    .maia-sheet-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+    }
+    .maia-sheet-overlay.open { display: block; }
+    .maia-sheet {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: 320px; max-width: 90vw;
+      background: var(--card);
+      z-index: 201;
+      padding: 1.5rem;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+      display: none;
+    }
+    .maia-sheet.open { display: block; }
+    .maia-sheet h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .maia-sheet p { font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 1rem; }
+
+    /* Dropdown */
+    .maia-dropdown-wrap { position: relative; display: inline-block; }
+    .maia-dropdown {
+      position: absolute; top: calc(100% + 4px); left: 0;
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 0.375rem;
+      min-width: 180px;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 10px 40px -8px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 50;
+    }
+    .maia-dropdown.open { display: block; }
+    .maia-dropdown-item {
+      display: block; width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      border: none; background: transparent;
+      color: var(--foreground);
+      text-align: left;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .maia-dropdown-item:hover { background: var(--muted); }
+
+    /* Toast */
+    .maia-toast-container {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      z-index: 300;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      pointer-events: none;
+    }
+    .maia-toast {
+      background: var(--card);
+      color: var(--card-foreground);
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      min-width: 280px;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 10px 40px -8px rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+      pointer-events: auto;
+    }
+    .maia-toast-text { font-size: 0.875rem; font-weight: 500; }
+    .maia-toast-close {
+      background: none; border: none;
+      color: var(--muted-foreground);
+      cursor: pointer; font-size: 1.1rem; padding: 0.25rem; font-family: inherit;
+    }
+
+    /* Accordion */
+    .maia-accordion-item { border-bottom: 1px solid var(--border); }
+    .maia-accordion-item:first-child { border-top: 1px solid var(--border); }
+    .maia-accordion-trigger {
+      display: flex; width: 100%; align-items: center; justify-content: space-between;
+      padding: 1rem 0;
+      font-size: 0.9375rem; font-weight: 600; font-family: inherit;
+      border: none; background: transparent; color: var(--foreground);
+      cursor: pointer; text-align: left;
+    }
+    .maia-accordion-chevron { transition: transform 0.2s ease; flex-shrink: 0; }
+    .maia-accordion-item.open .maia-accordion-chevron { transform: rotate(180deg); }
+    .maia-accordion-content { overflow: hidden; height: 0; }
+    .maia-accordion-content-inner {
+      padding: 0 0 1rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    /* Tabs */
+    .maia-tab-list {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .maia-tab {
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem; font-weight: 500; font-family: inherit;
+      border: none; background: transparent; color: var(--muted-foreground);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .maia-tab.active { color: var(--foreground); border-bottom-color: var(--foreground); font-weight: 600; }
+    .maia-tab-panel { display: none; font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; }
+    .maia-tab-panel.active { display: block; }
+
+    /* Tooltip */
+    .maia-tooltip-wrap { position: relative; display: inline-block; }
+    .maia-tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%; transform: translateX(-50%);
+      background: var(--foreground);
+      color: var(--background);
+      border-radius: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem; font-weight: 500;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 50;
+    }
+
+    /* Component demo section layout */
+    .comp-demo-section { margin-bottom: 2.5rem; }
+    .comp-demo-label {
+      font-family: "Geist Mono", monospace;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted-foreground);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .comp-demo-label .anim-tag {
+      font-family: "Geist Mono", monospace;
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
+      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
+      letter-spacing: 0; text-transform: none;
+    }
+    .comp-demo-area {
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 0.75rem;
+    }
+
     @media (max-width: 640px) {
       nav a { display: none; }
       .hero-title { font-size: 2rem; }
@@ -710,36 +964,237 @@
       </div>
     </section>
 
-    <!-- COMPONENT CUSTOMIZATIONS -->
+    <!-- COMPONENT CUSTOMIZATIONS — LIVE DEMOS -->
     <section id="components">
       <p class="section-label">Section 05</p>
-      <h2 class="section-title">Component Customizations</h2>
-      <p class="section-desc">If a component isn't listed, use shadcn as-is. Style: <strong>Maia</strong> (soft, rounded, generous spacing).</p>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Animation Assignments</h3>
-      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+      <h2 class="section-title">Live Components</h2>
+      <p class="section-desc">
+        Interactive Maia-styled components with their assigned GSAP animations.
+        <strong>Maia</strong> = soft, rounded, generous spacing. Pill-shaped buttons &amp; inputs,
+        <code>ring-1</code> cards, and smooth motion.
+      </p>
+
+      <!-- BUTTONS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Button <span class="anim-tag">rounded-4xl (pill)</span> <span class="anim-tag">press: scale(0.97)</span></div>
+        <div class="comp-demo-area">
+          <button class="maia-btn maia-btn-primary maia-press">Primary</button>
+          <button class="maia-btn maia-btn-secondary maia-press">Secondary</button>
+          <button class="maia-btn maia-btn-outline maia-press">Outline</button>
+          <button class="maia-btn maia-btn-destructive maia-press">Destructive</button>
+          <button class="maia-btn maia-btn-ghost maia-press">Ghost</button>
+        </div>
+        <div class="comp-demo-area" style="margin-top:0.5rem;">
+          <button class="maia-btn maia-btn-primary maia-btn-sm maia-press">Small</button>
+          <button class="maia-btn maia-btn-primary maia-press">Default</button>
+          <button class="maia-btn maia-btn-primary maia-btn-lg maia-press">Large</button>
+        </div>
+      </div>
+
+      <!-- INPUTS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Input <span class="anim-tag">rounded-4xl (pill)</span> <span class="anim-tag">bg-input/30</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;max-width:500px;">
+          <input class="maia-input" placeholder="Email address" type="email" />
+          <input class="maia-input" placeholder="Search..." type="search" />
+        </div>
+      </div>
+
+      <!-- BADGES -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Badge <span class="anim-tag">rounded-4xl (pill)</span></div>
+        <div class="comp-demo-area">
+          <span class="maia-badge maia-badge-default">Default</span>
+          <span class="maia-badge maia-badge-outline">Outline</span>
+          <span class="maia-badge maia-badge-yellow">Featured</span>
+          <span class="maia-badge maia-badge-blue">Active</span>
+          <span class="maia-badge maia-badge-magenta">Pro</span>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Card <span class="anim-tag">rounded-2xl</span> <span class="anim-tag">ring-1 ring-foreground/10</span> <span class="anim-tag">hover-lift</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;">
+          <div class="maia-card maia-card-interactive maia-hover-lift">
+            <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">Interactive Card</h4>
+            <p style="font-size:0.8rem;color:var(--muted-foreground);">Hover to lift. Uses <code>shadow-md</code> + <code>translateY(-4px)</code>.</p>
+          </div>
+          <div class="maia-card maia-card-interactive maia-hover-lift">
+            <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">Maia Borders</h4>
+            <p style="font-size:0.8rem;color:var(--muted-foreground);">Uses <code>ring-1</code> instead of <code>border</code> for the Maia aesthetic.</p>
+          </div>
+          <div class="maia-card">
+            <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">Static Card</h4>
+            <p style="font-size:0.8rem;color:var(--muted-foreground);">Non-interactive cards don't need hover effects.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- DIALOG -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dialog <span class="anim-tag">scaleIn / scaleOut</span> <span class="anim-tag">back.out(1.7)</span></div>
+        <button class="maia-btn maia-btn-primary maia-press" id="dialog-open-btn">Open Dialog</button>
+      </div>
+
+      <!-- SHEET -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Sheet (right) <span class="anim-tag">slideInRight / slideOutRight</span></div>
+        <button class="maia-btn maia-btn-outline maia-press" id="sheet-open-btn">Open Sheet</button>
+      </div>
+
+      <!-- DROPDOWN -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dropdown Menu <span class="anim-tag">slideInDown / fadeOut</span></div>
+        <div class="maia-dropdown-wrap" id="dropdown-wrap">
+          <button class="maia-btn maia-btn-outline maia-press" id="dropdown-trigger">
+            Options ▾
+          </button>
+          <div class="maia-dropdown" id="dropdown-menu">
+            <button class="maia-dropdown-item">Edit profile</button>
+            <button class="maia-dropdown-item">Settings</button>
+            <button class="maia-dropdown-item">Keyboard shortcuts</button>
+            <div style="height:1px;background:var(--border);margin:0.25rem 0;"></div>
+            <button class="maia-dropdown-item" style="color:var(--destructive);">Log out</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOLTIP -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Tooltip <span class="anim-tag">fadeIn / fadeOut (150ms)</span></div>
+        <div class="comp-demo-area">
+          <div class="maia-tooltip-wrap">
+            <button class="maia-btn maia-btn-outline maia-btn-sm maia-press maia-tooltip-trigger">Hover me</button>
+            <span class="maia-tooltip" id="tooltip-1">This is a tooltip</span>
+          </div>
+          <div class="maia-tooltip-wrap">
+            <button class="maia-btn maia-btn-secondary maia-btn-sm maia-press maia-tooltip-trigger">And me too</button>
+            <span class="maia-tooltip" id="tooltip-2">Another tooltip here</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOAST -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Toast <span class="anim-tag">slideInRight / slideOutUp</span></div>
+        <div class="comp-demo-area">
+          <button class="maia-btn maia-btn-primary maia-press" id="toast-fire-btn">Fire Toast</button>
+          <button class="maia-btn maia-btn-outline maia-press" id="toast-fire-success-btn">Success Toast</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ACCORDION -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Accordion <span class="anim-tag">expandIn (scaleY)</span> <span class="anim-tag">rounded-2xl</span></div>
+        <div style="max-width:560px;">
+          <div class="maia-accordion-item" data-accordion>
+            <button class="maia-accordion-trigger">
+              <span>What is the Maia style?</span>
+              <svg class="maia-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+            </button>
+            <div class="maia-accordion-content">
+              <div class="maia-accordion-content-inner">Maia is one of shadcn/ui's built-in styles — "soft and rounded, with generous spacing." It uses pill-shaped buttons and inputs (<code>rounded-4xl</code>), rounded cards (<code>rounded-2xl</code>), and ring borders instead of traditional borders.</div>
+            </div>
+          </div>
+          <div class="maia-accordion-item" data-accordion>
+            <button class="maia-accordion-trigger">
+              <span>Why GSAP instead of CSS animations?</span>
+              <svg class="maia-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+            </button>
+            <div class="maia-accordion-content">
+              <div class="maia-accordion-content-inner">GSAP offers physics-based easings (spring, bounce), fine-grained timeline control, ScrollTrigger integration, and a consistent API across all browsers. It also makes it easy to respect <code>prefers-reduced-motion</code> by setting duration to 0.</div>
+            </div>
+          </div>
+          <div class="maia-accordion-item" data-accordion>
+            <button class="maia-accordion-trigger">
+              <span>Can I edit shadcn/ui source files?</span>
+              <svg class="maia-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+            </button>
+            <div class="maia-accordion-content">
+              <div class="maia-accordion-content-inner">No. Never edit files inside <code>components/ui/</code> directly so the shadcn CLI remains updatable. Customise via CSS variable overrides, Tailwind utility composition, or thin wrapper components.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Tabs <span class="anim-tag">fadeIn (150ms)</span></div>
+        <div style="max-width:560px;">
+          <div class="maia-tab-list" id="tab-list">
+            <button class="maia-tab active" data-tab="tab-overview">Overview</button>
+            <button class="maia-tab" data-tab="tab-tokens">Tokens</button>
+            <button class="maia-tab" data-tab="tab-usage">Usage</button>
+          </div>
+          <div class="maia-tab-panel active" id="tab-overview">
+            The Maia style brings a consumer-friendly, warm, approachable aesthetic to shadcn/ui. Key features include pill-shaped buttons (<code>rounded-4xl</code>), generous spacing (<code>gap-6</code>), and blue-tinted gray neutrals (OKLCH hue ~262).
+          </div>
+          <div class="maia-tab-panel" id="tab-tokens">
+            Design tokens are defined in <code>tokens/colors.css</code> (Gray theme OKLCH values), <code>tokens/motion.yaml</code> (duration &amp; easing), and <code>tokens/brand-colors.yaml</code> (additive brand palette). The <code>--radius</code> is set to <code>0.875rem</code> (large).
+          </div>
+          <div class="maia-tab-panel" id="tab-usage">
+            Install shadcn/ui via their CLI, choose Maia style and Gray base color. Copy <code>tokens/colors.css</code> into your global stylesheet. Import GSAP presets from <code>animations/presets.js</code>. Use Poppins for headlines and Geist Sans for everything else.
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ANIMATION ASSIGNMENTS TABLE (kept as reference) -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Animation Assignment Reference</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
         <table class="comp-table">
           <thead><tr><th>Component</th><th>Entrance</th><th>Exit</th><th>Notes</th></tr></thead>
           <tbody>
             <tr><td><strong>Dialog / AlertDialog</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">scaleOut</span></td><td>Scale + overshoot</td></tr>
-            <tr><td><strong>Sheet (left)</strong></td><td><span class="preset-pill pill-entrance">slideInLeft</span></td><td><span class="preset-pill pill-exit">slideOutLeft</span></td><td>Matches open side</td></tr>
             <tr><td><strong>Sheet (right)</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutRight</span></td><td>Matches open side</td></tr>
             <tr><td><strong>DropdownMenu</strong></td><td><span class="preset-pill pill-entrance">slideInDown</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Drops down, fades out</td></tr>
             <tr><td><strong>Popover</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Scale from trigger</td></tr>
-            <tr><td><strong>Tooltip</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>Fast</td></tr>
+            <tr><td><strong>Tooltip</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>Fast &amp; subtle</td></tr>
             <tr><td><strong>Toast</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutUp</span></td><td>Slides in, dismisses up</td></tr>
             <tr><td><strong>Accordion</strong></td><td><span class="preset-pill pill-entrance">expandIn</span></td><td><span style="font-size:0.72rem;color:var(--muted-foreground)">reverse</span></td><td>Height from top</td></tr>
             <tr><td><strong>Tabs</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>Quick crossfade</td></tr>
           </tbody>
         </table>
       </div>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Style Overrides</h3>
-      <div class="card-grid reveal">
-        <div class="card"><div class="card-title">Button</div><div class="card-sub">Hover: <code>150ms ease-out</code><br>Active: <code>scale(0.97)</code></div></div>
-        <div class="card"><div class="card-title">Card</div><div class="card-sub">Default: <code>shadow-sm</code><br>Hover: <code>shadow-md</code> + lift</div></div>
-        <div class="card"><div class="card-title">Input</div><div class="card-sub">Focus: <code>ring-2 ring-offset-2</code></div></div>
-        <div class="card"><div class="card-title">Badge (brand)</div><div class="card-sub"><code>--brand-highlight-*</code> only when specified</div></div>
-      </div>
     </section>
+
+    <!-- DIALOG OVERLAY (portal) -->
+    <div class="maia-overlay" id="dialog-overlay">
+      <div class="maia-dialog" id="dialog-content">
+        <h3>Are you sure?</h3>
+        <p>This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
+        <div class="maia-dialog-actions">
+          <button class="maia-btn maia-btn-outline maia-btn-sm maia-press" id="dialog-cancel">Cancel</button>
+          <button class="maia-btn maia-btn-destructive maia-btn-sm maia-press" id="dialog-confirm">Delete account</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHEET OVERLAY (portal) -->
+    <div class="maia-sheet-overlay" id="sheet-overlay"></div>
+    <div class="maia-sheet" id="sheet-panel">
+      <h3>Sheet Panel</h3>
+      <p>This is a sheet that slides in from the right using the <code>slideInRight</code> GSAP preset.</p>
+      <div style="margin-top:1rem;">
+        <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.5rem;">Your name</label>
+        <input class="maia-input" placeholder="Enter your name" style="margin-bottom:0.75rem;" />
+        <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.5rem;">Email</label>
+        <input class="maia-input" placeholder="you@example.com" />
+      </div>
+      <div style="margin-top:1.5rem;display:flex;gap:0.75rem;">
+        <button class="maia-btn maia-btn-primary maia-btn-sm maia-press">Save changes</button>
+        <button class="maia-btn maia-btn-outline maia-btn-sm maia-press" id="sheet-close-btn">Close</button>
+      </div>
+    </div>
+
+    <!-- TOAST CONTAINER (portal) -->
+    <div class="maia-toast-container" id="toast-container"></div>
 
     <!-- GET STARTED -->
     <section id="start">
@@ -860,6 +1315,178 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
     const glowCard = document.getElementById("hover-glow-card");
     glowCard.addEventListener("mouseenter", () => { gsap.to(glowCard,{boxShadow:"0 0 20px 4px rgba(43,195,255,0.3)",duration:dur(0.2),ease:"power2.out"}); });
     glowCard.addEventListener("mouseleave", () => { gsap.to(glowCard,{boxShadow:"0 0 0px 0px rgba(43,195,255,0)",duration:dur(0.2),ease:"power2.out"}); });
+
+    /* ==========================================================
+       MAIA COMPONENT ANIMATIONS
+       ========================================================== */
+
+    // --- Button press effect (all .maia-press buttons) ---
+    document.querySelectorAll(".maia-press").forEach(btn => {
+      btn.addEventListener("mousedown", () => gsap.to(btn, { scale: 0.97, duration: dur(0.1), ease: "power2.out" }));
+      btn.addEventListener("mouseup", () => gsap.to(btn, { scale: 1, duration: dur(0.1), ease: "power2.out" }));
+      btn.addEventListener("mouseleave", () => gsap.to(btn, { scale: 1, duration: dur(0.1), ease: "power2.out" }));
+    });
+
+    // --- Card hover-lift ---
+    document.querySelectorAll(".maia-hover-lift").forEach(card => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, { y: -4, boxShadow: "0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 6px 20px rgba(0,0,0,0.12)", duration: dur(0.2), ease: "power2.out" });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, { y: 0, boxShadow: "0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 1px 3px rgba(0,0,0,0.06)", duration: dur(0.2), ease: "power2.out" });
+      });
+    });
+
+    // --- Dialog (scaleIn / scaleOut) ---
+    const dialogOverlay = document.getElementById("dialog-overlay");
+    const dialogContent = document.getElementById("dialog-content");
+
+    function openDialog() {
+      dialogOverlay.classList.add("open");
+      gsap.fromTo(dialogOverlay, { opacity: 0 }, { opacity: 1, duration: dur(0.2), ease: "power2.out" });
+      gsap.fromTo(dialogContent, { scale: 0.95, opacity: 0 }, { scale: 1, opacity: 1, duration: dur(0.3), ease: "back.out(1.7)" });
+    }
+    function closeDialog() {
+      gsap.to(dialogContent, { scale: 0.95, opacity: 0, duration: dur(0.2), ease: "power2.in" });
+      gsap.to(dialogOverlay, { opacity: 0, duration: dur(0.2), ease: "power2.in", onComplete: () => dialogOverlay.classList.remove("open") });
+    }
+
+    document.getElementById("dialog-open-btn").addEventListener("click", openDialog);
+    document.getElementById("dialog-cancel").addEventListener("click", closeDialog);
+    document.getElementById("dialog-confirm").addEventListener("click", closeDialog);
+    dialogOverlay.addEventListener("click", (e) => { if (e.target === dialogOverlay) closeDialog(); });
+
+    // --- Sheet (slideInRight / slideOutRight) ---
+    const sheetOverlay = document.getElementById("sheet-overlay");
+    const sheetPanel = document.getElementById("sheet-panel");
+
+    function openSheet() {
+      sheetOverlay.classList.add("open");
+      sheetPanel.classList.add("open");
+      gsap.fromTo(sheetOverlay, { opacity: 0 }, { opacity: 1, duration: dur(0.2), ease: "power2.out" });
+      gsap.fromTo(sheetPanel, { x: 320, opacity: 0 }, { x: 0, opacity: 1, duration: dur(0.4), ease: "power2.out" });
+    }
+    function closeSheet() {
+      gsap.to(sheetPanel, { x: 320, opacity: 0, duration: dur(0.3), ease: "power2.in", onComplete: () => sheetPanel.classList.remove("open") });
+      gsap.to(sheetOverlay, { opacity: 0, duration: dur(0.2), ease: "power2.in", onComplete: () => sheetOverlay.classList.remove("open") });
+    }
+
+    document.getElementById("sheet-open-btn").addEventListener("click", openSheet);
+    document.getElementById("sheet-close-btn").addEventListener("click", closeSheet);
+    sheetOverlay.addEventListener("click", closeSheet);
+
+    // --- Dropdown (slideInDown / fadeOut) ---
+    const dropdownMenu = document.getElementById("dropdown-menu");
+    const dropdownTrigger = document.getElementById("dropdown-trigger");
+    let dropdownOpen = false;
+
+    function toggleDropdown() {
+      if (dropdownOpen) {
+        gsap.to(dropdownMenu, { opacity: 0, duration: dur(0.15), ease: "power2.in", onComplete: () => { dropdownMenu.classList.remove("open"); dropdownOpen = false; } });
+      } else {
+        dropdownMenu.classList.add("open");
+        gsap.fromTo(dropdownMenu, { y: -8, opacity: 0 }, { y: 0, opacity: 1, duration: dur(0.25), ease: "power2.out" });
+        dropdownOpen = true;
+      }
+    }
+    dropdownTrigger.addEventListener("click", (e) => { e.stopPropagation(); toggleDropdown(); });
+    document.querySelectorAll(".maia-dropdown-item").forEach(item => {
+      item.addEventListener("click", () => {
+        gsap.to(dropdownMenu, { opacity: 0, duration: dur(0.15), ease: "power2.in", onComplete: () => { dropdownMenu.classList.remove("open"); dropdownOpen = false; } });
+      });
+    });
+    document.addEventListener("click", () => {
+      if (dropdownOpen) {
+        gsap.to(dropdownMenu, { opacity: 0, duration: dur(0.15), ease: "power2.in", onComplete: () => { dropdownMenu.classList.remove("open"); dropdownOpen = false; } });
+      }
+    });
+
+    // --- Tooltip (fadeIn / fadeOut fast 150ms) ---
+    document.querySelectorAll(".maia-tooltip-trigger").forEach(trigger => {
+      const tooltip = trigger.parentElement.querySelector(".maia-tooltip");
+      trigger.addEventListener("mouseenter", () => {
+        gsap.to(tooltip, { opacity: 1, y: 0, duration: dur(0.15), ease: "power2.out" });
+      });
+      trigger.addEventListener("mouseleave", () => {
+        gsap.to(tooltip, { opacity: 0, y: 4, duration: dur(0.15), ease: "power2.in" });
+      });
+    });
+
+    // --- Toast (slideInRight / slideOutUp) ---
+    const toastContainer = document.getElementById("toast-container");
+    let toastId = 0;
+
+    function fireToast(message, variant) {
+      const id = ++toastId;
+      const toast = document.createElement("div");
+      toast.className = "maia-toast";
+      toast.id = "toast-" + id;
+      if (variant === "success") {
+        toast.innerHTML = '<span class="maia-toast-text" style="display:flex;align-items:center;gap:0.5rem;"><span style="color:oklch(0.6 0.2 145);font-size:1.1rem;">✓</span> ' + message + '</span><button class="maia-toast-close" data-toast-id="' + id + '">✕</button>';
+      } else {
+        toast.innerHTML = '<span class="maia-toast-text">' + message + '</span><button class="maia-toast-close" data-toast-id="' + id + '">✕</button>';
+      }
+      toastContainer.appendChild(toast);
+      gsap.fromTo(toast, { x: 100, opacity: 0 }, { x: 0, opacity: 1, duration: dur(0.4), ease: "power2.out" });
+      // Auto-dismiss after 3s
+      const autoDismiss = setTimeout(() => dismissToast(id), 3000);
+      toast.querySelector(".maia-toast-close").addEventListener("click", () => { clearTimeout(autoDismiss); dismissToast(id); });
+    }
+
+    function dismissToast(id) {
+      const toast = document.getElementById("toast-" + id);
+      if (!toast) return;
+      gsap.to(toast, { y: -20, opacity: 0, duration: dur(0.3), ease: "power2.in", onComplete: () => toast.remove() });
+    }
+
+    document.getElementById("toast-fire-btn").addEventListener("click", () => fireToast("Event has been created."));
+    document.getElementById("toast-fire-success-btn").addEventListener("click", () => fireToast("Settings saved successfully.", "success"));
+
+    // --- Accordion (expandIn / collapse with scaleY) ---
+    document.querySelectorAll("[data-accordion]").forEach(item => {
+      const trigger = item.querySelector(".maia-accordion-trigger");
+      const content = item.querySelector(".maia-accordion-content");
+      const inner = item.querySelector(".maia-accordion-content-inner");
+
+      trigger.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        if (isOpen) {
+          // Collapse
+          gsap.to(content, {
+            height: 0,
+            duration: dur(0.3),
+            ease: "power2.in",
+            onComplete: () => item.classList.remove("open")
+          });
+        } else {
+          // Expand (expandIn)
+          item.classList.add("open");
+          const fullHeight = inner.offsetHeight;
+          gsap.fromTo(content,
+            { height: 0 },
+            { height: fullHeight, duration: dur(0.3), ease: "power2.out", onComplete: () => { content.style.height = "auto"; } }
+          );
+        }
+      });
+    });
+
+    // --- Tabs (fadeIn 150ms) ---
+    document.querySelectorAll(".maia-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        const targetId = tab.dataset.tab;
+        // Deactivate all tabs and panels
+        document.querySelectorAll(".maia-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".maia-tab-panel").forEach(p => {
+          p.classList.remove("active");
+          p.style.opacity = 0;
+        });
+        // Activate target
+        tab.classList.add("active");
+        const panel = document.getElementById(targetId);
+        panel.classList.add("active");
+        gsap.fromTo(panel, { opacity: 0 }, { opacity: 1, duration: dur(0.15), ease: "power2.out" });
+      });
+    });
   </script>
 </body>
 </html>
