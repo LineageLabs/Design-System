@@ -1,0 +1,112 @@
+# ==============================================================================
+# MOTION TOKENS
+# ==============================================================================
+#
+# All animations use GSAP v3. CSS equivalents provided for simple transitions.
+# Always respect prefers-reduced-motion — see reduced_motion section below.
+#
+# Reference: https://gsap.com/docs/v3/
+# ==============================================================================
+
+durations:
+  instant:
+    value: "100ms"
+    gsap: 0.1
+    use: "Micro-feedback — active/pressed states"
+  fast:
+    value: "150ms"
+    gsap: 0.15
+    use: "Hover effects, toggles, tooltips"
+  normal:
+    value: "300ms"
+    gsap: 0.3
+    use: "Standard transitions — modals, dropdowns, fade in/out"
+  slow:
+    value: "500ms"
+    gsap: 0.5
+    use: "Emphasized transitions — page sections, large content reveals"
+  slower:
+    value: "700ms"
+    gsap: 0.7
+    use: "Staggered entrance sequences"
+  slowest:
+    value: "1000ms"
+    gsap: 1.0
+    use: "Hero / cinematic animations, logo reveals"
+
+easings:
+  default:
+    gsap: "power2.out"
+    css: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+    use: "General UI transitions (the go-to easing)"
+
+  in:
+    gsap: "power2.in"
+    css: "cubic-bezier(0.55, 0.06, 0.68, 0.19)"
+    use: "Exit animations — elements leaving the screen"
+
+  out:
+    gsap: "power2.out"
+    css: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+    use: "Entrance animations — elements appearing on screen"
+
+  in_out:
+    gsap: "power2.inOut"
+    css: "cubic-bezier(0.45, 0.05, 0.55, 0.95)"
+    use: "Symmetrical transitions — layout shifts, theme toggles"
+
+  overshoot:
+    gsap: "back.out(1.7)"
+    css: "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    use: "Playful bounces — modals appearing, popover entrances"
+
+  spring:
+    gsap: "elastic.out(1, 0.3)"
+    css: null  # No CSS equivalent — GSAP only
+    use: "Springy, dynamic interactions — toggles, drag releases"
+
+  bounce:
+    gsap: "bounce.out"
+    css: null  # No CSS equivalent — GSAP only
+    use: "Bounce landings — notification badges, playful elements"
+
+stagger_patterns:
+  sequential:
+    value: 0.08
+    use: "Ordered lists, menu items, table rows"
+
+  grid:
+    value:
+      amount: 0.4
+      grid: "auto"
+      from: "start"
+    use: "Card grids, image galleries, dashboard tiles"
+
+  center_out:
+    value:
+      amount: 0.3
+      from: "center"
+    use: "Hero elements, centered content reveals"
+
+# ==============================================================================
+# REDUCED MOTION
+# ==============================================================================
+# MANDATORY: Every animation must respect this preference.
+#
+# When prefers-reduced-motion is active:
+#   - Set all GSAP durations to 0 (instant state change)
+#   - Disable ScrollTrigger scrub animations
+#   - Keep simple opacity fades at max 150ms
+#   - Disable parallax effects entirely
+#   - Never animate transform properties (scale, rotate, translate)
+#
+# Implementation pattern:
+#   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+#   const dur = reducedMotion ? 0 : 0.3;
+# ==============================================================================
+reduced_motion:
+  durations: "Set all to 0 (instant)"
+  opacity_fade_max: "150ms"
+  transforms: "Disabled entirely"
+  scroll_trigger: "Disabled (scrub, pin, parallax)"
+  implementation: "Check window.matchMedia('(prefers-reduced-motion: reduce)').matches"

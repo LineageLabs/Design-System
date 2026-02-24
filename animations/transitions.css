@@ -1,0 +1,106 @@
+/*
+ * =============================================================================
+ * CSS-ONLY TRANSITIONS
+ * =============================================================================
+ *
+ * For simple hover/focus effects that don't need GSAP.
+ * Use these utility classes alongside shadcn/Tailwind utilities.
+ *
+ * Usage:
+ *   <button class="transition-fast">Hover me</button>
+ *   <div class="hover-lift">Card content</div>
+ * =============================================================================
+ */
+
+/* ---------------------------------------------------------------------------
+   Duration utilities
+   --------------------------------------------------------------------------- */
+
+.transition-instant {
+  transition-duration: 100ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.transition-fast {
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.transition-normal {
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.transition-slow {
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ---------------------------------------------------------------------------
+   Interaction utilities
+   --------------------------------------------------------------------------- */
+
+.hover-lift {
+  transition: transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.hover-press {
+  transition: transform 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-press:active {
+  transform: scale(0.97);
+}
+
+.hover-fade {
+  transition: opacity 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-fade:hover {
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------------------
+   Focus utilities
+   --------------------------------------------------------------------------- */
+
+.focus-ring {
+  transition: box-shadow 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion — disable all transitions and transforms
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .transition-instant,
+  .transition-fast,
+  .transition-normal,
+  .transition-slow,
+  .hover-lift,
+  .hover-press,
+  .hover-fade,
+  .focus-ring {
+    transition-duration: 0ms !important;
+  }
+
+  .hover-lift:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .hover-press:active {
+    transform: none !important;
+  }
+}

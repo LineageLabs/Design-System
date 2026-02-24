@@ -1,0 +1,83 @@
+# ==============================================================================
+# BRAND COLOR PALETTE
+# ==============================================================================
+#
+# These colors are ADDITIVE. They do NOT replace any shadcn/ui semantic tokens.
+# Use them ONLY when a design explicitly calls for brand-specific color treatment.
+#
+# Default UI (buttons, inputs, cards, text) → always use shadcn tokens.
+# Brand treatments (hero sections, badges, marketing, illustrations) → use these.
+# ==============================================================================
+
+surfaces:
+  light_background:
+    hex: "#FAFAFA"
+    css_var: "--brand-surface"
+    context: "light theme"
+    use: "Page-level background when design calls for brand surface instead of shadcn --background"
+
+  light_grey:
+    hex: "#EAEAEA"
+    css_var: "--brand-surface-grey"
+    context: "light theme"
+    use: "Subtle section dividers, secondary cards, visual separation on light backgrounds"
+
+  dark_background:
+    hex: "#151515"
+    css_var: "--brand-surface"
+    context: "dark theme"
+    use: "Page-level background when design calls for brand surface instead of shadcn --background"
+
+highlights:
+  yellow:
+    light_bg:
+      hex: "#FFD400"
+      css_var: "--brand-highlight-yellow"
+      context: "light backgrounds"
+    dark_bg:
+      hex: "#F9DE0A"
+      css_var: "--brand-highlight-yellow"
+      context: "dark backgrounds"
+    use: "Attention callouts, featured badges, warning-adjacent emphasis, promotional tags"
+
+  blue:
+    light_bg:
+      hex: "#139CFF"
+      css_var: "--brand-highlight-blue"
+      context: "light backgrounds"
+    dark_bg:
+      hex: "#2BC3FF"
+      css_var: "--brand-highlight-blue"
+      context: "dark backgrounds"
+    use: "Interactive highlights, branded links, info callouts, selected-state accents"
+
+  magenta:
+    light_bg:
+      hex: "#FF68E3"
+      css_var: "--brand-highlight-magenta"
+      context: "light backgrounds"
+    dark_bg:
+      hex: "#FF68FF"
+      css_var: "--brand-highlight-magenta"
+      context: "dark backgrounds"
+    use: "Creative emphasis, premium/pro features, playful accents, marketing CTAs"
+
+# ==============================================================================
+# USAGE RULES
+# ==============================================================================
+
+when_to_use:
+  - "Hero sections and marketing pages — brand highlights on headings or CTAs"
+  - "Status badges and tags — highlight colors for special emphasis"
+  - "Illustrated content — brand palette for custom illustrations or icons"
+  - "Custom branded backgrounds — #FAFAFA / #151515 as page-level overrides"
+  - "Gradient accents that use brand highlight colors"
+  - "Any element the design explicitly marks as 'brand colored'"
+
+when_NOT_to_use:
+  - "Standard UI components (buttons, inputs, cards) — use shadcn defaults"
+  - "Body text — use --foreground / --muted-foreground"
+  - "Borders and dividers — use --border"
+  - "Error states — use --destructive"
+  - "Focus rings — use --ring"
+  - "Any UI element not explicitly marked as 'brand colored' in the design"

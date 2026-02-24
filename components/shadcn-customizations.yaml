@@ -1,0 +1,137 @@
+# ==============================================================================
+# SHADCN/UI COMPONENT CUSTOMIZATIONS
+# ==============================================================================
+#
+# This file documents what we CHANGE from shadcn/ui defaults.
+# If a component is not listed here, use it exactly as shadcn provides it.
+#
+# Rules:
+#   1. Never edit files inside components/ui/ directly — shadcn CLI must remain updatable
+#   2. Use cn() (from shadcn's lib/utils) for conditional class merging
+#   3. Customise via: CSS variable overrides, Tailwind utility composition, or wrapper components
+#   4. Animations use GSAP presets from animations/presets.js — not CSS animations
+#
+# Reference: https://ui.shadcn.com/docs
+# ==============================================================================
+
+general_rules:
+  - "Use the shadcn Neutral base color theme (default)"
+  - "Keep --radius at 0.625rem (shadcn default) unless a project specifies otherwise"
+  - "Never override --primary, --background, etc. with brand colors globally"
+  - "Apply brand colors via --brand-* custom properties only where designs specify"
+
+# ==============================================================================
+# COMPONENT ANIMATION ASSIGNMENTS
+# ==============================================================================
+# Which GSAP preset to use for each component's entrance/exit.
+# Presets are defined in animations/presets.js
+# ==============================================================================
+
+animation_assignments:
+  Dialog:
+    entrance: "scaleIn"
+    exit: "scaleOut"
+    notes: "Modal appearance — slight scale with overshoot easing"
+
+  AlertDialog:
+    entrance: "scaleIn"
+    exit: "scaleOut"
+    notes: "Same as Dialog for consistency"
+
+  Sheet:
+    entrance_side_left: "slideInLeft"
+    entrance_side_right: "slideInRight"
+    exit_side_left: "slideOutLeft"
+    exit_side_right: "slideOutRight"
+    notes: "Direction matches the side the sheet opens from"
+
+  DropdownMenu:
+    entrance: "slideInDown"
+    exit: "fadeOut"
+    notes: "Drops down naturally, fades out quickly"
+
+  Popover:
+    entrance: "scaleIn"
+    exit: "fadeOut"
+    notes: "Scale from the trigger point"
+
+  Tooltip:
+    entrance: "fadeIn"
+    exit: "fadeOut"
+    duration_override: "fast (150ms)"
+    notes: "Fast and unobtrusive — never distracting"
+
+  Toast:
+    entrance: "slideInRight"
+    exit: "slideOutUp"
+    notes: "Slides in from notification area, dismisses upward"
+
+  Accordion:
+    content_reveal: "expandIn"
+    notes: "Smooth height animation from top using scaleY transform"
+
+  Tabs:
+    panel_switch: "fadeIn"
+    duration_override: "fast (150ms)"
+    notes: "Quick crossfade between tab content"
+
+  NavigationMenu:
+    content_entrance: "fadeIn"
+    notes: "Subtle fade for nav dropdowns"
+
+# ==============================================================================
+# COMPONENT STYLE OVERRIDES
+# ==============================================================================
+# CSS/Tailwind customizations applied on top of shadcn defaults.
+# ==============================================================================
+
+style_overrides:
+  Button:
+    hover_transition: "transition-fast (150ms ease-out)"
+    active_state: "hover-press (scale 0.97)"
+    notes: "Add snappy hover feedback. Apply via cn() or wrapper."
+
+  Card:
+    default_shadow: "shadow-sm"
+    hover_shadow: "shadow-md"
+    hover_class: "hover-lift"
+    notes: "Subtle elevation by default, lifts on hover for interactive cards only"
+
+  Input:
+    focus_ring: "ring-2 ring-offset-2 ring-ring"
+    notes: "Accessible focus ring using shadcn --ring variable"
+
+  Badge:
+    brand_variant: "Use --brand-highlight-* colors for brand-specific badges"
+    notes: "Only when design explicitly calls for brand-colored badges"
+
+# ==============================================================================
+# WRAPPER COMPONENT PATTERNS
+# ==============================================================================
+# When shadcn components need consistent customisation, create thin wrappers.
+# ==============================================================================
+
+wrapper_patterns:
+  AnimatedDialog:
+    wraps: "Dialog"
+    adds: "GSAP scaleIn/scaleOut animations on open/close"
+    example: |
+      // AnimatedDialog.tsx
+      import { Dialog, DialogContent } from "@/components/ui/dialog";
+      import gsap from "gsap";
+      import { ENTRANCE, EXIT } from "@/design-system/animations/presets";
+
+      // Use onOpenChange + refs to trigger GSAP animations
+      // on DialogContent mount/unmount
+
+  AnimatedCard:
+    wraps: "Card"
+    adds: "hover-lift class + optional scroll-triggered entrance"
+    example: |
+      // AnimatedCard.tsx
+      import { Card } from "@/components/ui/card";
+      import { cn } from "@/lib/utils";
+
+      export function AnimatedCard({ className, ...props }) {
+        return <Card className={cn("hover-lift", className)} {...props} />;
+      }
