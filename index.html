@@ -850,6 +850,7 @@
       <a href="#animations">Animations</a>
       <a href="#components">Components</a>
       <a href="#start">Get Started</a>
+      <a href="#mobile-example">Mobile Example</a>
       <button class="theme-toggle" id="themeToggle">Dark mode</button>
     </nav>
   </header>
@@ -1275,6 +1276,109 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
           <code>animations/presets.js</code> · GSAP presets<br>
           <code>components/shadcn-customizations.yaml</code> · Overrides
         </div>
+      </div>
+    </section>
+
+    <!-- MOBILE EXAMPLE -->
+    <section id="mobile-example">
+      <p class="section-label">Section 07</p>
+      <h2 class="section-title">Mobile Example</h2>
+      <p class="section-desc">
+        A realistic mobile app — "Focus" — built entirely from design system components.
+        Buttons, inputs, badges, cards, tabs, accordion, bottom sheet, toasts, FAB, and bottom nav
+        all working together in a phone-frame layout.
+      </p>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+
+        <!-- Phone frame preview -->
+        <div style="flex:0 0 auto;">
+          <div style="
+            width: 390px;
+            height: 780px;
+            border-radius: 2.75rem;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
+                        0 32px 80px rgba(0,0,0,0.18),
+                        0 8px 24px rgba(0,0,0,0.08);
+            position: relative;
+          ">
+            <iframe
+              src="example-mobile.html"
+              id="mobilePreviewFrame"
+              style="
+                width: 390px;
+                height: 780px;
+                border: none;
+                display: block;
+                pointer-events: auto;
+              "
+              title="Focus — mobile example"
+            ></iframe>
+          </div>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
+            Fully interactive &mdash; click, scroll, check tasks, fire toasts.
+          </p>
+        </div>
+
+        <!-- Component index -->
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem;">
+          <div class="card reveal">
+            <div class="card-title">Components used</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; App bar + status bar mock</span>
+              <span>&#x2022; Maia pill search input</span>
+              <span>&#x2022; Stat cards (maia-card)</span>
+              <span>&#x2022; Featured project card + progress bar</span>
+              <span>&#x2022; Quick actions grid (4-up)</span>
+              <span>&#x2022; Task list with checkboxes</span>
+              <span>&#x2022; Tabs (Today / Upcoming / Completed)</span>
+              <span>&#x2022; Accordion (Project Notes)</span>
+              <span>&#x2022; Bottom sheet (add task)</span>
+              <span>&#x2022; FAB</span>
+              <span>&#x2022; Bottom navigation bar</span>
+              <span>&#x2022; Toast notifications</span>
+              <span>&#x2022; Badges (yellow / blue / magenta / default)</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+            <div class="card-title">Animation patterns</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Staggered entrance sequence on load</span>
+              <span>&#x2022; Progress bar animated fill (0&#x2192;62%)</span>
+              <span>&#x2022; Button micro-lift + <code>back.out(2)</code> spring</span>
+              <span>&#x2022; FAB scale bounce on hover</span>
+              <span>&#x2022; Task check — <code>back.out(2.2)</code> pop</span>
+              <span>&#x2022; Bottom sheet — slide up from 100%</span>
+              <span>&#x2022; Toast — <code>back.out(1.5)</code> slide-up entry</span>
+              <span>&#x2022; Accordion chevron nudge on hover</span>
+              <span>&#x2022; Tab panel <code>y:8&#x2192;0</code> fade-slide</span>
+              <span>&#x2022; Scroll reveal for lower sections</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-yellow);">
+            <div class="card-title">Open standalone</div>
+            <div class="card-sub" style="margin-top:0.5rem;">
+              View at full size or inspect source in a separate tab.
+            </div>
+            <a href="example-mobile.html" target="_blank" style="
+              display:inline-flex;align-items:center;gap:0.4rem;
+              margin-top:0.875rem;
+              font-size:0.8rem;font-weight:600;
+              color:var(--foreground);text-decoration:none;
+              padding:0.375rem 0.875rem;
+              border-radius:9999px;
+              box-shadow:inset 0 0 0 1px var(--border);
+              transition:background 0.2s ease-out, box-shadow 0.2s ease-out;
+            " onmouseover="this.style.background='var(--muted)'" onmouseout="this.style.background=''">
+              Open example-mobile.html
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h3v3M10 2L5.5 6.5M4 3H2v7h7V8"/></svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
 
