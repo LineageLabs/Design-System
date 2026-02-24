@@ -44,6 +44,24 @@ and logo assets so every project stays consistent.
 | 9 | `assets/logos/README.md` | Logo variants, sizes, naming conventions |
 | 10 | `CHANGELOG.md` | Version history — what changed and when |
 
+## Changelog Rule
+
+**Every change to this design system must be logged in `CHANGELOG.md`.**
+
+When you modify any file in this repo (tokens, animations, components, docs, assets, demo pages), you must also update `CHANGELOG.md` following this process:
+
+1. **Determine the version.** Versions use `YYYY.MM.patch` format. Increment the patch number from the latest entry (e.g. if the last version is `2024.02.5`, the next is `2024.02.6`). If the month has changed, reset the patch to `0`.
+2. **Add a new entry at the top** (below the header, above the previous entry) with this format:
+   ```markdown
+   ## [YYYY.MM.patch] — YYYY-MM-DD
+
+   ### Added / Changed / Removed
+   - **Brief title.** Specific details of what changed, including old → new values where applicable.
+   ```
+3. **Categorize entries** using [Keep a Changelog](https://keepachangelog.com/) sections: `Added`, `Changed`, `Removed`, `Fixed`.
+4. **Be specific.** Include token names, file paths, old vs new values. Someone scanning the log should understand exactly what changed without reading diffs.
+5. **One entry per commit.** Each commit that touches design system files gets its own changelog version entry.
+
 ## Starting a New Project
 
 ```bash
