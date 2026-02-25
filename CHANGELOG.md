@@ -5,6 +5,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.18] — 2026-02-25
+
+### Added
+- **Lineage\*Labs text wordmark logo variant.** New logo type alongside existing way\*ID badge. Poppins 600, `font-size: 36px`, `line-height: 54px`, `letter-spacing: -0.05em`. Light mode: `#15552E` text. Dark mode: `#B9F7CE` text. Asterisk uses grass green (`#3DC683`) as accent color in both modes.
+- **`.logo-text` and `.logo-text-dark` CSS classes.** Styles for Lineage\*Labs wordmark with automatic light/dark mode switching. `.logo-asterisk` class for the accent-colored `*` character.
+- **Lineage\*Labs light/dark static panels.** Three sizes each (36px, 24px, 16px) on light and forced-dark backgrounds.
+- **Lineage\*Labs animated reveal (light + dark).** Three-phase GSAP animation: Phase 1 — characters stagger from left with `blur(6px)→0` + `x:-16→0` + `y:8→0` (0.04s stagger, 400ms, `power2.out`). Phase 2 — asterisk scale pop `1→1.3→1` with `back.out(3)`. Phase 3 — text-shadow glow pulse `0→20px→0`. Added `splitWordmarkChars()` helper that preserves `.logo-asterisk` span while splitting surrounding text into individual `<span class="logo-char">` elements.
+- **Lineage\*Labs spec reference table.** Text color, asterisk color, font, default size, and animation breakdown.
+
+### Changed
+- **Logo section reorganized with sub-headings.** Section now has "way\*ID Badge" and "Lineage\*Labs Wordmark" sub-sections, each with light/dark static panels and animated reveals, separated by a divider. Updated section description to reference both variants.
+- **Spec table split into two.** Separate spec reference tables for way\*ID Badge and Lineage\*Labs Wordmark.
+
+---
+
 ## [2026.02.17] — 2026-02-25
 
 ### Changed

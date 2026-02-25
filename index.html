@@ -202,6 +202,37 @@
     .logo-wordmark { font-weight: 700; }
     .logo-char { will-change: filter, opacity, transform; }
 
+    /* Lineage*Labs text wordmark */
+    .logo-text {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 54px;
+      letter-spacing: -0.05em;
+      color: var(--brand-highlight-dark-green);
+      white-space: nowrap;
+    }
+    .dark .logo-text {
+      color: var(--brand-highlight-light-green);
+    }
+    /* Forced dark variant for always-dark panels */
+    .logo-text-dark {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 54px;
+      letter-spacing: -0.05em;
+      color: #B9F7CE;
+      white-space: nowrap;
+    }
+    .logo-text .logo-asterisk,
+    .logo-text-dark .logo-asterisk {
+      color: var(--brand-highlight-grass-green);
+    }
+    .logo-text-dark .logo-asterisk {
+      color: #3DC683;
+    }
+
     nav {
       display: flex;
       align-items: center;
@@ -1231,12 +1262,17 @@
       <p class="section-label">Section 02</p>
       <h2 class="section-title">Logo</h2>
       <p class="section-desc">
-        The <strong>way*ID</strong> logo is a pill badge with distinct light and dark mode treatments.
-        The animated reveal uses a three-phase GSAP sequence: pill materialize with overshoot + blur dissolve,
-        center-out character stagger, and a dual-layer brand glow pulse (~1s total).
+        Two logo variants: the <strong>way*ID</strong> pill badge and the <strong>Lineage*Labs</strong> text wordmark.
+        Both have distinct light and dark mode treatments and animated GSAP reveals.
       </p>
 
-      <!-- Light mode logo -->
+      <!-- ═══════════════ way*ID Badge ═══════════════ -->
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">way*ID Badge</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
+        Pill-shaped badge with dark green background / light green text. Inverts in dark mode.
+      </p>
+
+      <!-- way*ID — Light -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
@@ -1246,7 +1282,7 @@
         </div>
       </div>
 
-      <!-- Dark mode logo -->
+      <!-- way*ID — Dark -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
         <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
@@ -1256,14 +1292,10 @@
         </div>
       </div>
 
-      <!-- Animated reveal demo — side-by-side -->
+      <!-- way*ID — Animated -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">GSAP</span> <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">center stagger</span> <span class="anim-tag">glow pulse</span></div>
-        <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;max-width:580px;line-height:1.5;">
-          Three-phase sequence: pill materializes with overshoot + blur dissolve, characters stagger outward from the <code>*</code> with blur-to-sharp, then a dual-layer brand glow pulse settles the animation. Total ~1s.
-        </p>
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">center stagger</span> <span class="anim-tag">glow pulse</span></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-          <!-- Light animated -->
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
@@ -1271,13 +1303,61 @@
             </div>
             <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
           </div>
-          <!-- Dark animated -->
           <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
               <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin:2.5rem 0;"></div>
+
+      <!-- ═══════════════ Lineage*Labs Wordmark ═══════════════ -->
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Lineage*Labs Wordmark</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
+        Text wordmark in Poppins 600. Dark green on light backgrounds, light green on dark. The <code>*</code> uses grass green as an accent.
+      </p>
+
+      <!-- Lineage*Labs — Light -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">Poppins 600</span> <span class="anim-tag">#15552E</span></div>
+        <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;gap:1.5rem;">
+          <span class="logo-text" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text" style="font-size:16px;line-height:24px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+        </div>
+      </div>
+
+      <!-- Lineage*Labs — Dark -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">#B9F7CE</span></div>
+        <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:1.5rem;">
+          <span class="logo-text-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark" style="font-size:16px;line-height:24px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+        </div>
+      </div>
+
+      <!-- Lineage*Labs — Animated -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">left stagger</span> <span class="anim-tag">asterisk pop</span> <span class="anim-tag">glow pulse</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+            <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
+            <div style="min-height:56px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-text ll-anim-light" id="ll-anim-light" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+            </div>
+            <button class="theme-toggle" id="ll-anim-light-replay">Replay</button>
+          </div>
+          <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+            <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
+            <div style="min-height:56px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-text-dark ll-anim-dark" id="ll-anim-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+            </div>
+            <button class="theme-toggle" id="ll-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
         </div>
       </div>
@@ -1305,9 +1385,9 @@
         </div>
       </div>
 
-      <!-- Spec table -->
+      <!-- Spec table — way*ID -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Spec Reference</div>
+        <div class="comp-demo-label">Spec Reference — way*ID Badge</div>
         <div style="overflow-x:auto;">
           <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
             <thead>
@@ -1319,22 +1399,22 @@
             </thead>
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Badge background</td>
+                <td style="padding:0.5rem 0.75rem;">Background</td>
                 <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
                 <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Badge text</td>
+                <td style="padding:0.5rem 0.75rem;">Text color</td>
                 <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code></td>
                 <td style="padding:0.5rem 0.75rem;"><code>#15552E</code></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Badge border</td>
+                <td style="padding:0.5rem 0.75rem;">Border</td>
                 <td style="padding:0.5rem 0.75rem;">transparent</td>
                 <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> (1px solid)</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Badge radius</td>
+                <td style="padding:0.5rem 0.75rem;">Radius</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2"><code>15px</code></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
@@ -1347,6 +1427,49 @@
                   Phase 1: <code>scale 0.9→1, blur 8→0, back.out(1.7), 450ms</code><br>
                   Phase 2: <code>chars stagger 0.05s from center, blur 4→0 + y 6→0, power2.out, 300ms</code><br>
                   Phase 3: <code>dual glow pulse (16px tight + 40px wide), power2.out→in, 650ms</code>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Spec table — Lineage*Labs -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Spec Reference — Lineage*Labs Wordmark</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border);text-align:left;">
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Property</th>
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Light Mode</th>
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Dark Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Text color</td>
+                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Asterisk color</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>#3DC683</code> (grass green) <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#3DC683;vertical-align:middle;margin-left:0.25rem;"></span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Font</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 600 weight, <code>-0.05em</code> letter-spacing</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Default size</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>36px</code> / line-height <code>54px</code></td>
+              </tr>
+              <tr>
+                <td style="padding:0.5rem 0.75rem;">Animation</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">
+                  Phase 1: <code>chars stagger 0.04s from left, blur 6→0 + x -16→0 + y 8→0, power2.out, 400ms</code><br>
+                  Phase 2: <code>asterisk scale pop 1→1.3→1, back.out(3) + power2.out, 450ms</code><br>
+                  Phase 3: <code>text-shadow glow pulse 0→20px→0, power2.out→in, 600ms</code>
                 </td>
               </tr>
             </tbody>
@@ -2277,11 +2400,115 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       playBadgeReveal(animDarkBadge);
     });
 
-    /* Auto-play on scroll */
+    /* Auto-play way*ID on scroll */
     [animLightBadge, animDarkBadge].forEach((el) => {
       ScrollTrigger.create({
         trigger: el, start: "top 85%", once: true,
         onEnter: () => playBadgeReveal(el),
+      });
+    });
+
+    /* ---- Lineage*Labs wordmark reveal ---- */
+    function splitWordmarkChars(el) {
+      /* Preserve .logo-asterisk span, split everything else into chars */
+      const nodes = Array.from(el.childNodes);
+      el.textContent = "";
+      const chars = [];
+      nodes.forEach((node) => {
+        if (node.nodeType === 3) {
+          /* Text node — split each character */
+          const text = node.textContent;
+          for (let i = 0; i < text.length; i++) {
+            const span = document.createElement("span");
+            span.textContent = text[i];
+            span.style.display = "inline-block";
+            span.className = "logo-char";
+            el.appendChild(span);
+            chars.push(span);
+          }
+        } else if (node.nodeType === 1) {
+          /* Element node (the .logo-asterisk span) — wrap its text content */
+          node.style.display = "inline-block";
+          node.classList.add("logo-char");
+          el.appendChild(node);
+          chars.push(node);
+        }
+      });
+      return chars;
+    }
+
+    function playWordmarkReveal(el, chars) {
+      const isDark = el.classList.contains("logo-text-dark");
+      const glowColor = isDark ? "rgba(185, 247, 206, 0.3)" : "rgba(21, 85, 46, 0.2)";
+      const asteriskIdx = chars.findIndex((c) => c.classList.contains("logo-asterisk"));
+      const tl = gsap.timeline();
+
+      if (reducedMotion) {
+        tl.set(el, { opacity:1 });
+        tl.set(chars, { opacity:1, filter:"blur(0px)", y:0 });
+        return tl;
+      }
+
+      /* Phase 1: Characters slide + blur in from left, staggered */
+      tl.set(el, { opacity:1 })
+        .fromTo(chars,
+          { opacity:0, filter:"blur(6px)", x:-16, y:8 },
+          { opacity:1, filter:"blur(0px)", x:0, y:0, duration:0.4, ease:"power2.out",
+            stagger:0.04 },
+        );
+
+      /* Phase 2: Asterisk gets a special scale pop after its stagger position */
+      if (asteriskIdx !== -1) {
+        const asteriskDelay = asteriskIdx * 0.04;
+        tl.fromTo(chars[asteriskIdx],
+          { scale:1 },
+          { scale:1.3, duration:0.2, ease:"back.out(3)" },
+          asteriskDelay + 0.25
+        ).to(chars[asteriskIdx],
+          { scale:1, duration:0.25, ease:"power2.out" }
+        );
+      }
+
+      /* Phase 3: Subtle text-shadow glow pulse */
+      tl.fromTo(el,
+        { textShadow:"0 0 0px " + glowColor },
+        { textShadow:"0 0 20px " + glowColor, duration:0.3, ease:"power2.out" },
+        "-=0.3"
+      ).to(el,
+        { textShadow:"0 0 0px transparent", duration:0.3, ease:"power2.in" }
+      );
+
+      return tl;
+    }
+
+    function resetWordmark(el, chars) {
+      gsap.set(el, { clearProps:"all" });
+      chars.forEach((c) => gsap.set(c, { clearProps:"all" }));
+    }
+
+    const llLightEl = document.querySelector(".ll-anim-light");
+    const llDarkEl  = document.querySelector(".ll-anim-dark");
+    const llLightChars = splitWordmarkChars(llLightEl);
+    const llDarkChars  = splitWordmarkChars(llDarkEl);
+    gsap.set(llLightEl, { opacity:0 });
+    gsap.set(llDarkEl, { opacity:0 });
+
+    document.getElementById("ll-anim-light-replay").addEventListener("click", () => {
+      resetWordmark(llLightEl, llLightChars);
+      gsap.set(llLightEl, { opacity:0 });
+      playWordmarkReveal(llLightEl, llLightChars);
+    });
+    document.getElementById("ll-anim-dark-replay").addEventListener("click", () => {
+      resetWordmark(llDarkEl, llDarkChars);
+      gsap.set(llDarkEl, { opacity:0 });
+      playWordmarkReveal(llDarkEl, llDarkChars);
+    });
+
+    /* Auto-play Lineage*Labs on scroll */
+    [[llLightEl, llLightChars], [llDarkEl, llDarkChars]].forEach(([el, chars]) => {
+      ScrollTrigger.create({
+        trigger: el, start: "top 85%", once: true,
+        onEnter: () => playWordmarkReveal(el, chars),
       });
     });
 
