@@ -119,7 +119,7 @@
    These are NOT replacements for shadcn tokens. They are additional properties
    used ONLY when a design explicitly calls for brand colors.
 
-   Usage:  color: var(--brand-highlight-yellow);
+   Usage:  color: var(--brand-highlight-grass-green);
    Usage:  background-color: var(--brand-surface);
    ============================================================================= */
 
