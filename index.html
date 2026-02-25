@@ -152,18 +152,28 @@
       color: var(--foreground);
     }
 
-    .logo-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: var(--foreground);
-      display: flex;
+    .logo-badge {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      padding: 0.125rem 0.7rem;
+      border-radius: 15px;
+      background: var(--brand-highlight-dark-green);
+      color: var(--brand-highlight-light-green);
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 22px;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
       flex-shrink: 0;
+      border: 1px solid transparent;
     }
-
-    .logo-icon svg { color: var(--background); }
+    .dark .logo-badge {
+      background: var(--brand-highlight-light-green);
+      color: var(--brand-highlight-dark-green);
+      border-color: var(--brand-highlight-dark-green);
+    }
     .logo-wordmark { font-weight: 700; }
 
     nav {
@@ -1115,14 +1125,7 @@
 
   <header class="site-header">
     <a href="#" class="logo">
-      <span class="logo-icon">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <rect x="2" y="2" width="5" height="5" rx="1"/>
-          <rect x="9" y="2" width="5" height="5" rx="1"/>
-          <rect x="2" y="9" width="5" height="5" rx="1"/>
-          <rect x="9" y="9" width="5" height="5" rx="1"/>
-        </svg>
-      </span>
+      <span class="logo-badge">way*ID</span>
       <span class="logo-wordmark">Design System</span>
     </a>
     <nav>
@@ -1391,9 +1394,7 @@
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
       <div class="card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
         <div class="logo" id="logo-demo" style="font-size:1.1rem;gap:0.6rem;">
-          <span class="logo-icon logo-icon-demo" style="width:36px;height:36px;border-radius:10px;">
-            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
-          </span>
+          <span class="logo-badge logo-icon-demo" style="font-size:18px;padding:0.15rem 0.85rem;">way*ID</span>
           <span class="logo-wordmark logo-wordmark-demo" style="font-size:1.1rem;">Lineage HQ</span>
         </div>
         <button class="theme-toggle" id="logo-replay-btn">Replay logo reveal</button>

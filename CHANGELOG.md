@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.13] — 2026-02-25
+
+### Changed
+- **Logo updated to way\*ID pill badge in `index.html`.** Replaced placeholder grid-square icon (`.logo-icon`) with new `.logo-badge` pill. Light mode: dark green bg (#15552E), light green text (#B9F7CE). Dark mode: light green bg (#B9F7CE), dark green text + border (#15552E). Poppins 500, 15px, -0.05em letter-spacing, `border-radius: 15px`. Applied to both header logo and Logo Reveal animation demo.
+
+---
+
 ## [2026.02.12] — 2026-02-25
 
 ### Added
