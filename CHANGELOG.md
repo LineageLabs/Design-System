@@ -5,17 +5,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
-## [2026.02.16] — 2026-02-25
+## [2026.02.17] — 2026-02-25
 
 ### Changed
-- **Logo animated reveal redesigned as badge-only 3-phase sequence.** Removed "Lineage HQ" wordmark from animated demos. New animation based on motion design best practices: Phase 1 — pill materializes from `scale:0.9` with `back.out(1.7)` overshoot + `blur(8px)→0` dissolve (450ms). Phase 2 — characters stagger from center outward (radiating from the `*`) with `blur(4px)→0` + `y:6→0`, `power2.out`, 0.05s stagger, 300ms each. Phase 3 — dual-layer glow pulse (tight 16px + wide 40px) in brand green, `power2.out`→`power2.in`, 650ms. Total ~1s matching `slowest` motion token.
-- **Dual-layer glow for premium feel.** Tight bright shadow (`0 0 16px 3px`) + wide diffuse shadow (`0 0 40px 8px`) creates realistic glow falloff. Light: `rgba(61,198,131, 0.3/0.08)`, dark: `rgba(185,247,206, 0.4/0.12)`.
-- **Center-out stagger pattern.** Character reveal radiates from the `*` glyph using `stagger: { each: 0.05, from: "center" }`, drawing attention to the brand's distinctive character.
-- **Split-character rendering for animated badges.** Added `splitBadgeChars()` helper wrapping each character in `<span class="logo-char">`. Uses `will-change: filter, opacity, transform` for GPU acceleration.
-- **Updated spec table and section description.** Three-phase breakdown replaces old badge+wordmark spec.
+- **Removed "Lineage HQ" wordmark from entire Logo section.** All panels (light mode, dark mode, animated reveal) now show badge-only at three sizes (22px, 15px, 12px). Simplified light/dark panels to single-row badge displays. Removed replay buttons and scroll-triggered animations from static size panels (only the animated reveal demos have those).
+- **Logo animated reveal is a badge-only 3-phase GSAP sequence.** Phase 1 — pill materializes from `scale:0.9` with `back.out(1.7)` overshoot + `blur(8px)→0` dissolve (450ms). Phase 2 — characters stagger from center outward (radiating from the `*`) with `blur(4px)→0` + `y:6→0`, `power2.out`, 0.05s stagger, 300ms each. Phase 3 — dual-layer glow pulse (tight 16px + wide 40px) in brand green, `power2.out`→`power2.in`, 650ms. Total ~1s.
+- **Split-character rendering for animated badges.** `splitBadgeChars()` wraps each character in `<span class="logo-char">` with `will-change: filter, opacity, transform` for GPU acceleration.
 
 ### Removed
-- **Wordmark from animated reveal demos.** The animated demos now show badge-only. Static size demos still show badge + wordmark.
+- **All "Lineage HQ" wordmarks from Logo section.** Removed from light mode panel, dark mode panel, and animated reveal demos. Removed associated `wireReplay` calls, scroll-trigger entries, and wordmark-specific CSS classes from logo demos.
 
 ---
 
