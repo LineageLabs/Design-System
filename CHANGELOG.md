@@ -8,10 +8,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 ## [2026.02.16] — 2026-02-25
 
 ### Changed
-- **Logo animated reveal redesigned as badge-only 3-phase sequence.** Removed "Lineage HQ" wordmark from animated demos. New animation: Phase 1 — pill elastic scale-in (`elastic.out(1, 0.5)`, 800ms, scaleX 0→1 + scaleY 0.6→1). Phase 2 — staggered character blur-to-sharp (`filter: blur(8px)→0`, opacity 0→1, y 4→0, stagger 0.06s, `power3.out`, 350ms). Phase 3 — brand glow pulse (box-shadow `0 0 20px 4px` brand color→transparent, `power2.inOut`, 600ms total). Light uses `rgba(61,198,131,0.35)`, dark uses `rgba(185,247,206,0.45)`.
-- **Split-character rendering for animated badges.** Added `splitBadgeChars()` helper that wraps each character in a `<span class="logo-char">` for per-character GSAP stagger. `.logo-char` uses `will-change: filter, opacity, transform` for GPU acceleration.
-- **Updated spec table animation row.** Replaced old badge+wordmark spec with three-phase breakdown.
-- **Updated section description.** Removed wordmark references, describes new three-phase animation.
+- **Logo animated reveal redesigned as badge-only 3-phase sequence.** Removed "Lineage HQ" wordmark from animated demos. New animation based on motion design best practices: Phase 1 — pill materializes from `scale:0.9` with `back.out(1.7)` overshoot + `blur(8px)→0` dissolve (450ms). Phase 2 — characters stagger from center outward (radiating from the `*`) with `blur(4px)→0` + `y:6→0`, `power2.out`, 0.05s stagger, 300ms each. Phase 3 — dual-layer glow pulse (tight 16px + wide 40px) in brand green, `power2.out`→`power2.in`, 650ms. Total ~1s matching `slowest` motion token.
+- **Dual-layer glow for premium feel.** Tight bright shadow (`0 0 16px 3px`) + wide diffuse shadow (`0 0 40px 8px`) creates realistic glow falloff. Light: `rgba(61,198,131, 0.3/0.08)`, dark: `rgba(185,247,206, 0.4/0.12)`.
+- **Center-out stagger pattern.** Character reveal radiates from the `*` glyph using `stagger: { each: 0.05, from: "center" }`, drawing attention to the brand's distinctive character.
+- **Split-character rendering for animated badges.** Added `splitBadgeChars()` helper wrapping each character in `<span class="logo-char">`. Uses `will-change: filter, opacity, transform` for GPU acceleration.
+- **Updated spec table and section description.** Three-phase breakdown replaces old badge+wordmark spec.
 
 ### Removed
 - **Wordmark from animated reveal demos.** The animated demos now show badge-only. Static size demos still show badge + wordmark.

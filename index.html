@@ -1232,8 +1232,8 @@
       <h2 class="section-title">Logo</h2>
       <p class="section-desc">
         The <strong>way*ID</strong> logo is a pill badge with distinct light and dark mode treatments.
-        The animated reveal uses a three-phase GSAP sequence: elastic pill scale-in, staggered
-        character blur-to-sharp, and a settling brand glow pulse.
+        The animated reveal uses a three-phase GSAP sequence: pill materialize with overshoot + blur dissolve,
+        center-out character stagger, and a dual-layer brand glow pulse (~1s total).
       </p>
 
       <!-- Light mode logo -->
@@ -1322,9 +1322,9 @@
 
       <!-- Animated reveal demo — side-by-side -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">GSAP</span> <span class="anim-tag">elastic.out</span> <span class="anim-tag">stagger blur</span> <span class="anim-tag">glow pulse</span></div>
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">GSAP</span> <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">center stagger</span> <span class="anim-tag">glow pulse</span></div>
         <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;max-width:580px;line-height:1.5;">
-          Three-phase sequence: pill scales in with elastic overshoot, characters stagger from blur to sharp, then a subtle brand glow pulse settles the animation.
+          Three-phase sequence: pill materializes with overshoot + blur dissolve, characters stagger outward from the <code>*</code> with blur-to-sharp, then a dual-layer brand glow pulse settles the animation. Total ~1s.
         </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <!-- Light animated -->
@@ -1408,9 +1408,9 @@
               <tr>
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">
-                  Phase 1: <code>scaleX 0→1, elastic.out(1, 0.5), 800ms</code><br>
-                  Phase 2: <code>chars stagger 0.06s, blur 8→0 + opacity 0→1, power3.out, 350ms</code><br>
-                  Phase 3: <code>glow pulse, box-shadow 0→brand→0, power2.inOut, 600ms</code>
+                  Phase 1: <code>scale 0.9→1, blur 8→0, back.out(1.7), 450ms</code><br>
+                  Phase 2: <code>chars stagger 0.05s from center, blur 4→0 + y 6→0, power2.out, 300ms</code><br>
+                  Phase 3: <code>dual glow pulse (16px tight + 40px wide), power2.out→in, 650ms</code>
                 </td>
               </tr>
             </tbody>
@@ -2278,35 +2278,39 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         chars = Array.from(chars);
       }
       const isDark = badgeEl.classList.contains("logo-badge-dark");
-      const glowColor = isDark ? "rgba(185, 247, 206, 0.45)" : "rgba(61, 198, 131, 0.35)";
+      const glowTight = isDark ? "rgba(185, 247, 206, 0.4)"  : "rgba(61, 198, 131, 0.3)";
+      const glowWide  = isDark ? "rgba(185, 247, 206, 0.12)" : "rgba(61, 198, 131, 0.08)";
       const tl = gsap.timeline();
 
       if (reducedMotion) {
-        tl.set(badgeEl, { opacity:1, scaleX:1, scaleY:1 });
+        tl.set(badgeEl, { opacity:1, scale:1 });
         tl.set(chars, { opacity:1, filter:"blur(0px)" });
         return tl;
       }
 
-      /* Phase 1: Pill scales in — elastic width expansion with slight vertical pop */
+      /* Phase 1: Pill materializes — scale from 0.9 with overshoot + blur dissolve */
       tl.set(chars, { opacity:0 })
         .fromTo(badgeEl,
-          { scaleX:0, scaleY:0.6, opacity:0, transformOrigin:"center center" },
-          { scaleX:1, scaleY:1, opacity:1, duration:0.8, ease:"elastic.out(1, 0.5)" }
+          { scale:0.9, opacity:0, filter:"blur(8px)", transformOrigin:"center center" },
+          { scale:1, opacity:1, filter:"blur(0px)", duration:0.45, ease:"back.out(1.7)" }
         )
-        /* Phase 2: Characters stagger in with blur-to-sharp + fade */
+        /* Phase 2: Characters stagger from center outward (radiates from the *) with blur-to-sharp */
         .fromTo(chars,
-          { opacity:0, filter:"blur(8px)", y:4 },
-          { opacity:1, filter:"blur(0px)", y:0, duration:0.35, ease:"power3.out", stagger:0.06 },
-          "-=0.35"
+          { opacity:0, filter:"blur(4px)", y:6 },
+          { opacity:1, filter:"blur(0px)", y:0, duration:0.3, ease:"power2.out",
+            stagger:{ each:0.05, from:"center" } },
+          "-=0.15"
         )
-        /* Phase 3: Subtle glow pulse */
+        /* Phase 3: Dual-layer glow pulse — tight bright + wide diffuse, single breathe */
         .fromTo(badgeEl,
-          { boxShadow:"0 0 0 0 " + glowColor },
-          { boxShadow:"0 0 20px 4px " + glowColor, duration:0.3, ease:"power2.inOut" },
-          "-=0.1"
+          { boxShadow:"0 0 0px 0px " + glowTight + ", 0 0 0px 0px " + glowWide },
+          { boxShadow:"0 0 16px 3px " + glowTight + ", 0 0 40px 8px " + glowWide,
+            duration:0.35, ease:"power2.out" },
+          "-=0.05"
         )
         .to(badgeEl,
-          { boxShadow:"0 0 0 0 transparent", duration:0.3, ease:"power2.inOut" }
+          { boxShadow:"0 0 0px 0px transparent, 0 0 0px 0px transparent",
+            duration:0.3, ease:"power2.in" }
         );
 
       return tl;
