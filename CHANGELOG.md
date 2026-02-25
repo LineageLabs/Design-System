@@ -5,6 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.16] — 2026-02-25
+
+### Changed
+- **Logo animated reveal redesigned as badge-only 3-phase sequence.** Removed "Lineage HQ" wordmark from animated demos. New animation: Phase 1 — pill elastic scale-in (`elastic.out(1, 0.5)`, 800ms, scaleX 0→1 + scaleY 0.6→1). Phase 2 — staggered character blur-to-sharp (`filter: blur(8px)→0`, opacity 0→1, y 4→0, stagger 0.06s, `power3.out`, 350ms). Phase 3 — brand glow pulse (box-shadow `0 0 20px 4px` brand color→transparent, `power2.inOut`, 600ms total). Light uses `rgba(61,198,131,0.35)`, dark uses `rgba(185,247,206,0.45)`.
+- **Split-character rendering for animated badges.** Added `splitBadgeChars()` helper that wraps each character in a `<span class="logo-char">` for per-character GSAP stagger. `.logo-char` uses `will-change: filter, opacity, transform` for GPU acceleration.
+- **Updated spec table animation row.** Replaced old badge+wordmark spec with three-phase breakdown.
+- **Updated section description.** Removed wordmark references, describes new three-phase animation.
+
+### Removed
+- **Wordmark from animated reveal demos.** The animated demos now show badge-only. Static size demos still show badge + wordmark.
+
+---
+
 ## [2026.02.15] — 2026-02-25
 
 ### Added

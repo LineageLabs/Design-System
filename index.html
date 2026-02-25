@@ -200,6 +200,7 @@
       border: 1px solid #15552E;
     }
     .logo-wordmark { font-weight: 700; }
+    .logo-char { will-change: filter, opacity, transform; }
 
     nav {
       display: flex;
@@ -1230,9 +1231,9 @@
       <p class="section-label">Section 02</p>
       <h2 class="section-title">Logo</h2>
       <p class="section-desc">
-        The <strong>way*ID</strong> logo is a pill badge paired with a Poppins wordmark.
-        It has distinct light and dark mode treatments. The reveal animation uses GSAP
-        with <code>back.out(1.7)</code> overshoot on the badge and <code>power2.out</code> slide on the wordmark.
+        The <strong>way*ID</strong> logo is a pill badge with distinct light and dark mode treatments.
+        The animated reveal uses a three-phase GSAP sequence: elastic pill scale-in, staggered
+        character blur-to-sharp, and a settling brand glow pulse.
       </p>
 
       <!-- Light mode logo -->
@@ -1321,23 +1322,24 @@
 
       <!-- Animated reveal demo — side-by-side -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">GSAP</span> <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">power2.out</span></div>
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">GSAP</span> <span class="anim-tag">elastic.out</span> <span class="anim-tag">stagger blur</span> <span class="anim-tag">glow pulse</span></div>
+        <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;max-width:580px;line-height:1.5;">
+          Three-phase sequence: pill scales in with elastic overshoot, characters stagger from blur to sharp, then a subtle brand glow pulse settles the animation.
+        </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <!-- Light animated -->
-          <div style="background:var(--background);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.25rem;">
+          <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
-            <div class="logo" id="logo-anim-light" style="gap:0.6rem;">
-              <span class="logo-badge logo-anim-light-badge" style="font-size:18px;padding:0.15rem 0.85rem;">way*ID</span>
-              <span class="logo-wordmark logo-anim-light-wordmark" style="font-size:1.1rem;">Lineage HQ</span>
+            <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
           </div>
           <!-- Dark animated -->
-          <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.25rem;">
+          <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
-            <div class="logo" id="logo-anim-dark" style="gap:0.6rem;color:oklch(0.985 0.002 247.839);">
-              <span class="logo-badge-dark logo-anim-dark-badge" style="font-size:18px;padding:0.15rem 0.85rem;">way*ID</span>
-              <span class="logo-wordmark logo-anim-dark-wordmark" style="font-size:1.1rem;">Lineage HQ</span>
+            <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
@@ -1403,13 +1405,13 @@
                 <td style="padding:0.5rem 0.75rem;">Font</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 500 weight, <code>-0.05em</code> letter-spacing</td>
               </tr>
-              <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Wordmark font</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 700 weight</td>
-              </tr>
               <tr>
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2">Badge: <code>scale 0→1, back.out(1.7), 500ms</code> · Wordmark: <code>x -12→0, power2.out, 400ms</code></td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">
+                  Phase 1: <code>scaleX 0→1, elastic.out(1, 0.5), 800ms</code><br>
+                  Phase 2: <code>chars stagger 0.06s, blur 8→0 + opacity 0→1, power3.out, 350ms</code><br>
+                  Phase 3: <code>glow pulse, box-shadow 0→brand→0, power2.inOut, 600ms</code>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -2226,7 +2228,9 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
     gsap.from(".hero-sub", { y: dur(20), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.25 });
     gsap.from(".hero-tags", { y: dur(16), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.4 });
 
-    /* ---- Logo reveal helper ---- */
+    /* ---- Logo reveal helpers ---- */
+
+    /* Simple reveal (badge + wordmark) — used in Animations section & size demos */
     function playReveal(badgeSel, wordmarkSel) {
       const tl = gsap.timeline();
       if (reducedMotion) {
@@ -2246,31 +2250,111 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       });
     }
 
-    /* Animation section (existing) */
+    /* Rich badge-only reveal — 3 phases: elastic pill, staggered char blur, glow pulse */
+    function splitBadgeChars(el) {
+      const text = el.textContent;
+      el.textContent = "";
+      el.style.display = "inline-flex";
+      el.style.alignItems = "center";
+      el.style.justifyContent = "center";
+      const chars = [];
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement("span");
+        span.textContent = text[i];
+        span.style.display = "inline-block";
+        span.className = "logo-char";
+        el.appendChild(span);
+        chars.push(span);
+      }
+      return chars;
+    }
+
+    function playBadgeReveal(badgeEl) {
+      /* Ensure chars are split */
+      let chars = badgeEl.querySelectorAll(".logo-char");
+      if (!chars.length) {
+        chars = splitBadgeChars(badgeEl);
+      } else {
+        chars = Array.from(chars);
+      }
+      const isDark = badgeEl.classList.contains("logo-badge-dark");
+      const glowColor = isDark ? "rgba(185, 247, 206, 0.45)" : "rgba(61, 198, 131, 0.35)";
+      const tl = gsap.timeline();
+
+      if (reducedMotion) {
+        tl.set(badgeEl, { opacity:1, scaleX:1, scaleY:1 });
+        tl.set(chars, { opacity:1, filter:"blur(0px)" });
+        return tl;
+      }
+
+      /* Phase 1: Pill scales in — elastic width expansion with slight vertical pop */
+      tl.set(chars, { opacity:0 })
+        .fromTo(badgeEl,
+          { scaleX:0, scaleY:0.6, opacity:0, transformOrigin:"center center" },
+          { scaleX:1, scaleY:1, opacity:1, duration:0.8, ease:"elastic.out(1, 0.5)" }
+        )
+        /* Phase 2: Characters stagger in with blur-to-sharp + fade */
+        .fromTo(chars,
+          { opacity:0, filter:"blur(8px)", y:4 },
+          { opacity:1, filter:"blur(0px)", y:0, duration:0.35, ease:"power3.out", stagger:0.06 },
+          "-=0.35"
+        )
+        /* Phase 3: Subtle glow pulse */
+        .fromTo(badgeEl,
+          { boxShadow:"0 0 0 0 " + glowColor },
+          { boxShadow:"0 0 20px 4px " + glowColor, duration:0.3, ease:"power2.inOut" },
+          "-=0.1"
+        )
+        .to(badgeEl,
+          { boxShadow:"0 0 0 0 transparent", duration:0.3, ease:"power2.inOut" }
+        );
+
+      return tl;
+    }
+
+    function resetBadge(badgeEl) {
+      gsap.set(badgeEl, { clearProps:"all" });
+      const chars = badgeEl.querySelectorAll(".logo-char");
+      if (chars.length) gsap.set(chars, { clearProps:"all" });
+    }
+
+    /* Animation section (existing simple reveal) */
     setTimeout(() => playReveal(".logo-icon-demo", ".logo-wordmark-demo"), 600);
     wireReplay("logo-replay-btn", ".logo-icon-demo", ".logo-wordmark-demo");
 
-    /* Logo section — light large */
-    wireReplay("logo-light-replay",      ".logo-light-badge",      ".logo-light-wordmark");
-    /* Logo section — animated light */
-    wireReplay("logo-anim-light-replay", ".logo-anim-light-badge", ".logo-anim-light-wordmark");
-    /* Logo section — animated dark */
-    wireReplay("logo-anim-dark-replay",  ".logo-anim-dark-badge",  ".logo-anim-dark-wordmark");
-    /* Logo section — dark large */
-    wireReplay("logo-dark-replay",       ".logo-dark-badge",       ".logo-dark-wordmark");
+    /* Logo section — size demos (simple reveal) */
+    wireReplay("logo-light-replay", ".logo-light-badge", ".logo-light-wordmark");
+    wireReplay("logo-dark-replay",  ".logo-dark-badge",  ".logo-dark-wordmark");
 
-    /* Auto-play logo section reveals on scroll */
+    /* Logo section — rich animated badges */
+    const animLightBadge = document.querySelector(".logo-anim-light-badge");
+    const animDarkBadge  = document.querySelector(".logo-anim-dark-badge");
+    splitBadgeChars(animLightBadge);
+    splitBadgeChars(animDarkBadge);
+
+    document.getElementById("logo-anim-light-replay").addEventListener("click", () => {
+      resetBadge(animLightBadge);
+      playBadgeReveal(animLightBadge);
+    });
+    document.getElementById("logo-anim-dark-replay").addEventListener("click", () => {
+      resetBadge(animDarkBadge);
+      playBadgeReveal(animDarkBadge);
+    });
+
+    /* Auto-play on scroll */
     [
       [".logo-light-badge", ".logo-light-wordmark", "#logo-light-lg"],
       [".logo-dark-badge",  ".logo-dark-wordmark",  "#logo-dark-lg"],
-      [".logo-anim-light-badge", ".logo-anim-light-wordmark", "#logo-anim-light"],
-      [".logo-anim-dark-badge",  ".logo-anim-dark-wordmark",  "#logo-anim-dark"],
     ].forEach(([badge, wordmark, trigger]) => {
       ScrollTrigger.create({
-        trigger: trigger,
-        start: "top 85%",
-        once: true,
+        trigger: trigger, start: "top 85%", once: true,
         onEnter: () => playReveal(badge, wordmark),
+      });
+    });
+    [animLightBadge, animDarkBadge].forEach((el) => {
+      ScrollTrigger.create({
+        trigger: el, start: "top 85%", once: true,
+        onEnter: () => playBadgeReveal(el),
       });
     });
 
