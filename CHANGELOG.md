@@ -5,6 +5,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.12] — 2026-02-25
+
+### Added
+- **Icon hover, focus-visible, and active states in `index.html`.** New `.icon-btn` (toolbar), `.icon-tile` (quick-action), and `.nav-icon` (navigation) CSS classes with `:hover` (muted background), `:focus-visible` (`--ring` outline), and `:active` (scale 0.95) states. Replaces inline JS `onmouseenter`/`onmouseleave` handlers with proper CSS. All three icon demo sections now keyboard-accessible via Tab.
+
+### Fixed
+- **Feature badge (`.anim-tag`) dark mode contrast.** In dark mode, text color changed from `--brand-highlight-grass-green` (#3DC683) → `--brand-highlight-light-green` (#B9F7CE), background opacity raised 12% → 18%, border opacity raised 30% → 40%.
+- **`.maia-badge-light-green` dark mode contrast.** Text was `--brand-highlight-dark-green` (#15552E) on a translucent light-green bg — nearly invisible on dark backgrounds. Now uses `--brand-highlight-light-green` text on a 50% dark-green tinted bg with 35% grass-green border.
+
+---
+
 ## [2026.02.11] — 2026-02-25
 
 ### Added
