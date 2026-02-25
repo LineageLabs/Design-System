@@ -5,6 +5,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.9] — 2026-02-25
+
+### Changed
+- **Brand badge variants — increased visual distinction.** The three brand badge tiers (light-green, grass-green, dark-green) were nearly identical; now form a clear soft → mid → bold progression.
+  - `maia-badge-light-green`: bg `15%` → `25%` light-green, text `--brand-highlight-grass-green` → `--brand-highlight-dark-green`, border `30%` → `40%`.
+  - `maia-badge-grass-green`: unchanged (mid tier baseline).
+  - `maia-badge-dark-green`: bg `15% dark-green` → solid `--brand-highlight-dark-green`, text `--brand-highlight-grass-green` → `--brand-highlight-light-green`, border solid.
+- Updated in `index.html`, `example-mobile.html`, and `components/shadcn-customizations.yaml`.
+
+---
+
 ## [2026.02.8] — 2026-02-25
 
 ### Added

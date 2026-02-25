@@ -168,8 +168,11 @@ style_overrides:
     notes: "Accessible focus ring using shadcn --ring variable"
 
   Badge:
-    brand_variant: "Use --brand-highlight-light-green / --brand-highlight-grass-green / --brand-highlight-dark-green for brand-specific badges"
-    notes: "Only when design explicitly calls for brand-colored badges"
+    brand_variants:
+      light-green: "Soft pastel bg (25% light-green), dark-green text — lightest tier"
+      grass-green: "Tinted bg (15% grass-green), grass-green text — mid tier"
+      dark-green: "Solid dark-green bg, light-green text — boldest tier"
+    notes: "Three visually distinct tiers from soft to bold. Only use when design explicitly calls for brand-colored badges."
 
 # ==============================================================================
 # WRAPPER COMPONENT PATTERNS
