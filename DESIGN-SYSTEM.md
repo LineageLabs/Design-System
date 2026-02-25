@@ -394,6 +394,29 @@ Foundation: **4px grid** (0.25rem). Maia style = "generous spacing" — when in 
 
 Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific icon is not available in Hugeicons.
 
+### Icon Color & Background Guide
+
+> **Icons follow the same "minimal color" principle as everything else.**
+> Default to neutral. Only add color when it serves a clear purpose.
+
+#### Contexts
+
+| Context | Icon Color | Background | Size | Examples |
+|---------|-----------|------------|------|----------|
+| **Inline / toolbar** | `currentColor` (inherits `--foreground`) | None (transparent) | 18–20px | App bar actions, nav icons, close buttons |
+| **Quick action tile** | `currentColor` (inherits `--foreground`) | `color-mix(in srgb, var(--muted-foreground) 10%, transparent)` | 18px | Feature grid tiles (Add, Schedule, Focus, Reports) |
+| **Primary action (FAB)** | `currentColor` (inherits `--primary-foreground`) | `var(--primary)` solid | 20–22px | Floating action button |
+| **Navigation (bottom bar)** | `currentColor` (inherits parent color) | None | 20px | Bottom tab bar icons |
+
+#### Rules
+
+1. **One treatment per context.** All icons in the same context (e.g. a quick-action grid) must use the same color and background. Do not mix brand, primary, and neutral tints across sibling icons.
+2. **`currentColor` by default.** Icons should inherit their color from the parent element, not set an explicit stroke/fill color. This ensures they adapt to light/dark mode and state changes (hover, active, disabled) automatically.
+3. **Neutral backgrounds for icon containers.** When an icon sits inside a tinted container (e.g. a quick-action tile), use `--muted-foreground` at 10% opacity. Do not use brand colors or `--primary` for icon container backgrounds — keep them uniform.
+4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-grass-green` at 12% bg + `--brand-highlight-grass-green` stroke). But this is the exception, not the default.
+5. **Consistent sizing.** Within a row or grid of icons, all icons must use the same width/height and viewBox. Don't mix 18px and 20px icons in the same context.
+6. **Stroke weight consistency.** Toolbar and inline icons use `stroke-width: 1.5–1.75`. Quick action tile icons use `stroke-width: 2`. FAB icons use `stroke-width: 2.5`. Don't mix weights within a context.
+
 ---
 
 ## 9. Assets & Logos

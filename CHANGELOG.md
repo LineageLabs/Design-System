@@ -5,6 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.10] — 2026-02-25
+
+### Added
+- **Icon color & background guide.** New subsection in `DESIGN-SYSTEM.md` § 8 (Icons) documenting four icon contexts (inline/toolbar, quick-action tile, primary FAB, navigation) with prescribed color, background, size, and stroke-weight for each. Six rules: one treatment per context, `currentColor` by default, neutral backgrounds for containers, brand only by explicit design, consistent sizing, consistent stroke weight.
+
+### Changed
+- **`example-mobile.html` quick-action icons standardized.** All four icons (Add Task, Schedule, Focus, Reports) now use the same treatment:
+  - Background: `color-mix(in srgb, var(--muted-foreground) 10%, transparent)` (was mixed: `--primary` 10%, `--brand-highlight-grass-green` 12%, `--brand-highlight-dark-green` 12%, `--muted-foreground` 10%).
+  - Stroke: `currentColor` (was mixed: `currentColor`, `var(--brand-highlight-grass-green)`, `var(--brand-highlight-grass-green)`, `currentColor`).
+  - Stroke-width: all `2` (was mixed: `2.2`, `2`, `2`, `2`).
+
+---
+
 ## [2026.02.9] — 2026-02-25
 
 ### Changed
