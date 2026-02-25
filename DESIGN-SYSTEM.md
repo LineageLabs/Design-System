@@ -223,6 +223,8 @@ Foundation: **GSAP v3**. All presets in [`animations/presets.js`](animations/pre
 | `fadeOut` | `opacity: 1 → 0` | 200ms | `power2.in` |
 | `slideOutUp` | `y: 0 → -24, opacity: 0` | 300ms | `power2.in` |
 | `slideOutDown` | `y: 0 → 24, opacity: 0` | 300ms | `power2.in` |
+| `slideOutLeft` | `x: 0 → -24, opacity: 0` | 300ms | `power2.in` |
+| `slideOutRight` | `x: 0 → 24, opacity: 0` | 300ms | `power2.in` |
 | `scaleOut` | `scale: 1 → 0.95, opacity: 0` | 200ms | `power2.in` |
 
 ### Hover Presets
@@ -243,10 +245,40 @@ Foundation: **GSAP v3**. All presets in [`animations/presets.js`](animations/pre
 
 ### Logo Animation
 
-Factory function: `createLogoReveal(gsap, options)` in `animations/presets.js`.
-- Icon scales in with `back.out(1.7)` overshoot
-- Wordmark slides in from left with `power2.out`
-- Reduced motion: instant set, no animation
+Two logo variants — both have light/dark treatments and animated GSAP reveals.
+Full spec and CSS classes: [`assets/logos/README.md`](assets/logos/README.md)
+
+#### way\*ID Badge
+Pill badge. Colors **invert** between modes (dark-green bg + light-green text on light; reversed on dark).
+
+| Property | Light | Dark |
+|----------|-------|------|
+| Background | `#15552E` | `#B9F7CE` |
+| Text | `#B9F7CE` | `#15552E` |
+| Font | Poppins 500, `-0.05em` | same |
+
+Animation — three phases (~1s total):
+1. Pill: `scale 0.9→1`, `blur 8px→0`, `back.out(1.7)`, 450ms
+2. Characters stagger from center (the `*`): `blur 4px→0`, `y 6→0`, 0.05s stagger
+3. Dual glow pulse: tight + wide layer, 650ms
+
+#### Lineage\*Labs Wordmark
+Text wordmark. Poppins 600, `-0.05em`. The `*` is always grass green (`#3DC683`).
+
+| Property | Light | Dark |
+|----------|-------|------|
+| Text | `#15552E` (dark green) | `#B9F7CE` (light green) |
+| Asterisk | `#3DC683` | `#3DC683` |
+| Font | Poppins 600, `-0.05em` | same |
+| Default size | `36px` / `54px` line-height | same |
+
+Animation — three phases (~1s total):
+1. Characters stagger from left: `blur 6px→0`, `x -16→0`, `y 8→0`, 0.04s stagger
+2. Asterisk scale pop: `1→1.3→1`, `back.out(3)` then `power2.out`
+3. Text-shadow glow pulse: `0→20px→0`, 600ms
+
+Generic icon+wordmark factory function: `createLogoReveal(gsap, options)` in `animations/presets.js`.
+- Reduced motion: instant set, no animation on all variants
 
 **Full motion spec:** [`tokens/motion.yaml`](tokens/motion.yaml)
 **ScrollTrigger patterns:** [`animations/scroll-triggers.js`](animations/scroll-triggers.js)

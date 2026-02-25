@@ -8,7 +8,7 @@
 # Theme Configuration:
 #   - Style: Maia (soft and rounded, generous spacing)
 #   - Base Color: Gray (blue-tinted neutrals)
-#   - Radius: Large (--radius: 0.75rem)
+#   - Radius: Large (--radius: 0.875rem)
 #   - Font: Geist Sans (body) + Poppins (headlines h1-h4)
 #   - Icons: Hugeicons
 #
@@ -23,7 +23,7 @@
 
 general_rules:
   - "Use the shadcn Gray base color theme (Maia style)"
-  - "Set --radius to 0.75rem (large — Maia soft/rounded aesthetic)"
+  - "Set --radius to 0.875rem (large — Maia soft/rounded aesthetic)"
   - "Never override --primary, --background, etc. with brand colors globally"
   - "Apply brand colors via --brand-* custom properties only where designs specify"
   - "Use Geist Sans for all body text and UI elements"

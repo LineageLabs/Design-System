@@ -1,83 +1,221 @@
 # Logo Assets
 
-## Required Variants
+Two logo variants are in use. Both have light/dark mode treatments and animated GSAP reveals.
 
-| Variant | File Pattern | Description |
-|---------|-------------|-------------|
-| **Primary** | `logo-primary.*` | Full-color logo — default usage |
-| **Monochrome Light** | `logo-mono-light.*` | White/light version for dark backgrounds |
-| **Monochrome Dark** | `logo-mono-dark.*` | Dark version for light backgrounds |
-| **Icon Only** | `logo-icon.*` | Symbol/mark without wordmark |
-| **Animated** | See `animations/presets.js` → `createLogoReveal()` | GSAP-powered entrance animation |
+---
 
-## Required Sizes
+## Variant 1 — way\*ID Badge
 
-### Vector (SVG) — Source of Truth
+A pill-shaped badge. Colors invert between light and dark mode.
 
-Place all SVG logos in `svg/`:
-```
-svg/
-├── logo-primary.svg
-├── logo-mono-light.svg
-├── logo-mono-dark.svg
-└── logo-icon.svg
-```
+### Spec
 
-### Raster (PNG) — Pre-exported Sizes
+| Property | Light Mode | Dark Mode |
+|----------|-----------|----------|
+| Background | `#15552E` (dark green) | `#B9F7CE` (light green) |
+| Text color | `#B9F7CE` (light green) | `#15552E` (dark green) |
+| Border | none | `1px solid #15552E` |
+| Border radius | `15px` | `15px` |
+| Font | Poppins, weight 500, `-0.05em` letter-spacing | same |
+| Default size | `15px` | same |
 
-Export each variant at these sizes into the corresponding `png/` subdirectories:
+### CSS Classes
 
-| Size (px) | Directory | Use Case |
-|-----------|-----------|----------|
-| 16 | `png/16/` | Favicon (smallest) |
-| 32 | `png/32/` | Favicon (standard), browser tab |
-| 64 | `png/64/` | Favicon (high-DPI), small UI placements |
-| 128 | `png/128/` | App icon (small), thumbnails |
-| 256 | `png/256/` | App icon (standard), profile images |
-| 512 | `png/512/` | App icon (large), splash screens |
+```css
+/* Light mode badge */
+.logo-badge {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  padding: 0.125rem 0.7rem;
+  border-radius: 15px;
+  background: #15552E;
+  color: #B9F7CE;
+  white-space: nowrap;
+}
 
-### Icons & Favicons
-
-Place favicon files in `icons/`:
-```
-icons/
-├── favicon.ico          (16 + 32 multi-size)
-├── apple-touch-icon.png (180×180)
-├── icon-192.png         (192×192, for PWA manifest)
-├── icon-512.png         (512×512, for PWA manifest)
-└── og-image.png         (1200×630, for social sharing / Open Graph)
-```
-
-## Naming Convention
-
-```
-logo-{variant}.{ext}
-logo-{variant}-{size}.{ext}    (for PNGs if you want size in the name)
+/* Forced dark-mode badge (always-dark surfaces) */
+.logo-badge-dark {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  padding: 0.125rem 0.7rem;
+  border-radius: 15px;
+  background: #B9F7CE;
+  color: #15552E;
+  border: 1px solid #15552E;
+  white-space: nowrap;
+}
 ```
 
-Examples:
-- `logo-primary.svg`
-- `logo-icon.svg`
-- `logo-mono-light.svg`
+### HTML Usage
 
-## Animated Logo
-
-The animated logo is NOT a file — it's a GSAP timeline defined in `animations/presets.js` via the `createLogoReveal()` function.
-
-Expected DOM structure for the animation:
 ```html
-<div class="logo">
-  <span class="logo-icon"><!-- SVG or img of icon mark --></span>
-  <span class="logo-wordmark"><!-- SVG or text of wordmark --></span>
-</div>
+<!-- Light background -->
+<span class="logo-badge">way*ID</span>
+
+<!-- Dark background -->
+<span class="logo-badge-dark">way*ID</span>
 ```
 
-The animation: icon scales in with overshoot, then wordmark slides in from the left.
+### Animated Reveal (GSAP)
 
-## Adding Logo Files
+Three-phase sequence (~1s total):
 
-1. Export SVGs from your design tool (Figma, Illustrator, etc.)
-2. Place SVGs in `svg/`
-3. Export PNGs at each required size and place in `png/{size}/`
-4. Generate favicon files and place in `icons/`
-5. Update this README if you add new variants
+1. **Pill materialises** — `scale 0.9→1`, `blur 8px→0`, `back.out(1.7)`, 450ms
+2. **Characters stagger** from center outward (radiates from the `*`) — `blur 4px→0`, `y 6→0`, `power2.out`, 300ms, 0.05s stagger
+3. **Dual-layer glow pulse** — tight bright (`rgba(185,247,206,…)`) + wide diffuse (`rgba(61,198,131,…)`), 650ms total
+
+```js
+// Split badge text into per-character spans with class="logo-char"
+// then run a GSAP timeline:
+
+const tl = gsap.timeline();
+tl.fromTo(badgeEl,
+  { scale: 0.9, opacity: 0, filter: "blur(8px)" },
+  { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "back.out(1.7)" }
+).fromTo(chars,
+  { opacity: 0, filter: "blur(4px)", y: 6 },
+  { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.3, ease: "power2.out",
+    stagger: { each: 0.05, from: "center" } },
+  "-=0.15"
+);
+```
+
+---
+
+## Variant 2 — Lineage\*Labs Wordmark
+
+A text wordmark in Poppins 600. Dark green on light, light green on dark.
+The `*` uses grass green as an accent in both modes.
+
+### Spec
+
+| Property | Light Mode | Dark Mode |
+|----------|-----------|----------|
+| Text color | `#15552E` (dark green) | `#B9F7CE` (light green) |
+| Asterisk (`*`) color | `#3DC683` (grass green) | `#3DC683` (grass green) |
+| Font | Poppins, weight **600**, `-0.05em` letter-spacing | same |
+| Default size | `36px` / line-height `54px` | same |
+
+### CSS Classes
+
+```css
+/* Light mode wordmark */
+.logo-text {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+  letter-spacing: -0.05em;
+  color: #15552E;
+  white-space: nowrap;
+}
+
+/* Forced dark-mode wordmark (always-dark surfaces) */
+.logo-text-dark {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+  letter-spacing: -0.05em;
+  color: #B9F7CE;
+  white-space: nowrap;
+}
+
+/* Accent asterisk — same color in both modes */
+.logo-text .logo-asterisk,
+.logo-text-dark .logo-asterisk {
+  color: #3DC683;
+}
+```
+
+### HTML Usage
+
+```html
+<!-- Light background -->
+<span class="logo-text">Lineage<span class="logo-asterisk">*</span>Labs</span>
+
+<!-- Dark background -->
+<span class="logo-text-dark">Lineage<span class="logo-asterisk">*</span>Labs</span>
+```
+
+### Animated Reveal (GSAP)
+
+Three-phase sequence (~1s total):
+
+1. **Characters stagger from left** — `blur 6px→0`, `x -16→0`, `y 8→0`, `power2.out`, 400ms, 0.04s stagger per character
+2. **Asterisk scale pop** — `scale 1→1.3→1`, `back.out(3)` then `power2.out`, 450ms (triggers after the asterisk's natural stagger position)
+3. **Text-shadow glow pulse** — `0→20px→0`, `power2.out→in`, 600ms
+
+```js
+// Split surrounding text into per-character spans (.logo-char),
+// preserving the .logo-asterisk span as-is.
+
+const tl = gsap.timeline();
+tl.set(el, { opacity: 1 })
+  .fromTo(chars,
+    { opacity: 0, filter: "blur(6px)", x: -16, y: 8 },
+    { opacity: 1, filter: "blur(0px)", x: 0, y: 0, duration: 0.4,
+      ease: "power2.out", stagger: 0.04 }
+  )
+  .fromTo(asteriskEl,
+    { scale: 1 },
+    { scale: 1.3, duration: 0.2, ease: "back.out(3)" },
+    asteriskStaggerOffset + 0.25
+  )
+  .to(asteriskEl, { scale: 1, duration: 0.25, ease: "power2.out" });
+```
+
+---
+
+## Sizes
+
+Both variants scale with font-size. Documented sizes in use:
+
+| Size | Context |
+|------|---------|
+| `36px` | Default / hero / large placements |
+| `24px` | Medium placements |
+| `16px` | Small / compact placements |
+| `22px` | Badge default (way\*ID) |
+| `15px` | Badge standard (way\*ID) |
+| `12px` | Badge minimum — never smaller |
+
+---
+
+## Usage Rules
+
+| Rule | Detail |
+|------|--------|
+| **Clear space** | Maintain at least 1× the logo height as clear space on all sides |
+| **Minimum size** | `way*ID` badge: `12px` minimum. `Lineage*Labs`: `16px` minimum |
+| **No modifications** | Never rotate, stretch, recolor, add shadows, or apply effects |
+| **Mode matching** | Always use the light variant on light backgrounds and dark on dark. Never mix |
+| **Asterisk intact** | The `*` character and its grass green color is part of the brand — never remove or recolor it |
+
+---
+
+## File Structure (when SVG/PNG assets are added)
+
+```
+assets/logos/
+├── svg/
+│   ├── wayid-badge-light.svg
+│   ├── wayid-badge-dark.svg
+│   ├── lineagelabs-wordmark-light.svg
+│   └── lineagelabs-wordmark-dark.svg
+├── png/
+│   ├── 16/
+│   ├── 32/
+│   ├── 64/
+│   ├── 128/
+│   ├── 256/
+│   └── 512/
+└── icons/
+    ├── favicon.ico
+    ├── apple-touch-icon.png  (180×180)
+    ├── icon-192.png          (PWA)
+    ├── icon-512.png          (PWA)
+    └── og-image.png          (1200×630, Open Graph)
+```

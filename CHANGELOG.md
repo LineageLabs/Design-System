@@ -5,6 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.20] — 2026-02-25
+
+### Fixed
+- **Radius conflict in `components/shadcn-customizations.yaml`.** Header comment and `general_rules` both incorrectly stated `0.75rem`. Corrected to `0.875rem` in both places to match `DESIGN-SYSTEM.md`, the Maia style spec, and `--radius` token value.
+- **`HOVER.glow` wrong color in `animations/presets.js`.** Glow color was `rgba(43, 195, 255, …)` (blue — not a brand color). Corrected to `rgba(61, 198, 131, 0.35)` (grass green, `#3DC683`).
+
+### Changed
+- **`assets/logos/README.md` fully rewritten.** Previous content described generic placeholder SVG file slots. Now documents both actual logo variants with full CSS, HTML usage examples, animated reveal specs, size table, and usage rules: `way*ID` badge (pill, light/dark invert) and `Lineage*Labs` wordmark (Poppins 600, grass-green asterisk).
+- **`DESIGN-SYSTEM.md` exit presets table.** Added missing `slideOutLeft` and `slideOutRight` rows — both existed in `animations/presets.js` and were assigned to Sheet animations but were absent from the documentation table.
+- **`DESIGN-SYSTEM.md` logo animation section.** Replaced generic `createLogoReveal()` description with actual logo specs: `way*ID` badge (color tokens, 3-phase animation) and `Lineage*Labs` wordmark (color tokens, 3-phase animation). Generic factory still documented below.
+
+---
+
 ## [2026.02.19] — 2026-02-25
 
 ### Changed
