@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.19] — 2026-02-25
+
+### Changed
+- **Hero title now uses h0 display style.** `.hero-title` changed from `font-weight: 800` / `clamp(2.5rem, 6vw, 4rem)` / `line-height: 1.05` / `letter-spacing: -0.02em` → `font-weight: 400` / `clamp(3.5rem, 8vw, 6rem)` / `line-height: 1.0` / `letter-spacing: -0.03em`. Matches the `.h0` utility class spec (Poppins 400, display scale). Mobile breakpoint updated from fixed `2rem` to `clamp(2rem, 8vw, 3.5rem)` for smoother scaling.
+
+---
+
 ## [2026.02.18] — 2026-02-25
 
 ### Added

@@ -282,11 +282,12 @@
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.05;
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 400;
+      line-height: 1.0;
       margin-bottom: 1.25rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
     }
 
     .hero-title .accent-grass-green  { color: var(--brand-highlight-grass-green); }
@@ -1177,7 +1178,7 @@
     }
     @media (max-width: 640px) {
       nav a { display: none; }
-      .hero-title { font-size: 2rem; }
+      .hero-title { font-size: clamp(2rem, 8vw, 3.5rem); }
       #logo .comp-demo-section div[style*="grid-template-columns:1fr 1fr"] {
         grid-template-columns: 1fr;
       }
