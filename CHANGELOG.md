@@ -5,6 +5,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.7] — 2026-02-25
+
+### Changed
+- **Swatch display names updated in `index.html`.** Visible swatch labels in both light and dark highlight sections renamed: "Yellow" → "Light Green", "Blue" → "Grass Green", "Magenta" → "Dark Green" (lines 968–978).
+- **Glow card updated in `index.html`.** Text changed from "brand blue" to "brand grass green"; hover glow `rgba(43,195,255,...)` → `rgba(61,198,131,...)` to match `--brand-highlight-grass-green` (#3DC683).
+- **Badge list text updated in `index.html`.** Mobile example component list changed from "yellow / blue / magenta / default" to "light green / grass green / dark green / default".
+
+### Fixed
+- **Dark-green text visibility in badges.** `.maia-badge-dark-green` text `color` changed from `var(--brand-highlight-dark-green)` (#15552E) to `var(--brand-highlight-grass-green)` (#3DC683) so text remains visible on dark backgrounds.
+- **Light-green badge text visibility.** `.maia-badge-light-green` text `color` changed from `var(--brand-highlight-light-green)` (#B9F7CE) to `var(--brand-highlight-grass-green)` (#3DC683) so text remains visible on light backgrounds.
+- **Hero accent-dark-green visibility.** `.hero-title .accent-dark-green` `color` changed from `var(--brand-highlight-dark-green)` to `var(--brand-highlight-grass-green)` to ensure readability in dark mode.
+
+---
+
 ## [2026.02.6] — 2026-02-25
 
 ### Changed
