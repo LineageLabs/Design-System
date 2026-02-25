@@ -181,6 +181,24 @@
       color: var(--brand-highlight-dark-green);
       border-color: var(--brand-highlight-dark-green);
     }
+    /* Forced dark variant — for always-dark preview panels */
+    .logo-badge-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.125rem 0.7rem;
+      border-radius: 15px;
+      background: #B9F7CE;
+      color: #15552E;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 22px;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border: 1px solid #15552E;
+    }
     .logo-wordmark { font-weight: 700; }
 
     nav {
@@ -1122,9 +1140,15 @@
       align-items: flex-start; gap: 0.75rem;
     }
 
+    .logo-dark-preview a, .logo-dark-preview code {
+      color: oklch(0.707 0.022 261.325);
+    }
     @media (max-width: 640px) {
       nav a { display: none; }
       .hero-title { font-size: 2rem; }
+      #logo .comp-demo-section div[style*="grid-template-columns:1fr 1fr"] {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -1137,6 +1161,7 @@
     </a>
     <nav>
       <a href="#typography">Typography</a>
+      <a href="#logo">Logo</a>
       <a href="#colors">Colors</a>
       <a href="#spacing">Spacing</a>
       <a href="#motion">Motion</a>
@@ -1200,9 +1225,201 @@
       </div>
     </section>
 
+    <!-- LOGO -->
+    <section id="logo">
+      <p class="section-label">Section 02</p>
+      <h2 class="section-title">Logo</h2>
+      <p class="section-desc">
+        The <strong>way*ID</strong> logo is a pill badge paired with a Poppins wordmark.
+        It has distinct light and dark mode treatments. The reveal animation uses GSAP
+        with <code>back.out(1.7)</code> overshoot on the badge and <code>power2.out</code> slide on the wordmark.
+      </p>
+
+      <!-- Light mode logo -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
+        <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;gap:2rem;">
+          <!-- Large -->
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Large</div>
+            <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+              <div class="logo" id="logo-light-lg" style="gap:0.75rem;">
+                <span class="logo-badge logo-light-badge" style="font-size:22px;padding:0.2rem 1rem;border-radius:18px;">way*ID</span>
+                <span class="logo-wordmark logo-light-wordmark" style="font-size:1.35rem;">Lineage HQ</span>
+              </div>
+              <button class="theme-toggle" id="logo-light-replay">Replay</button>
+            </div>
+          </div>
+          <!-- Default -->
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Default</div>
+            <div class="logo" style="gap:0.5rem;">
+              <span class="logo-badge" style="font-size:15px;">way*ID</span>
+              <span class="logo-wordmark" style="font-size:1rem;">Lineage HQ</span>
+            </div>
+          </div>
+          <!-- Small -->
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Small</div>
+            <div class="logo" style="gap:0.375rem;">
+              <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+              <span class="logo-wordmark" style="font-size:0.8rem;">Lineage HQ</span>
+            </div>
+          </div>
+          <!-- Badge only -->
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Badge Only</div>
+            <div style="display:flex;gap:1rem;align-items:center;">
+              <span class="logo-badge" style="font-size:15px;">way*ID</span>
+              <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark mode logo -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
+        <div class="logo-dark-preview" style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:2rem;color:oklch(0.985 0.002 247.839);">
+          <!-- Large -->
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Large</div>
+            <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+              <div class="logo" id="logo-dark-lg" style="gap:0.75rem;color:oklch(0.985 0.002 247.839);">
+                <span class="logo-badge-dark logo-dark-badge" style="font-size:22px;padding:0.2rem 1rem;border-radius:18px;">way*ID</span>
+                <span class="logo-wordmark logo-dark-wordmark" style="font-size:1.35rem;">Lineage HQ</span>
+              </div>
+              <button class="theme-toggle" id="logo-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
+            </div>
+          </div>
+          <!-- Default -->
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Default</div>
+            <div class="logo" style="gap:0.5rem;color:oklch(0.985 0.002 247.839);">
+              <span class="logo-badge-dark" style="font-size:15px;">way*ID</span>
+              <span class="logo-wordmark" style="font-size:1rem;">Lineage HQ</span>
+            </div>
+          </div>
+          <!-- Small -->
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Small</div>
+            <div class="logo" style="gap:0.375rem;color:oklch(0.985 0.002 247.839);">
+              <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+              <span class="logo-wordmark" style="font-size:0.8rem;">Lineage HQ</span>
+            </div>
+          </div>
+          <!-- Badge only -->
+          <div>
+            <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Badge Only</div>
+            <div style="display:flex;gap:1rem;align-items:center;">
+              <span class="logo-badge-dark" style="font-size:15px;">way*ID</span>
+              <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated reveal demo — side-by-side -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">GSAP</span> <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">power2.out</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <!-- Light animated -->
+          <div style="background:var(--background);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.25rem;">
+            <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
+            <div class="logo" id="logo-anim-light" style="gap:0.6rem;">
+              <span class="logo-badge logo-anim-light-badge" style="font-size:18px;padding:0.15rem 0.85rem;">way*ID</span>
+              <span class="logo-wordmark logo-anim-light-wordmark" style="font-size:1.1rem;">Lineage HQ</span>
+            </div>
+            <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
+          </div>
+          <!-- Dark animated -->
+          <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.25rem;">
+            <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
+            <div class="logo" id="logo-anim-dark" style="gap:0.6rem;color:oklch(0.985 0.002 247.839);">
+              <span class="logo-badge-dark logo-anim-dark-badge" style="font-size:18px;padding:0.15rem 0.85rem;">way*ID</span>
+              <span class="logo-wordmark logo-anim-dark-wordmark" style="font-size:1.1rem;">Lineage HQ</span>
+            </div>
+            <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Usage rules -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Usage Rules</div>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">Clear Space</div>
+            <div class="card-sub">Maintain at least 1x the badge height as clear space on all sides of the logo.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Minimum Size</div>
+            <div class="card-sub">Badge text must never be smaller than <code>12px</code>. Below that, use the badge-only variant.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">No Modifications</div>
+            <div class="card-sub">Never rotate, stretch, recolor, add shadows, or apply effects to the logo. Use it exactly as specified.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Mode Matching</div>
+            <div class="card-sub">Always use the light logo on light backgrounds and the dark logo on dark backgrounds. Never mix.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spec table -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Spec Reference</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border);text-align:left;">
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Property</th>
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Light Mode</th>
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Dark Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Badge background</td>
+                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Badge text</td>
+                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code></td>
+                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Badge border</td>
+                <td style="padding:0.5rem 0.75rem;">transparent</td>
+                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> (1px solid)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Badge radius</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>15px</code></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Font</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 500 weight, <code>-0.05em</code> letter-spacing</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Wordmark font</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 700 weight</td>
+              </tr>
+              <tr>
+                <td style="padding:0.5rem 0.75rem;">Animation</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Badge: <code>scale 0→1, back.out(1.7), 500ms</code> · Wordmark: <code>x -12→0, power2.out, 400ms</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <!-- BRAND COLORS -->
     <section id="colors">
-      <p class="section-label">Section 02</p>
+      <p class="section-label">Section 03</p>
       <h2 class="section-title">Brand Colors</h2>
       <p class="section-desc">
         These are <em>additive</em> — they never replace shadcn semantic tokens.
@@ -1232,7 +1449,7 @@
 
     <!-- SPACING TOKENS -->
     <section id="spacing">
-      <p class="section-label">Section 03</p>
+      <p class="section-label">Section 04</p>
       <h2 class="section-title">Spacing</h2>
       <p class="section-desc">
         <strong>4px grid</strong> — every value is a multiple of 4px (0.25rem).
@@ -1336,7 +1553,7 @@
 
     <!-- MOTION TOKENS -->
     <section id="motion">
-      <p class="section-label">Section 04</p>
+      <p class="section-label">Section 05</p>
       <h2 class="section-title">Motion Tokens</h2>
       <p class="section-desc">All animations use <strong>GSAP v3</strong>. Every animation must check <code>prefers-reduced-motion</code>.</p>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Durations</h3>
@@ -1372,7 +1589,7 @@
 
     <!-- ANIMATION PRESETS -->
     <section id="animations">
-      <p class="section-label">Section 05</p>
+      <p class="section-label">Section 06</p>
       <h2 class="section-title">Animation Presets</h2>
       <p class="section-desc">Click any card to replay. Presets live in <code>animations/presets.js</code>.</p>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Entrance</h3>
@@ -1412,7 +1629,7 @@
 
     <!-- COMPONENT CUSTOMIZATIONS — LIVE DEMOS -->
     <section id="components">
-      <p class="section-label">Section 06</p>
+      <p class="section-label">Section 07</p>
       <h2 class="section-title">Live Components</h2>
       <p class="section-desc">
         Interactive Maia-styled components with their assigned GSAP animations.
@@ -1851,7 +2068,7 @@
 
     <!-- GET STARTED -->
     <section id="start">
-      <p class="section-label">Section 07</p>
+      <p class="section-label">Section 08</p>
       <h2 class="section-title">Get Started</h2>
       <p class="section-desc">Set up a new project with shadcn/ui Maia + Gray theme.</p>
       <div class="step-list reveal">
@@ -1884,7 +2101,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     <!-- MOBILE EXAMPLE -->
     <section id="mobile-example">
-      <p class="section-label">Section 08</p>
+      <p class="section-label">Section 09</p>
       <h2 class="section-title">Mobile Example</h2>
       <p class="section-desc">
         A realistic mobile app — "Focus" — built entirely from design system components.
@@ -2009,17 +2226,52 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
     gsap.from(".hero-sub", { y: dur(20), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.25 });
     gsap.from(".hero-tags", { y: dur(16), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.4 });
 
-    function playLogoReveal() {
-      const tl = gsap.timeline({ delay: 0 });
-      if (reducedMotion) { tl.set(".logo-icon-demo",{opacity:1,scale:1}); tl.set(".logo-wordmark-demo",{opacity:1,x:0}); return; }
-      tl.from(".logo-icon-demo", { scale:0, opacity:0, duration:0.5, ease:"back.out(1.7)" })
-        .from(".logo-wordmark-demo", { x:-12, opacity:0, duration:0.4, ease:"power2.out" }, "-=0.1");
+    /* ---- Logo reveal helper ---- */
+    function playReveal(badgeSel, wordmarkSel) {
+      const tl = gsap.timeline();
+      if (reducedMotion) {
+        tl.set(badgeSel, { opacity:1, scale:1 });
+        tl.set(wordmarkSel, { opacity:1, x:0 });
+        return tl;
+      }
+      tl.from(badgeSel,    { scale:0, opacity:0, duration:0.5, ease:"back.out(1.7)" })
+        .from(wordmarkSel, { x:-12,  opacity:0, duration:0.4, ease:"power2.out" }, "-=0.1");
+      return tl;
     }
-    setTimeout(playLogoReveal, 600);
-    document.getElementById("logo-replay-btn").addEventListener("click", () => {
-      gsap.set(".logo-icon-demo", { clearProps:"all" });
-      gsap.set(".logo-wordmark-demo", { clearProps:"all" });
-      playLogoReveal();
+    function wireReplay(btnId, badgeSel, wordmarkSel) {
+      document.getElementById(btnId).addEventListener("click", () => {
+        gsap.set(badgeSel,    { clearProps:"all" });
+        gsap.set(wordmarkSel, { clearProps:"all" });
+        playReveal(badgeSel, wordmarkSel);
+      });
+    }
+
+    /* Animation section (existing) */
+    setTimeout(() => playReveal(".logo-icon-demo", ".logo-wordmark-demo"), 600);
+    wireReplay("logo-replay-btn", ".logo-icon-demo", ".logo-wordmark-demo");
+
+    /* Logo section — light large */
+    wireReplay("logo-light-replay",      ".logo-light-badge",      ".logo-light-wordmark");
+    /* Logo section — animated light */
+    wireReplay("logo-anim-light-replay", ".logo-anim-light-badge", ".logo-anim-light-wordmark");
+    /* Logo section — animated dark */
+    wireReplay("logo-anim-dark-replay",  ".logo-anim-dark-badge",  ".logo-anim-dark-wordmark");
+    /* Logo section — dark large */
+    wireReplay("logo-dark-replay",       ".logo-dark-badge",       ".logo-dark-wordmark");
+
+    /* Auto-play logo section reveals on scroll */
+    [
+      [".logo-light-badge", ".logo-light-wordmark", "#logo-light-lg"],
+      [".logo-dark-badge",  ".logo-dark-wordmark",  "#logo-dark-lg"],
+      [".logo-anim-light-badge", ".logo-anim-light-wordmark", "#logo-anim-light"],
+      [".logo-anim-dark-badge",  ".logo-anim-dark-wordmark",  "#logo-anim-dark"],
+    ].forEach(([badge, wordmark, trigger]) => {
+      ScrollTrigger.create({
+        trigger: trigger,
+        start: "top 85%",
+        once: true,
+        onEnter: () => playReveal(badge, wordmark),
+      });
     });
 
     document.querySelectorAll(".reveal").forEach((el) => {

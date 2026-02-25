@@ -5,6 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.15] — 2026-02-25
+
+### Added
+- **Logo section in `index.html` (Section 02).** New dedicated logo page section with: light mode variants (large, default, small, badge-only), dark mode variants (same four sizes on forced-dark panel), side-by-side animated reveal demo (light + dark), usage rules (clear space, minimum size, no modifications, mode matching), and full spec reference table (colors, borders, radius, fonts, animation).
+- **`.logo-badge-dark` CSS class.** Hardcoded dark-mode logo badge variant (`#B9F7CE` bg, `#15552E` text/border) for use in always-dark preview panels independent of theme toggle.
+- **GSAP scroll-triggered logo reveals.** Four `ScrollTrigger.create()` instances auto-play logo animations when light-large, dark-large, anim-light, and anim-dark demos enter viewport. Refactored existing logo reveal into reusable `playReveal()` / `wireReplay()` helpers.
+- **Logo nav link.** Added "Logo" to site header navigation.
+
+### Changed
+- **Section numbering.** Renumbered sections: Logo is now Section 02; Brand Colors → 03, Spacing → 04, Motion → 05, Animations → 06, Components → 07, Get Started → 08, Mobile Example → 09.
+
+---
+
 ## [2026.02.14] — 2026-02-25
 
 ### Added
