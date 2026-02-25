@@ -101,21 +101,13 @@ code, pre {
 | Light Grey | `#EAEAEA` | `--brand-surface-grey` | Dividers, secondary cards |
 | Dark Background | `#151515` | `--brand-surface` (dark) | Dark theme pages |
 
-### Highlights — Light Backgrounds
+### Highlights — Light & Dark (same values)
 
 | Color | Hex | CSS Variable |
 |-------|-----|-------------|
-| Yellow | `#FFD400` | `--brand-highlight-yellow` |
-| Blue | `#139CFF` | `--brand-highlight-blue` |
-| Magenta | `#FF68E3` | `--brand-highlight-magenta` |
-
-### Highlights — Dark Backgrounds
-
-| Color | Hex | CSS Variable |
-|-------|-----|-------------|
-| Yellow | `#F9DE0A` | `--brand-highlight-yellow` |
-| Blue | `#2BC3FF` | `--brand-highlight-blue` |
-| Magenta | `#FF68FF` | `--brand-highlight-magenta` |
+| Light Green | `#B9F7CE` | `--brand-highlight-light-green` |
+| Grass Green | `#3DC683` | `--brand-highlight-grass-green` |
+| Dark Green | `#15552E` | `--brand-highlight-dark-green` |
 
 ### When to Use
 

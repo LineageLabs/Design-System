@@ -5,6 +5,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.6] — 2026-02-25
+
+### Changed
+- **Brand highlight palette replaced.** Old yellow/blue/magenta → new green palette, same values for light and dark mode:
+  - `--brand-highlight-yellow` (#FFD400 light / #F9DE0A dark) → `--brand-highlight-light-green` (#B9F7CE)
+  - `--brand-highlight-blue` (#139CFF light / #2BC3FF dark) → `--brand-highlight-grass-green` (#3DC683)
+  - `--brand-highlight-magenta` (#FF68E3 light / #FF68FF dark) → `--brand-highlight-dark-green` (#15552E)
+- **Updated files:** `tokens/brand-colors.yaml`, `tokens/colors.css`, `DESIGN-SYSTEM.md`, `components/shadcn-customizations.yaml`, `index.html`, `example-mobile.html`.
+- **Tailwind v4 `@theme inline` mapping** updated to reference new variable names in `tokens/colors.css`.
+- **Badge CSS classes renamed:** `.maia-badge-yellow` → `.maia-badge-light-green`, `.maia-badge-blue` → `.maia-badge-grass-green`, `.maia-badge-magenta` → `.maia-badge-dark-green`.
+- **Dark-green readability fix.** Where `--brand-highlight-dark-green` (#15552E) would be invisible as text on dark backgrounds, `--brand-highlight-grass-green` (#3DC683) is used instead.
+
+---
+
 ## [2024.02.5] — 2026-02-24
 
 ### Changed

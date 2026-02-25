@@ -168,7 +168,7 @@ style_overrides:
     notes: "Accessible focus ring using shadcn --ring variable"
 
   Badge:
-    brand_variant: "Use --brand-highlight-* colors for brand-specific badges"
+    brand_variant: "Use --brand-highlight-light-green / --brand-highlight-grass-green / --brand-highlight-dark-green for brand-specific badges"
     notes: "Only when design explicitly calls for brand-colored badges"
 
 # ==============================================================================

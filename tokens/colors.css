@@ -123,22 +123,21 @@
    Usage:  background-color: var(--brand-surface);
    ============================================================================= */
 
-/* Brand colors for LIGHT backgrounds */
+/* Brand colors — same values for LIGHT and DARK */
 :root {
   --brand-surface: #FAFAFA;
   --brand-surface-grey: #EAEAEA;
-  --brand-highlight-yellow: #FFD400;
-  --brand-highlight-blue: #139CFF;
-  --brand-highlight-magenta: #FF68E3;
+  --brand-highlight-light-green: #B9F7CE;
+  --brand-highlight-grass-green: #3DC683;
+  --brand-highlight-dark-green: #15552E;
 }
 
-/* Brand colors for DARK backgrounds */
 .dark {
   --brand-surface: #151515;
   --brand-surface-grey: #EAEAEA; /* same — used for contrast elements on dark */
-  --brand-highlight-yellow: #F9DE0A;
-  --brand-highlight-blue: #2BC3FF;
-  --brand-highlight-magenta: #FF68FF;
+  --brand-highlight-light-green: #B9F7CE;
+  --brand-highlight-grass-green: #3DC683;
+  --brand-highlight-dark-green: #15552E;
 }
 
 /* =============================================================================
@@ -185,9 +184,9 @@
 
   --color-brand-surface: var(--brand-surface);
   --color-brand-surface-grey: var(--brand-surface-grey);
-  --color-brand-highlight-yellow: var(--brand-highlight-yellow);
-  --color-brand-highlight-blue: var(--brand-highlight-blue);
-  --color-brand-highlight-magenta: var(--brand-highlight-magenta);
+  --color-brand-highlight-light-green: var(--brand-highlight-light-green);
+  --color-brand-highlight-grass-green: var(--brand-highlight-grass-green);
+  --color-brand-highlight-dark-green: var(--brand-highlight-dark-green);
 
   --radius-sm: calc(var(--radius) - 0.25rem);
   --radius-md: var(--radius);
