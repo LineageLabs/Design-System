@@ -23,7 +23,7 @@ and logo assets so every project stays consistent.
 
 1. **Use shadcn/ui as-is.** Install via their CLI. Use the **Gray** base color theme with **Maia** style. Do not rebuild components from scratch.
 2. **Brand colors are additive.** They do NOT replace `--primary`, `--background`, or any shadcn semantic token. Apply them only when the design explicitly calls for brand colors.
-3. **Geist for body, Poppins for headlines.** Apply `font-family: "Poppins"` only to h1–h4 elements. Everything else uses Geist Sans.
+3. **Geist for body, Poppins for headlines.** Apply `font-family: "Poppins"` to h0–h4 elements only. h0 is a utility class (`.h0`) at weight 400 for display/hero text; h1–h4 use weights 600–800. Everything else uses Geist Sans.
 4. **Hugeicons for icons.** Use `hugeicons-react` as the default icon library. Fallback to Lucide only if unavailable.
 5. **GSAP for animation.** Use the presets in `animations/presets.js`. Do not invent new easing or duration values — use the tokens in `tokens/motion.yaml`.
 6. **Respect reduced motion.** Every GSAP animation must check `prefers-reduced-motion` and fall back to instant or no animation.

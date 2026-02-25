@@ -41,7 +41,7 @@ Generated from: `shadcn/create`
 3. **GSAP for motion.** Use presets from `animations/presets.js`. Don't invent new durations/easings.
 4. **Respect reduced motion.** Every animation checks `prefers-reduced-motion`.
 5. **Never edit shadcn source.** Customise via CSS overrides, Tailwind composition, or wrapper components.
-6. **Geist for body, Poppins for headlines.** Apply Poppins only to h1–h4 elements.
+6. **Geist for body, Poppins for headlines.** Apply Poppins to h0–h4 elements only. h0 uses weight 400 (regular); h1–h4 use 600–800.
 7. **Use Hugeicons.** Default icon set for all UI elements and illustrations.
 
 ---
@@ -52,6 +52,7 @@ Generated from: `shadcn/create`
 
 | Role | Font Family | Weight Range | Usage |
 |------|-------------|-------------|-------|
+| **Display** (h0) | `"Poppins", sans-serif` | 400 | Hero / landing display text — huge, light-weight |
 | **Headlines** (h1–h4) | `"Poppins", sans-serif` | 600–800 | Page titles, section headers, hero text |
 | **Body / UI** | `"Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif` | 400–700 | All body text, buttons, inputs, labels, navigation |
 | **Code** | `"Geist Mono", "SF Mono", "Fira Code", Consolas, monospace` | 400 | Code blocks, inline code, terminal |
@@ -62,7 +63,7 @@ Generated from: `shadcn/create`
 <!-- Google Fonts — Poppins (headlines only) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 ```
 
 ```bash
@@ -79,6 +80,14 @@ body {
 
 h1, h2, h3, h4 {
   font-family: "Poppins", sans-serif;
+}
+
+.h0 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
 }
 
 code, pre {

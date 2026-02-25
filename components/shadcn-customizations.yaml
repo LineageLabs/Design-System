@@ -38,10 +38,19 @@ typography:
   body_font: "Geist Sans"
   headline_font: "Poppins"
   code_font: "Geist Mono"
-  headline_elements: ["h1", "h2", "h3", "h4"]
-  headline_weights: [600, 700, 800]
+  headline_elements: [".h0", "h1", "h2", "h3", "h4"]
+  headline_weights: [400, 600, 700, 800]
+  h0:
+    class: ".h0"
+    font_weight: 400
+    font_size: "clamp(3.5rem, 8vw, 6rem)"
+    line_height: 1.0
+    letter_spacing: "-0.03em"
+    usage: "Hero / landing display text — huge, light-weight"
   notes: |
-    Poppins is used ONLY for h1-h4 elements.
+    Poppins is used ONLY for h0-h4 elements.
+    h0 is a utility class (.h0), not a native HTML element — use it on any tag for display-size text.
+    h0 uses weight 400 (regular); h1-h4 use 600-800.
     All other text (body, buttons, inputs, labels, nav) uses Geist Sans.
     Code blocks use Geist Mono.
 

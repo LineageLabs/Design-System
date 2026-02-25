@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.14] — 2026-02-25
+
+### Added
+- **h0 display headline.** New `.h0` utility class: Poppins weight 400, `clamp(3.5rem, 8vw, 6rem)`, line-height 1.0, letter-spacing -0.03em. For hero/landing display text. Added to `index.html` (CSS + typography preview), `DESIGN-SYSTEM.md` (font stack table, CSS setup, cardinal rule), `shadcn-customizations.yaml` (typography block), and `CLAUDE.md` (cardinal rule 3).
+- **Poppins 400 weight in Google Fonts import.** Added `400` to `wght` axis in `index.html` and `DESIGN-SYSTEM.md` font link examples.
+
+---
+
 ## [2026.02.13] — 2026-02-25
 
 ### Changed
