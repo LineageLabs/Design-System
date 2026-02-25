@@ -28,6 +28,7 @@ and logo assets so every project stays consistent.
 5. **GSAP for animation.** Use the presets in `animations/presets.js`. Do not invent new easing or duration values — use the tokens in `tokens/motion.yaml`.
 6. **Respect reduced motion.** Every GSAP animation must check `prefers-reduced-motion` and fall back to instant or no animation.
 7. **Never edit shadcn source.** Customise through CSS variable overrides, Tailwind utility composition, or wrapper components.
+8. **Minimal color by default.** Use surfaces, greys, and neutrals (`--foreground`, `--muted-foreground`, `--border`) for the majority of the UI. Non-brand colors (e.g. red) should only appear when they add functional value (errors, warnings, destructive actions). Brand greens may be decorative but must still be purposeful — don't scatter color without intent.
 
 ## Key Files (read in this order)
 

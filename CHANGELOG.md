@@ -5,6 +5,25 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.8] — 2026-02-25
+
+### Added
+- **Color usage philosophy — 3-tier guideline.** Documented in `DESIGN-SYSTEM.md` (new "Color Usage Philosophy" section with tier table), `tokens/brand-colors.yaml` (new philosophy block), and `CLAUDE.md` (new cardinal rule #8):
+  - **Tier 1 — Neutrals (default):** surfaces, greys, `--foreground`, `--muted-foreground`, `--border`. Use for the vast majority of UI.
+  - **Tier 2 — Brand greens (purposeful):** may be decorative but must serve a purpose (identity, emphasis, hierarchy).
+  - **Tier 3 — Non-brand colors (functional only):** `--destructive` etc. Only when color conveys meaning (errors, warnings). Never decorative.
+
+### Changed
+- **`example-mobile.html` updated to follow color guideline:**
+  - Priority dots `.p-med`: `--brand-highlight-light-green` → `--muted-foreground` (functional indicator, not brand expression).
+  - Priority dots `.p-low`: `--brand-highlight-grass-green` → `--border` (neutral for low priority).
+  - "View all" link `.section-hdr-link`: `--brand-highlight-grass-green` → `--muted-foreground` (utility link, not brand accent).
+  - Active stat value: removed inline `color:var(--brand-highlight-grass-green)` (stat number, not brand expression).
+  - Reports quick-action icon: arbitrary `oklch(0.5 0.15 80)` stroke → `currentColor`; bg `--brand-highlight-light-green` → `--muted-foreground` at 10%.
+  - Success toast checkmark: arbitrary `oklch(0.58 0.18 145)` → `var(--brand-highlight-grass-green)`.
+
+---
+
 ## [2026.02.7] — 2026-02-25
 
 ### Changed

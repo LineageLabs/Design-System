@@ -109,12 +109,23 @@ code, pre {
 | Grass Green | `#3DC683` | `--brand-highlight-grass-green` |
 | Dark Green | `#15552E` | `--brand-highlight-dark-green` |
 
-### When to Use
+### Color Usage Philosophy
+
+> **Keep it minimal.** The UI should be mostly neutral. Color is intentional, not decorative noise.
+
+| Tier | Colors | Rule |
+|------|--------|------|
+| **1. Neutrals (default)** | `--foreground`, `--muted-foreground`, `--border`, `--background`, surfaces, greys | Use for the vast majority of UI. Text, borders, backgrounds, cards, dividers. |
+| **2. Brand greens (purposeful)** | `--brand-highlight-light-green`, `--brand-highlight-grass-green`, `--brand-highlight-dark-green` | May be decorative (avatars, badges, accents) but must still serve a purpose — identity, emphasis, or visual hierarchy. Don't scatter brand color without intent. |
+| **3. Non-brand colors (functional only)** | `--destructive` (red), any other non-neutral color | Only when the color itself conveys meaning: errors, warnings, destructive actions, overdue states. Never purely decorative. |
+
+### When to Use Brand Colors
 
 - Hero sections, marketing pages — brand highlights on headings or CTAs
 - Status badges, tags — highlight colors for special emphasis
 - Illustrated content — brand palette for custom illustrations
-- Gradient accents using brand highlight colors
+- Avatars, branded accents — decorative but purposeful identity touches
+- Gradient accents using brand green palette
 - Any element the design **explicitly marks** as "brand colored"
 
 ### When NOT to Use
@@ -123,6 +134,7 @@ code, pre {
 - Body text — use `--foreground` / `--muted-foreground`
 - Borders — use `--border`
 - Error states — use `--destructive`
+- Functional indicators where color conveys status (e.g. priority levels) — use neutrals or semantic tokens, not brand colors
 - Anything not explicitly marked as brand-colored in the design
 
 **Full spec:** [`tokens/brand-colors.yaml`](tokens/brand-colors.yaml)
