@@ -265,10 +265,14 @@ Key characteristics:
 | Button | `rounded-4xl` (pill) | `rounded-md` |
 | Input | `rounded-4xl` (pill) | `rounded-md` |
 | Card | `rounded-2xl` | `rounded-xl` |
+| Card with Image | `rounded-2xl` + `overflow: hidden` | `rounded-xl` |
+| Chart | `rounded-2xl` (card shell) | `rounded-xl` |
 | Dialog | `rounded-4xl` | `rounded-lg` |
 | Badge | `rounded-4xl` (pill) | `rounded-md` |
 | Accordion | `rounded-2xl` | `rounded-lg` |
 | Avatar | `rounded-full` | `rounded-full` |
+| Select | `rounded-4xl` (pill) | `rounded-md` |
+| Textarea | `rounded-xl` | `rounded-md` |
 
 ### Animation Assignments
 
@@ -294,6 +298,68 @@ Key characteristics:
 | `Card` (interactive) | Hover | `shadow-md` + `hover-lift` |
 | `Input` | Focus ring | `ring-2 ring-offset-2 ring-ring` |
 | `Badge` (brand) | Brand variant | `--brand-highlight-*` (only when specified) |
+
+### Chart
+
+shadcn/ui includes a `Chart` component backed by [Recharts](https://recharts.org/). Use the five semantic chart color tokens (`--chart-1` through `--chart-5`) defined in the Gray theme.
+
+| Setting | Value |
+|---------|-------|
+| Library | Recharts (via `npx shadcn@latest add chart`) |
+| Container | `rounded-2xl` card shell (`ring-1 ring-foreground/10`) |
+| Padding | `1.5rem` (p-6) |
+| Color tokens | `--chart-1`, `--chart-2`, `--chart-3`, `--chart-4`, `--chart-5` |
+| Grid lines | `var(--border)` — thin, 1px |
+| Axis text | `var(--muted-foreground)` at `0.75rem` |
+| Tooltip | Same card style: `rounded-xl`, `shadow-md`, `bg-card` |
+| Legend | Below chart, `0.75rem` text, colored dot (8px, `border-radius: 2px`) + label |
+| Border radius (bars) | `0.375rem` top corners (flat bottom) |
+
+**Rules:**
+1. Always use `--chart-*` tokens — never hardcode colors or use brand colors in charts.
+2. Wrap in the same Maia card shell (rounded-2xl + ring) for visual consistency.
+3. Include a chart header (title + optional description) and a legend below the chart body.
+4. Keep grid lines subtle — `var(--border)` at 1px. No heavy visual chrome.
+5. Tooltip follows the Maia card aesthetic — rounded, subtle shadow, card background.
+
+### Card with Image
+
+An image-top variant of the standard Card. The image area sits flush with the card's top edge, with content padded below.
+
+| Setting | Value |
+|---------|-------|
+| Container | `rounded-2xl` + `overflow: hidden` + `ring-1 ring-foreground/10` |
+| Image area | `aspect-ratio: 16/9` (default), `bg-muted` placeholder |
+| Image fit | `object-cover` on `<img>`, fills the area without distortion |
+| Body padding | `1.25rem 1.5rem 1.5rem` — slightly tighter top to close the gap to the image |
+| Interactive | Same `hover-lift` + `shadow-md` escalation as standard Card |
+
+**Rules:**
+1. Default aspect ratio is `16:9`. Override per-card with `4:3` or `1:1` where appropriate.
+2. The image area must always have a `bg-muted` fallback visible while loading or if the image fails.
+3. `overflow: hidden` on the container ensures the image respects the card's border-radius — do not add border-radius to the image element itself.
+4. Body spacing follows standard Maia card padding, not the image area.
+
+### Field (Form Field)
+
+A wrapper pattern that composes label + input + description + error message into a consistent form field. This is not a shadcn component — it is a thin layout wrapper.
+
+| Setting | Value |
+|---------|-------|
+| Layout | `flex-col`, `gap: 0.375rem` (6px) between elements |
+| Label | `0.875rem`, weight `600`, `var(--foreground)` |
+| Description | `0.8rem`, `var(--muted-foreground)` — below input |
+| Error | `0.8rem`, weight `500`, `var(--destructive)` — replaces description |
+| Error ring | `ring-2` using `--destructive` at 25% opacity on the input |
+| Select | Pill-shaped (`rounded-4xl`), `bg-input/30`, chevron via inline SVG `background-image` |
+| Textarea | `rounded-xl` (not pill), `bg-input/30`, `min-height: 80px`, `resize: vertical` |
+
+**Rules:**
+1. Every input in a form must be wrapped in a Field. Bare inputs without labels are not allowed.
+2. Description text goes below the input, not between label and input.
+3. Error state replaces the description — never show both simultaneously.
+4. Select uses the same pill styling as Input. Textarea uses `rounded-xl` (softer rectangle) because pill-shaped textareas look distorted.
+5. Use `htmlFor` / `id` to link label to input for accessibility.
 
 **Full spec:** [`components/shadcn-customizations.yaml`](components/shadcn-customizations.yaml)
 
@@ -365,6 +431,10 @@ Foundation: **4px grid** (0.25rem). Maia style = "generous spacing" — when in 
 | **Accordion** | Trigger: `1rem 0.75rem` | Content: `1rem` |
 | **Badge** | `0.2rem 0.625rem` | — |
 | **Tabs** | Trigger: `0.5rem 0.875rem` | List gap: `0.25rem` |
+| **Chart** | `1.5rem` (p-6) | Header-to-body: `1rem`, legend border-top: `0.75rem` |
+| **Card (image)** | Body: `1.25rem 1.5rem 1.5rem` | Image: flush (no padding) |
+| **Field** | — | Element gap: `0.375rem` |
+| **Textarea** | `0.75rem 1.25rem` | Min-height: `80px` |
 
 ### Guidelines
 
@@ -416,6 +486,29 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-grass-green` at 12% bg + `--brand-highlight-grass-green` stroke). But this is the exception, not the default.
 5. **Consistent sizing.** Within a row or grid of icons, all icons must use the same width/height and viewBox. Don't mix 18px and 20px icons in the same context.
 6. **Stroke weight consistency.** Toolbar and inline icons use `stroke-width: 1.5–1.75`. Quick action tile icons use `stroke-width: 2`. FAB icons use `stroke-width: 2.5`. Don't mix weights within a context.
+
+#### Dark Mode
+
+Icons adapt automatically when using `currentColor` — no additional work required. But follow these rules to avoid breakage:
+
+| Do | Don't |
+|----|-------|
+| `stroke="currentColor"` | `stroke="#333"` or `stroke="black"` |
+| `fill="currentColor"` (for filled icons) | `fill="#000"` or `fill="rgb(51,51,51)"` |
+| Container bg via `color-mix()` with semantic tokens | Container bg with hardcoded hex/rgb values |
+| Active nav: `color: var(--foreground)` | Active nav: `color: #1a1a1a` |
+| Inactive nav: `color: var(--muted-foreground)` | Inactive nav: `color: #888` or `color: gray` |
+
+**Why `currentColor` works in dark mode:**
+- `--foreground` flips from near-black (`oklch(0.13…)`) to near-white (`oklch(0.985…)`)
+- `--muted-foreground` flips from mid-gray to lighter gray
+- `color-mix()` containers using these tokens automatically adjust their tint
+- Result: zero dark-mode-specific icon CSS needed
+
+**Common dark mode icon bugs:**
+1. Hardcoded `stroke="#333"` — invisible on dark backgrounds. Fix: use `currentColor`.
+2. Hardcoded container `background: rgba(0,0,0,0.1)` — invisible in dark mode. Fix: use `color-mix(in srgb, var(--muted-foreground) 10%, transparent)`.
+3. Brand color icons that don't change — `--brand-highlight-grass-green` (#3DC683) is the same in both modes by design, so it remains visible on both light and dark. No fix needed.
 
 ---
 

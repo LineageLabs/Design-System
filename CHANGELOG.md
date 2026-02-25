@@ -5,6 +5,23 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.11] — 2026-02-25
+
+### Added
+- **Chart component spec.** New `Chart` entry in `DESIGN-SYSTEM.md` § 6 and `shadcn-customizations.yaml`. Defines Recharts-backed chart in Maia card shell, `--chart-1..5` tokens, bar radius, grid/axis/tooltip/legend styling, and 5 rules.
+- **Card with Image variant.** New `CardImage` entry in `DESIGN-SYSTEM.md` § 6 and `shadcn-customizations.yaml`. Image-top card with `aspect-ratio: 16/9` default, `overflow: hidden`, `bg-muted` fallback, `1.25rem 1.5rem 1.5rem` body padding.
+- **Field component spec.** New `Field` entry in `DESIGN-SYSTEM.md` § 6 and `shadcn-customizations.yaml`. Wrapper pattern for label + input + description + error. Includes select (pill-shaped) and textarea (`rounded-xl`) sub-variants, error ring at 25% destructive.
+- **Icons demo section in `index.html`.** Live demos for all three icon contexts (inline/toolbar, quick-action tile, navigation) with dark mode callout box explaining `currentColor` behavior.
+- **Icon dark mode guidelines in `DESIGN-SYSTEM.md` § 8.** New "Dark Mode" subsection with do/don't table, explanation of why `currentColor` works across modes, and common dark mode icon bugs.
+- **Demo sections in `index.html`.** Added live Chart (bar chart + color reference), Card with Image (3 variants), and Field (email, password/error, select, textarea) demos to the Maia Components section.
+- **Dark mode shadow overrides.** Added `.dark` box-shadow rules for `.maia-chart`, `.maia-card-image`, `.maia-field-select:focus`, `.maia-field-textarea:focus`.
+
+### Changed
+- **Maia radius table.** Added Card with Image, Chart, Select, and Textarea rows.
+- **Component spacing table.** Added Chart, Card (image), Field, and Textarea rows.
+
+---
+
 ## [2026.02.10] — 2026-02-25
 
 ### Added
