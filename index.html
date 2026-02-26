@@ -1872,6 +1872,54 @@ grid-template-columns: repeat(auto-fill, <span class="code-prop">minmax(min(220p
 <span class="code-comment">/* ❌ Unsafe — overflows at 320px when min > 272px */</span>
 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       </div>
+
+      <div class="divider"></div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Vertical Content &amp; Fixed Heights</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;">
+        Fixed-height containers (<code>height: 100vh</code> + <code>overflow: hidden</code>) are the most common cause of <strong>vertical content clipping on mobile</strong>.
+        Content that fits on desktop often doesn't fit on a phone.
+      </p>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>#</th><th>Rule</th><th>Implementation</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><code>min-height</code> not <code>height</code></td><td>Use <code>min-height: 100dvh</code> — content can grow beyond viewport</td></tr>
+            <tr><td>2</td><td>Slides scroll on mobile</td><td>Slide/carousel containers: <code>overflow-y: auto</code> below <code>md:</code></td></tr>
+            <tr><td>3</td><td>No <code>overflow: hidden</code> on content</td><td>Only for decorative wrappers (border-radius, image crops)</td></tr>
+            <tr><td>4</td><td><code>dvh</code> not <code>vh</code></td><td><code>100vh</code> includes browser chrome on mobile. Use <code>100dvh</code>.</td></tr>
+            <tr><td>5</td><td>Reduce density or scroll</td><td>If 3 cards don't fit, scroll within slide or show fewer per slide</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="code-block reveal" style="margin-bottom:1.5rem;">
+<span class="code-comment">/* ✅ Section grows with content */</span>
+<span class="code-selector">.hero</span> { <span class="code-prop">min-height</span>: 100dvh; }
+
+<span class="code-comment">/* ❌ Section clips content that doesn't fit */</span>
+<span class="code-selector">.hero</span> { <span class="code-prop">height</span>: 100vh; <span class="code-prop">overflow</span>: hidden; }
+
+<span class="code-comment">/* ✅ Slide scrolls internally on mobile */</span>
+<span class="code-selector">.slide</span> { <span class="code-prop">height</span>: 100dvh; <span class="code-prop">overflow-y</span>: auto; }
+@media (min-width: 768px) {
+  <span class="code-selector">.slide</span> { <span class="code-prop">overflow-y</span>: visible; }
+}
+
+<span class="code-comment">/* ✅ dvh with vh fallback */</span>
+<span class="code-selector">.full-screen</span> {
+  <span class="code-prop">min-height</span>: 100vh;   <span class="code-comment">/* fallback */</span>
+  <span class="code-prop">min-height</span>: 100dvh;  <span class="code-comment">/* dynamic */</span>
+}
+      </div>
+
+      <div class="card-grid reveal" style="margin-bottom:2rem;">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">min-height not height</div><div class="card-sub"><code>min-height: 100dvh</code> lets content grow. <code>height: 100vh</code> clips it.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Slides scroll on mobile</div><div class="card-sub">Carousel/slide containers need <code>overflow-y: auto</code> below <code>md:</code>. Content that fits on desktop rarely fits on a phone.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">dvh not vh</div><div class="card-sub"><code>100vh</code> includes browser chrome on mobile. <code>100dvh</code> adjusts dynamically. Always provide <code>vh</code> fallback.</div></div>
+      </div>
     </section>
 
     <!-- MOTION TOKENS -->

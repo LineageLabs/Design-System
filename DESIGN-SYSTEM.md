@@ -655,6 +655,7 @@ Large layout gaps (`gap-lg` and above) may compress one step. Small/medium gaps 
 8. **Standard grid: 1 → 2 → 3 columns.** `grid-cols-1` → `md:grid-cols-2` → `lg:grid-cols-3`.
 9. **Restructure, don't hide.** If content matters on desktop, show it on mobile too. Change layout (stack, reorder), not visibility.
 10. **Prevent mobile overflow.** Wrap tables in `.table-scroll` containers. Use safe `minmax(min(Xpx, 100%), 1fr)`. Clamp overlay widths to `calc(100vw - 3rem)`. Apply global resets (`overflow-x: clip` on html, `overflow-wrap: break-word` on body). See "Mobile Content Overflow Prevention" below.
+11. **No vertical content clipping.** Never use `height` + `overflow: hidden` on content containers. Use `min-height` so content grows. Slides/carousels must `overflow-y: auto` on mobile. Use `dvh` not `vh`. See "Vertical Content & Fixed-Height Containers" below.
 
 ### Mobile Content Overflow Prevention
 
@@ -694,6 +695,41 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 ```
 
 **Full spec:** [`tokens/breakpoints.yaml`](tokens/breakpoints.yaml) → `overflow_prevention`
+
+### Vertical Content & Fixed-Height Containers
+
+Fixed-height containers (`height: 100vh` + `overflow: hidden`) are the most common cause of **vertical content clipping on mobile**. Content that fits on a desktop viewport often doesn't fit on a phone — reduced screen height, larger touch targets, and dynamic browser chrome all eat vertical space.
+
+| # | Rule | Implementation |
+|---|------|----------------|
+| 1 | **`min-height` not `height`** | Never use `height: 100vh` on content containers. Use `min-height` so content can grow. `height` + `overflow: hidden` = invisible content. |
+| 2 | **Slides must scroll on mobile** | Paginated/slide/carousel layouts where each slide is viewport-height must add `overflow-y: auto` on the slide container below `md:`. |
+| 3 | **No `overflow: hidden` on content** | Use `overflow: hidden` only on decorative wrappers (border-radius clipping, image crops). For layout containers, use `overflow: visible` (default) or `overflow-y: auto`. |
+| 4 | **`dvh` not `vh`** | `100vh` on mobile includes area behind browser chrome. Use `100dvh` (dynamic viewport height). Fallback: `min-height: 100vh; min-height: 100dvh;` |
+| 5 | **Reduce density or enable scroll** | If a slide fits 3 cards on desktop but only 2 on mobile, let the content scroll within the slide or show fewer items per slide. Never clip content. |
+
+```css
+/* ✅ Section grows with content */
+.hero { min-height: 100dvh; }
+
+/* ❌ Section clips content that doesn't fit */
+.hero { height: 100vh; overflow: hidden; }
+
+/* ✅ Slide scrolls internally on mobile */
+.slide { height: 100dvh; overflow-y: auto; }
+@media (min-width: 768px) {
+  .slide { overflow-y: visible; }
+}
+
+/* ❌ Slide clips content on mobile */
+.slide { height: 100vh; overflow: hidden; }
+
+/* ✅ dvh with vh fallback */
+.full-screen {
+  min-height: 100vh;   /* fallback for older browsers */
+  min-height: 100dvh;  /* dynamic — accounts for browser chrome */
+}
+```
 
 ---
 

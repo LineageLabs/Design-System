@@ -5,6 +5,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.24] — 2026-02-26
+
+### Added
+- **Vertical content clipping prevention rules.** New "Vertical Content & Fixed-Height Containers" subsection in `DESIGN-SYSTEM.md` § 8 with 5 rules: `min-height` not `height` for sections, slides must scroll on mobile (`overflow-y: auto` below `md:`), no `overflow: hidden` on content containers, `dvh` not `vh` for viewport units, reduce density or enable inner scroll. Includes CSS do/don't code examples with `vh` fallback pattern.
+- **`tokens/breakpoints.yaml` vertical overflow rules.** Five new rules (18–22) covering `min-height`, slide scroll, `overflow: hidden` restriction, `dvh` vs `vh`, and content density. New `vertical_overflow` block in `overflow_prevention` section.
+- **`components/shadcn-customizations.yaml` vertical overflow entries.** New `vertical` block in `overflow_rules` with section height, viewport unit, `overflow: hidden`, and carousel slide guidance.
+- **`index.html` vertical content subsection.** New "Vertical Content & Fixed Heights" subsection in responsive section with 5-rule reference table, CSS code block (min-height/dvh/slide scroll patterns), and 3 guideline cards.
+
+### Changed
+- **`DESIGN-SYSTEM.md` § 8 guidelines.** Expanded from 10 to 11 guidelines (added "No vertical content clipping" at #11).
+- **`CLAUDE.md` cardinal rule 9.** Appended vertical overflow guidance: `min-height` over `height`, `overflow-y: auto` for slides, `dvh` over `vh`.
+
+---
+
 ## [2026.02.23] — 2026-02-26
 
 ### Added

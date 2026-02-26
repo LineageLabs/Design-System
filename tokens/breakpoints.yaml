@@ -181,6 +181,26 @@ rules:
     rule: "Block horizontal page scroll with overflow-x: clip on html"
     detail: "Apply overflow-x: clip (not hidden) to the html element as a last-resort safety net. Use clip rather than hidden because hidden creates a new scrolling context that breaks position: sticky."
 
+  18_min_height_not_height:
+    rule: "Use min-height, not height, for full-screen sections"
+    detail: "Never use height: 100vh on content containers. Use min-height so content can grow beyond the viewport. height + overflow: hidden = invisible content on mobile."
+
+  19_slides_scroll_on_mobile:
+    rule: "Slide/carousel slides must scroll internally on mobile"
+    detail: "Any paginated layout where each slide is viewport-height must add overflow-y: auto to the slide container below md:. Content that fits on desktop often doesn't fit on mobile due to reduced vertical space, larger touch targets, and dynamic browser chrome."
+
+  20_no_overflow_hidden_on_content:
+    rule: "Never use overflow: hidden on content containers"
+    detail: "overflow: hidden silently clips content. Use it only on decorative wrappers (border-radius clipping, image crops). For layout containers use overflow: visible (default) or overflow-y: auto if scrolling is needed."
+
+  21_dvh_not_vh:
+    rule: "Use dvh not vh for mobile viewport heights"
+    detail: "100vh on mobile includes area behind browser chrome (address bar). Use 100dvh (dynamic viewport height) which adjusts. Fallback: min-height: 100vh; min-height: 100dvh;"
+
+  22_reduce_density_or_scroll:
+    rule: "Reduce content density on mobile or enable inner scroll"
+    detail: "If a slide fits 3 cards on desktop but only 2 on mobile, let the content scroll within the slide or show fewer items per slide. Never clip content."
+
 # ─────────────────────────────────────────
 # Mobile Compaction
 # ─────────────────────────────────────────
@@ -270,3 +290,11 @@ overflow_prevention:
       - "Toast"
       - "Popover"
       - "DropdownMenu"
+
+  vertical_overflow:
+    description: "Rules for preventing vertical content clipping on mobile"
+    section_heights: "Use min-height (not height) for full-viewport sections"
+    viewport_unit: "Use dvh (not vh) — accounts for mobile browser chrome"
+    fallback: "min-height: 100vh; min-height: 100dvh;"
+    slide_containers: "Add overflow-y: auto below md: for paginated/slide layouts"
+    overflow_hidden: "Only for decorative wrappers (border-radius, image crops) — never on content containers"

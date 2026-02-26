@@ -263,6 +263,12 @@ overflow_rules:
       max_width: "calc(100vw - 3rem)"
       notes: "Viewport-clamped width on mobile."
 
+  vertical:
+    section_heights: "Use min-height (not height) for full-viewport sections"
+    viewport_unit: "dvh not vh — 100vh includes mobile browser chrome"
+    overflow_hidden: "Only on decorative wrappers (border-radius clips, image crops) — never on content containers"
+    carousel_slides: "overflow-y: auto below md: for any fixed-height paginated layout"
+
 # ==============================================================================
 # WRAPPER COMPONENT PATTERNS
 # ==============================================================================
