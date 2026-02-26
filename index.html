@@ -1183,6 +1183,56 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ── Responsive section ── */
+    .responsive-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .responsive-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .responsive-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .container-demo {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 64px;
+    }
+    .container-demo-gutter {
+      flex: 0 0 1.5rem;
+      background: color-mix(in srgb, var(--brand-highlight-grass-green) 15%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .container-demo-gutter {
+        flex: 0 0 2rem;
+      }
+    }
+    .container-demo-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      gap: 0.25rem;
+      background: color-mix(in srgb, var(--muted) 50%, transparent);
+      border-left: 1px dashed var(--border);
+      border-right: 1px dashed var(--border);
+    }
   </style>
 </head>
 <body>
@@ -1197,6 +1247,7 @@
       <a href="#logo">Logo</a>
       <a href="#colors">Colors</a>
       <a href="#spacing">Spacing</a>
+      <a href="#responsive">Responsive</a>
       <a href="#motion">Motion</a>
       <a href="#animations">Animations</a>
       <a href="#components">Components</a>
@@ -1613,9 +1664,90 @@
       </div>
     </section>
 
+    <!-- RESPONSIVE -->
+    <section id="responsive">
+      <p class="section-label">Section 05</p>
+      <h2 class="section-title">Responsive Design</h2>
+      <p class="section-desc">
+        <strong>Mobile-first.</strong> Default CSS targets mobile. Override upward with Tailwind <code>md:</code> and <code>lg:</code> prefixes.
+        The primary layout breakpoint is <strong>768px</strong> (<code>md:</code>).
+      </p>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Breakpoint Scale</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Min-width</th><th>Tailwind</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td><code>mobile</code></td><td>0px</td><td>(default)</td><td>Base styles — all CSS starts here</td></tr>
+            <tr><td><code>sm</code></td><td>640px</td><td><code>sm:</code></td><td>Large phones landscape — rarely needed</td></tr>
+            <tr style="background:color-mix(in srgb, var(--brand-highlight-grass-green) 8%, transparent);"><td><code>md</code></td><td><strong>768px</strong></td><td><code>md:</code></td><td><strong>Primary breakpoint</strong> — layout shifts here</td></tr>
+            <tr><td><code>lg</code></td><td>1024px</td><td><code>lg:</code></td><td>Desktop — full multi-column layouts</td></tr>
+            <tr><td><code>xl</code></td><td>1280px</td><td><code>xl:</code></td><td>Wide desktop — optional refinement</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Live Grid Demo <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— resize your browser to see columns change</span></h3>
+      <div class="reveal" style="margin-bottom:1rem;">
+        <p class="bp-indicator" id="bpIndicator" style="font-size:0.8rem;font-weight:600;margin-bottom:0.75rem;padding:0.375rem 0.75rem;border-radius:9999px;display:inline-block;background:var(--brand-highlight-dark-green);color:var(--brand-highlight-light-green);">
+          📱 Mobile — 1 column
+        </p>
+      </div>
+      <div class="responsive-grid reveal" style="margin-bottom:2rem;">
+        <div class="card"><div class="card-title">Card 1</div><div class="card-sub">Single column on mobile, 2 at <code>md:</code>, 3 at <code>lg:</code></div></div>
+        <div class="card"><div class="card-title">Card 2</div><div class="card-sub">Component padding stays the same at every breakpoint</div></div>
+        <div class="card"><div class="card-title">Card 3</div><div class="card-sub">Only layout and page-level spacing adapt</div></div>
+        <div class="card"><div class="card-title">Card 4</div><div class="card-sub">Typography scales fluidly with <code>clamp()</code></div></div>
+        <div class="card"><div class="card-title">Card 5</div><div class="card-sub">Page gutter: 1.5rem mobile → 2rem desktop</div></div>
+        <div class="card"><div class="card-title">Card 6</div><div class="card-sub">Touch targets stay &ge;44px on all screens</div></div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Container Behavior</h3>
+      <div class="reveal" style="margin-bottom:2rem;">
+        <div class="container-demo">
+          <div class="container-demo-gutter container-demo-gutter-left"></div>
+          <div class="container-demo-content">
+            <span style="font-size:0.75rem;font-weight:600;color:var(--muted-foreground);">Content area</span>
+            <span style="font-size:0.7rem;color:var(--muted-foreground);">max-width: 1100px · centered · auto margins</span>
+          </div>
+          <div class="container-demo-gutter container-demo-gutter-right"></div>
+        </div>
+        <div style="display:flex;gap:1.5rem;margin-top:0.75rem;font-size:0.75rem;color:var(--muted-foreground);">
+          <span>◀ Gutter: <code>1.5rem</code> mobile / <code>2rem</code> desktop ▶</span>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">What Changes vs. What Stays Fixed</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <table class="token-table">
+          <thead><tr><th>Element</th><th>Mobile → Desktop</th><th>Changes?</th></tr></thead>
+          <tbody>
+            <tr><td>Component padding</td><td>Same everywhere</td><td style="color:var(--muted-foreground);">No</td></tr>
+            <tr><td>Page gutter</td><td>1.5rem → 2rem</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — at md:</td></tr>
+            <tr><td>Section spacing</td><td>May compress one step</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — below md:</td></tr>
+            <tr><td>Grid columns</td><td>1 → 2 → 3</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — at md: and lg:</td></tr>
+            <tr><td>Headlines</td><td>Fluid via clamp()</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Fluid</td></tr>
+            <tr><td>Body text</td><td>1rem fixed</td><td style="color:var(--muted-foreground);">No</td></tr>
+            <tr><td>Touch targets</td><td>44px minimum</td><td style="color:var(--muted-foreground);">No</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
+      <div class="card-grid reveal">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Layout shifts at md:</div><div class="card-sub">768px is where single-column becomes multi-column. Sidebars appear. Navigation expands.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for headlines. No breakpoint-based <code>font-size</code> changes.</div></div>
+        <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">Fixed component padding</div><div class="card-sub">Buttons, cards, inputs keep the same padding at every screen size. Only page-level spacing adapts.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Page gutter widens at md:</div><div class="card-sub"><code>page-gutter</code> 1.5rem → <code>page-gutter-lg</code> 2rem at 768px.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins may drop one scale step below <code>md:</code>. Component padding stays fixed.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
+      </div>
+    </section>
+
     <!-- MOTION TOKENS -->
     <section id="motion">
-      <p class="section-label">Section 05</p>
+      <p class="section-label">Section 06</p>
       <h2 class="section-title">Motion Tokens</h2>
       <p class="section-desc">All animations use <strong>GSAP v3</strong>. Every animation must check <code>prefers-reduced-motion</code>.</p>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Durations</h3>
@@ -1651,7 +1783,7 @@
 
     <!-- ANIMATION PRESETS -->
     <section id="animations">
-      <p class="section-label">Section 06</p>
+      <p class="section-label">Section 07</p>
       <h2 class="section-title">Animation Presets</h2>
       <p class="section-desc">Click any card to replay. Presets live in <code>animations/presets.js</code>.</p>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Entrance</h3>
@@ -1691,7 +1823,7 @@
 
     <!-- COMPONENT CUSTOMIZATIONS — LIVE DEMOS -->
     <section id="components">
-      <p class="section-label">Section 07</p>
+      <p class="section-label">Section 08</p>
       <h2 class="section-title">Live Components</h2>
       <p class="section-desc">
         Interactive Maia-styled components with their assigned GSAP animations.
@@ -2130,7 +2262,7 @@
 
     <!-- GET STARTED -->
     <section id="start">
-      <p class="section-label">Section 08</p>
+      <p class="section-label">Section 09</p>
       <h2 class="section-title">Get Started</h2>
       <p class="section-desc">Set up a new project with shadcn/ui Maia + Gray theme.</p>
       <div class="step-list reveal">
@@ -2163,7 +2295,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     <!-- MOBILE EXAMPLE -->
     <section id="mobile-example">
-      <p class="section-label">Section 09</p>
+      <p class="section-label">Section 10</p>
       <h2 class="section-title">Mobile Example</h2>
       <p class="section-desc">
         A realistic mobile app — "Focus" — built entirely from design system components.
@@ -2280,6 +2412,27 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       html.classList.toggle("dark", dark);
       toggleBtn.textContent = dark ? "Light mode" : "Dark mode";
     });
+
+    /* ── Breakpoint indicator ── */
+    (function() {
+      var bpEl = document.getElementById("bpIndicator");
+      if (!bpEl) return;
+      var bps = [
+        { min: 1280, label: "🖥 xl — Wide desktop" },
+        { min: 1024, label: "💻 lg — Desktop · 3 columns" },
+        { min: 768,  label: "📱 md — Tablet · 2 columns" },
+        { min: 640,  label: "📱 sm — Large phone" },
+        { min: 0,    label: "📱 Mobile — 1 column" }
+      ];
+      function update() {
+        var w = window.innerWidth;
+        for (var i = 0; i < bps.length; i++) {
+          if (w >= bps[i].min) { bpEl.textContent = bps[i].label; return; }
+        }
+      }
+      window.addEventListener("resize", update);
+      update();
+    })();
 
     gsap.registerPlugin(ScrollTrigger);
 

@@ -39,11 +39,12 @@ and logo assets so every project stays consistent.
 | 3 | `tokens/brand-colors.yaml` | Brand color palette with strict usage rules |
 | 4 | `tokens/motion.yaml` | Duration, easing, and stagger tokens |
 | 5 | `tokens/spacing.yaml` | Spacing scale, semantic tokens, component spacing, guidelines |
-| 6 | `animations/presets.js` | GSAP animation presets — entrance, exit, hover, scroll, logo |
-| 7 | `animations/scroll-triggers.js` | GSAP ScrollTrigger pattern factories |
-| 8 | `components/shadcn-customizations.yaml` | What we change from shadcn defaults |
-| 9 | `assets/logos/README.md` | Logo variants, sizes, naming conventions |
-| 10 | `CHANGELOG.md` | Version history — what changed and when |
+| 6 | `tokens/breakpoints.yaml` | Breakpoint scale, responsive rules, container behavior, grid patterns |
+| 7 | `animations/presets.js` | GSAP animation presets — entrance, exit, hover, scroll, logo |
+| 8 | `animations/scroll-triggers.js` | GSAP ScrollTrigger pattern factories |
+| 9 | `components/shadcn-customizations.yaml` | What we change from shadcn defaults |
+| 10 | `assets/logos/README.md` | Logo variants, sizes, naming conventions |
+| 11 | `CHANGELOG.md` | Version history — what changed and when |
 
 ## Changelog Rule
 

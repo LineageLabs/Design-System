@@ -491,7 +491,106 @@ Foundation: **4px grid** (0.25rem). Maia style = "generous spacing" — when in 
 
 ---
 
-## 8. Icons
+## 8. Responsive Design
+
+Mobile-first. All default CSS targets mobile screens. Override upward with Tailwind `md:` and `lg:` prefixes.
+
+### Breakpoint Scale
+
+Aligned with Tailwind CSS v4 defaults:
+
+| Token | Min-width | Tailwind | Use |
+|-------|-----------|----------|-----|
+| `mobile` | 0px | (default) | Base styles — all CSS starts here |
+| `sm` | 640px | `sm:` | Large phones landscape — rarely needed |
+| `md` | 768px | `md:` | **Primary breakpoint** — tablets / small laptops |
+| `lg` | 1024px | `lg:` | Desktop — full multi-column layouts |
+| `xl` | 1280px | `xl:` | Wide desktop — optional refinement |
+
+**Primary split: `md:` (768px).** This is where layout shifts from single-column to multi-column.
+
+### Container
+
+| Property | Value | Notes |
+|----------|-------|-------|
+| Max width | `1100px` | `page-max-width` from spacing tokens |
+| Gutter (mobile) | `1.5rem` (24px) | `page-gutter` — below 768px |
+| Gutter (desktop) | `2rem` (32px) | `page-gutter-lg` — 768px and above |
+| Centering | `margin-inline: auto` | Standard block centering |
+
+```css
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;      /* page-gutter */
+}
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 2rem;      /* page-gutter-lg */
+  }
+}
+```
+
+### Layout Patterns
+
+**Card grid** (default content layout):
+
+| Breakpoint | Columns | Tailwind |
+|------------|---------|----------|
+| Mobile (default) | 1 | `grid grid-cols-1` |
+| `md:` (768px) | 2 | `md:grid-cols-2` |
+| `lg:` (1024px) | 3 | `lg:grid-cols-3` |
+
+**Sidebar layout**:
+
+| Breakpoint | Behavior |
+|------------|----------|
+| Mobile (default) | Stacked — sidebar below or hidden |
+| `md:` (768px) | Side-by-side — sidebar 280px, content fills rest |
+
+### Typography
+
+Use CSS `clamp()` for fluid headline scaling. Do **not** set different `font-size` values at different breakpoints.
+
+```css
+/* ✅ Correct — fluid scaling */
+.h0 { font-size: clamp(3.5rem, 8vw, 6rem); }
+
+/* ❌ Wrong — breakpoint-based sizing */
+h1 { font-size: 2rem; }
+@media (min-width: 768px) { h1 { font-size: 3rem; } }
+```
+
+Body text (`1rem` / 16px) stays fixed across all breakpoints.
+
+### What Changes vs. What Stays Fixed
+
+| Element | Mobile → Desktop | Changes? |
+|---------|------------------|----------|
+| Component padding (buttons, cards, inputs) | Same | **No** — stays fixed |
+| Page gutter | 1.5rem → 2rem | **Yes** — at `md:` |
+| Section spacing | May compress one step | **Yes** — below `md:` |
+| Grid columns | 1 → 2 → 3 | **Yes** — at `md:` and `lg:` |
+| Typography (headlines) | Fluid via `clamp()` | **Fluid** — no breakpoints |
+| Typography (body) | 1rem fixed | **No** |
+| Touch targets | 44px minimum | **No** — same everywhere |
+
+### Guidelines
+
+1. **Mobile-first CSS.** Default styles target mobile. Override upward with `md:` and `lg:`. Never write desktop-first CSS.
+2. **Layout shifts at `md:`.** Single-column → multi-column. Sidebars appear. Navigation expands.
+3. **Fluid typography.** Use `clamp()` for headlines. No breakpoint-based `font-size` changes.
+4. **Fixed component padding.** Buttons, cards, inputs keep the same padding at every screen size.
+5. **Page gutter widens at `md:`.** `1.5rem` → `2rem`.
+6. **Section spacing compresses below `md:`.** Section margins may drop one scale step. Component padding stays fixed.
+7. **Standard grid: 1 → 2 → 3 columns.** `grid-cols-1` → `md:grid-cols-2` → `lg:grid-cols-3`.
+
+**Full spec:** [`tokens/breakpoints.yaml`](tokens/breakpoints.yaml)
+
+---
+
+## 9. Icons
 
 ### Hugeicons
 
@@ -553,7 +652,7 @@ Icons adapt automatically when using `currentColor` — no additional work requi
 
 ---
 
-## 9. Assets & Logos
+## 10. Assets & Logos
 
 ### Required Logo Variants
 
@@ -579,7 +678,7 @@ Icons adapt automatically when using `currentColor` — no additional work requi
 
 ---
 
-## 10. File Map
+## 11. File Map
 
 | File | Purpose |
 |------|---------|
@@ -589,6 +688,7 @@ Icons adapt automatically when using `currentColor` — no additional work requi
 | `tokens/brand-colors.yaml` | Brand color palette with usage rules |
 | `tokens/motion.yaml` | Duration, easing, stagger tokens |
 | `tokens/spacing.yaml` | Spacing scale, semantic tokens, component spacing, guidelines |
+| `tokens/breakpoints.yaml` | Breakpoint scale, responsive rules, container behavior, grid patterns |
 | `animations/presets.js` | GSAP animation presets (entrance, exit, hover, scroll, logo) |
 | `animations/scroll-triggers.js` | GSAP ScrollTrigger factory functions |
 | `animations/transitions.css` | CSS-only transitions for simple interactions |

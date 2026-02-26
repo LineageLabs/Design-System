@@ -5,6 +5,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.21] — 2026-02-26
+
+### Added
+- **Responsive design rules and breakpoints.** New `tokens/breakpoints.yaml` with Tailwind-aligned breakpoint scale (mobile/sm/md/lg/xl), mobile-first philosophy, container behavior, grid patterns, and 7 responsive guidelines. `md:` (768px) designated as the primary layout shift breakpoint.
+- **§8 Responsive section in `DESIGN-SYSTEM.md`.** Breakpoint reference table, container CSS, layout patterns (card grid, sidebar), typography rules (clamp over breakpoints), "what changes vs. stays fixed" table, and 7 numbered guidelines. Sections §8–§10 renumbered to §9–§11. `tokens/breakpoints.yaml` added to §11 File Map.
+- **Responsive section in `index.html`.** Live breakpoint reference table, responsive grid demo (1→2→3 columns on resize with live breakpoint indicator), container/gutter visualization, "what changes" table, and guideline cards. Nav link added. Sections 05–09 renumbered to 06–10.
+- **`tokens/breakpoints.yaml` added to `CLAUDE.md` Key Files table** at priority 6. Subsequent priorities shifted +1.
+
+---
+
 ## [2026.02.20] — 2026-02-25
 
 ### Fixed

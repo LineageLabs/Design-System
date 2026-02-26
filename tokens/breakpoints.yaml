@@ -1,0 +1,137 @@
+# Breakpoints — Responsive Design Tokens
+# Aligned with Tailwind CSS v4 defaults. Mobile-first: base styles = mobile.
+# Override upward with sm:, md:, lg:, xl: prefixes.
+
+# ─────────────────────────────────────────
+# Breakpoint Scale
+# ─────────────────────────────────────────
+
+breakpoints:
+  mobile:
+    min_width: "0px"
+    tailwind_prefix: "(default)"
+    description: "Base styles — all CSS starts here"
+    use: "Single-column layout, stacked content, full-width elements"
+
+  sm:
+    min_width: "640px"
+    tailwind_prefix: "sm:"
+    description: "Large phones in landscape, small tablets"
+    use: "Minor refinements — rarely needed. Most layouts stay single-column."
+
+  md:
+    min_width: "768px"
+    tailwind_prefix: "md:"
+    description: "PRIMARY breakpoint — tablets, small laptops"
+    use: "Layout shifts: 1-col → 2-col grids, sidebar appears, page gutter widens"
+
+  lg:
+    min_width: "1024px"
+    tailwind_prefix: "lg:"
+    description: "Desktop"
+    use: "Full multi-column layouts: 2-col → 3-col grids, wider content areas"
+
+  xl:
+    min_width: "1280px"
+    tailwind_prefix: "xl:"
+    description: "Wide desktop — optional refinement"
+    use: "Extra breathing room. Rarely needed — content is capped by page-max-width."
+
+# ─────────────────────────────────────────
+# Container
+# ─────────────────────────────────────────
+
+container:
+  max_width: "1100px"           # page-max-width from spacing tokens
+  gutter_mobile: "1.5rem"       # page-gutter (24px) — below md
+  gutter_desktop: "2rem"        # page-gutter-lg (32px) — md and above
+  centering: "margin-inline: auto"
+  css: |
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: 1.5rem;   /* page-gutter */
+    }
+    @media (min-width: 768px) {
+      .container {
+        padding-inline: 2rem;   /* page-gutter-lg */
+      }
+    }
+
+# ─────────────────────────────────────────
+# Grid Patterns
+# ─────────────────────────────────────────
+
+grid_patterns:
+  card_grid:
+    description: "Standard card/content grid"
+    mobile: "1 column"
+    md: "2 columns"
+    lg: "3 columns"
+    gap: "gap-md (16px)"
+    css: |
+      .card-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .card-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .card-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+  sidebar_layout:
+    description: "Content area with sidebar"
+    mobile: "Stacked — sidebar below or hidden"
+    md: "Side-by-side — sidebar 280px, content fills rest"
+    css: |
+      .sidebar-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      @media (min-width: 768px) {
+        .sidebar-layout {
+          grid-template-columns: 280px 1fr;
+        }
+      }
+
+# ─────────────────────────────────────────
+# Responsive Rules
+# ─────────────────────────────────────────
+
+rules:
+  1_mobile_first:
+    rule: "Mobile-first CSS"
+    detail: "All default styles target mobile (< 768px). Override upward with md: and lg: prefixes. Never write desktop-first CSS that you then undo for mobile."
+
+  2_layout_shifts_at_md:
+    rule: "Layout shifts at md: (768px)"
+    detail: "This is where single-column layouts become multi-column. Grids go from 1-col to 2-col. Sidebars appear. Navigation expands."
+
+  3_fluid_typography:
+    rule: "Use clamp() for typography, not breakpoint-based font sizes"
+    detail: "Headlines use CSS clamp() for smooth scaling (e.g. h0: clamp(3.5rem, 8vw, 6rem)). Do not set different font-size values at different breakpoints."
+
+  4_fixed_component_padding:
+    rule: "Component padding stays fixed across all breakpoints"
+    detail: "Buttons, cards, inputs, dialogs — their internal padding does NOT change between mobile and desktop. Only page-level spacing adapts."
+
+  5_page_gutter_shifts:
+    rule: "Page gutter widens at md:"
+    detail: "page-gutter: 1.5rem (24px) below 768px → page-gutter-lg: 2rem (32px) at 768px and above."
+
+  6_section_spacing_compresses:
+    rule: "Section spacing may compress one step below md:"
+    detail: "Section margins (section-sm through section-xl) may drop one scale step on screens under 768px. Component padding stays fixed."
+
+  7_grid_column_pattern:
+    rule: "Standard grid pattern: 1 col → 2 col md: → 3 col lg:"
+    detail: "Use this as the default card/content grid. Adjust only when content requires it (e.g. 2-col max for wide cards)."
