@@ -145,6 +145,42 @@ rules:
     rule: "Restructure layout on mobile, don't hide content"
     detail: "If content matters on desktop, show it on mobile too. Change layout (stack, reorder) not visibility. Avoid display:none for meaningful content."
 
+  9_minimum_viewport:
+    rule: "Minimum supported viewport width: 320px"
+    detail: "All layouts, components, and content must remain usable at 320px wide. This is the narrowest commonly-used viewport (iPhone SE, compact Android, split-screen). Test every page at this width."
+
+  10_table_scroll_wrapper:
+    rule: "Always wrap tables in a horizontally-scrollable container"
+    detail: "Every <table> must be inside a <div> with overflow-x: auto. Tables compress and become unreadable on narrow viewports. The scroll wrapper ensures all columns remain accessible via horizontal swipe."
+
+  11_code_block_overflow:
+    rule: "Code blocks must scroll horizontally"
+    detail: "Apply overflow-x: auto to all <pre> and code block containers. Long lines of code must not push the page wider."
+
+  12_long_text_wrapping:
+    rule: "Apply overflow-wrap: break-word to body"
+    detail: "Prevents long unbroken strings (URLs, token names, file paths, hashes) from overflowing containers. This is a global safety net on the body element."
+
+  13_safe_grid_minimums:
+    rule: "Grid minmax() first value must not exceed the viewport minus gutters"
+    detail: "Use minmax(min(Xpx, 100%), 1fr) instead of minmax(Xpx, 1fr). At 320px viewport with 24px page gutters, the max safe minimum is 272px. Values above this cause horizontal overflow on the narrowest supported screens."
+
+  14_media_containment:
+    rule: "All media elements must be viewport-contained"
+    detail: "Apply max-width: 100%; height: auto to img, video, svg, canvas, and iframe globally. Prevents media from overflowing their parent containers."
+
+  15_overlay_viewport_clamp:
+    rule: "Overlay components must clamp to viewport width"
+    detail: "Tooltips, toasts, popovers, and dropdowns that use min-width or fixed width must also set max-width: calc(100vw - 3rem) so they never exceed the viewport minus page gutters."
+
+  16_inline_grid_collapse:
+    rule: "Inline multi-column grids must collapse on mobile"
+    detail: "Any hardcoded grid-template-columns: 1fr 1fr (or similar) must include a media query or responsive class to collapse to single-column below sm (640px)."
+
+  17_no_horizontal_page_scroll:
+    rule: "Block horizontal page scroll with overflow-x: clip on html"
+    detail: "Apply overflow-x: clip (not hidden) to the html element as a last-resort safety net. Use clip rather than hidden because hidden creates a new scrolling context that breaks position: sticky."
+
 # ─────────────────────────────────────────
 # Mobile Compaction
 # ─────────────────────────────────────────
@@ -201,3 +237,36 @@ mobile_compaction:
     - "Touch targets (44px minimum)"
     - "Font weights"
     - "Animation durations and easings"
+
+# ─────────────────────────────────────────
+# Overflow Prevention
+# ─────────────────────────────────────────
+# Rules to prevent content cutoff and horizontal overflow on mobile.
+# These complement the mobile_compaction rules above.
+
+overflow_prevention:
+  minimum_viewport: "320px"
+  description: "All layouts must work at 320px wide. These CSS rules should be in every project's global stylesheet."
+
+  global_css:
+    html: "overflow-x: clip"
+    body: "overflow-wrap: break-word"
+    media: "img, video, svg, canvas, iframe { max-width: 100%; height: auto; }"
+    pre: "overflow-x: auto"
+    table_wrapper: ".table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }"
+
+  grid_safe_minimum:
+    description: "Maximum safe minmax() first value at each viewport width"
+    at_320px: "272px (320 - 2 × 24px gutter)"
+    at_360px: "312px (360 - 2 × 24px gutter)"
+    at_375px: "327px (375 - 2 × 24px gutter)"
+    safe_pattern: "minmax(min(Xpx, 100%), 1fr)"
+
+  overlay_max_width:
+    value: "calc(100vw - 3rem)"
+    detail: "3rem = 2 × page-gutter (1.5rem). Applies to all overlay components."
+    applies_to:
+      - "Tooltip"
+      - "Toast"
+      - "Popover"
+      - "DropdownMenu"

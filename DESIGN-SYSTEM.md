@@ -654,8 +654,46 @@ Large layout gaps (`gap-lg` and above) may compress one step. Small/medium gaps 
 7. **Layout gaps compress below `md:`.** `gap-lg` and `gap-xl` drop one step. Smaller gaps (`gap-xs` through `gap-md`) stay fixed.
 8. **Standard grid: 1 → 2 → 3 columns.** `grid-cols-1` → `md:grid-cols-2` → `lg:grid-cols-3`.
 9. **Restructure, don't hide.** If content matters on desktop, show it on mobile too. Change layout (stack, reorder), not visibility.
+10. **Prevent mobile overflow.** Wrap tables in `.table-scroll` containers. Use safe `minmax(min(Xpx, 100%), 1fr)`. Clamp overlay widths to `calc(100vw - 3rem)`. Apply global resets (`overflow-x: clip` on html, `overflow-wrap: break-word` on body). See "Mobile Content Overflow Prevention" below.
 
-**Full spec:** [`tokens/breakpoints.yaml`](tokens/breakpoints.yaml)
+### Mobile Content Overflow Prevention
+
+Minimum supported viewport: **320px** (iPhone SE / compact Android / split-screen). All rules below ensure content remains accessible at this width.
+
+| # | Rule | Implementation |
+|---|------|----------------|
+| 1 | **Minimum viewport: 320px** | All layouts must be usable at 320px. Test at this width. |
+| 2 | **Wrap tables in scroll containers** | Every `<table>` gets a parent `<div>` with `overflow-x: auto`. |
+| 3 | **Code blocks scroll horizontally** | `pre, .code-block { overflow-x: auto; }` |
+| 4 | **Break long words** | `body { overflow-wrap: break-word; }` |
+| 5 | **Safe grid minimums** | Use `minmax(min(Xpx, 100%), 1fr)` — not `minmax(Xpx, 1fr)`. Max safe at 320px: **272px** (320 − 2 × 24px gutter). |
+| 6 | **Contain media** | `img, video, svg, canvas, iframe { max-width: 100%; height: auto; }` |
+| 7 | **Clamp overlay widths** | Tooltips, toasts, popovers, dropdowns: `max-width: calc(100vw - 3rem)`. |
+| 8 | **Collapse inline grids** | Multi-column inline grids → single-column below `sm` (640px). |
+| 9 | **Block horizontal page scroll** | `html { overflow-x: clip; }` — safety net (use `clip`, not `hidden`, to preserve `position: sticky`). |
+
+Add this CSS to every project's global stylesheet:
+
+```css
+/* Mobile overflow prevention — global resets */
+html { overflow-x: clip; }
+body { overflow-wrap: break-word; }
+img, video, svg, canvas, iframe { max-width: 100%; height: auto; }
+pre { overflow-x: auto; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+```
+
+Safe grid `minmax()` pattern:
+
+```css
+/* ✅ Safe — collapses to 100% on narrow screens */
+grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+
+/* ❌ Unsafe — overflows at 320px viewport when min > 272px */
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+```
+
+**Full spec:** [`tokens/breakpoints.yaml`](tokens/breakpoints.yaml) → `overflow_prevention`
 
 ---
 

@@ -233,6 +233,37 @@ style_overrides:
       Error replaces description — never show both. Use htmlFor/id for accessibility.
 
 # ==============================================================================
+# OVERFLOW PREVENTION — OVERLAY COMPONENTS
+# ==============================================================================
+# All overlay components that use min-width or fixed width must also set
+# max-width: calc(100vw - 3rem) to prevent viewport overflow on mobile.
+# 3rem = 2 × page-gutter (1.5rem).
+# ==============================================================================
+
+overflow_rules:
+  global:
+    html: "overflow-x: clip"
+    body: "overflow-wrap: break-word"
+    media: "img, video, svg, canvas, iframe { max-width: 100%; height: auto; }"
+    pre: "overflow-x: auto"
+    table: "Wrap every <table> in <div class='table-scroll'> with overflow-x: auto"
+    grid_pattern: "Use minmax(min(Xpx, 100%), 1fr) — never bare minmax(Xpx, 1fr)"
+
+  overlay_components:
+    Toast:
+      max_width: "calc(100vw - 3rem)"
+      notes: "Existing min-width (280px) overflows at 320px viewport. max-width clamps it."
+    Tooltip:
+      max_width: "calc(100vw - 3rem)"
+      notes: "Ensures tooltip content stays within viewport on narrow screens."
+    Popover:
+      max_width: "calc(100vw - 3rem)"
+      notes: "Viewport-clamped width on mobile."
+    DropdownMenu:
+      max_width: "calc(100vw - 3rem)"
+      notes: "Viewport-clamped width on mobile."
+
+# ==============================================================================
 # WRAPPER COMPONENT PATTERNS
 # ==============================================================================
 # When shadcn components need consistent customisation, create thin wrappers.

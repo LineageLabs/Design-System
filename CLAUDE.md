@@ -29,6 +29,7 @@ and logo assets so every project stays consistent.
 6. **Respect reduced motion.** Every GSAP animation must check `prefers-reduced-motion` and fall back to instant or no animation.
 7. **Never edit shadcn source.** Customise through CSS variable overrides, Tailwind utility composition, or wrapper components.
 8. **Minimal color by default.** Use surfaces, greys, and neutrals (`--foreground`, `--muted-foreground`, `--border`) for the majority of the UI. Non-brand colors (e.g. red) should only appear when they add functional value (errors, warnings, destructive actions). Brand greens may be decorative but must still be purposeful — don't scatter color without intent.
+9. **Prevent mobile overflow.** Minimum supported viewport: 320px. Apply global resets (`html { overflow-x: clip }`, `body { overflow-wrap: break-word }`, `img/video/svg { max-width: 100% }`). Wrap all tables in `.table-scroll` containers. Use `minmax(min(Xpx, 100%), 1fr)` for auto-fill grids. Clamp overlay widths (tooltips, toasts, popovers) to `calc(100vw - 3rem)`.
 
 ## Key Files (read in this order)
 

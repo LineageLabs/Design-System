@@ -62,14 +62,22 @@
        BASE RESET & TYPOGRAPHY
        ========================================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: clip; }
+    img, video, svg, canvas, iframe { max-width: 100%; height: auto; }
 
     body {
       font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--background);
       color: var(--foreground);
       line-height: 1.6;
+      overflow-wrap: break-word;
       transition: background-color 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95),
                   color 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     h1, h2, h3, h4 {
@@ -333,7 +341,7 @@
 
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
       gap: 1rem;
     }
 
@@ -931,6 +939,7 @@
       border-radius: 1rem;
       padding: 1rem 1.25rem;
       min-width: 280px;
+      max-width: calc(100vw - 3rem);
       box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 10px 40px -8px rgba(0,0,0,0.2);
       display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
       pointer-events: auto;
@@ -1185,6 +1194,10 @@
         grid-template-columns: 1fr;
       }
       .mobile-compact-grid {
+        grid-template-columns: 1fr !important;
+      }
+      /* Collapse all inline 2-col grids in component demos */
+      .comp-demo-section div[style*="grid-template-columns"] {
         grid-template-columns: 1fr !important;
       }
     }
@@ -1576,6 +1589,7 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Base Scale</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
         <table class="token-table">
           <thead><tr><th>Token</th><th>rem</th><th>px</th><th>Tailwind</th><th style="width:40%;">Visual</th></tr></thead>
           <tbody>
@@ -1594,6 +1608,7 @@
             <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
           </tbody>
         </table>
+        </div>
       </div>
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Semantic Tokens</h3>
@@ -1641,6 +1656,7 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Component Spacing</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
         <table class="comp-table">
           <thead><tr><th>Component</th><th>Padding</th><th>Gap / Notes</th></tr></thead>
           <tbody>
@@ -1658,6 +1674,7 @@
             <tr><td>Tabs</td><td><code>0.5rem 0.875rem</code></td><td>List gap: 0.25rem</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
@@ -1680,6 +1697,7 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Breakpoint Scale</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
         <table class="token-table">
           <thead><tr><th>Token</th><th>Min-width</th><th>Tailwind</th><th>Use</th></tr></thead>
           <tbody>
@@ -1690,6 +1708,7 @@
             <tr><td><code>xl</code></td><td>1280px</td><td><code>xl:</code></td><td>Wide desktop — optional refinement</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Live Grid Demo <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— resize your browser to see columns change</span></h3>
@@ -1724,6 +1743,7 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">What Changes vs. What Stays Fixed</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
         <table class="token-table">
           <thead><tr><th>Element</th><th>Mobile → Desktop</th><th>Changes?</th></tr></thead>
           <tbody>
@@ -1736,10 +1756,12 @@
             <tr><td>Touch targets</td><td>44px minimum</td><td style="color:var(--muted-foreground);">No</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Fluid Typography</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
         <table class="token-table">
           <thead><tr><th>Element</th><th>Value</th><th>Min → Max</th><th>Notes</th></tr></thead>
           <tbody>
@@ -1749,6 +1771,7 @@
             <tr><td>body</td><td><code>1rem</code> (fixed)</td><td>16px</td><td>No scaling</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Mobile Compaction <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— below 768px</span></h3>
@@ -1756,6 +1779,7 @@
         Layout-level spacing compresses on mobile. Component-level spacing <strong>never</strong> changes.
       </p>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
         <table class="token-table">
           <thead><tr><th>Token</th><th>Desktop</th><th>Mobile (&lt;768px)</th><th>Tailwind</th></tr></thead>
           <tbody>
@@ -1768,6 +1792,7 @@
             <tr><td><code>gap-md</code></td><td>16px</td><td style="color:var(--muted-foreground);">16px (fixed)</td><td><code>gap-4</code></td></tr>
           </tbody>
         </table>
+        </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;" class="reveal mobile-compact-grid">
         <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);">
@@ -1802,6 +1827,51 @@
         <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Restructure, don't hide</div><div class="card-sub">If content matters on desktop, show it on mobile. Change layout (stack, reorder), not visibility.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
       </div>
+
+      <div class="divider"></div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Mobile Overflow Prevention <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— minimum viewport: 320px</span></h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;">
+        Prevent content cutoff on narrow screens. All layouts must work at <strong>320px</strong> wide (iPhone SE / split-screen).
+      </p>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>#</th><th>Rule</th><th>Implementation</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Minimum viewport</td><td>All layouts must be usable at <strong>320px</strong> wide</td></tr>
+            <tr><td>2</td><td>Table scroll wrappers</td><td><code>&lt;div class="table-scroll"&gt;</code> around every <code>&lt;table&gt;</code></td></tr>
+            <tr><td>3</td><td>Code block overflow</td><td><code>pre { overflow-x: auto; }</code></td></tr>
+            <tr><td>4</td><td>Break long words</td><td><code>body { overflow-wrap: break-word; }</code></td></tr>
+            <tr><td>5</td><td>Safe grid minimums</td><td><code>minmax(min(Xpx, 100%), 1fr)</code> — max safe: 272px at 320px</td></tr>
+            <tr><td>6</td><td>Contain media</td><td><code>img, video, svg { max-width: 100%; height: auto; }</code></td></tr>
+            <tr><td>7</td><td>Clamp overlay widths</td><td>Tooltips, toasts, popovers: <code>max-width: calc(100vw - 3rem)</code></td></tr>
+            <tr><td>8</td><td>Collapse inline grids</td><td>Multi-column → single-column below <code>sm</code> (640px)</td></tr>
+            <tr><td>9</td><td>Block page scroll</td><td><code>html { overflow-x: clip; }</code> — use <code>clip</code> not <code>hidden</code></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.5rem;">Global CSS Resets</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:0.75rem;">Add to every project's global stylesheet:</p>
+      <div class="code-block reveal" style="margin-bottom:1.5rem;">
+<span class="code-comment">/* Mobile overflow prevention */</span>
+<span class="code-selector">html</span> { <span class="code-prop">overflow-x</span>: clip; }
+<span class="code-selector">body</span> { <span class="code-prop">overflow-wrap</span>: break-word; }
+<span class="code-selector">img, video, svg, canvas, iframe</span> { <span class="code-prop">max-width</span>: 100%; <span class="code-prop">height</span>: auto; }
+<span class="code-selector">pre</span> { <span class="code-prop">overflow-x</span>: auto; }
+<span class="code-selector">.table-scroll</span> { <span class="code-prop">overflow-x</span>: auto; <span class="code-prop">-webkit-overflow-scrolling</span>: touch; }
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.5rem;">Safe Grid Pattern</h3>
+      <div class="code-block reveal" style="margin-bottom:2rem;">
+<span class="code-comment">/* ✅ Safe — collapses to 100% on narrow screens */</span>
+grid-template-columns: repeat(auto-fill, <span class="code-prop">minmax(min(220px, 100%), 1fr)</span>);
+
+<span class="code-comment">/* ❌ Unsafe — overflows at 320px when min > 272px */</span>
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      </div>
     </section>
 
     <!-- MOTION TOKENS -->
@@ -1811,6 +1881,7 @@
       <p class="section-desc">All animations use <strong>GSAP v3</strong>. Every animation must check <code>prefers-reduced-motion</code>.</p>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Durations</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
         <table class="token-table">
           <thead><tr><th>Token</th><th>Value</th><th>Visual</th><th>Use</th></tr></thead>
           <tbody>
@@ -1822,9 +1893,11 @@
             <tr><td><code>slowest</code></td><td>1000ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:100px;"></div></div></td><td>Hero/cinematic</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Easings</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <div class="table-scroll">
         <table class="token-table">
           <thead><tr><th>Name</th><th>GSAP</th><th>Use</th></tr></thead>
           <tbody>
@@ -1836,6 +1909,7 @@
             <tr><td><span class="easing-badge">bounce</span></td><td><code>bounce.out</code></td><td>Bounce — GSAP only</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
       <div class="card" style="margin-top:1rem;border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Reduced Motion — Mandatory</div><div class="card-sub">Every animation must check <code>prefers-reduced-motion</code>. When active: GSAP durations → 0, disable scrub/parallax, limit fades to 150ms, disable transforms.</div></div>
     </section>
@@ -2021,7 +2095,7 @@
       <!-- CARDS -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Card <span class="anim-tag">rounded-2xl</span> <span class="anim-tag">ring-1 ring-foreground/10</span> <span class="anim-tag">hover-lift</span></div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px, 100%),1fr));gap:1rem;">
           <div class="maia-card maia-card-interactive maia-hover-lift">
             <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">Interactive Card</h4>
             <p style="font-size:0.8rem;color:var(--muted-foreground);">Hover to lift. Uses <code>shadow-md</code> + <code>translateY(-4px)</code>.</p>
@@ -2040,7 +2114,7 @@
       <!-- CARD WITH IMAGE -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Card with Image <span class="anim-tag">rounded-2xl</span> <span class="anim-tag">aspect-ratio: 16/9</span> <span class="anim-tag">overflow: hidden</span></div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px, 100%),1fr));gap:1rem;">
           <div class="maia-card-image maia-card-interactive maia-hover-lift">
             <div class="maia-card-image-area">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
@@ -2075,7 +2149,7 @@
       <!-- CHART -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Chart <span class="anim-tag">--chart-1..5</span> <span class="anim-tag">rounded-2xl</span> <span class="anim-tag">Recharts</span></div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px, 100%),1fr));gap:1rem;">
           <div class="maia-chart">
             <div class="maia-chart-header">
               <div class="maia-chart-title">Weekly Activity</div>
@@ -2125,7 +2199,7 @@
       <!-- FIELD -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Field <span class="anim-tag">label + input + description</span> <span class="anim-tag">error state</span></div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;max-width:780px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px, 100%),1fr));gap:1.5rem;max-width:780px;">
           <div class="maia-field">
             <label class="maia-field-label">Email address</label>
             <input class="maia-input" type="email" placeholder="you@example.com" />
@@ -2271,6 +2345,7 @@
       <!-- ANIMATION ASSIGNMENTS TABLE (kept as reference) -->
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Animation Assignment Reference</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <div class="table-scroll">
         <table class="comp-table">
           <thead><tr><th>Component</th><th>Entrance</th><th>Exit</th><th>Notes</th></tr></thead>
           <tbody>
@@ -2284,6 +2359,7 @@
             <tr><td><strong>Tabs</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>Quick crossfade</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
     </section>
 

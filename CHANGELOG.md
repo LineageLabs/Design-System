@@ -5,6 +5,24 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.23] — 2026-02-26
+
+### Added
+- **Mobile content overflow prevention rules.** New "Mobile Content Overflow Prevention" subsection in `DESIGN-SYSTEM.md` § 8 with 9 numbered rules: minimum viewport (320px), table scroll wrappers, code block overflow, long text wrapping (`overflow-wrap: break-word`), safe grid minimums (`minmax(min(Xpx, 100%), 1fr)`), media containment (`max-width: 100%`), overlay viewport clamping (`calc(100vw - 3rem)`), inline grid collapse, horizontal scroll blocking (`overflow-x: clip` on html). Includes CSS code block for global resets and safe grid pattern example. § 8 guidelines expanded from 9 to 10.
+- **`tokens/breakpoints.yaml` overflow prevention block.** New `overflow_prevention` section with minimum viewport (320px), global CSS rules, grid safe minimum calculations at 320px/360px/375px viewports, safe pattern, and overlay max-width spec. Nine new rules (9–17) added to `rules:` section covering minimum viewport, table scroll, code overflow, long text, safe grids, media containment, overlay clamping, inline grid collapse, and `overflow-x: clip`.
+- **`components/shadcn-customizations.yaml` overflow rules.** New `overflow_rules` section with global CSS rules and `overlay_components` block adding `max-width: calc(100vw - 3rem)` to Toast, Tooltip, Popover, and DropdownMenu.
+- **`index.html` overflow prevention CSS.** Global `overflow-x: clip` on html, `overflow-wrap: break-word` on body, `max-width: 100%; height: auto` on media elements, `.table-scroll` class. Toast `max-width: calc(100vw - 3rem)` added.
+- **`index.html` table scroll wrappers.** All 9 `.token-table`/`.comp-table` instances wrapped in `<div class="table-scroll">` for horizontal scrolling on narrow viewports.
+- **`index.html` responsive section documentation.** New "Mobile Overflow Prevention" subsection with 9-rule reference table, global CSS reset code block, and safe grid pattern code block.
+- **`CLAUDE.md` cardinal rule 9.** "Prevent mobile overflow" — global resets, table wrappers, safe `minmax()`, overlay clamping, 320px minimum.
+
+### Changed
+- **`index.html` grid patterns.** All `minmax(Xpx, 1fr)` patterns updated to `minmax(min(Xpx, 100%), 1fr)`: `.card-grid` (220px), and inline grids at 200px, 220px, 240px, 280px. Prevents horizontal overflow on viewports narrower than the minimum value.
+- **`index.html` mobile media query.** Expanded `@media (max-width: 640px)` to collapse all inline multi-column grids in `.comp-demo-section` to single-column.
+- **`DESIGN-SYSTEM.md` § 8 guidelines.** Expanded from 9 to 10 guidelines (added "Prevent mobile overflow" at #10).
+
+---
+
 ## [2026.02.22] — 2026-02-26
 
 ### Added
