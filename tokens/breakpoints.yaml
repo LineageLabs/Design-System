@@ -118,7 +118,12 @@ rules:
 
   3_fluid_typography:
     rule: "Use clamp() for typography, not breakpoint-based font sizes"
-    detail: "Headlines use CSS clamp() for smooth scaling (e.g. h0: clamp(3.5rem, 8vw, 6rem)). Do not set different font-size values at different breakpoints."
+    detail: "Headlines use CSS clamp() for smooth scaling. Do not set different font-size values at different breakpoints."
+    values:
+      h0: "clamp(3.5rem, 8vw, 6rem)"     # 56px → 96px — display / hero
+      h1: "clamp(2rem, 4vw, 2.75rem)"     # 32px → 44px — page titles
+      h2: "clamp(1.5rem, 3vw, 1.75rem)"   # 24px → 28px — section titles
+      body: "1rem (fixed)"                  # 16px — no scaling
 
   4_fixed_component_padding:
     rule: "Component padding stays fixed across all breakpoints"
@@ -135,3 +140,64 @@ rules:
   7_grid_column_pattern:
     rule: "Standard grid pattern: 1 col → 2 col md: → 3 col lg:"
     detail: "Use this as the default card/content grid. Adjust only when content requires it (e.g. 2-col max for wide cards)."
+
+  8_restructure_not_hide:
+    rule: "Restructure layout on mobile, don't hide content"
+    detail: "If content matters on desktop, show it on mobile too. Change layout (stack, reorder) not visibility. Avoid display:none for meaningful content."
+
+# ─────────────────────────────────────────
+# Mobile Compaction
+# ─────────────────────────────────────────
+# Below md: (768px), layout-level spacing compresses to keep content
+# tight on small screens. Component-level spacing never changes.
+
+mobile_compaction:
+  description: "Spacing adjustments for screens below md: (768px)"
+
+  section_spacing:
+    description: "Each section spacing token drops one scale step on mobile"
+    section_xl:
+      desktop: "128px (py-32)"
+      mobile: "96px (py-24)"
+      tailwind: "py-24 md:py-32"
+    section_lg:
+      desktop: "96px (py-24)"
+      mobile: "64px (py-16)"
+      tailwind: "py-16 md:py-24"
+    section_md:
+      desktop: "64px (py-16)"
+      mobile: "48px (py-12)"
+      tailwind: "py-12 md:py-16"
+    section_sm:
+      desktop: "48px (py-12)"
+      mobile: "32px (py-8)"
+      tailwind: "py-8 md:py-12"
+
+  gap_scaling:
+    description: "Large layout gaps compress one step. Small/medium gaps stay fixed."
+    gap_xl:
+      desktop: "32px (gap-8)"
+      mobile: "24px (gap-6)"
+      compresses: true
+    gap_lg:
+      desktop: "24px (gap-6)"
+      mobile: "16px (gap-4)"
+      compresses: true
+    gap_md:
+      value: "16px (gap-4)"
+      compresses: false
+      note: "Fixed — default grid gap"
+    gap_sm:
+      value: "12px (gap-3)"
+      compresses: false
+    gap_xs:
+      value: "8px (gap-2)"
+      compresses: false
+
+  never_compresses:
+    - "Component padding (cards p-6, buttons, inputs, dialogs)"
+    - "Component gaps (gap-xs, gap-sm, gap-md within components)"
+    - "Border radius"
+    - "Touch targets (44px minimum)"
+    - "Font weights"
+    - "Animation durations and easings"

@@ -76,6 +76,8 @@
       font-family: "Poppins", sans-serif;
       line-height: 1.2;
     }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
+    h2 { font-size: clamp(1.5rem, 3vw, 1.75rem); }
     .h0 {
       font-family: "Poppins", sans-serif;
       font-weight: 400;
@@ -1182,6 +1184,9 @@
       #logo .comp-demo-section div[style*="grid-template-columns:1fr 1fr"] {
         grid-template-columns: 1fr;
       }
+      .mobile-compact-grid {
+        grid-template-columns: 1fr !important;
+      }
     }
 
     /* ── Responsive section ── */
@@ -1293,8 +1298,8 @@
       </p>
       <div class="type-preview reveal">
         <div class="type-row"><span class="type-label">h0</span><span class="h0">The quick brown</span></div>
-        <div class="type-row"><span class="type-label">h1</span><h1 style="font-size:2.75rem;font-weight:800;">The quick brown fox</h1></div>
-        <div class="type-row"><span class="type-label">h2</span><h2 style="font-size:1.75rem;font-weight:700;">The quick brown fox</h2></div>
+        <div class="type-row"><span class="type-label">h1</span><h1 style="font-weight:800;">The quick brown fox</h1></div>
+        <div class="type-row"><span class="type-label">h2</span><h2 style="font-weight:700;">The quick brown fox</h2></div>
         <div class="type-row"><span class="type-label">h3</span><h3 style="font-size:1.25rem;font-weight:700;">The quick brown fox jumps</h3></div>
         <div class="type-row"><span class="type-label">h4</span><h4 style="font-size:1rem;font-weight:600;">The quick brown fox jumps over</h4></div>
         <div style="height:1px;background:var(--border);"></div>
@@ -1733,14 +1738,68 @@
         </table>
       </div>
 
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Fluid Typography</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <table class="token-table">
+          <thead><tr><th>Element</th><th>Value</th><th>Min → Max</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><code>h0</code></td><td><code>clamp(3.5rem, 8vw, 6rem)</code></td><td>56px → 96px</td><td>Display / hero text</td></tr>
+            <tr><td><code>h1</code></td><td><code>clamp(2rem, 4vw, 2.75rem)</code></td><td>32px → 44px</td><td>Page titles</td></tr>
+            <tr><td><code>h2</code></td><td><code>clamp(1.5rem, 3vw, 1.75rem)</code></td><td>24px → 28px</td><td>Section titles</td></tr>
+            <tr><td>body</td><td><code>1rem</code> (fixed)</td><td>16px</td><td>No scaling</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Mobile Compaction <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— below 768px</span></h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;">
+        Layout-level spacing compresses on mobile. Component-level spacing <strong>never</strong> changes.
+      </p>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Desktop</th><th>Mobile (&lt;768px)</th><th>Tailwind</th></tr></thead>
+          <tbody>
+            <tr><td><code>section-xl</code></td><td>128px</td><td>96px</td><td><code>py-24 md:py-32</code></td></tr>
+            <tr><td><code>section-lg</code></td><td>96px</td><td>64px</td><td><code>py-16 md:py-24</code></td></tr>
+            <tr><td><code>section-md</code></td><td>64px</td><td>48px</td><td><code>py-12 md:py-16</code></td></tr>
+            <tr><td><code>section-sm</code></td><td>48px</td><td>32px</td><td><code>py-8 md:py-12</code></td></tr>
+            <tr style="border-top:2px solid var(--border);"><td><code>gap-xl</code></td><td>32px</td><td>24px</td><td><code>gap-6 md:gap-8</code></td></tr>
+            <tr><td><code>gap-lg</code></td><td>24px</td><td>16px</td><td><code>gap-4 md:gap-6</code></td></tr>
+            <tr><td><code>gap-md</code></td><td>16px</td><td style="color:var(--muted-foreground);">16px (fixed)</td><td><code>gap-4</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;" class="reveal mobile-compact-grid">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);">
+          <div class="card-title">Compresses on mobile</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.5rem;line-height:1.7;">
+            <span>&#x2022; Section spacing (one step down)</span>
+            <span>&#x2022; Layout gaps (<code>gap-lg</code>, <code>gap-xl</code>)</span>
+            <span>&#x2022; Page gutter (24px → 32px at md:)</span>
+            <span>&#x2022; Grid columns (1 → 2 → 3)</span>
+            <span>&#x2022; Headlines (fluid via <code>clamp()</code>)</span>
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--foreground);">
+          <div class="card-title">Fixed at every size</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.5rem;line-height:1.7;">
+            <span>&#x2022; Component padding (cards <code>p-6</code>, buttons, inputs)</span>
+            <span>&#x2022; Small/medium gaps (<code>gap-xs</code>–<code>gap-md</code>)</span>
+            <span>&#x2022; Border radius</span>
+            <span>&#x2022; Touch targets (44px min)</span>
+            <span>&#x2022; Animation durations &amp; easings</span>
+          </div>
+        </div>
+      </div>
+
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
       <div class="card-grid reveal">
         <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Layout shifts at md:</div><div class="card-sub">768px is where single-column becomes multi-column. Sidebars appear. Navigation expands.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for headlines. No breakpoint-based <code>font-size</code> changes.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for h0–h2. No breakpoint-based <code>font-size</code> changes. Body stays at <code>1rem</code>.</div></div>
         <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">Fixed component padding</div><div class="card-sub">Buttons, cards, inputs keep the same padding at every screen size. Only page-level spacing adapts.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Page gutter widens at md:</div><div class="card-sub"><code>page-gutter</code> 1.5rem → <code>page-gutter-lg</code> 2rem at 768px.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins may drop one scale step below <code>md:</code>. Component padding stays fixed.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins and large gaps (<code>gap-lg</code>, <code>gap-xl</code>) each drop one step below <code>md:</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Restructure, don't hide</div><div class="card-sub">If content matters on desktop, show it on mobile. Change layout (stack, reorder), not visibility.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
       </div>
     </section>

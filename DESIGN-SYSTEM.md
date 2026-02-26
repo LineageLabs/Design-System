@@ -90,6 +90,14 @@ h1, h2, h3, h4 {
   letter-spacing: -0.03em;
 }
 
+h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);   /* 32px → 44px */
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 1.75rem); /* 24px → 28px */
+}
+
 code, pre {
   font-family: "Geist Mono", "SF Mono", "Fira Code", Consolas, monospace;
 }
@@ -553,9 +561,18 @@ Aligned with Tailwind CSS v4 defaults:
 
 Use CSS `clamp()` for fluid headline scaling. Do **not** set different `font-size` values at different breakpoints.
 
+| Element | Value | Min → Max |
+|---------|-------|-----------|
+| `h0` | `clamp(3.5rem, 8vw, 6rem)` | 56px → 96px |
+| `h1` | `clamp(2rem, 4vw, 2.75rem)` | 32px → 44px |
+| `h2` | `clamp(1.5rem, 3vw, 1.75rem)` | 24px → 28px |
+| Body | `1rem` (fixed) | 16px |
+
 ```css
 /* ✅ Correct — fluid scaling */
 .h0 { font-size: clamp(3.5rem, 8vw, 6rem); }
+h1  { font-size: clamp(2rem, 4vw, 2.75rem); }
+h2  { font-size: clamp(1.5rem, 3vw, 1.75rem); }
 
 /* ❌ Wrong — breakpoint-based sizing */
 h1 { font-size: 2rem; }
@@ -576,6 +593,56 @@ Body text (`1rem` / 16px) stays fixed across all breakpoints.
 | Typography (body) | 1rem fixed | **No** |
 | Touch targets | 44px minimum | **No** — same everywhere |
 
+### Mobile Compaction Rules
+
+Below `md:` (768px), layout-level spacing compresses to keep content tight on small screens. **Component-level spacing never changes.**
+
+#### Section Spacing (below 768px)
+
+Each section spacing token drops one step:
+
+| Token | Desktop | Mobile (< 768px) | Tailwind |
+|-------|---------|-------------------|----------|
+| `section-xl` | 128px (`py-32`) | 96px (`py-24`) | `py-24 md:py-32` |
+| `section-lg` | 96px (`py-24`) | 64px (`py-16`) | `py-16 md:py-24` |
+| `section-md` | 64px (`py-16`) | 48px (`py-12`) | `py-12 md:py-16` |
+| `section-sm` | 48px (`py-12`) | 32px (`py-8`) | `py-8 md:py-12` |
+
+```css
+/* ✅ Section spacing compresses on mobile */
+.section { padding-block: 3rem; }                /* 48px — mobile */
+@media (min-width: 768px) { .section { padding-block: 4rem; } }  /* 64px — desktop */
+
+/* ❌ Wrong — component padding does NOT compress */
+.card { padding: 1rem; }
+@media (min-width: 768px) { .card { padding: 1.5rem; } }  /* Never do this */
+```
+
+#### Gap Scaling (below 768px)
+
+Large layout gaps (`gap-lg` and above) may compress one step. Small/medium gaps stay fixed.
+
+| Token | Desktop | Mobile (< 768px) | Notes |
+|-------|---------|-------------------|-------|
+| `gap-xl` | 32px (`gap-8`) | 24px (`gap-6`) | Major content block gap |
+| `gap-lg` | 24px (`gap-6`) | 16px (`gap-4`) | Section content, card grids |
+| `gap-md` | 16px (`gap-4`) | 16px (`gap-4`) | **Fixed** — default grid gap |
+| `gap-sm` | 12px (`gap-3`) | 12px (`gap-3`) | **Fixed** |
+| `gap-xs` | 8px (`gap-2`) | 8px (`gap-2`) | **Fixed** |
+
+#### What Compresses vs. What Stays Fixed
+
+| Element | Compresses on mobile? | Rule |
+|---------|----------------------|------|
+| Section spacing (`section-*`) | **Yes** — one step down | `section-lg` 96px → 64px, etc. |
+| Layout gaps (`gap-lg`, `gap-xl`) | **Yes** — one step down | `gap-lg` 24px → 16px, etc. |
+| Page gutter | **Yes** — at `md:` | 24px → 32px |
+| Grid columns | **Yes** — at `md:` and `lg:` | 1 → 2 → 3 |
+| Component padding (cards, buttons, inputs) | **No** — fixed | Cards stay `p-6`, buttons keep their padding |
+| Component gaps (`gap-xs`, `gap-sm`, `gap-md`) | **No** — fixed | Form field gap stays `gap-3`, card internal gap stays `gap-4` |
+| Border radius | **No** — fixed | `--radius: 0.875rem` everywhere |
+| Touch targets | **No** — fixed | 44px minimum everywhere |
+
 ### Guidelines
 
 1. **Mobile-first CSS.** Default styles target mobile. Override upward with `md:` and `lg:`. Never write desktop-first CSS.
@@ -583,8 +650,10 @@ Body text (`1rem` / 16px) stays fixed across all breakpoints.
 3. **Fluid typography.** Use `clamp()` for headlines. No breakpoint-based `font-size` changes.
 4. **Fixed component padding.** Buttons, cards, inputs keep the same padding at every screen size.
 5. **Page gutter widens at `md:`.** `1.5rem` → `2rem`.
-6. **Section spacing compresses below `md:`.** Section margins may drop one scale step. Component padding stays fixed.
-7. **Standard grid: 1 → 2 → 3 columns.** `grid-cols-1` → `md:grid-cols-2` → `lg:grid-cols-3`.
+6. **Section spacing compresses below `md:`.** Section margins drop one scale step. Component padding stays fixed.
+7. **Layout gaps compress below `md:`.** `gap-lg` and `gap-xl` drop one step. Smaller gaps (`gap-xs` through `gap-md`) stay fixed.
+8. **Standard grid: 1 → 2 → 3 columns.** `grid-cols-1` → `md:grid-cols-2` → `lg:grid-cols-3`.
+9. **Restructure, don't hide.** If content matters on desktop, show it on mobile too. Change layout (stack, reorder), not visibility.
 
 **Full spec:** [`tokens/breakpoints.yaml`](tokens/breakpoints.yaml)
 

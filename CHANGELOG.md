@@ -5,6 +5,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.02.22] — 2026-02-26
+
+### Added
+- **Fluid typography `clamp()` values for h1 and h2.** `h1: clamp(2rem, 4vw, 2.75rem)` (32px → 44px), `h2: clamp(1.5rem, 3vw, 1.75rem)` (24px → 28px). Previously only `h0` had a fluid value. Added to `DESIGN-SYSTEM.md` CSS setup, responsive typography table, and `index.html` (global CSS rules, typography preview, responsive section fluid typography table). `tokens/breakpoints.yaml` rule `3_fluid_typography` updated with all four values.
+- **Mobile compaction rules.** New "Mobile Compaction Rules" subsection in `DESIGN-SYSTEM.md` § 8 documenting: section spacing drops one step below `md:` (e.g. `section-lg` 96px → 64px), layout gaps `gap-lg`/`gap-xl` drop one step, and explicit "compresses vs. stays fixed" reference table. Component padding, small/medium gaps, border radius, and touch targets explicitly marked as fixed.
+- **`tokens/breakpoints.yaml` mobile compaction section.** New `mobile_compaction` block with `section_spacing` (all four tiers with desktop/mobile/tailwind values), `gap_scaling` (five gap tokens with compress flags), and `never_compresses` list. New rule `8_restructure_not_hide`.
+- **`tokens/spacing.yaml` responsive annotations.** Section spacing tokens (`section-sm` through `section-xl`) now include `mobile` and `tailwind_responsive` values. Gap tokens `gap-lg`/`gap-xl` now include `mobile` and `tailwind_responsive` values. `responsive` guideline expanded with full compaction rules.
+- **`index.html` responsive section updates.** Fluid typography reference table, mobile compaction spacing table, "compresses vs. stays fixed" comparison cards, and updated guideline cards (added "restructure, don't hide" and merged spacing compression rules).
+
+### Changed
+- **`DESIGN-SYSTEM.md` § 8 guidelines.** Expanded from 7 to 9 guidelines: added gap compression rule (7) and "restructure, don't hide" rule (9).
+- **`index.html` typography preview.** h1 and h2 now use global `clamp()` rules instead of inline `font-size` overrides.
+
+---
+
 ## [2026.02.21] — 2026-02-26
 
 ### Added

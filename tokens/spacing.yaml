@@ -128,6 +128,8 @@ semantic:
     use: "Large dialog/sheet padding, hero card"
 
   # Layout gaps between sibling elements
+  # gap-xs through gap-md: fixed at all sizes.
+  # gap-lg and gap-xl: compress one step on mobile (< 768px).
   gap-xs:
     value: "0.5rem"     # 8px  — scale 2
     tailwind: "2"
@@ -142,29 +144,42 @@ semantic:
     use: "Default card grid gap, list gap"
   gap-lg:
     value: "1.5rem"     # 24px — scale 6
+    mobile: "1rem"      # 16px — scale 4 (one step down)
     tailwind: "6"
+    tailwind_responsive: "gap-4 md:gap-6"
     use: "Section content gap, generous card grids"
   gap-xl:
     value: "2rem"       # 32px — scale 8
+    mobile: "1.5rem"    # 24px — scale 6 (one step down)
     tailwind: "8"
+    tailwind_responsive: "gap-6 md:gap-8"
     use: "Major content block gap"
 
   # Section-level vertical rhythm
+  # On mobile (< 768px), each drops one step. See breakpoints.yaml → mobile_compaction.
   section-sm:
     value: "3rem"       # 48px — scale 12
+    mobile: "2rem"      # 32px — scale 8 (one step down)
     tailwind: "12"
+    tailwind_responsive: "py-8 md:py-12"
     use: "Compact section margin (e.g. within a form)"
   section-md:
     value: "4rem"       # 64px — scale 16
+    mobile: "3rem"      # 48px — scale 12 (one step down)
     tailwind: "16"
+    tailwind_responsive: "py-12 md:py-16"
     use: "Default section break"
   section-lg:
     value: "6rem"       # 96px — scale 24
+    mobile: "4rem"      # 64px — scale 16 (one step down)
     tailwind: "24"
+    tailwind_responsive: "py-16 md:py-24"
     use: "Major page section separation"
   section-xl:
     value: "8rem"       # 128px — scale 32
+    mobile: "6rem"      # 96px — scale 24 (one step down)
     tailwind: "32"
+    tailwind_responsive: "py-24 md:py-32"
     use: "Hero / footer breathing room"
 
   # Page-level
@@ -254,10 +269,13 @@ guidelines:
     a single-line change.
 
   responsive: >
-    Spacing stays fixed on mobile — do NOT shrink padding below the
-    component defaults. The only responsive adjustment is page-gutter
-    (1.5rem mobile → 2rem desktop) and section spacing which may
-    compress by one step on screens under 640px.
+    Component padding stays fixed on mobile — do NOT shrink padding below
+    the component defaults. Layout-level spacing compresses below md: (768px):
+    section spacing drops one step (section-lg 96px → 64px, etc.),
+    large layout gaps drop one step (gap-lg 24px → 16px, gap-xl 32px → 24px),
+    and page-gutter stays at 1.5rem until md: where it widens to 2rem.
+    Component gaps (gap-xs, gap-sm, gap-md) stay fixed.
+    Full responsive compaction rules: tokens/breakpoints.yaml → mobile_compaction.
 
   vertical_rhythm: >
     Sections are separated by section-lg (6rem). Within a section,
