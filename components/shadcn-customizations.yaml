@@ -5,6 +5,13 @@
 # This file documents what we CHANGE from shadcn/ui defaults.
 # If a component is not listed here, use it exactly as shadcn provides it.
 #
+# Theme Configuration:
+#   - Style: Maia (soft and rounded, generous spacing)
+#   - Base Color: Gray (blue-tinted neutrals)
+#   - Radius: Large (--radius: 0.875rem)
+#   - Font: Geist Sans (body) + Poppins (headlines h1-h4)
+#   - Icons: Hugeicons
+#
 # Rules:
 #   1. Never edit files inside components/ui/ directly — shadcn CLI must remain updatable
 #   2. Use cn() (from shadcn's lib/utils) for conditional class merging
@@ -15,10 +22,78 @@
 # ==============================================================================
 
 general_rules:
-  - "Use the shadcn Neutral base color theme (default)"
-  - "Keep --radius at 0.625rem (shadcn default) unless a project specifies otherwise"
+  - "Use the shadcn Gray base color theme (Maia style)"
+  - "Set --radius to 0.875rem (large — Maia soft/rounded aesthetic)"
   - "Never override --primary, --background, etc. with brand colors globally"
   - "Apply brand colors via --brand-* custom properties only where designs specify"
+  - "Use Geist Sans for all body text and UI elements"
+  - "Use Poppins (weight 600-800) for h1-h4 headings only"
+  - "Use Hugeicons as the default icon library"
+
+# ==============================================================================
+# TYPOGRAPHY
+# ==============================================================================
+
+typography:
+  body_font: "Geist Sans"
+  headline_font: "Poppins"
+  code_font: "Geist Mono"
+  headline_elements: [".h0", "h1", "h2", "h3", "h4"]
+  headline_weights: [400, 600, 700, 800]
+  h0:
+    class: ".h0"
+    font_weight: 400
+    font_size: "clamp(3.5rem, 8vw, 6rem)"
+    line_height: 1.0
+    letter_spacing: "-0.03em"
+    usage: "Hero / landing display text — huge, light-weight"
+  notes: |
+    Poppins is used ONLY for h0-h4 elements.
+    h0 is a utility class (.h0), not a native HTML element — use it on any tag for display-size text.
+    h0 uses weight 400 (regular); h1-h4 use 600-800.
+    All other text (body, buttons, inputs, labels, nav) uses Geist Sans.
+    Code blocks use Geist Mono.
+
+# ==============================================================================
+# ICONS
+# ==============================================================================
+
+icons:
+  library: "Hugeicons"
+  package: "hugeicons-react"
+  default_size: "20px"
+  default_stroke: 1.5
+  fallback: "Lucide (only if icon unavailable in Hugeicons)"
+  notes: "Use Hugeicons consistently. Match icon weight to surrounding text weight."
+
+# ==============================================================================
+# MAIA STYLE
+# ==============================================================================
+
+maia_style:
+  description: "Soft and rounded, with generous spacing"
+  source: "shadcn-ui/ui → apps/v4/registry/styles/style-maia.css (53.5 KB)"
+  radius: "0.875rem (large)"
+  aesthetic: "Consumer-friendly, warm, approachable"
+  characteristics:
+    - "Pill-shaped buttons and inputs (rounded-4xl)"
+    - "Cards and dialogs use rounded-2xl with ring-1 ring-foreground/10 instead of border"
+    - "Inputs have tinted background: bg-input/30"
+    - "Generous spacing: gap-6, py-6 on cards"
+    - "Blue-tinted gray palette for a refined, modern feel"
+  component_radii:
+    Button: "rounded-4xl (pill)"
+    Input: "rounded-4xl (pill)"
+    Card: "rounded-2xl + ring-1 ring-foreground/10"
+    Dialog: "rounded-4xl + ring-1 ring-foreground/5"
+    Badge: "rounded-4xl (pill)"
+    Accordion: "rounded-2xl"
+    Avatar: "rounded-full"
+  available_radius_presets:
+    none: "0"
+    small: "0.45rem"
+    medium: "0.625rem (default)"
+    large: "0.875rem (our choice)"
 
 # ==============================================================================
 # COMPONENT ANIMATION ASSIGNMENTS
@@ -102,8 +177,97 @@ style_overrides:
     notes: "Accessible focus ring using shadcn --ring variable"
 
   Badge:
-    brand_variant: "Use --brand-highlight-* colors for brand-specific badges"
-    notes: "Only when design explicitly calls for brand-colored badges"
+    brand_variants:
+      light-green: "Soft pastel bg (25% light-green), dark-green text — lightest tier"
+      grass-green: "Tinted bg (15% grass-green), grass-green text — mid tier"
+      dark-green: "Solid dark-green bg, light-green text — boldest tier"
+    notes: "Three visually distinct tiers from soft to bold. Only use when design explicitly calls for brand-colored badges."
+
+  Chart:
+    install: "npx shadcn@latest add chart"
+    library: "Recharts"
+    container: "rounded-2xl card shell (ring-1 ring-foreground/10, shadow-sm, bg-card)"
+    padding: "1.5rem (p-6)"
+    color_tokens:
+      chart-1: "var(--chart-1) — primary data series"
+      chart-2: "var(--chart-2) — secondary series"
+      chart-3: "var(--chart-3) — tertiary series"
+      chart-4: "var(--chart-4) — quaternary series"
+      chart-5: "var(--chart-5) — quinary series"
+    bar_radius: "0.375rem top corners (flat bottom)"
+    grid_lines: "var(--border), 1px"
+    axis_text: "var(--muted-foreground), 0.75rem"
+    tooltip: "rounded-xl, shadow-md, bg-card"
+    legend: "Below chart, 0.75rem text, 8px dot (border-radius: 2px) + label"
+    notes: |
+      Always use --chart-* tokens — never hardcode colors or use brand colors.
+      Wrap in Maia card shell for consistency. Include header + legend.
+      Keep grid lines subtle. Tooltip follows Maia card aesthetic.
+
+  CardImage:
+    description: "Image-top variant of Card — image area flush with top edge"
+    container: "rounded-2xl + overflow: hidden + ring-1 ring-foreground/10"
+    image_area:
+      aspect_ratio: "16/9 (default — override with 4:3 or 1:1 per card)"
+      fit: "object-cover"
+      fallback_bg: "var(--muted)"
+    body_padding: "1.25rem 1.5rem 1.5rem"
+    interactive: "Same hover-lift + shadow-md as standard Card"
+    notes: |
+      overflow: hidden on the container clips the image to the border-radius.
+      Do not add border-radius to the image element itself.
+      Always provide bg-muted fallback on the image area.
+
+  Field:
+    description: "Wrapper pattern: label + input + description + error message"
+    layout: "flex-col, gap: 0.375rem (6px)"
+    label: "0.875rem, weight 600, var(--foreground)"
+    description_text: "0.8rem, var(--muted-foreground) — below input"
+    error: "0.8rem, weight 500, var(--destructive) — replaces description"
+    error_ring: "ring-2, --destructive at 25% opacity"
+    select: "Pill-shaped (rounded-4xl), bg-input/30, chevron via inline SVG"
+    textarea: "rounded-xl (not pill), bg-input/30, min-height 80px, resize vertical"
+    notes: |
+      Every form input must be wrapped in a Field. No bare inputs without labels.
+      Description goes below the input, not between label and input.
+      Error replaces description — never show both. Use htmlFor/id for accessibility.
+
+# ==============================================================================
+# OVERFLOW PREVENTION — OVERLAY COMPONENTS
+# ==============================================================================
+# All overlay components that use min-width or fixed width must also set
+# max-width: calc(100vw - 3rem) to prevent viewport overflow on mobile.
+# 3rem = 2 × page-gutter (1.5rem).
+# ==============================================================================
+
+overflow_rules:
+  global:
+    html: "overflow-x: clip"
+    body: "overflow-wrap: break-word"
+    media: "img, video, svg, canvas, iframe { max-width: 100%; height: auto; }"
+    pre: "overflow-x: auto"
+    table: "Wrap every <table> in <div class='table-scroll'> with overflow-x: auto"
+    grid_pattern: "Use minmax(min(Xpx, 100%), 1fr) — never bare minmax(Xpx, 1fr)"
+
+  overlay_components:
+    Toast:
+      max_width: "calc(100vw - 3rem)"
+      notes: "Existing min-width (280px) overflows at 320px viewport. max-width clamps it."
+    Tooltip:
+      max_width: "calc(100vw - 3rem)"
+      notes: "Ensures tooltip content stays within viewport on narrow screens."
+    Popover:
+      max_width: "calc(100vw - 3rem)"
+      notes: "Viewport-clamped width on mobile."
+    DropdownMenu:
+      max_width: "calc(100vw - 3rem)"
+      notes: "Viewport-clamped width on mobile."
+
+  vertical:
+    section_heights: "Use min-height (not height) for full-viewport sections"
+    viewport_unit: "dvh not vh — 100vh includes mobile browser chrome"
+    overflow_hidden: "Only on decorative wrappers (border-radius clips, image crops) — never on content containers"
+    carousel_slides: "overflow-y: auto below md: for any fixed-height paginated layout"
 
 # ==============================================================================
 # WRAPPER COMPONENT PATTERNS

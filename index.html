@@ -1,0 +1,3100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design System Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <style>
+    /* =========================================================
+       COLOR TOKENS — Gray base color, Maia style
+       ========================================================= */
+    :root {
+      --radius: 0.875rem;
+      --background: #FAFAFA;
+      --foreground: oklch(0.13 0.028 261.692);
+      --card: oklch(1 0 0);
+      --card-foreground: oklch(0.13 0.028 261.692);
+      --primary: oklch(0.21 0.034 264.665);
+      --primary-foreground: oklch(0.985 0.002 247.839);
+      --secondary: oklch(0.967 0.003 264.542);
+      --secondary-foreground: oklch(0.21 0.034 264.665);
+      --muted: oklch(0.967 0.003 264.542);
+      --muted-foreground: oklch(0.551 0.027 264.364);
+      --border: oklch(0.928 0.006 264.531);
+      --ring: oklch(0.707 0.022 261.325);
+      --destructive: oklch(0.577 0.245 27.325);
+
+      --brand-surface: #FAFAFA;
+      --brand-surface-grey: #EAEAEA;
+      --brand-highlight-light-green: #B9F7CE;
+      --brand-highlight-grass-green: #3DC683;
+      --brand-highlight-dark-green: #15552E;
+    }
+
+    .dark {
+      --background: oklch(0.13 0.028 261.692);
+      --foreground: oklch(0.985 0.002 247.839);
+      --card: oklch(0.21 0.034 264.665);
+      --card-foreground: oklch(0.985 0.002 247.839);
+      --primary: oklch(0.928 0.006 264.531);
+      --primary-foreground: oklch(0.21 0.034 264.665);
+      --secondary: oklch(0.278 0.033 256.848);
+      --secondary-foreground: oklch(0.985 0.002 247.839);
+      --muted: oklch(0.278 0.033 256.848);
+      --muted-foreground: oklch(0.707 0.022 261.325);
+      --border: oklch(1 0 0 / 10%);
+      --ring: oklch(0.551 0.027 264.364);
+      --destructive: oklch(0.704 0.191 22.216);
+
+      --brand-surface: #151515;
+      --brand-surface-grey: #EAEAEA;
+      --brand-highlight-light-green: #B9F7CE;
+      --brand-highlight-grass-green: #3DC683;
+      --brand-highlight-dark-green: #15552E;
+    }
+
+    /* =========================================================
+       BASE RESET & TYPOGRAPHY
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: clip; }
+    img, video, svg, canvas, iframe { max-width: 100%; height: auto; }
+
+    body {
+      font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      overflow-wrap: break-word;
+      transition: background-color 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95),
+                  color 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.2;
+    }
+    h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
+    h2 { font-size: clamp(1.5rem, 3vw, 1.75rem); }
+    .h0 {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+    }
+    code {
+      font-family: "Geist Mono", "SF Mono", "Fira Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--muted);
+      padding: 0.15em 0.4em;
+      border-radius: 0.25rem;
+    }
+
+    /* =========================================================
+       LAYOUT
+       ========================================================= */
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    section { margin-bottom: 6rem; }
+
+    .section-label {
+      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-desc {
+      font-family: "Geist Sans", -apple-system, sans-serif;
+      color: var(--muted-foreground);
+      margin-bottom: 2rem;
+      max-width: 60ch;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+
+    /* =========================================================
+       HEADER / NAV
+       ========================================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--background);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      transition: background-color 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--foreground);
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.125rem 0.7rem;
+      border-radius: 15px;
+      background: var(--brand-highlight-dark-green);
+      color: var(--brand-highlight-light-green);
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 22px;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border: 1px solid transparent;
+    }
+    .dark .logo-badge {
+      background: var(--brand-highlight-light-green);
+      color: var(--brand-highlight-dark-green);
+      border-color: var(--brand-highlight-dark-green);
+    }
+    /* Forced dark variant — for always-dark preview panels */
+    .logo-badge-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.125rem 0.7rem;
+      border-radius: 15px;
+      background: #B9F7CE;
+      color: #15552E;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 22px;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border: 1px solid #15552E;
+    }
+    .logo-wordmark { font-weight: 700; }
+    .logo-char { will-change: filter, opacity, transform; }
+
+    /* Lineage*Labs text wordmark */
+    .logo-text {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 54px;
+      letter-spacing: -0.05em;
+      color: var(--brand-highlight-dark-green);
+      white-space: nowrap;
+    }
+    .dark .logo-text {
+      color: var(--brand-highlight-light-green);
+    }
+    /* Forced dark variant for always-dark panels */
+    .logo-text-dark {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 54px;
+      letter-spacing: -0.05em;
+      color: #B9F7CE;
+      white-space: nowrap;
+    }
+    .logo-text .logo-asterisk,
+    .logo-text-dark .logo-asterisk {
+      color: var(--brand-highlight-grass-green);
+    }
+    .logo-text-dark .logo-asterisk {
+      color: #3DC683;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      transition: color 0.15s ease-out;
+    }
+    nav a:hover { color: var(--foreground); }
+
+    .theme-toggle {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--foreground);
+      border-radius: var(--radius);
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 500;
+      font-family: inherit;
+      transition: background 0.15s ease-out, box-shadow 0.15s ease-out, transform 0.1s ease-out;
+    }
+    .theme-toggle:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .theme-toggle:active { transform: scale(0.97); }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero { padding: 5rem 0 4rem; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--brand-highlight-light-green);
+      color: #000;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 400;
+      line-height: 1.0;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title .accent-grass-green  { color: var(--brand-highlight-grass-green); }
+    .hero-title .accent-dark-green { color: var(--brand-highlight-grass-green); }
+
+    .hero-sub {
+      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      max-width: 55ch;
+      margin-bottom: 2rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.625rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted-foreground);
+      background: var(--card);
+    }
+
+    /* =========================================================
+       CARDS
+       ========================================================= */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+      gap: 1rem;
+    }
+
+    .card-title {
+      font-family: "Poppins", sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-sub {
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+    }
+
+    .hover-lift {
+      cursor: pointer;
+      transition: box-shadow 0.2s ease-out, transform 0.2s ease-out;
+    }
+    .hover-lift:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+    }
+
+    /* =========================================================
+       COLOR SWATCHES
+       ========================================================= */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .swatch {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .swatch-color { height: 72px; width: 100%; }
+
+    .swatch-info {
+      padding: 0.625rem 0.75rem;
+      background: var(--card);
+    }
+
+    .swatch-name {
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .swatch-hex {
+      font-size: 0.72rem;
+      font-family: "Geist Mono", "SF Mono", Consolas, monospace;
+      color: var(--muted-foreground);
+    }
+
+    .swatch-var {
+      font-size: 0.68rem;
+      font-family: "Geist Mono", "SF Mono", Consolas, monospace;
+      color: var(--muted-foreground);
+      margin-top: 0.15rem;
+    }
+
+    /* =========================================================
+       TABLES
+       ========================================================= */
+    .token-table, .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .token-table th, .comp-table th {
+      text-align: left;
+      padding: 0.625rem 1rem;
+      background: var(--muted);
+      color: var(--muted-foreground);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .token-table th:first-child { border-radius: var(--radius) 0 0 0; }
+    .token-table th:last-child  { border-radius: 0 var(--radius) 0 0; }
+
+    .token-table td, .comp-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .token-table tr:last-child td, .comp-table tr:last-child td { border-bottom: none; }
+    .token-table tr:hover td, .comp-table tr:hover td { background: var(--muted); }
+
+    .duration-bar-wrap { display: flex; align-items: center; gap: 0.75rem; }
+    .duration-bar { height: 6px; border-radius: 999px; background: var(--brand-highlight-grass-green); flex-shrink: 0; }
+
+    .easing-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: var(--muted);
+      color: var(--muted-foreground);
+      border: 1px solid var(--border);
+    }
+
+    /* =========================================================
+       ANIMATION DEMO
+       ========================================================= */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .demo-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: border-color 0.15s ease-out;
+    }
+    .demo-card:hover { border-color: var(--brand-highlight-grass-green); }
+
+    .demo-box {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      background: var(--foreground);
+      flex-shrink: 0;
+    }
+    .demo-label { font-size: 0.8rem; font-weight: 600; text-align: center; }
+    .demo-sublabel { font-size: 0.7rem; color: var(--muted-foreground); text-align: center; }
+    .play-hint { font-size: 0.7rem; color: var(--brand-highlight-grass-green); font-weight: 500; }
+
+    /* =========================================================
+       HOVER DEMO
+       ========================================================= */
+    .hover-demo-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    .hover-demo-btn {
+      background: var(--foreground);
+      color: var(--background);
+      border: none;
+      border-radius: var(--radius);
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .hover-demo-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       TYPOGRAPHY PREVIEW
+       ========================================================= */
+    .type-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .type-row { display: flex; align-items: baseline; gap: 1rem; }
+    .type-label {
+      font-family: "Geist Mono", monospace;
+      font-size: 0.72rem;
+      color: var(--muted-foreground);
+      min-width: 60px;
+      flex-shrink: 0;
+    }
+
+    .preset-pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: "Geist Mono", "SF Mono", Consolas, monospace;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      margin: 0.1rem;
+    }
+    .pill-entrance {
+      background: color-mix(in srgb, var(--brand-highlight-grass-green) 12%, transparent);
+      color: var(--brand-highlight-grass-green);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+    }
+    .pill-exit {
+      background: color-mix(in srgb, var(--brand-highlight-dark-green) 12%, transparent);
+      color: var(--brand-highlight-dark-green);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-dark-green) 30%, transparent);
+    }
+
+    /* =========================================================
+       CODE BLOCKS
+       ========================================================= */
+    .code-block {
+      background: oklch(0.12 0 0);
+      color: oklch(0.9 0 0);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      font-family: "Geist Mono", "SF Mono", "Fira Code", Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+    }
+    .dark .code-block { background: oklch(0.1 0 0); border-color: oklch(0.22 0 0); }
+
+    /* =========================================================
+       DARK-MODE SHADOW OVERRIDES
+       rgba(0,0,0,…) shadows are invisible on dark backgrounds.
+       Boost opacity and add a subtle light-edge glow.
+       ========================================================= */
+    .dark .card {
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .dark .hover-lift:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .dark .theme-toggle:hover {
+      box-shadow: 0 1px 6px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .dark .maia-btn-secondary:hover {
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    .dark .maia-btn-outline:hover {
+      box-shadow: inset 0 0 0 1px var(--ring), 0 2px 12px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .dark .maia-btn-ghost:hover {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .dark .maia-card {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .dark .maia-card-interactive:hover {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .dark .maia-dialog {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 25px 60px -12px rgba(0,0,0,0.6);
+    }
+    .dark .maia-sheet {
+      box-shadow: -4px 0 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .dark .maia-dropdown {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 10px 45px -8px rgba(0,0,0,0.55);
+    }
+    .dark .maia-toast {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 10px 45px -8px rgba(0,0,0,0.55);
+    }
+    .dark .maia-input:hover {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    .dark .maia-input:focus {
+      box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    }
+    .dark .maia-chart {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .dark .maia-card-image {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .dark .maia-card-image.maia-card-interactive:hover {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .dark .maia-field-select:focus {
+      box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    }
+    .dark .maia-field-textarea:focus {
+      box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    }
+
+    /* Feature badge (anim-tag) dark mode — boost contrast */
+    .dark .comp-demo-label .anim-tag {
+      background: color-mix(in srgb, var(--brand-highlight-grass-green) 18%, transparent);
+      color: var(--brand-highlight-light-green);
+      border-color: color-mix(in srgb, var(--brand-highlight-grass-green) 40%, transparent);
+    }
+
+    /* Badge light-green dark mode — swap to light text on tinted bg */
+    .dark .maia-badge-light-green {
+      background: color-mix(in srgb, var(--brand-highlight-dark-green) 50%, transparent);
+      color: var(--brand-highlight-light-green);
+      border-color: color-mix(in srgb, var(--brand-highlight-grass-green) 35%, transparent);
+    }
+    .code-block .cm { color: oklch(0.6 0 0); }
+    .code-block .kw { color: var(--brand-highlight-grass-green); }
+    .code-block .st { color: var(--brand-highlight-light-green); }
+    .code-block .fn { color: var(--brand-highlight-dark-green); }
+
+    .step-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .step { display: flex; gap: 1rem; align-items: flex-start; }
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 999px;
+      background: var(--foreground);
+      color: var(--background);
+      font-size: 0.75rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .step-body { flex: 1; }
+    .step-title { font-family: "Poppins", sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
+
+    .reveal { opacity: 0; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+    }
+
+    /* =========================================================
+       MAIA COMPONENT STYLES
+       ========================================================= */
+
+    /* Buttons — Maia pill shape */
+    .maia-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.625rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease-out, box-shadow 0.2s ease-out,
+                  filter 0.2s ease-out, color 0.2s ease-out;
+    }
+    .maia-btn:active { filter: brightness(0.92); transition-duration: 0.05s; }
+
+    .maia-btn-primary { background: var(--primary); color: var(--primary-foreground); }
+    .maia-btn-primary:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 4px 15px color-mix(in srgb, var(--primary) 30%, transparent);
+    }
+    .maia-btn-secondary { background: var(--secondary); color: var(--secondary-foreground); }
+    .maia-btn-secondary:hover {
+      filter: brightness(0.94);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .maia-btn-outline { background: transparent; color: var(--foreground); box-shadow: inset 0 0 0 1px var(--border); }
+    .maia-btn-outline:hover {
+      background: var(--muted);
+      box-shadow: inset 0 0 0 1px var(--ring), 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .maia-btn-destructive { background: var(--destructive); color: #fff; }
+    .maia-btn-destructive:hover {
+      filter: brightness(1.15);
+      box-shadow: 0 4px 15px color-mix(in srgb, var(--destructive) 30%, transparent);
+    }
+    .maia-btn-ghost { background: transparent; color: var(--foreground); }
+    .maia-btn-ghost:hover { background: var(--muted); box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+    .maia-btn-sm { padding: 0.375rem 1rem; font-size: 0.8rem; }
+    .maia-btn-lg { padding: 0.875rem 2rem; font-size: 1rem; }
+
+    /* Inputs — Maia pill shape with tinted bg */
+    .maia-input {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+      font-family: inherit;
+      background: color-mix(in srgb, var(--input) 30%, transparent);
+      color: var(--foreground);
+      outline: none;
+      transition: background 0.2s ease-out, box-shadow 0.25s ease-out;
+    }
+    .maia-input:hover {
+      background: color-mix(in srgb, var(--input) 50%, transparent);
+      box-shadow: 0 0 0 1px var(--border);
+    }
+    .maia-input:focus {
+      background: color-mix(in srgb, var(--input) 40%, transparent);
+      box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    }
+    .maia-input::placeholder { color: var(--muted-foreground); }
+
+    /* Icon buttons — toolbar context */
+    .icon-btn {
+      width: 36px; height: 36px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: var(--foreground);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s ease-out, box-shadow 0.2s ease-out;
+      outline: none;
+    }
+    .icon-btn:hover {
+      background: var(--muted);
+    }
+    .icon-btn:focus-visible {
+      background: var(--muted);
+      box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    }
+    .icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Icon tiles — quick-action context */
+    .icon-tile {
+      width: 36px; height: 36px;
+      border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      background: color-mix(in srgb, var(--muted-foreground) 10%, transparent);
+      cursor: pointer;
+      transition: background 0.15s ease-out, box-shadow 0.2s ease-out;
+      outline: none;
+    }
+    .icon-tile:hover {
+      background: color-mix(in srgb, var(--muted-foreground) 18%, transparent);
+    }
+    .icon-tile:focus-visible {
+      background: color-mix(in srgb, var(--muted-foreground) 18%, transparent);
+      box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    }
+    .icon-tile:active {
+      transform: scale(0.95);
+    }
+
+    /* Nav icons — bottom-bar context */
+    .nav-icon {
+      display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+      background: none; border: none;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      transition: background 0.15s ease-out, box-shadow 0.2s ease-out, color 0.15s ease-out;
+      outline: none;
+    }
+    .nav-icon:hover {
+      background: color-mix(in srgb, var(--foreground) 6%, transparent);
+    }
+    .nav-icon:focus-visible {
+      background: color-mix(in srgb, var(--foreground) 6%, transparent);
+      box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+    }
+    .nav-icon-active { color: var(--foreground); }
+    .nav-icon-active span { font-weight: 600; }
+    .nav-icon-inactive { color: var(--muted-foreground); }
+
+    /* Badges — Maia pill */
+    .maia-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 9999px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .maia-badge-default { background: var(--secondary); color: var(--secondary-foreground); }
+    .maia-badge-outline { background: transparent; color: var(--foreground); box-shadow: inset 0 0 0 1px var(--border); }
+    .maia-badge-light-green {
+      background: color-mix(in srgb, var(--brand-highlight-light-green) 25%, transparent);
+      color: var(--brand-highlight-dark-green);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-light-green) 40%, transparent);
+    }
+    .maia-badge-grass-green {
+      background: color-mix(in srgb, var(--brand-highlight-grass-green) 15%, transparent);
+      color: var(--brand-highlight-grass-green);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+    }
+    .maia-badge-dark-green {
+      background: var(--brand-highlight-dark-green);
+      color: var(--brand-highlight-light-green);
+      border: 1px solid var(--brand-highlight-dark-green);
+    }
+
+    /* Cards — Maia rounded-2xl with ring instead of border */
+    .maia-card {
+      background: var(--card);
+      color: var(--card-foreground);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 1px 3px rgba(0,0,0,0.06);
+      transition: box-shadow 0.25s ease-out, filter 0.25s ease-out;
+    }
+    .maia-card-interactive:hover {
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 14%, transparent), 0 8px 25px rgba(0,0,0,0.1);
+      filter: brightness(1.015);
+    }
+
+    /* Dialog — Maia rounded-4xl */
+    .maia-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .maia-overlay.open { display: flex; }
+    .maia-dialog {
+      background: var(--card);
+      color: var(--card-foreground);
+      border-radius: 2rem;
+      padding: 2rem;
+      width: 90%; max-width: 440px;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 5%, transparent), 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+    .maia-dialog h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .maia-dialog p { font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 1.5rem; }
+    .maia-dialog-actions { display: flex; gap: 0.75rem; justify-content: flex-end; }
+
+    /* Sheet — slides from right */
+    .maia-sheet-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+    }
+    .maia-sheet-overlay.open { display: block; }
+    .maia-sheet {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: 320px; max-width: 90vw;
+      background: var(--card);
+      z-index: 201;
+      padding: 1.5rem;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+      display: none;
+    }
+    .maia-sheet.open { display: block; }
+    .maia-sheet h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .maia-sheet p { font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 1rem; }
+
+    /* Dropdown */
+    .maia-dropdown-wrap { position: relative; display: inline-block; }
+    .maia-dropdown {
+      position: absolute; top: calc(100% + 4px); left: 0;
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 0.375rem;
+      min-width: 180px;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 10px 40px -8px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 50;
+    }
+    .maia-dropdown.open { display: block; }
+    .maia-dropdown-item {
+      display: block; width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      border: none; background: transparent;
+      color: var(--foreground);
+      text-align: left;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s ease-out, color 0.15s ease-out;
+    }
+    .maia-dropdown-item:hover { background: var(--muted); }
+    .maia-dropdown-item:active { background: var(--border); transition-duration: 0.05s; }
+
+    /* Toast */
+    .maia-toast-container {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      z-index: 300;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      pointer-events: none;
+    }
+    .maia-toast {
+      background: var(--card);
+      color: var(--card-foreground);
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      min-width: 280px;
+      max-width: calc(100vw - 3rem);
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 10px 40px -8px rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+      pointer-events: auto;
+    }
+    .maia-toast-text { font-size: 0.875rem; font-weight: 500; }
+    .maia-toast-close {
+      background: none; border: none;
+      color: var(--muted-foreground);
+      cursor: pointer; font-size: 1.1rem; padding: 0.25rem; font-family: inherit;
+      border-radius: 0.375rem;
+      transition: color 0.15s ease-out, background 0.15s ease-out;
+    }
+    .maia-toast-close:hover { color: var(--foreground); background: var(--muted); }
+
+    /* Accordion */
+    .maia-accordion-item { border-bottom: 1px solid var(--border); }
+    .maia-accordion-item:first-child { border-top: 1px solid var(--border); }
+    .maia-accordion-trigger {
+      display: flex; width: 100%; align-items: center; justify-content: space-between;
+      padding: 1rem 0.75rem;
+      margin: 0 -0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.9375rem; font-weight: 600; font-family: inherit;
+      border: none; background: transparent; color: var(--foreground);
+      cursor: pointer; text-align: left;
+      transition: background 0.2s ease-out, color 0.2s ease-out;
+    }
+    .maia-accordion-trigger:hover { background: var(--muted); }
+    .maia-accordion-chevron { transition: transform 0.2s ease; flex-shrink: 0; }
+    .maia-accordion-item.open .maia-accordion-chevron { transform: rotate(180deg); }
+    .maia-accordion-content { overflow: hidden; height: 0; }
+    .maia-accordion-content-inner {
+      padding: 0 0 1rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    /* Tabs */
+    .maia-tab-list {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .maia-tab {
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem; font-weight: 500; font-family: inherit;
+      border: none; background: transparent; color: var(--muted-foreground);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      border-radius: 0.375rem 0.375rem 0 0;
+      transition: color 0.2s ease-out, background 0.2s ease-out, border-color 0.2s ease-out;
+    }
+    .maia-tab:hover:not(.active) {
+      color: var(--foreground);
+      background: color-mix(in srgb, var(--muted) 60%, transparent);
+    }
+    .maia-tab.active { color: var(--foreground); border-bottom-color: var(--foreground); font-weight: 600; }
+    .maia-tab-panel { display: none; font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; }
+    .maia-tab-panel.active { display: block; }
+
+    /* Chart — Maia rounded-2xl container, uses --chart-1..5 tokens */
+    .maia-chart {
+      background: var(--card);
+      color: var(--card-foreground);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .maia-chart-header {
+      margin-bottom: 1rem;
+    }
+    .maia-chart-title {
+      font-size: 0.9rem; font-weight: 700; color: var(--foreground);
+    }
+    .maia-chart-desc {
+      font-size: 0.8rem; color: var(--muted-foreground); margin-top: 0.125rem;
+    }
+    .maia-chart-body {
+      position: relative;
+      width: 100%;
+      height: 200px;
+    }
+    .maia-chart-bar-group {
+      display: flex; align-items: flex-end; gap: 0.5rem;
+      height: 100%; padding-top: 1rem;
+    }
+    .maia-chart-bar-col {
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.375rem;
+    }
+    .maia-chart-bar {
+      width: 100%; border-radius: 0.375rem 0.375rem 0 0;
+      min-height: 4px;
+      transition: opacity 0.2s ease-out;
+    }
+    .maia-chart-bar-col:hover .maia-chart-bar { opacity: 0.8; }
+    .maia-chart-bar-label {
+      font-size: 0.7rem; color: var(--muted-foreground); text-align: center;
+    }
+    .maia-chart-legend {
+      display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;
+      padding-top: 0.75rem; border-top: 1px solid var(--border);
+    }
+    .maia-chart-legend-item {
+      display: flex; align-items: center; gap: 0.375rem;
+      font-size: 0.75rem; color: var(--muted-foreground);
+    }
+    .maia-chart-legend-dot {
+      width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0;
+    }
+
+    /* Card with Image — image-top variant */
+    .maia-card-image {
+      background: var(--card);
+      color: var(--card-foreground);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent), 0 1px 3px rgba(0,0,0,0.06);
+      transition: box-shadow 0.25s ease-out, filter 0.25s ease-out;
+    }
+    .maia-card-image.maia-card-interactive:hover {
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 14%, transparent), 0 8px 25px rgba(0,0,0,0.1);
+      filter: brightness(1.015);
+    }
+    .maia-card-image-area {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .maia-card-image-area svg { color: var(--muted-foreground); }
+    .maia-card-image-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+    .maia-card-image-body h4 {
+      font-size: 0.9rem; font-weight: 700; margin-bottom: 0.375rem;
+    }
+    .maia-card-image-body p {
+      font-size: 0.8rem; color: var(--muted-foreground); line-height: 1.5;
+    }
+    .maia-card-image-body .maia-badge {
+      margin-top: 0.75rem;
+    }
+
+    /* Field — label + input + description + error */
+    .maia-field {
+      display: flex; flex-direction: column; gap: 0.375rem;
+    }
+    .maia-field-label {
+      font-size: 0.875rem; font-weight: 600; color: var(--foreground);
+    }
+    .maia-field-desc {
+      font-size: 0.8rem; color: var(--muted-foreground); line-height: 1.4;
+    }
+    .maia-field-error {
+      font-size: 0.8rem; color: var(--destructive); font-weight: 500;
+    }
+    .maia-field-error-input {
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--destructive) 25%, transparent) !important;
+    }
+    .maia-field .maia-input { width: 100%; }
+    .maia-field-select {
+      appearance: none;
+      width: 100%;
+      padding: 0.625rem 2.5rem 0.625rem 1.25rem;
+      font-size: 0.875rem;
+      font-family: inherit;
+      background: color-mix(in srgb, var(--input) 30%, transparent);
+      color: var(--foreground);
+      border: 1px solid transparent;
+      border-radius: 9999px;
+      outline: none;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+    }
+    .maia-field-select:focus {
+      box-shadow: 0 0 0 2px var(--ring);
+      border-color: var(--ring);
+    }
+    .maia-field-textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      font-family: inherit;
+      background: color-mix(in srgb, var(--input) 30%, transparent);
+      color: var(--foreground);
+      border: 1px solid transparent;
+      border-radius: 1rem;
+      outline: none;
+      resize: vertical;
+      transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+    }
+    .maia-field-textarea:focus {
+      box-shadow: 0 0 0 2px var(--ring);
+      border-color: var(--ring);
+    }
+
+    /* Tooltip */
+    .maia-tooltip-wrap { position: relative; display: inline-block; }
+    .maia-tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%; transform: translateX(-50%);
+      background: var(--foreground);
+      color: var(--background);
+      border-radius: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem; font-weight: 500;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 50;
+    }
+
+    /* Component demo section layout */
+    .comp-demo-section { margin-bottom: 2.5rem; }
+    .comp-demo-label {
+      font-family: "Geist Mono", monospace;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted-foreground);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .comp-demo-label .anim-tag {
+      font-family: "Geist Mono", monospace;
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--brand-highlight-grass-green) 12%, transparent);
+      color: var(--brand-highlight-grass-green);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+      letter-spacing: 0; text-transform: none;
+    }
+    .comp-demo-area {
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 0.75rem;
+    }
+
+    .logo-dark-preview a, .logo-dark-preview code {
+      color: oklch(0.707 0.022 261.325);
+    }
+    @media (max-width: 640px) {
+      nav a { display: none; }
+      .hero-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+      #logo .comp-demo-section div[style*="grid-template-columns:1fr 1fr"] {
+        grid-template-columns: 1fr;
+      }
+      .mobile-compact-grid {
+        grid-template-columns: 1fr !important;
+      }
+      /* Collapse all inline 2-col grids in component demos */
+      .comp-demo-section div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* ── Responsive section ── */
+    .responsive-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .responsive-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .responsive-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .container-demo {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 64px;
+    }
+    .container-demo-gutter {
+      flex: 0 0 1.5rem;
+      background: color-mix(in srgb, var(--brand-highlight-grass-green) 15%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .container-demo-gutter {
+        flex: 0 0 2rem;
+      }
+    }
+    .container-demo-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      gap: 0.25rem;
+      background: color-mix(in srgb, var(--muted) 50%, transparent);
+      border-left: 1px dashed var(--border);
+      border-right: 1px dashed var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="#" class="logo">
+      <span class="logo-badge">way*ID</span>
+      <span class="logo-wordmark">Design System</span>
+    </a>
+    <nav>
+      <a href="#typography">Typography</a>
+      <a href="#logo">Logo</a>
+      <a href="#colors">Colors</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#responsive">Responsive</a>
+      <a href="#motion">Motion</a>
+      <a href="#animations">Animations</a>
+      <a href="#components">Components</a>
+      <a href="#start">Get Started</a>
+      <a href="#mobile-example">Mobile Example</a>
+      <button class="theme-toggle" id="themeToggle">Dark mode</button>
+    </nav>
+  </header>
+
+  <div class="page-wrapper">
+
+    <!-- HERO -->
+    <div class="hero" id="hero">
+      <span class="hero-eyebrow">Reference · shadcn/ui Maia + GSAP</span>
+      <h1 class="hero-title" id="hero-title">
+        Build consistent.<br>
+        Move with <span class="accent-grass-green">purpose</span>.<br>
+        Stay <span class="accent-dark-green">on brand</span>.
+      </h1>
+      <p class="hero-sub">
+        A living reference for brand colors, GSAP motion presets, and component
+        customizations. <strong>shadcn/ui</strong> (Maia style, Gray theme) is the design
+        system — this repo documents everything we add on top.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">shadcn/ui · Maia style</span>
+        <span class="tag">Gray base color</span>
+        <span class="tag">Geist + Poppins</span>
+        <span class="tag">Hugeicons</span>
+        <span class="tag">Tailwind v4 · OKLCH</span>
+        <span class="tag">GSAP v3</span>
+        <span class="tag">Large radius (0.875rem)</span>
+      </div>
+    </div>
+
+    <!-- TYPOGRAPHY -->
+    <section id="typography">
+      <p class="section-label">Section 01</p>
+      <h2 class="section-title">Typography</h2>
+      <p class="section-desc">
+        <strong>Poppins</strong> for headlines (h0–h4), <strong>Geist Sans</strong> for
+        body text and UI, <strong>Geist Mono</strong> for code.
+      </p>
+      <div class="type-preview reveal">
+        <div class="type-row"><span class="type-label">h0</span><span class="h0">The quick brown</span></div>
+        <div class="type-row"><span class="type-label">h1</span><h1 style="font-weight:800;">The quick brown fox</h1></div>
+        <div class="type-row"><span class="type-label">h2</span><h2 style="font-weight:700;">The quick brown fox</h2></div>
+        <div class="type-row"><span class="type-label">h3</span><h3 style="font-size:1.25rem;font-weight:700;">The quick brown fox jumps</h3></div>
+        <div class="type-row"><span class="type-label">h4</span><h4 style="font-size:1rem;font-weight:600;">The quick brown fox jumps over</h4></div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="type-row"><span class="type-label">body</span><p>The quick brown fox jumps over the lazy dog. Body text in Geist Sans.</p></div>
+        <div class="type-row"><span class="type-label">code</span><code>const theme = "gray-maia";</code></div>
+      </div>
+      <div class="card-grid" style="margin-top:1.5rem;">
+        <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 400 (h0), 600–800 (h1–h4)<br>h0–h4 only</div></div>
+        <div class="card reveal"><div class="card-title">Body Font</div><div class="card-sub"><strong>Geist Sans</strong> · 400–700<br>All body, buttons, inputs</div></div>
+        <div class="card reveal"><div class="card-title">Code Font</div><div class="card-sub"><strong>Geist Mono</strong> · 400<br>Code blocks, inline <code>code</code></div></div>
+        <div class="card reveal"><div class="card-title">Icons</div><div class="card-sub"><strong>Hugeicons</strong><br><code>npm i hugeicons-react</code></div></div>
+      </div>
+    </section>
+
+    <!-- LOGO -->
+    <section id="logo">
+      <p class="section-label">Section 02</p>
+      <h2 class="section-title">Logo</h2>
+      <p class="section-desc">
+        Two logo variants: the <strong>way*ID</strong> pill badge and the <strong>Lineage*Labs</strong> text wordmark.
+        Both have distinct light and dark mode treatments and animated GSAP reveals.
+      </p>
+
+      <!-- ═══════════════ way*ID Badge ═══════════════ -->
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">way*ID Badge</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
+        Pill-shaped badge with dark green background / light green text. Inverts in dark mode.
+      </p>
+
+      <!-- way*ID — Light -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
+        <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+          <span class="logo-badge" style="font-size:22px;padding:0.2rem 1rem;border-radius:18px;">way*ID</span>
+          <span class="logo-badge" style="font-size:15px;">way*ID</span>
+          <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+        </div>
+      </div>
+
+      <!-- way*ID — Dark -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
+        <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+          <span class="logo-badge-dark" style="font-size:22px;padding:0.2rem 1rem;border-radius:18px;">way*ID</span>
+          <span class="logo-badge-dark" style="font-size:15px;">way*ID</span>
+          <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+        </div>
+      </div>
+
+      <!-- way*ID — Animated -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">center stagger</span> <span class="anim-tag">glow pulse</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+            <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
+            <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
+            </div>
+            <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
+          </div>
+          <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+            <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
+            <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
+            </div>
+            <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin:2.5rem 0;"></div>
+
+      <!-- ═══════════════ Lineage*Labs Wordmark ═══════════════ -->
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Lineage*Labs Wordmark</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
+        Text wordmark in Poppins 600. Dark green on light backgrounds, light green on dark. The <code>*</code> uses grass green as an accent.
+      </p>
+
+      <!-- Lineage*Labs — Light -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">Poppins 600</span> <span class="anim-tag">#15552E</span></div>
+        <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;gap:1.5rem;">
+          <span class="logo-text" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text" style="font-size:16px;line-height:24px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+        </div>
+      </div>
+
+      <!-- Lineage*Labs — Dark -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">#B9F7CE</span></div>
+        <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:1.5rem;">
+          <span class="logo-text-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark" style="font-size:16px;line-height:24px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+        </div>
+      </div>
+
+      <!-- Lineage*Labs — Animated -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">left stagger</span> <span class="anim-tag">asterisk pop</span> <span class="anim-tag">glow pulse</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+            <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
+            <div style="min-height:56px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-text ll-anim-light" id="ll-anim-light" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+            </div>
+            <button class="theme-toggle" id="ll-anim-light-replay">Replay</button>
+          </div>
+          <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+            <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
+            <div style="min-height:56px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-text-dark ll-anim-dark" id="ll-anim-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+            </div>
+            <button class="theme-toggle" id="ll-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Usage rules -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Usage Rules</div>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">Clear Space</div>
+            <div class="card-sub">Maintain at least 1x the badge height as clear space on all sides of the logo.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Minimum Size</div>
+            <div class="card-sub">Badge text must never be smaller than <code>12px</code>. Below that, use the badge-only variant.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">No Modifications</div>
+            <div class="card-sub">Never rotate, stretch, recolor, add shadows, or apply effects to the logo. Use it exactly as specified.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Mode Matching</div>
+            <div class="card-sub">Always use the light logo on light backgrounds and the dark logo on dark backgrounds. Never mix.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spec table — way*ID -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Spec Reference — way*ID Badge</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border);text-align:left;">
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Property</th>
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Light Mode</th>
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Dark Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Background</td>
+                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Text color</td>
+                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code></td>
+                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Border</td>
+                <td style="padding:0.5rem 0.75rem;">transparent</td>
+                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> (1px solid)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Radius</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>15px</code></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Font</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 500 weight, <code>-0.05em</code> letter-spacing</td>
+              </tr>
+              <tr>
+                <td style="padding:0.5rem 0.75rem;">Animation</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">
+                  Phase 1: <code>scale 0.9→1, blur 8→0, back.out(1.7), 450ms</code><br>
+                  Phase 2: <code>chars stagger 0.05s from center, blur 4→0 + y 6→0, power2.out, 300ms</code><br>
+                  Phase 3: <code>dual glow pulse (16px tight + 40px wide), power2.out→in, 650ms</code>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Spec table — Lineage*Labs -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Spec Reference — Lineage*Labs Wordmark</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border);text-align:left;">
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Property</th>
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Light Mode</th>
+                <th style="padding:0.5rem 0.75rem;font-weight:600;color:var(--muted-foreground);">Dark Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Text color</td>
+                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Asterisk color</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>#3DC683</code> (grass green) <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#3DC683;vertical-align:middle;margin-left:0.25rem;"></span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Font</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 600 weight, <code>-0.05em</code> letter-spacing</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Default size</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>36px</code> / line-height <code>54px</code></td>
+              </tr>
+              <tr>
+                <td style="padding:0.5rem 0.75rem;">Animation</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">
+                  Phase 1: <code>chars stagger 0.04s from left, blur 6→0 + x -16→0 + y 8→0, power2.out, 400ms</code><br>
+                  Phase 2: <code>asterisk scale pop 1→1.3→1, back.out(3) + power2.out, 450ms</code><br>
+                  Phase 3: <code>text-shadow glow pulse 0→20px→0, power2.out→in, 600ms</code>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND COLORS -->
+    <section id="colors">
+      <p class="section-label">Section 03</p>
+      <h2 class="section-title">Brand Colors</h2>
+      <p class="section-desc">
+        These are <em>additive</em> — they never replace shadcn semantic tokens.
+        Apply via <code>--brand-*</code> only when a design explicitly calls for brand treatment.
+      </p>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights — Light backgrounds</h3>
+      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="swatch"><div class="swatch-color" style="background:#B9F7CE;"></div><div class="swatch-info"><div class="swatch-name">Light Green</div><div class="swatch-hex">#B9F7CE</div><div class="swatch-var">--brand-highlight-light-green</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3DC683;"></div><div class="swatch-info"><div class="swatch-name">Grass Green</div><div class="swatch-hex">#3DC683</div><div class="swatch-var">--brand-highlight-grass-green</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#15552E;"></div><div class="swatch-info"><div class="swatch-name">Dark Green</div><div class="swatch-hex">#15552E</div><div class="swatch-var">--brand-highlight-dark-green</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FAFAFA;border-bottom:1px solid #eaeaea;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FAFAFA</div><div class="swatch-var">--brand-surface</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EAEAEA;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#EAEAEA</div><div class="swatch-var">--brand-surface-grey</div></div></div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights — Dark backgrounds</h3>
+      <div class="swatch-grid reveal" style="background:#151515;padding:1rem;border-radius:var(--radius);border:1px solid #2a2a2a;">
+        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#B9F7CE;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Light Green</div><div class="swatch-hex" style="color:#888;">#B9F7CE</div><div class="swatch-var" style="color:#888;">--brand-highlight-light-green</div></div></div>
+        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#3DC683;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Grass Green</div><div class="swatch-hex" style="color:#888;">#3DC683</div><div class="swatch-var" style="color:#888;">--brand-highlight-grass-green</div></div></div>
+        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#15552E;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Dark Green</div><div class="swatch-hex" style="color:#888;">#15552E</div><div class="swatch-var" style="color:#888;">--brand-highlight-dark-green</div></div></div>
+        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#151515;border-bottom:1px solid #2a2a2a;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Surface</div><div class="swatch-hex" style="color:#888;">#151515</div><div class="swatch-var" style="color:#888;">--brand-surface</div></div></div>
+      </div>
+      <div class="divider"></div>
+      <div class="card-grid">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
+        <div class="card" style="border-left:3px solid var(--destructive);"><div class="card-title">When NOT to use</div><div class="card-sub">Buttons, inputs, cards, body text, borders, error states, focus rings — use shadcn semantic tokens for all standard UI.</div></div>
+      </div>
+    </section>
+
+    <!-- SPACING TOKENS -->
+    <section id="spacing">
+      <p class="section-label">Section 04</p>
+      <h2 class="section-title">Spacing</h2>
+      <p class="section-desc">
+        <strong>4px grid</strong> — every value is a multiple of 4px (0.25rem).
+        Maia style means <em>generous spacing</em>: when in doubt, size up.
+      </p>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Base Scale</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>rem</th><th>px</th><th>Tailwind</th><th style="width:40%;">Visual</th></tr></thead>
+          <tbody>
+            <tr><td><code>0.5</code></td><td>0.125</td><td>2</td><td>0.5</td><td><div style="width:2px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>1</code></td><td>0.25</td><td>4</td><td>1</td><td><div style="width:4px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>2</code></td><td>0.5</td><td>8</td><td>2</td><td><div style="width:8px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>3</code></td><td>0.75</td><td>12</td><td>3</td><td><div style="width:12px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>4</code></td><td>1</td><td>16</td><td>4</td><td><div style="width:16px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>5</code></td><td>1.25</td><td>20</td><td>5</td><td><div style="width:20px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>6</code></td><td>1.5</td><td>24</td><td>6</td><td><div style="width:24px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>8</code></td><td>2</td><td>32</td><td>8</td><td><div style="width:32px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>10</code></td><td>2.5</td><td>40</td><td>10</td><td><div style="width:40px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>12</code></td><td>3</td><td>48</td><td>12</td><td><div style="width:48px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>16</code></td><td>4</td><td>64</td><td>16</td><td><div style="width:64px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>20</code></td><td>5</td><td>80</td><td>20</td><td><div style="width:80px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Semantic Tokens</h3>
+      <div class="card-grid reveal" style="margin-bottom:2rem;">
+        <div class="card">
+          <div class="card-title">Inline</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.5rem;">
+            <span><code>inline-xs</code> · 4px · Icon-to-label gap</span>
+            <span><code>inline-sm</code> · 8px · Button icon gap</span>
+            <span><code>inline-md</code> · 12px · Nav link gap</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Component Padding</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.5rem;">
+            <span><code>component-xs</code> · 6px · Badge, dropdown chrome</span>
+            <span><code>component-sm</code> · 10px · Button / input padding</span>
+            <span><code>component-md</code> · 16px · Compact card</span>
+            <span><code>component-lg</code> · 24px · Maia card default</span>
+            <span><code>component-xl</code> · 32px · Dialog / sheet</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Gap (between siblings)</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.5rem;">
+            <span><code>gap-xs</code> · 8px · Tight list items</span>
+            <span><code>gap-sm</code> · 12px · Form fields</span>
+            <span><code>gap-md</code> · 16px · Card grid gap</span>
+            <span><code>gap-lg</code> · 24px · Section content</span>
+            <span><code>gap-xl</code> · 32px · Major blocks</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Section &amp; Page</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.5rem;">
+            <span><code>section-sm</code> · 48px · Compact section</span>
+            <span><code>section-md</code> · 64px · Default section</span>
+            <span><code>section-lg</code> · 96px · Major page section</span>
+            <span><code>section-xl</code> · 128px · Hero / footer</span>
+            <span><code>page-gutter</code> · 24px → 32px</span>
+            <span><code>page-max-width</code> · 1100px</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Component Spacing</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+        <table class="comp-table">
+          <thead><tr><th>Component</th><th>Padding</th><th>Gap / Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Button</td><td><code>0.625rem 1.25rem</code></td><td>Icon gap: 0.5rem</td></tr>
+            <tr><td>Button sm</td><td><code>0.375rem 1rem</code></td><td>—</td></tr>
+            <tr><td>Button lg</td><td><code>0.875rem 2rem</code></td><td>—</td></tr>
+            <tr><td>Input</td><td><code>0.625rem 1.25rem</code></td><td>Label gap: 0.5rem</td></tr>
+            <tr><td>Card</td><td><code>1.5rem</code> (p-6)</td><td>Internal: 1rem</td></tr>
+            <tr><td>Dialog</td><td><code>2rem</code> (p-8)</td><td>Actions: 0.75rem</td></tr>
+            <tr><td>Sheet</td><td><code>1.5rem</code> (p-6)</td><td>—</td></tr>
+            <tr><td>Dropdown</td><td><code>0.375rem</code> chrome</td><td>Item: 0.5rem 0.75rem</td></tr>
+            <tr><td>Toast</td><td><code>1rem 1.25rem</code></td><td>—</td></tr>
+            <tr><td>Accordion</td><td><code>1rem 0.75rem</code></td><td>Content: 1rem</td></tr>
+            <tr><td>Badge</td><td><code>0.2rem 0.625rem</code></td><td>—</td></tr>
+            <tr><td>Tabs</td><td><code>0.5rem 0.875rem</code></td><td>List gap: 0.25rem</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
+      <div class="card-grid reveal">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">4px grid</div><div class="card-sub">All spacing is a multiple of 4px (0.25rem). No arbitrary values like 0.3rem or 7px.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Generous by default</div><div class="card-sub">Maia style. Cards get <code>p-6</code> not <code>p-4</code>. Sections get <code>mb-20</code> not <code>mb-12</code>. When in doubt, size up.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Gap over margin</div><div class="card-sub">Use flexbox/grid <code>gap</code> for layout spacing. Avoid margin for sibling separation.</div></div>
+        <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">44px touch targets</div><div class="card-sub">Interactive elements must be &ge;44&times;44px. Use padding or <code>min-height</code> to reach this.</div></div>
+      </div>
+    </section>
+
+    <!-- RESPONSIVE -->
+    <section id="responsive">
+      <p class="section-label">Section 05</p>
+      <h2 class="section-title">Responsive Design</h2>
+      <p class="section-desc">
+        <strong>Mobile-first.</strong> Default CSS targets mobile. Override upward with Tailwind <code>md:</code> and <code>lg:</code> prefixes.
+        The primary layout breakpoint is <strong>768px</strong> (<code>md:</code>).
+      </p>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Breakpoint Scale</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Min-width</th><th>Tailwind</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td><code>mobile</code></td><td>0px</td><td>(default)</td><td>Base styles — all CSS starts here</td></tr>
+            <tr><td><code>sm</code></td><td>640px</td><td><code>sm:</code></td><td>Large phones landscape — rarely needed</td></tr>
+            <tr style="background:color-mix(in srgb, var(--brand-highlight-grass-green) 8%, transparent);"><td><code>md</code></td><td><strong>768px</strong></td><td><code>md:</code></td><td><strong>Primary breakpoint</strong> — layout shifts here</td></tr>
+            <tr><td><code>lg</code></td><td>1024px</td><td><code>lg:</code></td><td>Desktop — full multi-column layouts</td></tr>
+            <tr><td><code>xl</code></td><td>1280px</td><td><code>xl:</code></td><td>Wide desktop — optional refinement</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Live Grid Demo <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— resize your browser to see columns change</span></h3>
+      <div class="reveal" style="margin-bottom:1rem;">
+        <p class="bp-indicator" id="bpIndicator" style="font-size:0.8rem;font-weight:600;margin-bottom:0.75rem;padding:0.375rem 0.75rem;border-radius:9999px;display:inline-block;background:var(--brand-highlight-dark-green);color:var(--brand-highlight-light-green);">
+          📱 Mobile — 1 column
+        </p>
+      </div>
+      <div class="responsive-grid reveal" style="margin-bottom:2rem;">
+        <div class="card"><div class="card-title">Card 1</div><div class="card-sub">Single column on mobile, 2 at <code>md:</code>, 3 at <code>lg:</code></div></div>
+        <div class="card"><div class="card-title">Card 2</div><div class="card-sub">Component padding stays the same at every breakpoint</div></div>
+        <div class="card"><div class="card-title">Card 3</div><div class="card-sub">Only layout and page-level spacing adapt</div></div>
+        <div class="card"><div class="card-title">Card 4</div><div class="card-sub">Typography scales fluidly with <code>clamp()</code></div></div>
+        <div class="card"><div class="card-title">Card 5</div><div class="card-sub">Page gutter: 1.5rem mobile → 2rem desktop</div></div>
+        <div class="card"><div class="card-title">Card 6</div><div class="card-sub">Touch targets stay &ge;44px on all screens</div></div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Container Behavior</h3>
+      <div class="reveal" style="margin-bottom:2rem;">
+        <div class="container-demo">
+          <div class="container-demo-gutter container-demo-gutter-left"></div>
+          <div class="container-demo-content">
+            <span style="font-size:0.75rem;font-weight:600;color:var(--muted-foreground);">Content area</span>
+            <span style="font-size:0.7rem;color:var(--muted-foreground);">max-width: 1100px · centered · auto margins</span>
+          </div>
+          <div class="container-demo-gutter container-demo-gutter-right"></div>
+        </div>
+        <div style="display:flex;gap:1.5rem;margin-top:0.75rem;font-size:0.75rem;color:var(--muted-foreground);">
+          <span>◀ Gutter: <code>1.5rem</code> mobile / <code>2rem</code> desktop ▶</span>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">What Changes vs. What Stays Fixed</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Element</th><th>Mobile → Desktop</th><th>Changes?</th></tr></thead>
+          <tbody>
+            <tr><td>Component padding</td><td>Same everywhere</td><td style="color:var(--muted-foreground);">No</td></tr>
+            <tr><td>Page gutter</td><td>1.5rem → 2rem</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — at md:</td></tr>
+            <tr><td>Section spacing</td><td>May compress one step</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — below md:</td></tr>
+            <tr><td>Grid columns</td><td>1 → 2 → 3</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — at md: and lg:</td></tr>
+            <tr><td>Headlines</td><td>Fluid via clamp()</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Fluid</td></tr>
+            <tr><td>Body text</td><td>1rem fixed</td><td style="color:var(--muted-foreground);">No</td></tr>
+            <tr><td>Touch targets</td><td>44px minimum</td><td style="color:var(--muted-foreground);">No</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Fluid Typography</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Element</th><th>Value</th><th>Min → Max</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><code>h0</code></td><td><code>clamp(3.5rem, 8vw, 6rem)</code></td><td>56px → 96px</td><td>Display / hero text</td></tr>
+            <tr><td><code>h1</code></td><td><code>clamp(2rem, 4vw, 2.75rem)</code></td><td>32px → 44px</td><td>Page titles</td></tr>
+            <tr><td><code>h2</code></td><td><code>clamp(1.5rem, 3vw, 1.75rem)</code></td><td>24px → 28px</td><td>Section titles</td></tr>
+            <tr><td>body</td><td><code>1rem</code> (fixed)</td><td>16px</td><td>No scaling</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Mobile Compaction <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— below 768px</span></h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;">
+        Layout-level spacing compresses on mobile. Component-level spacing <strong>never</strong> changes.
+      </p>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Desktop</th><th>Mobile (&lt;768px)</th><th>Tailwind</th></tr></thead>
+          <tbody>
+            <tr><td><code>section-xl</code></td><td>128px</td><td>96px</td><td><code>py-24 md:py-32</code></td></tr>
+            <tr><td><code>section-lg</code></td><td>96px</td><td>64px</td><td><code>py-16 md:py-24</code></td></tr>
+            <tr><td><code>section-md</code></td><td>64px</td><td>48px</td><td><code>py-12 md:py-16</code></td></tr>
+            <tr><td><code>section-sm</code></td><td>48px</td><td>32px</td><td><code>py-8 md:py-12</code></td></tr>
+            <tr style="border-top:2px solid var(--border);"><td><code>gap-xl</code></td><td>32px</td><td>24px</td><td><code>gap-6 md:gap-8</code></td></tr>
+            <tr><td><code>gap-lg</code></td><td>24px</td><td>16px</td><td><code>gap-4 md:gap-6</code></td></tr>
+            <tr><td><code>gap-md</code></td><td>16px</td><td style="color:var(--muted-foreground);">16px (fixed)</td><td><code>gap-4</code></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;" class="reveal mobile-compact-grid">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);">
+          <div class="card-title">Compresses on mobile</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.5rem;line-height:1.7;">
+            <span>&#x2022; Section spacing (one step down)</span>
+            <span>&#x2022; Layout gaps (<code>gap-lg</code>, <code>gap-xl</code>)</span>
+            <span>&#x2022; Page gutter (24px → 32px at md:)</span>
+            <span>&#x2022; Grid columns (1 → 2 → 3)</span>
+            <span>&#x2022; Headlines (fluid via <code>clamp()</code>)</span>
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--foreground);">
+          <div class="card-title">Fixed at every size</div>
+          <div class="card-sub" style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.5rem;line-height:1.7;">
+            <span>&#x2022; Component padding (cards <code>p-6</code>, buttons, inputs)</span>
+            <span>&#x2022; Small/medium gaps (<code>gap-xs</code>–<code>gap-md</code>)</span>
+            <span>&#x2022; Border radius</span>
+            <span>&#x2022; Touch targets (44px min)</span>
+            <span>&#x2022; Animation durations &amp; easings</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
+      <div class="card-grid reveal">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Layout shifts at md:</div><div class="card-sub">768px is where single-column becomes multi-column. Sidebars appear. Navigation expands.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for h0–h2. No breakpoint-based <code>font-size</code> changes. Body stays at <code>1rem</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">Fixed component padding</div><div class="card-sub">Buttons, cards, inputs keep the same padding at every screen size. Only page-level spacing adapts.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins and large gaps (<code>gap-lg</code>, <code>gap-xl</code>) each drop one step below <code>md:</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Restructure, don't hide</div><div class="card-sub">If content matters on desktop, show it on mobile. Change layout (stack, reorder), not visibility.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Mobile Overflow Prevention <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— minimum viewport: 320px</span></h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;">
+        Prevent content cutoff on narrow screens. All layouts must work at <strong>320px</strong> wide (iPhone SE / split-screen).
+      </p>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>#</th><th>Rule</th><th>Implementation</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Minimum viewport</td><td>All layouts must be usable at <strong>320px</strong> wide</td></tr>
+            <tr><td>2</td><td>Table scroll wrappers</td><td><code>&lt;div class="table-scroll"&gt;</code> around every <code>&lt;table&gt;</code></td></tr>
+            <tr><td>3</td><td>Code block overflow</td><td><code>pre { overflow-x: auto; }</code></td></tr>
+            <tr><td>4</td><td>Break long words</td><td><code>body { overflow-wrap: break-word; }</code></td></tr>
+            <tr><td>5</td><td>Safe grid minimums</td><td><code>minmax(min(Xpx, 100%), 1fr)</code> — max safe: 272px at 320px</td></tr>
+            <tr><td>6</td><td>Contain media</td><td><code>img, video, svg { max-width: 100%; height: auto; }</code></td></tr>
+            <tr><td>7</td><td>Clamp overlay widths</td><td>Tooltips, toasts, popovers: <code>max-width: calc(100vw - 3rem)</code></td></tr>
+            <tr><td>8</td><td>Collapse inline grids</td><td>Multi-column → single-column below <code>sm</code> (640px)</td></tr>
+            <tr><td>9</td><td>Block page scroll</td><td><code>html { overflow-x: clip; }</code> — use <code>clip</code> not <code>hidden</code></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.5rem;">Global CSS Resets</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:0.75rem;">Add to every project's global stylesheet:</p>
+      <div class="code-block reveal" style="margin-bottom:1.5rem;">
+<span class="code-comment">/* Mobile overflow prevention */</span>
+<span class="code-selector">html</span> { <span class="code-prop">overflow-x</span>: clip; }
+<span class="code-selector">body</span> { <span class="code-prop">overflow-wrap</span>: break-word; }
+<span class="code-selector">img, video, svg, canvas, iframe</span> { <span class="code-prop">max-width</span>: 100%; <span class="code-prop">height</span>: auto; }
+<span class="code-selector">pre</span> { <span class="code-prop">overflow-x</span>: auto; }
+<span class="code-selector">.table-scroll</span> { <span class="code-prop">overflow-x</span>: auto; <span class="code-prop">-webkit-overflow-scrolling</span>: touch; }
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.5rem;">Safe Grid Pattern</h3>
+      <div class="code-block reveal" style="margin-bottom:2rem;">
+<span class="code-comment">/* ✅ Safe — collapses to 100% on narrow screens */</span>
+grid-template-columns: repeat(auto-fill, <span class="code-prop">minmax(min(220px, 100%), 1fr)</span>);
+
+<span class="code-comment">/* ❌ Unsafe — overflows at 320px when min > 272px */</span>
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      </div>
+
+      <div class="divider"></div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Vertical Content &amp; Fixed Heights</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;">
+        Fixed-height containers (<code>height: 100vh</code> + <code>overflow: hidden</code>) are the most common cause of <strong>vertical content clipping on mobile</strong>.
+        Content that fits on desktop often doesn't fit on a phone.
+      </p>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>#</th><th>Rule</th><th>Implementation</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><code>min-height</code> not <code>height</code></td><td>Use <code>min-height: 100dvh</code> — content can grow beyond viewport</td></tr>
+            <tr><td>2</td><td>Slides scroll on mobile</td><td>Slide/carousel containers: <code>overflow-y: auto</code> below <code>md:</code></td></tr>
+            <tr><td>3</td><td>No <code>overflow: hidden</code> on content</td><td>Only for decorative wrappers (border-radius, image crops)</td></tr>
+            <tr><td>4</td><td><code>dvh</code> not <code>vh</code></td><td><code>100vh</code> includes browser chrome on mobile. Use <code>100dvh</code>.</td></tr>
+            <tr><td>5</td><td>Reduce density or scroll</td><td>If 3 cards don't fit, scroll within slide or show fewer per slide</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="code-block reveal" style="margin-bottom:1.5rem;">
+<span class="code-comment">/* ✅ Section grows with content */</span>
+<span class="code-selector">.hero</span> { <span class="code-prop">min-height</span>: 100dvh; }
+
+<span class="code-comment">/* ❌ Section clips content that doesn't fit */</span>
+<span class="code-selector">.hero</span> { <span class="code-prop">height</span>: 100vh; <span class="code-prop">overflow</span>: hidden; }
+
+<span class="code-comment">/* ✅ Slide scrolls internally on mobile */</span>
+<span class="code-selector">.slide</span> { <span class="code-prop">height</span>: 100dvh; <span class="code-prop">overflow-y</span>: auto; }
+@media (min-width: 768px) {
+  <span class="code-selector">.slide</span> { <span class="code-prop">overflow-y</span>: visible; }
+}
+
+<span class="code-comment">/* ✅ dvh with vh fallback */</span>
+<span class="code-selector">.full-screen</span> {
+  <span class="code-prop">min-height</span>: 100vh;   <span class="code-comment">/* fallback */</span>
+  <span class="code-prop">min-height</span>: 100dvh;  <span class="code-comment">/* dynamic */</span>
+}
+      </div>
+
+      <div class="card-grid reveal" style="margin-bottom:2rem;">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">min-height not height</div><div class="card-sub"><code>min-height: 100dvh</code> lets content grow. <code>height: 100vh</code> clips it.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Slides scroll on mobile</div><div class="card-sub">Carousel/slide containers need <code>overflow-y: auto</code> below <code>md:</code>. Content that fits on desktop rarely fits on a phone.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">dvh not vh</div><div class="card-sub"><code>100vh</code> includes browser chrome on mobile. <code>100dvh</code> adjusts dynamically. Always provide <code>vh</code> fallback.</div></div>
+      </div>
+    </section>
+
+    <!-- MOTION TOKENS -->
+    <section id="motion">
+      <p class="section-label">Section 06</p>
+      <h2 class="section-title">Motion Tokens</h2>
+      <p class="section-desc">All animations use <strong>GSAP v3</strong>. Every animation must check <code>prefers-reduced-motion</code>.</p>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Durations</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Value</th><th>Visual</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td><code>instant</code></td><td>100ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:10px;"></div></div></td><td>Active/pressed</td></tr>
+            <tr><td><code>fast</code></td><td>150ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:15px;"></div></div></td><td>Hover, toggles</td></tr>
+            <tr><td><code>normal</code></td><td>300ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:30px;"></div></div></td><td>Modals, fades</td></tr>
+            <tr><td><code>slow</code></td><td>500ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:50px;"></div></div></td><td>Page sections</td></tr>
+            <tr><td><code>slower</code></td><td>700ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:70px;"></div></div></td><td>Staggered</td></tr>
+            <tr><td><code>slowest</code></td><td>1000ms</td><td><div class="duration-bar-wrap"><div class="duration-bar" style="width:100px;"></div></div></td><td>Hero/cinematic</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Easings</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Name</th><th>GSAP</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td><span class="easing-badge">out (default)</span></td><td><code>power2.out</code></td><td>Entrances, general UI</td></tr>
+            <tr><td><span class="easing-badge">in</span></td><td><code>power2.in</code></td><td>Exits</td></tr>
+            <tr><td><span class="easing-badge">in_out</span></td><td><code>power2.inOut</code></td><td>Layout shifts</td></tr>
+            <tr><td><span class="easing-badge">overshoot</span></td><td><code>back.out(1.7)</code></td><td>Modals, bounces</td></tr>
+            <tr><td><span class="easing-badge">spring</span></td><td><code>elastic.out(1, 0.3)</code></td><td>Springy — GSAP only</td></tr>
+            <tr><td><span class="easing-badge">bounce</span></td><td><code>bounce.out</code></td><td>Bounce — GSAP only</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1rem;border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Reduced Motion — Mandatory</div><div class="card-sub">Every animation must check <code>prefers-reduced-motion</code>. When active: GSAP durations → 0, disable scrub/parallax, limit fades to 150ms, disable transforms.</div></div>
+    </section>
+
+    <!-- ANIMATION PRESETS -->
+    <section id="animations">
+      <p class="section-label">Section 07</p>
+      <h2 class="section-title">Animation Presets</h2>
+      <p class="section-desc">Click any card to replay. Presets live in <code>animations/presets.js</code>.</p>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Entrance</h3>
+      <div class="demo-grid reveal" style="margin-bottom:2rem;" id="entrance-grid">
+        <div class="demo-card" data-preset="fadeIn"><div class="demo-box" id="demo-fadeIn"></div><div class="demo-label">fadeIn</div><div class="demo-sublabel">opacity 0→1 · 300ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="slideInUp"><div class="demo-box" id="demo-slideInUp"></div><div class="demo-label">slideInUp</div><div class="demo-sublabel">y:24→0 · 400ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="slideInDown"><div class="demo-box" id="demo-slideInDown"></div><div class="demo-label">slideInDown</div><div class="demo-sublabel">y:-24→0 · 400ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="slideInLeft"><div class="demo-box" id="demo-slideInLeft"></div><div class="demo-label">slideInLeft</div><div class="demo-sublabel">x:-24→0 · 400ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="slideInRight"><div class="demo-box" id="demo-slideInRight"></div><div class="demo-label">slideInRight</div><div class="demo-sublabel">x:24→0 · 400ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="scaleIn"><div class="demo-box" id="demo-scaleIn"></div><div class="demo-label">scaleIn</div><div class="demo-sublabel">scale:0.95→1 · 300ms</div><span class="play-hint">Click to replay</span></div>
+        <div class="demo-card" data-preset="expandIn"><div class="demo-box" id="demo-expandIn"></div><div class="demo-label">expandIn</div><div class="demo-sublabel">scaleY:0→1 · 300ms</div><span class="play-hint">Click to replay</span></div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Exit</h3>
+      <div class="demo-grid reveal" style="margin-bottom:2rem;" id="exit-grid">
+        <div class="demo-card" data-exit="fadeOut"><div class="demo-box" id="demo-fadeOut"></div><div class="demo-label">fadeOut</div><div class="demo-sublabel">opacity 1→0 · 200ms</div><span class="play-hint">Click to play</span></div>
+        <div class="demo-card" data-exit="slideOutUp"><div class="demo-box" id="demo-slideOutUp"></div><div class="demo-label">slideOutUp</div><div class="demo-sublabel">y:0→-24 · 300ms</div><span class="play-hint">Click to play</span></div>
+        <div class="demo-card" data-exit="slideOutDown"><div class="demo-box" id="demo-slideOutDown"></div><div class="demo-label">slideOutDown</div><div class="demo-sublabel">y:0→24 · 300ms</div><span class="play-hint">Click to play</span></div>
+        <div class="demo-card" data-exit="scaleOut"><div class="demo-box" id="demo-scaleOut"></div><div class="demo-label">scaleOut</div><div class="demo-sublabel">scale:1→0.95 · 200ms</div><span class="play-hint">Click to play</span></div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Hover Interactions</h3>
+      <div class="hover-demo-grid reveal" style="align-items:center;">
+        <button class="hover-demo-btn" id="hover-lift-btn">Lift on hover</button>
+        <button class="hover-demo-btn" id="hover-press-btn">Press on click</button>
+        <div class="hover-demo-card" id="hover-glow-card">Glow on hover (brand grass green)</div>
+      </div>
+      <div class="divider"></div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
+      <div class="card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+        <div class="logo" id="logo-demo" style="font-size:1.1rem;gap:0.6rem;">
+          <span class="logo-badge logo-icon-demo" style="font-size:18px;padding:0.15rem 0.85rem;">way*ID</span>
+          <span class="logo-wordmark logo-wordmark-demo" style="font-size:1.1rem;">Lineage HQ</span>
+        </div>
+        <button class="theme-toggle" id="logo-replay-btn">Replay logo reveal</button>
+        <div class="card-sub">Icon: <code>back.out(1.7)</code>, wordmark: <code>power2.out</code>.</div>
+      </div>
+    </section>
+
+    <!-- COMPONENT CUSTOMIZATIONS — LIVE DEMOS -->
+    <section id="components">
+      <p class="section-label">Section 08</p>
+      <h2 class="section-title">Live Components</h2>
+      <p class="section-desc">
+        Interactive Maia-styled components with their assigned GSAP animations.
+        <strong>Maia</strong> = soft, rounded, generous spacing. Pill-shaped buttons &amp; inputs,
+        <code>ring-1</code> cards, and smooth motion.
+      </p>
+
+      <!-- BUTTONS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Button <span class="anim-tag">rounded-4xl (pill)</span> <span class="anim-tag">press: scale(0.97)</span></div>
+        <div class="comp-demo-area">
+          <button class="maia-btn maia-btn-primary maia-press">Primary</button>
+          <button class="maia-btn maia-btn-secondary maia-press">Secondary</button>
+          <button class="maia-btn maia-btn-outline maia-press">Outline</button>
+          <button class="maia-btn maia-btn-destructive maia-press">Destructive</button>
+          <button class="maia-btn maia-btn-ghost maia-press">Ghost</button>
+        </div>
+        <div class="comp-demo-area" style="margin-top:0.5rem;">
+          <button class="maia-btn maia-btn-primary maia-btn-sm maia-press">Small</button>
+          <button class="maia-btn maia-btn-primary maia-press">Default</button>
+          <button class="maia-btn maia-btn-primary maia-btn-lg maia-press">Large</button>
+        </div>
+      </div>
+
+      <!-- INPUTS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Input <span class="anim-tag">rounded-4xl (pill)</span> <span class="anim-tag">bg-input/30</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;max-width:500px;">
+          <input class="maia-input" placeholder="Email address" type="email" />
+          <input class="maia-input" placeholder="Search..." type="search" />
+        </div>
+      </div>
+
+      <!-- BADGES -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Badge <span class="anim-tag">rounded-4xl (pill)</span></div>
+        <div class="comp-demo-area">
+          <span class="maia-badge maia-badge-default">Default</span>
+          <span class="maia-badge maia-badge-outline">Outline</span>
+          <span class="maia-badge maia-badge-light-green">Featured</span>
+          <span class="maia-badge maia-badge-grass-green">Active</span>
+          <span class="maia-badge maia-badge-dark-green">Pro</span>
+        </div>
+      </div>
+
+      <!-- ICONS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Icons <span class="anim-tag">Hugeicons</span> <span class="anim-tag">currentColor</span> <span class="anim-tag">20px default</span></div>
+        <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;max-width:580px;line-height:1.5;">
+          Icons use <code>currentColor</code> so they adapt to light/dark mode automatically. Never hardcode a stroke or fill color — let the icon inherit from its parent.
+        </p>
+
+        <!-- Inline / toolbar context -->
+        <div style="margin-bottom:1.25rem;">
+          <div style="font-size:0.75rem;font-weight:600;color:var(--muted-foreground);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em;">Inline / Toolbar</div>
+          <div class="comp-demo-area" style="gap:0.5rem;">
+            <button class="icon-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 17h5l-1.4-1.4A6.5 6.5 0 0 0 20 11.5 6.5 6.5 0 0 0 8 8.2"/><path d="M9 7H4l1.4 1.4A6.5 6.5 0 0 0 4 12.5 6.5 6.5 0 0 0 16 15.8"/></svg>
+            </button>
+            <button class="icon-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </button>
+            <button class="icon-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            </button>
+            <button class="icon-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+            </button>
+            <span style="font-size:0.75rem;color:var(--muted-foreground);margin-left:0.5rem;">Hover: <code>--muted</code> bg · Focus: <code>--ring</code> outline · <kbd>Tab</kbd> to test</span>
+          </div>
+        </div>
+
+        <!-- Quick action tile context -->
+        <div style="margin-bottom:1.25rem;">
+          <div style="font-size:0.75rem;font-weight:600;color:var(--muted-foreground);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em;">Quick Action Tile</div>
+          <div class="comp-demo-area" style="gap:1rem;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.375rem;">
+              <button class="icon-tile">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg>
+              </button>
+              <span style="font-size:0.7rem;color:var(--muted-foreground);">Add</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.375rem;">
+              <button class="icon-tile">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="14" height="13" rx="2"/><path d="M3 8h14M7 2v4M13 2v4"/></svg>
+              </button>
+              <span style="font-size:0.7rem;color:var(--muted-foreground);">Schedule</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.375rem;">
+              <button class="icon-tile">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l2.5 2.5"/></svg>
+              </button>
+              <span style="font-size:0.7rem;color:var(--muted-foreground);">Focus</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.375rem;">
+              <button class="icon-tile">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M7 13V10M10 13V7M13 13v-2"/></svg>
+              </button>
+              <span style="font-size:0.7rem;color:var(--muted-foreground);">Reports</span>
+            </div>
+            <span style="font-size:0.75rem;color:var(--muted-foreground);margin-left:0.5rem;">Hover: <code>18% muted</code> · Focus: <code>--ring</code> outline · <kbd>Tab</kbd> to test</span>
+          </div>
+        </div>
+
+        <!-- Navigation context -->
+        <div style="margin-bottom:1.25rem;">
+          <div style="font-size:0.75rem;font-weight:600;color:var(--muted-foreground);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em;">Navigation</div>
+          <div style="display:inline-flex;align-items:flex-end;gap:0.5rem;background:var(--card);padding:0.625rem 1rem;border-radius:1rem;box-shadow:0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent);">
+            <button class="nav-icon nav-icon-active">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5Z"/></svg>
+              <span style="font-size:0.65rem;">Home</span>
+            </button>
+            <button class="nav-icon nav-icon-inactive">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              <span style="font-size:0.65rem;">Search</span>
+            </button>
+            <button class="nav-icon nav-icon-inactive">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-4 3.1-7 7-7s7 3 7 7"/></svg>
+              <span style="font-size:0.65rem;">Profile</span>
+            </button>
+          </div>
+          <span style="font-size:0.75rem;color:var(--muted-foreground);margin-left:0.75rem;">Hover: subtle bg · Focus: <code>--ring</code> outline · <kbd>Tab</kbd> to test</span>
+        </div>
+
+        <!-- Dark mode note -->
+        <div style="background:var(--muted);border-radius:0.75rem;padding:1rem 1.25rem;max-width:580px;">
+          <div style="font-size:0.8rem;font-weight:700;color:var(--foreground);margin-bottom:0.375rem;">Dark Mode</div>
+          <div style="font-size:0.78rem;color:var(--muted-foreground);line-height:1.5;">
+            Because icons use <code>currentColor</code>, they flip automatically when <code>--foreground</code> changes from dark to light.
+            Never set explicit colors like <code>stroke="#333"</code> or <code>fill="black"</code> — these break in dark mode.
+            Icon container backgrounds use <code>color-mix()</code> with semantic tokens, so they adapt too.
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Card <span class="anim-tag">rounded-2xl</span> <span class="anim-tag">ring-1 ring-foreground/10</span> <span class="anim-tag">hover-lift</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px, 100%),1fr));gap:1rem;">
+          <div class="maia-card maia-card-interactive maia-hover-lift">
+            <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">Interactive Card</h4>
+            <p style="font-size:0.8rem;color:var(--muted-foreground);">Hover to lift. Uses <code>shadow-md</code> + <code>translateY(-4px)</code>.</p>
+          </div>
+          <div class="maia-card maia-card-interactive maia-hover-lift">
+            <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">Maia Borders</h4>
+            <p style="font-size:0.8rem;color:var(--muted-foreground);">Uses <code>ring-1</code> instead of <code>border</code> for the Maia aesthetic.</p>
+          </div>
+          <div class="maia-card">
+            <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;">Static Card</h4>
+            <p style="font-size:0.8rem;color:var(--muted-foreground);">Non-interactive cards don't need hover effects.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD WITH IMAGE -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Card with Image <span class="anim-tag">rounded-2xl</span> <span class="anim-tag">aspect-ratio: 16/9</span> <span class="anim-tag">overflow: hidden</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px, 100%),1fr));gap:1rem;">
+          <div class="maia-card-image maia-card-interactive maia-hover-lift">
+            <div class="maia-card-image-area">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            </div>
+            <div class="maia-card-image-body">
+              <h4>Project Alpha</h4>
+              <p>Image area uses <code>aspect-ratio: 16/9</code> with muted background.</p>
+              <span class="maia-badge maia-badge-grass-green">Active</span>
+            </div>
+          </div>
+          <div class="maia-card-image maia-card-interactive maia-hover-lift">
+            <div class="maia-card-image-area">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg>
+            </div>
+            <div class="maia-card-image-body">
+              <h4>Media Upload</h4>
+              <p>Interactive cards use <code>hover-lift</code> and shadow escalation.</p>
+            </div>
+          </div>
+          <div class="maia-card-image">
+            <div class="maia-card-image-area" style="aspect-ratio:4/3;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="maia-card-image-body">
+              <h4>Static Variant</h4>
+              <p>Custom ratio (<code>4:3</code>). No hover effect on non-interactive cards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHART -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Chart <span class="anim-tag">--chart-1..5</span> <span class="anim-tag">rounded-2xl</span> <span class="anim-tag">Recharts</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px, 100%),1fr));gap:1rem;">
+          <div class="maia-chart">
+            <div class="maia-chart-header">
+              <div class="maia-chart-title">Weekly Activity</div>
+              <div class="maia-chart-desc">Tasks completed per day</div>
+            </div>
+            <div class="maia-chart-body">
+              <div class="maia-chart-bar-group" id="chart-bar-demo">
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:45%;background:var(--chart-1);"></div><div class="maia-chart-bar-label">Mon</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:70%;background:var(--chart-1);"></div><div class="maia-chart-bar-label">Tue</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:55%;background:var(--chart-1);"></div><div class="maia-chart-bar-label">Wed</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:85%;background:var(--chart-1);"></div><div class="maia-chart-bar-label">Thu</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:60%;background:var(--chart-1);"></div><div class="maia-chart-bar-label">Fri</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:30%;background:var(--chart-2);"></div><div class="maia-chart-bar-label">Sat</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:20%;background:var(--chart-2);"></div><div class="maia-chart-bar-label">Sun</div></div>
+              </div>
+            </div>
+            <div class="maia-chart-legend">
+              <div class="maia-chart-legend-item"><span class="maia-chart-legend-dot" style="background:var(--chart-1);"></span>Weekday</div>
+              <div class="maia-chart-legend-item"><span class="maia-chart-legend-dot" style="background:var(--chart-2);"></span>Weekend</div>
+            </div>
+          </div>
+          <div class="maia-chart">
+            <div class="maia-chart-header">
+              <div class="maia-chart-title">Color Reference</div>
+              <div class="maia-chart-desc">All five chart tokens</div>
+            </div>
+            <div class="maia-chart-body">
+              <div class="maia-chart-bar-group">
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:90%;background:var(--chart-1);"></div><div class="maia-chart-bar-label">chart-1</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:75%;background:var(--chart-2);"></div><div class="maia-chart-bar-label">chart-2</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:60%;background:var(--chart-3);"></div><div class="maia-chart-bar-label">chart-3</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:80%;background:var(--chart-4);"></div><div class="maia-chart-bar-label">chart-4</div></div>
+                <div class="maia-chart-bar-col"><div class="maia-chart-bar" style="height:70%;background:var(--chart-5);"></div><div class="maia-chart-bar-label">chart-5</div></div>
+              </div>
+            </div>
+            <div class="maia-chart-legend">
+              <div class="maia-chart-legend-item"><span class="maia-chart-legend-dot" style="background:var(--chart-1);"></span>chart-1</div>
+              <div class="maia-chart-legend-item"><span class="maia-chart-legend-dot" style="background:var(--chart-2);"></span>chart-2</div>
+              <div class="maia-chart-legend-item"><span class="maia-chart-legend-dot" style="background:var(--chart-3);"></span>chart-3</div>
+              <div class="maia-chart-legend-item"><span class="maia-chart-legend-dot" style="background:var(--chart-4);"></span>chart-4</div>
+              <div class="maia-chart-legend-item"><span class="maia-chart-legend-dot" style="background:var(--chart-5);"></span>chart-5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIELD -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Field <span class="anim-tag">label + input + description</span> <span class="anim-tag">error state</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px, 100%),1fr));gap:1.5rem;max-width:780px;">
+          <div class="maia-field">
+            <label class="maia-field-label">Email address</label>
+            <input class="maia-input" type="email" placeholder="you@example.com" />
+            <span class="maia-field-desc">We'll never share your email.</span>
+          </div>
+          <div class="maia-field">
+            <label class="maia-field-label">Password</label>
+            <input class="maia-input maia-field-error-input" type="password" placeholder="••••••••" value="abc" />
+            <span class="maia-field-error">Password must be at least 8 characters.</span>
+          </div>
+          <div class="maia-field">
+            <label class="maia-field-label">Role</label>
+            <select class="maia-field-select">
+              <option value="" disabled selected>Select a role…</option>
+              <option>Designer</option>
+              <option>Developer</option>
+              <option>Product Manager</option>
+            </select>
+            <span class="maia-field-desc">Choose your primary role.</span>
+          </div>
+          <div class="maia-field">
+            <label class="maia-field-label">Bio</label>
+            <textarea class="maia-field-textarea" placeholder="Tell us about yourself…"></textarea>
+            <span class="maia-field-desc">Max 280 characters.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- DIALOG -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dialog <span class="anim-tag">scaleIn / scaleOut</span> <span class="anim-tag">back.out(1.7)</span></div>
+        <button class="maia-btn maia-btn-primary maia-press" id="dialog-open-btn">Open Dialog</button>
+      </div>
+
+      <!-- SHEET -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Sheet (right) <span class="anim-tag">slideInRight / slideOutRight</span></div>
+        <button class="maia-btn maia-btn-outline maia-press" id="sheet-open-btn">Open Sheet</button>
+      </div>
+
+      <!-- DROPDOWN -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dropdown Menu <span class="anim-tag">slideInDown / fadeOut</span></div>
+        <div class="maia-dropdown-wrap" id="dropdown-wrap">
+          <button class="maia-btn maia-btn-outline maia-press" id="dropdown-trigger">
+            Options ▾
+          </button>
+          <div class="maia-dropdown" id="dropdown-menu">
+            <button class="maia-dropdown-item">Edit profile</button>
+            <button class="maia-dropdown-item">Settings</button>
+            <button class="maia-dropdown-item">Keyboard shortcuts</button>
+            <div style="height:1px;background:var(--border);margin:0.25rem 0;"></div>
+            <button class="maia-dropdown-item" style="color:var(--destructive);">Log out</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOLTIP -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Tooltip <span class="anim-tag">fadeIn / fadeOut (150ms)</span></div>
+        <div class="comp-demo-area">
+          <div class="maia-tooltip-wrap">
+            <button class="maia-btn maia-btn-outline maia-btn-sm maia-press maia-tooltip-trigger">Hover me</button>
+            <span class="maia-tooltip" id="tooltip-1">This is a tooltip</span>
+          </div>
+          <div class="maia-tooltip-wrap">
+            <button class="maia-btn maia-btn-secondary maia-btn-sm maia-press maia-tooltip-trigger">And me too</button>
+            <span class="maia-tooltip" id="tooltip-2">Another tooltip here</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOAST -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Toast <span class="anim-tag">slideInRight / slideOutUp</span></div>
+        <div class="comp-demo-area">
+          <button class="maia-btn maia-btn-primary maia-press" id="toast-fire-btn">Fire Toast</button>
+          <button class="maia-btn maia-btn-outline maia-press" id="toast-fire-success-btn">Success Toast</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ACCORDION -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Accordion <span class="anim-tag">expandIn (scaleY)</span> <span class="anim-tag">rounded-2xl</span></div>
+        <div style="max-width:560px;">
+          <div class="maia-accordion-item" data-accordion>
+            <button class="maia-accordion-trigger">
+              <span>What is the Maia style?</span>
+              <svg class="maia-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+            </button>
+            <div class="maia-accordion-content">
+              <div class="maia-accordion-content-inner">Maia is one of shadcn/ui's built-in styles — "soft and rounded, with generous spacing." It uses pill-shaped buttons and inputs (<code>rounded-4xl</code>), rounded cards (<code>rounded-2xl</code>), and ring borders instead of traditional borders.</div>
+            </div>
+          </div>
+          <div class="maia-accordion-item" data-accordion>
+            <button class="maia-accordion-trigger">
+              <span>Why GSAP instead of CSS animations?</span>
+              <svg class="maia-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+            </button>
+            <div class="maia-accordion-content">
+              <div class="maia-accordion-content-inner">GSAP offers physics-based easings (spring, bounce), fine-grained timeline control, ScrollTrigger integration, and a consistent API across all browsers. It also makes it easy to respect <code>prefers-reduced-motion</code> by setting duration to 0.</div>
+            </div>
+          </div>
+          <div class="maia-accordion-item" data-accordion>
+            <button class="maia-accordion-trigger">
+              <span>Can I edit shadcn/ui source files?</span>
+              <svg class="maia-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+            </button>
+            <div class="maia-accordion-content">
+              <div class="maia-accordion-content-inner">No. Never edit files inside <code>components/ui/</code> directly so the shadcn CLI remains updatable. Customise via CSS variable overrides, Tailwind utility composition, or thin wrapper components.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Tabs <span class="anim-tag">fadeIn (150ms)</span></div>
+        <div style="max-width:560px;">
+          <div class="maia-tab-list" id="tab-list">
+            <button class="maia-tab active" data-tab="tab-overview">Overview</button>
+            <button class="maia-tab" data-tab="tab-tokens">Tokens</button>
+            <button class="maia-tab" data-tab="tab-usage">Usage</button>
+          </div>
+          <div class="maia-tab-panel active" id="tab-overview">
+            The Maia style brings a consumer-friendly, warm, approachable aesthetic to shadcn/ui. Key features include pill-shaped buttons (<code>rounded-4xl</code>), generous spacing (<code>gap-6</code>), and blue-tinted gray neutrals (OKLCH hue ~262).
+          </div>
+          <div class="maia-tab-panel" id="tab-tokens">
+            Design tokens are defined in <code>tokens/colors.css</code> (Gray theme OKLCH values), <code>tokens/motion.yaml</code> (duration &amp; easing), and <code>tokens/brand-colors.yaml</code> (additive brand palette). The <code>--radius</code> is set to <code>0.875rem</code> (large).
+          </div>
+          <div class="maia-tab-panel" id="tab-usage">
+            Install shadcn/ui via their CLI, choose Maia style and Gray base color. Copy <code>tokens/colors.css</code> into your global stylesheet. Import GSAP presets from <code>animations/presets.js</code>. Use Poppins for headlines and Geist Sans for everything else.
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ANIMATION ASSIGNMENTS TABLE (kept as reference) -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Animation Assignment Reference</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <div class="table-scroll">
+        <table class="comp-table">
+          <thead><tr><th>Component</th><th>Entrance</th><th>Exit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Dialog / AlertDialog</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">scaleOut</span></td><td>Scale + overshoot</td></tr>
+            <tr><td><strong>Sheet (right)</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutRight</span></td><td>Matches open side</td></tr>
+            <tr><td><strong>DropdownMenu</strong></td><td><span class="preset-pill pill-entrance">slideInDown</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Drops down, fades out</td></tr>
+            <tr><td><strong>Popover</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Scale from trigger</td></tr>
+            <tr><td><strong>Tooltip</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>Fast &amp; subtle</td></tr>
+            <tr><td><strong>Toast</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutUp</span></td><td>Slides in, dismisses up</td></tr>
+            <tr><td><strong>Accordion</strong></td><td><span class="preset-pill pill-entrance">expandIn</span></td><td><span style="font-size:0.72rem;color:var(--muted-foreground)">reverse</span></td><td>Height from top</td></tr>
+            <tr><td><strong>Tabs</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>Quick crossfade</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIALOG OVERLAY (portal) -->
+    <div class="maia-overlay" id="dialog-overlay">
+      <div class="maia-dialog" id="dialog-content">
+        <h3>Are you sure?</h3>
+        <p>This action cannot be undone. This will permanently delete your account and remove your data from our servers.</p>
+        <div class="maia-dialog-actions">
+          <button class="maia-btn maia-btn-outline maia-btn-sm maia-press" id="dialog-cancel">Cancel</button>
+          <button class="maia-btn maia-btn-destructive maia-btn-sm maia-press" id="dialog-confirm">Delete account</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHEET OVERLAY (portal) -->
+    <div class="maia-sheet-overlay" id="sheet-overlay"></div>
+    <div class="maia-sheet" id="sheet-panel">
+      <h3>Sheet Panel</h3>
+      <p>This is a sheet that slides in from the right using the <code>slideInRight</code> GSAP preset.</p>
+      <div style="margin-top:1rem;">
+        <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.5rem;">Your name</label>
+        <input class="maia-input" placeholder="Enter your name" style="margin-bottom:0.75rem;" />
+        <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.5rem;">Email</label>
+        <input class="maia-input" placeholder="you@example.com" />
+      </div>
+      <div style="margin-top:1.5rem;display:flex;gap:0.75rem;">
+        <button class="maia-btn maia-btn-primary maia-btn-sm maia-press">Save changes</button>
+        <button class="maia-btn maia-btn-outline maia-btn-sm maia-press" id="sheet-close-btn">Close</button>
+      </div>
+    </div>
+
+    <!-- TOAST CONTAINER (portal) -->
+    <div class="maia-toast-container" id="toast-container"></div>
+
+    <!-- GET STARTED -->
+    <section id="start">
+      <p class="section-label">Section 09</p>
+      <h2 class="section-title">Get Started</h2>
+      <p class="section-desc">Set up a new project with shadcn/ui Maia + Gray theme.</p>
+      <div class="step-list reveal">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Scaffold your framework</div><div class="code-block"><span class="cm"># Next.js</span>
+npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Install shadcn/ui (Maia style, Gray base)</div><div class="code-block">npx shadcn@latest init
+<span class="cm"># Choose: Gray base color, Maia style, Large radius</span></div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Install GSAP + Hugeicons</div><div class="code-block">npm install gsap hugeicons-react</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Poppins for headlines</div><div class="code-block"><span class="cm">/* globals.css */</span>
+<span class="kw">h1, h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Copy brand tokens</div><div class="code-block"><span class="kw">:root</span> {
+  <span class="fn">--brand-surface</span>: <span class="st">#FAFAFA</span>;
+  <span class="fn">--brand-highlight-light-green</span>: <span class="st">#B9F7CE</span>;
+  <span class="fn">--brand-highlight-grass-green</span>: <span class="st">#3DC683</span>;
+  <span class="fn">--brand-highlight-dark-green</span>: <span class="st">#15552E</span>;
+}</div></div></div>
+        <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Import animation presets</div><div class="code-block"><span class="kw">import</span> { <span class="fn">ENTRANCE</span>, <span class="fn">EXIT</span>, <span class="fn">HOVER</span> } <span class="kw">from</span> <span class="st">"@/design-system/animations/presets"</span>;</div></div></div>
+      </div>
+      <div class="card" style="margin-top:2rem;border-left:3px solid var(--brand-highlight-dark-green);">
+        <div class="card-title">Key files</div>
+        <div class="card-sub" style="margin-top:0.5rem;">
+          <code>DESIGN-SYSTEM.md</code> · Full spec<br>
+          <code>tokens/colors.css</code> · CSS variables (Gray theme)<br>
+          <code>tokens/motion.yaml</code> · Duration &amp; easing tokens<br>
+          <code>animations/presets.js</code> · GSAP presets<br>
+          <code>components/shadcn-customizations.yaml</code> · Overrides
+        </div>
+      </div>
+    </section>
+
+    <!-- MOBILE EXAMPLE -->
+    <section id="mobile-example">
+      <p class="section-label">Section 10</p>
+      <h2 class="section-title">Mobile Example</h2>
+      <p class="section-desc">
+        A realistic mobile app — "Focus" — built entirely from design system components.
+        Buttons, inputs, badges, cards, tabs, accordion, bottom sheet, toasts, FAB, and bottom nav
+        all working together in a phone-frame layout.
+      </p>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+
+        <!-- Phone frame preview -->
+        <div style="flex:0 0 auto;">
+          <div style="
+            width: 390px;
+            height: 780px;
+            border-radius: 2.75rem;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
+                        0 32px 80px rgba(0,0,0,0.18),
+                        0 8px 24px rgba(0,0,0,0.08);
+            position: relative;
+          ">
+            <iframe
+              src="example-mobile.html"
+              id="mobilePreviewFrame"
+              style="
+                width: 390px;
+                height: 780px;
+                border: none;
+                display: block;
+                pointer-events: auto;
+              "
+              title="Focus — mobile example"
+            ></iframe>
+          </div>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
+            Fully interactive &mdash; click, scroll, check tasks, fire toasts.
+          </p>
+        </div>
+
+        <!-- Component index -->
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem;">
+          <div class="card reveal">
+            <div class="card-title">Components used</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; App bar + status bar mock</span>
+              <span>&#x2022; Maia pill search input</span>
+              <span>&#x2022; Stat cards (maia-card)</span>
+              <span>&#x2022; Featured project card + progress bar</span>
+              <span>&#x2022; Quick actions grid (4-up)</span>
+              <span>&#x2022; Task list with checkboxes</span>
+              <span>&#x2022; Tabs (Today / Upcoming / Completed)</span>
+              <span>&#x2022; Accordion (Project Notes)</span>
+              <span>&#x2022; Bottom sheet (add task)</span>
+              <span>&#x2022; FAB</span>
+              <span>&#x2022; Bottom navigation bar</span>
+              <span>&#x2022; Toast notifications</span>
+              <span>&#x2022; Badges (light green / grass green / dark green / default)</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-grass-green);">
+            <div class="card-title">Animation patterns</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Staggered entrance sequence on load</span>
+              <span>&#x2022; Progress bar animated fill (0&#x2192;62%)</span>
+              <span>&#x2022; Button micro-lift + <code>back.out(2)</code> spring</span>
+              <span>&#x2022; FAB scale bounce on hover</span>
+              <span>&#x2022; Task check — <code>back.out(2.2)</code> pop</span>
+              <span>&#x2022; Bottom sheet — slide up from 100%</span>
+              <span>&#x2022; Toast — <code>back.out(1.5)</code> slide-up entry</span>
+              <span>&#x2022; Accordion chevron nudge on hover</span>
+              <span>&#x2022; Tab panel <code>y:8&#x2192;0</code> fade-slide</span>
+              <span>&#x2022; Scroll reveal for lower sections</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light-green);">
+            <div class="card-title">Open standalone</div>
+            <div class="card-sub" style="margin-top:0.5rem;">
+              View at full size or inspect source in a separate tab.
+            </div>
+            <a href="example-mobile.html" target="_blank" style="
+              display:inline-flex;align-items:center;gap:0.4rem;
+              margin-top:0.875rem;
+              font-size:0.8rem;font-weight:600;
+              color:var(--foreground);text-decoration:none;
+              padding:0.375rem 0.875rem;
+              border-radius:9999px;
+              box-shadow:inset 0 0 0 1px var(--border);
+              transition:background 0.2s ease-out, box-shadow 0.2s ease-out;
+            " onmouseover="this.style.background='var(--muted)'" onmouseout="this.style.background=''">
+              Open example-mobile.html
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h3v3M10 2L5.5 6.5M4 3H2v7h7V8"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <footer>Design System Reference — shadcn/ui Maia + Gray + GSAP — Updated 2026</footer>
+
+  <script>
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const dur = (d) => reducedMotion ? 0 : d;
+
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById("themeToggle");
+    let dark = false;
+    toggleBtn.addEventListener("click", () => {
+      dark = !dark;
+      html.classList.toggle("dark", dark);
+      toggleBtn.textContent = dark ? "Light mode" : "Dark mode";
+    });
+
+    /* ── Breakpoint indicator ── */
+    (function() {
+      var bpEl = document.getElementById("bpIndicator");
+      if (!bpEl) return;
+      var bps = [
+        { min: 1280, label: "🖥 xl — Wide desktop" },
+        { min: 1024, label: "💻 lg — Desktop · 3 columns" },
+        { min: 768,  label: "📱 md — Tablet · 2 columns" },
+        { min: 640,  label: "📱 sm — Large phone" },
+        { min: 0,    label: "📱 Mobile — 1 column" }
+      ];
+      function update() {
+        var w = window.innerWidth;
+        for (var i = 0; i < bps.length; i++) {
+          if (w >= bps[i].min) { bpEl.textContent = bps[i].label; return; }
+        }
+      }
+      window.addEventListener("resize", update);
+      update();
+    })();
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from("#hero-title", { y: dur(32), opacity: 0, duration: dur(0.7), ease: "power2.out", delay: 0.1 });
+    gsap.from(".hero-eyebrow", { y: dur(16), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0 });
+    gsap.from(".hero-sub", { y: dur(20), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.25 });
+    gsap.from(".hero-tags", { y: dur(16), opacity: 0, duration: dur(0.5), ease: "power2.out", delay: 0.4 });
+
+    /* ---- Logo reveal helpers ---- */
+
+    /* Simple reveal (badge + wordmark) — used in Animations section & size demos */
+    function playReveal(badgeSel, wordmarkSel) {
+      const tl = gsap.timeline();
+      if (reducedMotion) {
+        tl.set(badgeSel, { opacity:1, scale:1 });
+        tl.set(wordmarkSel, { opacity:1, x:0 });
+        return tl;
+      }
+      tl.from(badgeSel,    { scale:0, opacity:0, duration:0.5, ease:"back.out(1.7)" })
+        .from(wordmarkSel, { x:-12,  opacity:0, duration:0.4, ease:"power2.out" }, "-=0.1");
+      return tl;
+    }
+    function wireReplay(btnId, badgeSel, wordmarkSel) {
+      document.getElementById(btnId).addEventListener("click", () => {
+        gsap.set(badgeSel,    { clearProps:"all" });
+        gsap.set(wordmarkSel, { clearProps:"all" });
+        playReveal(badgeSel, wordmarkSel);
+      });
+    }
+
+    /* Rich badge-only reveal — 3 phases: elastic pill, staggered char blur, glow pulse */
+    function splitBadgeChars(el) {
+      const text = el.textContent;
+      el.textContent = "";
+      el.style.display = "inline-flex";
+      el.style.alignItems = "center";
+      el.style.justifyContent = "center";
+      const chars = [];
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement("span");
+        span.textContent = text[i];
+        span.style.display = "inline-block";
+        span.className = "logo-char";
+        el.appendChild(span);
+        chars.push(span);
+      }
+      return chars;
+    }
+
+    function playBadgeReveal(badgeEl) {
+      /* Ensure chars are split */
+      let chars = badgeEl.querySelectorAll(".logo-char");
+      if (!chars.length) {
+        chars = splitBadgeChars(badgeEl);
+      } else {
+        chars = Array.from(chars);
+      }
+      const isDark = badgeEl.classList.contains("logo-badge-dark");
+      const glowTight = isDark ? "rgba(185, 247, 206, 0.4)"  : "rgba(61, 198, 131, 0.3)";
+      const glowWide  = isDark ? "rgba(185, 247, 206, 0.12)" : "rgba(61, 198, 131, 0.08)";
+      const tl = gsap.timeline();
+
+      if (reducedMotion) {
+        tl.set(badgeEl, { opacity:1, scale:1 });
+        tl.set(chars, { opacity:1, filter:"blur(0px)" });
+        return tl;
+      }
+
+      /* Phase 1: Pill materializes — scale from 0.9 with overshoot + blur dissolve */
+      tl.set(chars, { opacity:0 })
+        .fromTo(badgeEl,
+          { scale:0.9, opacity:0, filter:"blur(8px)", transformOrigin:"center center" },
+          { scale:1, opacity:1, filter:"blur(0px)", duration:0.45, ease:"back.out(1.7)" }
+        )
+        /* Phase 2: Characters stagger from center outward (radiates from the *) with blur-to-sharp */
+        .fromTo(chars,
+          { opacity:0, filter:"blur(4px)", y:6 },
+          { opacity:1, filter:"blur(0px)", y:0, duration:0.3, ease:"power2.out",
+            stagger:{ each:0.05, from:"center" } },
+          "-=0.15"
+        )
+        /* Phase 3: Dual-layer glow pulse — tight bright + wide diffuse, single breathe */
+        .fromTo(badgeEl,
+          { boxShadow:"0 0 0px 0px " + glowTight + ", 0 0 0px 0px " + glowWide },
+          { boxShadow:"0 0 16px 3px " + glowTight + ", 0 0 40px 8px " + glowWide,
+            duration:0.35, ease:"power2.out" },
+          "-=0.05"
+        )
+        .to(badgeEl,
+          { boxShadow:"0 0 0px 0px transparent, 0 0 0px 0px transparent",
+            duration:0.3, ease:"power2.in" }
+        );
+
+      return tl;
+    }
+
+    function resetBadge(badgeEl) {
+      gsap.set(badgeEl, { clearProps:"all" });
+      const chars = badgeEl.querySelectorAll(".logo-char");
+      if (chars.length) gsap.set(chars, { clearProps:"all" });
+    }
+
+    /* Animation section (existing simple reveal) */
+    setTimeout(() => playReveal(".logo-icon-demo", ".logo-wordmark-demo"), 600);
+    wireReplay("logo-replay-btn", ".logo-icon-demo", ".logo-wordmark-demo");
+
+    /* Logo section — rich animated badges */
+    const animLightBadge = document.querySelector(".logo-anim-light-badge");
+    const animDarkBadge  = document.querySelector(".logo-anim-dark-badge");
+    splitBadgeChars(animLightBadge);
+    splitBadgeChars(animDarkBadge);
+
+    document.getElementById("logo-anim-light-replay").addEventListener("click", () => {
+      resetBadge(animLightBadge);
+      playBadgeReveal(animLightBadge);
+    });
+    document.getElementById("logo-anim-dark-replay").addEventListener("click", () => {
+      resetBadge(animDarkBadge);
+      playBadgeReveal(animDarkBadge);
+    });
+
+    /* Auto-play way*ID on scroll */
+    [animLightBadge, animDarkBadge].forEach((el) => {
+      ScrollTrigger.create({
+        trigger: el, start: "top 85%", once: true,
+        onEnter: () => playBadgeReveal(el),
+      });
+    });
+
+    /* ---- Lineage*Labs wordmark reveal ---- */
+    function splitWordmarkChars(el) {
+      /* Preserve .logo-asterisk span, split everything else into chars */
+      const nodes = Array.from(el.childNodes);
+      el.textContent = "";
+      const chars = [];
+      nodes.forEach((node) => {
+        if (node.nodeType === 3) {
+          /* Text node — split each character */
+          const text = node.textContent;
+          for (let i = 0; i < text.length; i++) {
+            const span = document.createElement("span");
+            span.textContent = text[i];
+            span.style.display = "inline-block";
+            span.className = "logo-char";
+            el.appendChild(span);
+            chars.push(span);
+          }
+        } else if (node.nodeType === 1) {
+          /* Element node (the .logo-asterisk span) — wrap its text content */
+          node.style.display = "inline-block";
+          node.classList.add("logo-char");
+          el.appendChild(node);
+          chars.push(node);
+        }
+      });
+      return chars;
+    }
+
+    function playWordmarkReveal(el, chars) {
+      const isDark = el.classList.contains("logo-text-dark");
+      const glowColor = isDark ? "rgba(185, 247, 206, 0.3)" : "rgba(21, 85, 46, 0.2)";
+      const asteriskIdx = chars.findIndex((c) => c.classList.contains("logo-asterisk"));
+      const tl = gsap.timeline();
+
+      if (reducedMotion) {
+        tl.set(el, { opacity:1 });
+        tl.set(chars, { opacity:1, filter:"blur(0px)", y:0 });
+        return tl;
+      }
+
+      /* Phase 1: Characters slide + blur in from left, staggered */
+      tl.set(el, { opacity:1 })
+        .fromTo(chars,
+          { opacity:0, filter:"blur(6px)", x:-16, y:8 },
+          { opacity:1, filter:"blur(0px)", x:0, y:0, duration:0.4, ease:"power2.out",
+            stagger:0.04 },
+        );
+
+      /* Phase 2: Asterisk gets a special scale pop after its stagger position */
+      if (asteriskIdx !== -1) {
+        const asteriskDelay = asteriskIdx * 0.04;
+        tl.fromTo(chars[asteriskIdx],
+          { scale:1 },
+          { scale:1.3, duration:0.2, ease:"back.out(3)" },
+          asteriskDelay + 0.25
+        ).to(chars[asteriskIdx],
+          { scale:1, duration:0.25, ease:"power2.out" }
+        );
+      }
+
+      /* Phase 3: Subtle text-shadow glow pulse */
+      tl.fromTo(el,
+        { textShadow:"0 0 0px " + glowColor },
+        { textShadow:"0 0 20px " + glowColor, duration:0.3, ease:"power2.out" },
+        "-=0.3"
+      ).to(el,
+        { textShadow:"0 0 0px transparent", duration:0.3, ease:"power2.in" }
+      );
+
+      return tl;
+    }
+
+    function resetWordmark(el, chars) {
+      gsap.set(el, { clearProps:"all" });
+      chars.forEach((c) => gsap.set(c, { clearProps:"all" }));
+    }
+
+    const llLightEl = document.querySelector(".ll-anim-light");
+    const llDarkEl  = document.querySelector(".ll-anim-dark");
+    const llLightChars = splitWordmarkChars(llLightEl);
+    const llDarkChars  = splitWordmarkChars(llDarkEl);
+    gsap.set(llLightEl, { opacity:0 });
+    gsap.set(llDarkEl, { opacity:0 });
+
+    document.getElementById("ll-anim-light-replay").addEventListener("click", () => {
+      resetWordmark(llLightEl, llLightChars);
+      gsap.set(llLightEl, { opacity:0 });
+      playWordmarkReveal(llLightEl, llLightChars);
+    });
+    document.getElementById("ll-anim-dark-replay").addEventListener("click", () => {
+      resetWordmark(llDarkEl, llDarkChars);
+      gsap.set(llDarkEl, { opacity:0 });
+      playWordmarkReveal(llDarkEl, llDarkChars);
+    });
+
+    /* Auto-play Lineage*Labs on scroll */
+    [[llLightEl, llLightChars], [llDarkEl, llDarkChars]].forEach(([el, chars]) => {
+      ScrollTrigger.create({
+        trigger: el, start: "top 85%", once: true,
+        onEnter: () => playWordmarkReveal(el, chars),
+      });
+    });
+
+    document.querySelectorAll(".reveal").forEach((el) => {
+      gsap.fromTo(el, { y: dur(30), opacity: 0 }, {
+        y:0, opacity:1, duration: dur(0.55), ease:"power2.out",
+        scrollTrigger: { trigger:el, start:"top 88%", toggleActions:"play none none none" }
+      });
+    });
+
+    const ENTRANCE = {
+      fadeIn:      { from:{opacity:0},                   to:{opacity:1,          duration:dur(0.3), ease:"power2.out"} },
+      slideInUp:   { from:{y:24,opacity:0},              to:{y:0,  opacity:1,    duration:dur(0.4), ease:"power2.out"} },
+      slideInDown: { from:{y:-24,opacity:0},             to:{y:0,  opacity:1,    duration:dur(0.4), ease:"power2.out"} },
+      slideInLeft: { from:{x:-24,opacity:0},             to:{x:0,  opacity:1,    duration:dur(0.4), ease:"power2.out"} },
+      slideInRight:{ from:{x:24,opacity:0},              to:{x:0,  opacity:1,    duration:dur(0.4), ease:"power2.out"} },
+      scaleIn:     { from:{scale:0.95,opacity:0},        to:{scale:1,opacity:1,  duration:dur(0.3), ease:"back.out(1.7)"} },
+      expandIn:    { from:{scaleY:0,opacity:0,transformOrigin:"top"}, to:{scaleY:1,opacity:1,duration:dur(0.3),ease:"power2.out"} },
+    };
+    const EXIT = {
+      fadeOut:      { from:{opacity:1},       to:{opacity:0,         duration:dur(0.2), ease:"power2.in"} },
+      slideOutUp:   { from:{y:0,opacity:1},   to:{y:-24,opacity:0,   duration:dur(0.3), ease:"power2.in"} },
+      slideOutDown: { from:{y:0,opacity:1},   to:{y:24,opacity:0,    duration:dur(0.3), ease:"power2.in"} },
+      scaleOut:     { from:{scale:1,opacity:1},to:{scale:0.95,opacity:0,duration:dur(0.2),ease:"power2.in"} },
+    };
+
+    document.querySelectorAll("[data-preset]").forEach((card) => {
+      const name = card.dataset.preset, box = card.querySelector(".demo-box"), preset = ENTRANCE[name];
+      gsap.fromTo(box, {...preset.from}, {...preset.to, delay:0.3});
+      card.addEventListener("click", () => { gsap.set(box,{clearProps:"all"}); gsap.fromTo(box,{...preset.from},{...preset.to}); });
+    });
+
+    document.querySelectorAll("[data-exit]").forEach((card) => {
+      const name = card.dataset.exit, box = card.querySelector(".demo-box"), preset = EXIT[name];
+      card.addEventListener("click", () => {
+        gsap.set(box,{clearProps:"all",opacity:1});
+        gsap.fromTo(box,{...preset.from},{...preset.to,onComplete:()=>{gsap.set(box,{clearProps:"all",opacity:1});}});
+      });
+    });
+
+    const liftBtn = document.getElementById("hover-lift-btn");
+    liftBtn.addEventListener("mouseenter", () => { gsap.to(liftBtn,{y:-4,duration:dur(0.2),ease:"power2.out"}); });
+    liftBtn.addEventListener("mouseleave", () => { gsap.to(liftBtn,{y:0,duration:dur(0.2),ease:"power2.out"}); });
+
+    const pressBtn = document.getElementById("hover-press-btn");
+    pressBtn.addEventListener("mousedown", () => { gsap.to(pressBtn,{scale:0.97,duration:dur(0.1),ease:"power2.out"}); });
+    pressBtn.addEventListener("mouseup", () => { gsap.to(pressBtn,{scale:1,duration:dur(0.1),ease:"power2.out"}); });
+    pressBtn.addEventListener("mouseleave", () => { gsap.to(pressBtn,{scale:1,duration:dur(0.1),ease:"power2.out"}); });
+
+    const glowCard = document.getElementById("hover-glow-card");
+    glowCard.addEventListener("mouseenter", () => { gsap.to(glowCard,{boxShadow:"0 0 20px 4px rgba(61,198,131,0.3)",duration:dur(0.2),ease:"power2.out"}); });
+    glowCard.addEventListener("mouseleave", () => { gsap.to(glowCard,{boxShadow:"0 0 0px 0px rgba(61,198,131,0)",duration:dur(0.2),ease:"power2.out"}); });
+
+    /* ==========================================================
+       MAIA COMPONENT ANIMATIONS
+       CSS handles colour/filter/shadow transitions.
+       GSAP handles physical transforms (y, scale) for that
+       animated, tactile feel.
+       ========================================================== */
+
+    // --- Button hover lift + bouncy press (all .maia-btn) ---
+    document.querySelectorAll(".maia-btn").forEach(btn => {
+      let hovered = false;
+
+      btn.addEventListener("mouseenter", () => {
+        hovered = true;
+        gsap.to(btn, { y: -1, duration: dur(0.2), ease: "power2.out" });
+      });
+      btn.addEventListener("mouseleave", () => {
+        hovered = false;
+        gsap.to(btn, { y: 0, scale: 1, duration: dur(0.25), ease: "power2.out" });
+      });
+      btn.addEventListener("mousedown", () => {
+        gsap.to(btn, { scale: 0.97, y: 0, duration: dur(0.08), ease: "power2.out" });
+      });
+      btn.addEventListener("mouseup", () => {
+        gsap.to(btn, { scale: 1, y: hovered ? -1 : 0, duration: dur(0.2), ease: "back.out(2)" });
+      });
+    });
+
+    // --- Card hover-lift (GSAP for y transform, CSS for shadow+filter) ---
+    document.querySelectorAll(".maia-hover-lift").forEach(card => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, { y: -4, duration: dur(0.25), ease: "power2.out" });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, { y: 0, duration: dur(0.3), ease: "power2.out" });
+      });
+    });
+
+    // --- Dialog (scaleIn / scaleOut) ---
+    const dialogOverlay = document.getElementById("dialog-overlay");
+    const dialogContent = document.getElementById("dialog-content");
+
+    function openDialog() {
+      dialogOverlay.classList.add("open");
+      gsap.fromTo(dialogOverlay, { opacity: 0 }, { opacity: 1, duration: dur(0.2), ease: "power2.out" });
+      gsap.fromTo(dialogContent, { scale: 0.95, opacity: 0 }, { scale: 1, opacity: 1, duration: dur(0.3), ease: "back.out(1.7)" });
+    }
+    function closeDialog() {
+      gsap.to(dialogContent, { scale: 0.95, opacity: 0, duration: dur(0.2), ease: "power2.in" });
+      gsap.to(dialogOverlay, { opacity: 0, duration: dur(0.2), ease: "power2.in", onComplete: () => dialogOverlay.classList.remove("open") });
+    }
+
+    document.getElementById("dialog-open-btn").addEventListener("click", openDialog);
+    document.getElementById("dialog-cancel").addEventListener("click", closeDialog);
+    document.getElementById("dialog-confirm").addEventListener("click", closeDialog);
+    dialogOverlay.addEventListener("click", (e) => { if (e.target === dialogOverlay) closeDialog(); });
+
+    // --- Sheet (slideInRight / slideOutRight) ---
+    const sheetOverlay = document.getElementById("sheet-overlay");
+    const sheetPanel = document.getElementById("sheet-panel");
+
+    function openSheet() {
+      sheetOverlay.classList.add("open");
+      sheetPanel.classList.add("open");
+      gsap.fromTo(sheetOverlay, { opacity: 0 }, { opacity: 1, duration: dur(0.2), ease: "power2.out" });
+      gsap.fromTo(sheetPanel, { x: 320, opacity: 0 }, { x: 0, opacity: 1, duration: dur(0.4), ease: "power2.out" });
+    }
+    function closeSheet() {
+      gsap.to(sheetPanel, { x: 320, opacity: 0, duration: dur(0.3), ease: "power2.in", onComplete: () => sheetPanel.classList.remove("open") });
+      gsap.to(sheetOverlay, { opacity: 0, duration: dur(0.2), ease: "power2.in", onComplete: () => sheetOverlay.classList.remove("open") });
+    }
+
+    document.getElementById("sheet-open-btn").addEventListener("click", openSheet);
+    document.getElementById("sheet-close-btn").addEventListener("click", closeSheet);
+    sheetOverlay.addEventListener("click", closeSheet);
+
+    // --- Dropdown (slideInDown / fadeOut) ---
+    const dropdownMenu = document.getElementById("dropdown-menu");
+    const dropdownTrigger = document.getElementById("dropdown-trigger");
+    let dropdownOpen = false;
+
+    function toggleDropdown() {
+      if (dropdownOpen) {
+        gsap.to(dropdownMenu, { opacity: 0, duration: dur(0.15), ease: "power2.in", onComplete: () => { dropdownMenu.classList.remove("open"); dropdownOpen = false; } });
+      } else {
+        dropdownMenu.classList.add("open");
+        gsap.fromTo(dropdownMenu, { y: -8, opacity: 0, scale: 0.96 }, { y: 0, opacity: 1, scale: 1, duration: dur(0.25), ease: "back.out(1.5)" });
+        dropdownOpen = true;
+      }
+    }
+    dropdownTrigger.addEventListener("click", (e) => { e.stopPropagation(); toggleDropdown(); });
+    document.querySelectorAll(".maia-dropdown-item").forEach(item => {
+      item.addEventListener("click", () => {
+        gsap.to(dropdownMenu, { opacity: 0, duration: dur(0.15), ease: "power2.in", onComplete: () => { dropdownMenu.classList.remove("open"); dropdownOpen = false; } });
+      });
+    });
+    document.addEventListener("click", () => {
+      if (dropdownOpen) {
+        gsap.to(dropdownMenu, { opacity: 0, duration: dur(0.15), ease: "power2.in", onComplete: () => { dropdownMenu.classList.remove("open"); dropdownOpen = false; } });
+      }
+    });
+
+    // --- Tooltip (fadeIn / fadeOut fast 150ms) ---
+    document.querySelectorAll(".maia-tooltip-trigger").forEach(trigger => {
+      const tooltip = trigger.parentElement.querySelector(".maia-tooltip");
+      trigger.addEventListener("mouseenter", () => {
+        gsap.to(tooltip, { opacity: 1, y: 0, duration: dur(0.15), ease: "power2.out" });
+      });
+      trigger.addEventListener("mouseleave", () => {
+        gsap.to(tooltip, { opacity: 0, y: 4, duration: dur(0.15), ease: "power2.in" });
+      });
+    });
+
+    // --- Toast (slideInRight / slideOutUp) ---
+    const toastContainer = document.getElementById("toast-container");
+    let toastId = 0;
+
+    function fireToast(message, variant) {
+      const id = ++toastId;
+      const toast = document.createElement("div");
+      toast.className = "maia-toast";
+      toast.id = "toast-" + id;
+      if (variant === "success") {
+        toast.innerHTML = '<span class="maia-toast-text" style="display:flex;align-items:center;gap:0.5rem;"><span style="color:oklch(0.6 0.2 145);font-size:1.1rem;">✓</span> ' + message + '</span><button class="maia-toast-close" data-toast-id="' + id + '">✕</button>';
+      } else {
+        toast.innerHTML = '<span class="maia-toast-text">' + message + '</span><button class="maia-toast-close" data-toast-id="' + id + '">✕</button>';
+      }
+      toastContainer.appendChild(toast);
+      gsap.fromTo(toast, { x: 100, opacity: 0 }, { x: 0, opacity: 1, duration: dur(0.45), ease: "back.out(1.4)" });
+      // Auto-dismiss after 3s
+      const autoDismiss = setTimeout(() => dismissToast(id), 3000);
+      toast.querySelector(".maia-toast-close").addEventListener("click", () => { clearTimeout(autoDismiss); dismissToast(id); });
+    }
+
+    function dismissToast(id) {
+      const toast = document.getElementById("toast-" + id);
+      if (!toast) return;
+      gsap.to(toast, { y: -20, opacity: 0, duration: dur(0.3), ease: "power2.in", onComplete: () => toast.remove() });
+    }
+
+    document.getElementById("toast-fire-btn").addEventListener("click", () => fireToast("Event has been created."));
+    document.getElementById("toast-fire-success-btn").addEventListener("click", () => fireToast("Settings saved successfully.", "success"));
+
+    // --- Accordion (expandIn / collapse) + hover chevron nudge ---
+    document.querySelectorAll("[data-accordion]").forEach(item => {
+      const trigger = item.querySelector(".maia-accordion-trigger");
+      const chevron = item.querySelector(".maia-accordion-chevron");
+      const content = item.querySelector(".maia-accordion-content");
+      const inner = item.querySelector(".maia-accordion-content-inner");
+
+      // Hover: nudge chevron down
+      trigger.addEventListener("mouseenter", () => {
+        if (!item.classList.contains("open")) {
+          gsap.to(chevron, { y: 2, duration: dur(0.2), ease: "power2.out" });
+        }
+      });
+      trigger.addEventListener("mouseleave", () => {
+        gsap.to(chevron, { y: 0, duration: dur(0.2), ease: "power2.out" });
+      });
+
+      trigger.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        if (isOpen) {
+          gsap.to(content, {
+            height: 0,
+            duration: dur(0.3),
+            ease: "power2.in",
+            onComplete: () => item.classList.remove("open")
+          });
+        } else {
+          item.classList.add("open");
+          const fullHeight = inner.offsetHeight;
+          gsap.fromTo(content,
+            { height: 0 },
+            { height: fullHeight, duration: dur(0.35), ease: "power2.out", onComplete: () => { content.style.height = "auto"; } }
+          );
+        }
+      });
+    });
+
+    // --- Tabs (fadeIn + slide, 200ms) ---
+    document.querySelectorAll(".maia-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        const targetId = tab.dataset.tab;
+        // Deactivate all tabs and panels
+        document.querySelectorAll(".maia-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".maia-tab-panel").forEach(p => {
+          p.classList.remove("active");
+          gsap.set(p, { opacity: 0 });
+        });
+        // Activate target with slide-up fade
+        tab.classList.add("active");
+        const panel = document.getElementById(targetId);
+        panel.classList.add("active");
+        gsap.fromTo(panel, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: dur(0.2), ease: "power2.out" });
+      });
+    });
+  </script>
+</body>
+</html>

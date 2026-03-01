@@ -126,13 +126,14 @@ export const HOVER = {
   },
 
   glow: {
+    // Brand grass-green (#3DC683) glow — use on brand-colored elements
     to: {
-      boxShadow: "0 0 20px 4px rgba(43, 195, 255, 0.3)",
+      boxShadow: "0 0 20px 4px rgba(61, 198, 131, 0.35)",
       duration: 0.2,
       ease: "power2.out",
     },
     reset: {
-      boxShadow: "0 0 0px 0px rgba(43, 195, 255, 0)",
+      boxShadow: "0 0 0px 0px rgba(61, 198, 131, 0)",
       duration: 0.2,
       ease: "power2.out",
     },

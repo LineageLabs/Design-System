@@ -1,0 +1,300 @@
+# Breakpoints — Responsive Design Tokens
+# Aligned with Tailwind CSS v4 defaults. Mobile-first: base styles = mobile.
+# Override upward with sm:, md:, lg:, xl: prefixes.
+
+# ─────────────────────────────────────────
+# Breakpoint Scale
+# ─────────────────────────────────────────
+
+breakpoints:
+  mobile:
+    min_width: "0px"
+    tailwind_prefix: "(default)"
+    description: "Base styles — all CSS starts here"
+    use: "Single-column layout, stacked content, full-width elements"
+
+  sm:
+    min_width: "640px"
+    tailwind_prefix: "sm:"
+    description: "Large phones in landscape, small tablets"
+    use: "Minor refinements — rarely needed. Most layouts stay single-column."
+
+  md:
+    min_width: "768px"
+    tailwind_prefix: "md:"
+    description: "PRIMARY breakpoint — tablets, small laptops"
+    use: "Layout shifts: 1-col → 2-col grids, sidebar appears, page gutter widens"
+
+  lg:
+    min_width: "1024px"
+    tailwind_prefix: "lg:"
+    description: "Desktop"
+    use: "Full multi-column layouts: 2-col → 3-col grids, wider content areas"
+
+  xl:
+    min_width: "1280px"
+    tailwind_prefix: "xl:"
+    description: "Wide desktop — optional refinement"
+    use: "Extra breathing room. Rarely needed — content is capped by page-max-width."
+
+# ─────────────────────────────────────────
+# Container
+# ─────────────────────────────────────────
+
+container:
+  max_width: "1100px"           # page-max-width from spacing tokens
+  gutter_mobile: "1.5rem"       # page-gutter (24px) — below md
+  gutter_desktop: "2rem"        # page-gutter-lg (32px) — md and above
+  centering: "margin-inline: auto"
+  css: |
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin-inline: auto;
+      padding-inline: 1.5rem;   /* page-gutter */
+    }
+    @media (min-width: 768px) {
+      .container {
+        padding-inline: 2rem;   /* page-gutter-lg */
+      }
+    }
+
+# ─────────────────────────────────────────
+# Grid Patterns
+# ─────────────────────────────────────────
+
+grid_patterns:
+  card_grid:
+    description: "Standard card/content grid"
+    mobile: "1 column"
+    md: "2 columns"
+    lg: "3 columns"
+    gap: "gap-md (16px)"
+    css: |
+      .card-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .card-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .card-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+  sidebar_layout:
+    description: "Content area with sidebar"
+    mobile: "Stacked — sidebar below or hidden"
+    md: "Side-by-side — sidebar 280px, content fills rest"
+    css: |
+      .sidebar-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      @media (min-width: 768px) {
+        .sidebar-layout {
+          grid-template-columns: 280px 1fr;
+        }
+      }
+
+# ─────────────────────────────────────────
+# Responsive Rules
+# ─────────────────────────────────────────
+
+rules:
+  1_mobile_first:
+    rule: "Mobile-first CSS"
+    detail: "All default styles target mobile (< 768px). Override upward with md: and lg: prefixes. Never write desktop-first CSS that you then undo for mobile."
+
+  2_layout_shifts_at_md:
+    rule: "Layout shifts at md: (768px)"
+    detail: "This is where single-column layouts become multi-column. Grids go from 1-col to 2-col. Sidebars appear. Navigation expands."
+
+  3_fluid_typography:
+    rule: "Use clamp() for typography, not breakpoint-based font sizes"
+    detail: "Headlines use CSS clamp() for smooth scaling. Do not set different font-size values at different breakpoints."
+    values:
+      h0: "clamp(3.5rem, 8vw, 6rem)"     # 56px → 96px — display / hero
+      h1: "clamp(2rem, 4vw, 2.75rem)"     # 32px → 44px — page titles
+      h2: "clamp(1.5rem, 3vw, 1.75rem)"   # 24px → 28px — section titles
+      body: "1rem (fixed)"                  # 16px — no scaling
+
+  4_fixed_component_padding:
+    rule: "Component padding stays fixed across all breakpoints"
+    detail: "Buttons, cards, inputs, dialogs — their internal padding does NOT change between mobile and desktop. Only page-level spacing adapts."
+
+  5_page_gutter_shifts:
+    rule: "Page gutter widens at md:"
+    detail: "page-gutter: 1.5rem (24px) below 768px → page-gutter-lg: 2rem (32px) at 768px and above."
+
+  6_section_spacing_compresses:
+    rule: "Section spacing may compress one step below md:"
+    detail: "Section margins (section-sm through section-xl) may drop one scale step on screens under 768px. Component padding stays fixed."
+
+  7_grid_column_pattern:
+    rule: "Standard grid pattern: 1 col → 2 col md: → 3 col lg:"
+    detail: "Use this as the default card/content grid. Adjust only when content requires it (e.g. 2-col max for wide cards)."
+
+  8_restructure_not_hide:
+    rule: "Restructure layout on mobile, don't hide content"
+    detail: "If content matters on desktop, show it on mobile too. Change layout (stack, reorder) not visibility. Avoid display:none for meaningful content."
+
+  9_minimum_viewport:
+    rule: "Minimum supported viewport width: 320px"
+    detail: "All layouts, components, and content must remain usable at 320px wide. This is the narrowest commonly-used viewport (iPhone SE, compact Android, split-screen). Test every page at this width."
+
+  10_table_scroll_wrapper:
+    rule: "Always wrap tables in a horizontally-scrollable container"
+    detail: "Every <table> must be inside a <div> with overflow-x: auto. Tables compress and become unreadable on narrow viewports. The scroll wrapper ensures all columns remain accessible via horizontal swipe."
+
+  11_code_block_overflow:
+    rule: "Code blocks must scroll horizontally"
+    detail: "Apply overflow-x: auto to all <pre> and code block containers. Long lines of code must not push the page wider."
+
+  12_long_text_wrapping:
+    rule: "Apply overflow-wrap: break-word to body"
+    detail: "Prevents long unbroken strings (URLs, token names, file paths, hashes) from overflowing containers. This is a global safety net on the body element."
+
+  13_safe_grid_minimums:
+    rule: "Grid minmax() first value must not exceed the viewport minus gutters"
+    detail: "Use minmax(min(Xpx, 100%), 1fr) instead of minmax(Xpx, 1fr). At 320px viewport with 24px page gutters, the max safe minimum is 272px. Values above this cause horizontal overflow on the narrowest supported screens."
+
+  14_media_containment:
+    rule: "All media elements must be viewport-contained"
+    detail: "Apply max-width: 100%; height: auto to img, video, svg, canvas, and iframe globally. Prevents media from overflowing their parent containers."
+
+  15_overlay_viewport_clamp:
+    rule: "Overlay components must clamp to viewport width"
+    detail: "Tooltips, toasts, popovers, and dropdowns that use min-width or fixed width must also set max-width: calc(100vw - 3rem) so they never exceed the viewport minus page gutters."
+
+  16_inline_grid_collapse:
+    rule: "Inline multi-column grids must collapse on mobile"
+    detail: "Any hardcoded grid-template-columns: 1fr 1fr (or similar) must include a media query or responsive class to collapse to single-column below sm (640px)."
+
+  17_no_horizontal_page_scroll:
+    rule: "Block horizontal page scroll with overflow-x: clip on html"
+    detail: "Apply overflow-x: clip (not hidden) to the html element as a last-resort safety net. Use clip rather than hidden because hidden creates a new scrolling context that breaks position: sticky."
+
+  18_min_height_not_height:
+    rule: "Use min-height, not height, for full-screen sections"
+    detail: "Never use height: 100vh on content containers. Use min-height so content can grow beyond the viewport. height + overflow: hidden = invisible content on mobile."
+
+  19_slides_scroll_on_mobile:
+    rule: "Slide/carousel slides must scroll internally on mobile"
+    detail: "Any paginated layout where each slide is viewport-height must add overflow-y: auto to the slide container below md:. Content that fits on desktop often doesn't fit on mobile due to reduced vertical space, larger touch targets, and dynamic browser chrome."
+
+  20_no_overflow_hidden_on_content:
+    rule: "Never use overflow: hidden on content containers"
+    detail: "overflow: hidden silently clips content. Use it only on decorative wrappers (border-radius clipping, image crops). For layout containers use overflow: visible (default) or overflow-y: auto if scrolling is needed."
+
+  21_dvh_not_vh:
+    rule: "Use dvh not vh for mobile viewport heights"
+    detail: "100vh on mobile includes area behind browser chrome (address bar). Use 100dvh (dynamic viewport height) which adjusts. Fallback: min-height: 100vh; min-height: 100dvh;"
+
+  22_reduce_density_or_scroll:
+    rule: "Reduce content density on mobile or enable inner scroll"
+    detail: "If a slide fits 3 cards on desktop but only 2 on mobile, let the content scroll within the slide or show fewer items per slide. Never clip content."
+
+# ─────────────────────────────────────────
+# Mobile Compaction
+# ─────────────────────────────────────────
+# Below md: (768px), layout-level spacing compresses to keep content
+# tight on small screens. Component-level spacing never changes.
+
+mobile_compaction:
+  description: "Spacing adjustments for screens below md: (768px)"
+
+  section_spacing:
+    description: "Each section spacing token drops one scale step on mobile"
+    section_xl:
+      desktop: "128px (py-32)"
+      mobile: "96px (py-24)"
+      tailwind: "py-24 md:py-32"
+    section_lg:
+      desktop: "96px (py-24)"
+      mobile: "64px (py-16)"
+      tailwind: "py-16 md:py-24"
+    section_md:
+      desktop: "64px (py-16)"
+      mobile: "48px (py-12)"
+      tailwind: "py-12 md:py-16"
+    section_sm:
+      desktop: "48px (py-12)"
+      mobile: "32px (py-8)"
+      tailwind: "py-8 md:py-12"
+
+  gap_scaling:
+    description: "Large layout gaps compress one step. Small/medium gaps stay fixed."
+    gap_xl:
+      desktop: "32px (gap-8)"
+      mobile: "24px (gap-6)"
+      compresses: true
+    gap_lg:
+      desktop: "24px (gap-6)"
+      mobile: "16px (gap-4)"
+      compresses: true
+    gap_md:
+      value: "16px (gap-4)"
+      compresses: false
+      note: "Fixed — default grid gap"
+    gap_sm:
+      value: "12px (gap-3)"
+      compresses: false
+    gap_xs:
+      value: "8px (gap-2)"
+      compresses: false
+
+  never_compresses:
+    - "Component padding (cards p-6, buttons, inputs, dialogs)"
+    - "Component gaps (gap-xs, gap-sm, gap-md within components)"
+    - "Border radius"
+    - "Touch targets (44px minimum)"
+    - "Font weights"
+    - "Animation durations and easings"
+
+# ─────────────────────────────────────────
+# Overflow Prevention
+# ─────────────────────────────────────────
+# Rules to prevent content cutoff and horizontal overflow on mobile.
+# These complement the mobile_compaction rules above.
+
+overflow_prevention:
+  minimum_viewport: "320px"
+  description: "All layouts must work at 320px wide. These CSS rules should be in every project's global stylesheet."
+
+  global_css:
+    html: "overflow-x: clip"
+    body: "overflow-wrap: break-word"
+    media: "img, video, svg, canvas, iframe { max-width: 100%; height: auto; }"
+    pre: "overflow-x: auto"
+    table_wrapper: ".table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }"
+
+  grid_safe_minimum:
+    description: "Maximum safe minmax() first value at each viewport width"
+    at_320px: "272px (320 - 2 × 24px gutter)"
+    at_360px: "312px (360 - 2 × 24px gutter)"
+    at_375px: "327px (375 - 2 × 24px gutter)"
+    safe_pattern: "minmax(min(Xpx, 100%), 1fr)"
+
+  overlay_max_width:
+    value: "calc(100vw - 3rem)"
+    detail: "3rem = 2 × page-gutter (1.5rem). Applies to all overlay components."
+    applies_to:
+      - "Tooltip"
+      - "Toast"
+      - "Popover"
+      - "DropdownMenu"
+
+  vertical_overflow:
+    description: "Rules for preventing vertical content clipping on mobile"
+    section_heights: "Use min-height (not height) for full-viewport sections"
+    viewport_unit: "Use dvh (not vh) — accounts for mobile browser chrome"
+    fallback: "min-height: 100vh; min-height: 100dvh;"
+    slide_containers: "Add overflow-y: auto below md: for paginated/slide layouts"
+    overflow_hidden: "Only for decorative wrappers (border-radius, image crops) — never on content containers"

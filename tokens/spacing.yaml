@@ -1,0 +1,295 @@
+# ==============================================================================
+# SPACING TOKENS
+# ==============================================================================
+#
+# Maia style = "soft and rounded, generous spacing."
+# These tokens codify the spacing scale used across every project.
+# Values align with Tailwind's default scale (1 unit = 0.25rem = 4px).
+#
+# Usage:
+#   Tailwind  →  class="p-4 gap-6"
+#   CSS       →  padding: var(--space-4); gap: var(--space-6);
+#   JS/GSAP   →  { y: SPACING.4 }   (for motion offsets)
+# ==============================================================================
+
+# ──────────────────────────────────────────────────────────────────────────────
+# BASE SCALE
+# ──────────────────────────────────────────────────────────────────────────────
+# 4px grid — every value is a multiple of 4px (0.25rem).
+# Maia "generous" means: when in doubt, pick the next size up.
+
+scale:
+  "0":
+    rem: "0"
+    px: 0
+    tailwind: "0"
+  "0.5":
+    rem: "0.125rem"
+    px: 2
+    tailwind: "0.5"
+  "1":
+    rem: "0.25rem"
+    px: 4
+    tailwind: "1"
+  "1.5":
+    rem: "0.375rem"
+    px: 6
+    tailwind: "1.5"
+  "2":
+    rem: "0.5rem"
+    px: 8
+    tailwind: "2"
+  "3":
+    rem: "0.75rem"
+    px: 12
+    tailwind: "3"
+  "4":
+    rem: "1rem"
+    px: 16
+    tailwind: "4"
+  "5":
+    rem: "1.25rem"
+    px: 20
+    tailwind: "5"
+  "6":
+    rem: "1.5rem"
+    px: 24
+    tailwind: "6"
+  "8":
+    rem: "2rem"
+    px: 32
+    tailwind: "8"
+  "10":
+    rem: "2.5rem"
+    px: 40
+    tailwind: "10"
+  "12":
+    rem: "3rem"
+    px: 48
+    tailwind: "12"
+  "16":
+    rem: "4rem"
+    px: 64
+    tailwind: "16"
+  "20":
+    rem: "5rem"
+    px: 80
+    tailwind: "20"
+  "24":
+    rem: "6rem"
+    px: 96
+    tailwind: "24"
+  "32":
+    rem: "8rem"
+    px: 128
+    tailwind: "32"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# SEMANTIC TOKENS
+# ──────────────────────────────────────────────────────────────────────────────
+# Named aliases for common use cases. Use these instead of raw scale values
+# so spacing intent is clear and easy to update globally.
+
+semantic:
+  # Inline / tight spacing (icons next to text, badge padding, etc.)
+  inline-xs:
+    value: "0.25rem"    # 4px  — scale 1
+    tailwind: "1"
+    use: "Icon-to-label gap, tight inline pairs"
+  inline-sm:
+    value: "0.5rem"     # 8px  — scale 2
+    tailwind: "2"
+    use: "Button icon gap, badge horizontal padding"
+  inline-md:
+    value: "0.75rem"    # 12px — scale 3
+    tailwind: "3"
+    use: "Nav link gap, input group spacing"
+
+  # Component internal padding
+  component-xs:
+    value: "0.375rem"   # 6px  — scale 1.5
+    tailwind: "1.5"
+    use: "Small button padding, compact badge"
+  component-sm:
+    value: "0.625rem"   # 10px — ~scale 2.5
+    tailwind: "2.5"
+    use: "Default button vertical padding, input padding"
+  component-md:
+    value: "1rem"       # 16px — scale 4
+    tailwind: "4"
+    use: "Card padding (compact), dropdown item padding"
+  component-lg:
+    value: "1.5rem"     # 24px — scale 6
+    tailwind: "6"
+    use: "Card padding (default Maia), dialog padding"
+  component-xl:
+    value: "2rem"       # 32px — scale 8
+    tailwind: "8"
+    use: "Large dialog/sheet padding, hero card"
+
+  # Layout gaps between sibling elements
+  # gap-xs through gap-md: fixed at all sizes.
+  # gap-lg and gap-xl: compress one step on mobile (< 768px).
+  gap-xs:
+    value: "0.5rem"     # 8px  — scale 2
+    tailwind: "2"
+    use: "Tight list items, badge groups"
+  gap-sm:
+    value: "0.75rem"    # 12px — scale 3
+    tailwind: "3"
+    use: "Form field groups, compact card grids"
+  gap-md:
+    value: "1rem"       # 16px — scale 4
+    tailwind: "4"
+    use: "Default card grid gap, list gap"
+  gap-lg:
+    value: "1.5rem"     # 24px — scale 6
+    mobile: "1rem"      # 16px — scale 4 (one step down)
+    tailwind: "6"
+    tailwind_responsive: "gap-4 md:gap-6"
+    use: "Section content gap, generous card grids"
+  gap-xl:
+    value: "2rem"       # 32px — scale 8
+    mobile: "1.5rem"    # 24px — scale 6 (one step down)
+    tailwind: "8"
+    tailwind_responsive: "gap-6 md:gap-8"
+    use: "Major content block gap"
+
+  # Section-level vertical rhythm
+  # On mobile (< 768px), each drops one step. See breakpoints.yaml → mobile_compaction.
+  section-sm:
+    value: "3rem"       # 48px — scale 12
+    mobile: "2rem"      # 32px — scale 8 (one step down)
+    tailwind: "12"
+    tailwind_responsive: "py-8 md:py-12"
+    use: "Compact section margin (e.g. within a form)"
+  section-md:
+    value: "4rem"       # 64px — scale 16
+    mobile: "3rem"      # 48px — scale 12 (one step down)
+    tailwind: "16"
+    tailwind_responsive: "py-12 md:py-16"
+    use: "Default section break"
+  section-lg:
+    value: "6rem"       # 96px — scale 24
+    mobile: "4rem"      # 64px — scale 16 (one step down)
+    tailwind: "24"
+    tailwind_responsive: "py-16 md:py-24"
+    use: "Major page section separation"
+  section-xl:
+    value: "8rem"       # 128px — scale 32
+    mobile: "6rem"      # 96px — scale 24 (one step down)
+    tailwind: "32"
+    tailwind_responsive: "py-24 md:py-32"
+    use: "Hero / footer breathing room"
+
+  # Page-level
+  page-gutter:
+    value: "1.5rem"     # 24px — scale 6
+    tailwind: "6"
+    use: "Page horizontal padding (mobile)"
+  page-gutter-lg:
+    value: "2rem"       # 32px — scale 8
+    tailwind: "8"
+    use: "Page horizontal padding (desktop)"
+  page-max-width:
+    value: "1100px"
+    tailwind: "max-w-6xl"
+    use: "Maximum content width"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# COMPONENT SPACING MAP
+# ──────────────────────────────────────────────────────────────────────────────
+# Exact spacing values assigned to each Maia component.
+
+components:
+  button:
+    padding-y: "0.625rem"      # component-sm
+    padding-x: "1.25rem"       # 20px
+    padding-y-sm: "0.375rem"   # component-xs
+    padding-x-sm: "1rem"
+    padding-y-lg: "0.875rem"
+    padding-x-lg: "2rem"       # component-xl
+    icon-gap: "0.5rem"         # inline-sm
+
+  input:
+    padding-y: "0.625rem"      # component-sm
+    padding-x: "1.25rem"       # 20px
+    label-gap: "0.5rem"        # inline-sm
+
+  card:
+    padding: "1.5rem"          # component-lg (Maia generous)
+    gap: "1rem"                # gap-md (between card children)
+
+  dialog:
+    padding: "2rem"            # component-xl
+    action-gap: "0.75rem"      # gap-sm
+    content-gap: "1.5rem"      # gap-lg
+
+  sheet:
+    padding: "1.5rem"          # component-lg
+
+  dropdown:
+    padding: "0.375rem"        # component-xs (menu chrome)
+    item-padding-y: "0.5rem"
+    item-padding-x: "0.75rem"
+
+  toast:
+    padding-y: "1rem"          # component-md
+    padding-x: "1.25rem"
+
+  accordion:
+    trigger-padding-y: "1rem"  # component-md
+    trigger-padding-x: "0.75rem"
+    content-padding: "1rem"    # component-md
+
+  badge:
+    padding-y: "0.2rem"
+    padding-x: "0.625rem"
+
+  tabs:
+    trigger-padding-y: "0.5rem"
+    trigger-padding-x: "0.875rem"
+    list-gap: "0.25rem"        # inline-xs
+
+# ──────────────────────────────────────────────────────────────────────────────
+# GUIDELINES
+# ──────────────────────────────────────────────────────────────────────────────
+
+guidelines:
+  grid: "4px (0.25rem). All spacing should be a multiple of 4px."
+
+  maia_principle: >
+    Maia style calls for 'generous spacing'. When choosing between two
+    reasonable values, pick the larger one. Cards get p-6 not p-4.
+    Sections get mb-24 not mb-16. Give elements room to breathe.
+
+  consistency: >
+    Use semantic tokens (component-lg, gap-md, section-lg) rather than
+    raw scale values. This keeps intent clear and makes global tweaks
+    a single-line change.
+
+  responsive: >
+    Component padding stays fixed on mobile — do NOT shrink padding below
+    the component defaults. Layout-level spacing compresses below md: (768px):
+    section spacing drops one step (section-lg 96px → 64px, etc.),
+    large layout gaps drop one step (gap-lg 24px → 16px, gap-xl 32px → 24px),
+    and page-gutter stays at 1.5rem until md: where it widens to 2rem.
+    Component gaps (gap-xs, gap-sm, gap-md) stay fixed.
+    Full responsive compaction rules: tokens/breakpoints.yaml → mobile_compaction.
+
+  vertical_rhythm: >
+    Sections are separated by section-lg (6rem). Within a section,
+    use gap-lg (1.5rem) between groups and gap-md (1rem) between
+    sibling items. Headings have margin-bottom of gap-sm (0.75rem).
+
+  touch_targets: >
+    Interactive elements must have at least 44px × 44px touch area.
+    Buttons, nav items, and list rows already meet this via their
+    padding. If a custom interactive element is smaller, add padding
+    or use min-height/min-width to reach 44px.
+
+  do_not:
+    - "Use margin for layout — prefer gap (flexbox/grid) instead."
+    - "Mix rem and px in the same context — pick rem for spacing."
+    - "Add arbitrary spacing values outside the 4px grid (e.g. 0.3rem, 7px)."
+    - "Reduce Maia component padding to match tighter design systems."
