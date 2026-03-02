@@ -6,13 +6,12 @@
     import Nav   from '$lib/components/Nav.svelte'
     import Hero  from '$lib/components/Hero.svelte'
 
-    const betaBadge  = true
-    const headline   = 'Payments that learn from every transaction.'
+    const headline   = 'Payments that feel human.'
     const socialProof = ['Stripe', 'Vercel', 'Linear', 'Notion']
   </script>
 
   <Nav    logoText="aria*" ctaLabel="Get Early Access" />
-  <Hero   {headline} showBetaBadge={betaBadge} {socialProof} />
+  <Hero   {headline} heroImage="/images/hero-market.jpg" {socialProof} />
 -->
 <html lang="en">
 <head>
@@ -53,18 +52,6 @@
       flex-direction: column;
     }
 
-    /* ── Subtle top glow (light version) ───────────── */
-    .bg-accent {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 50% -10%,
-          rgba(71,81,176,0.07) 0%,
-          transparent 70%);
-    }
-
     /* ── Nav ───────────────────────────────────────── */
     nav {
       position: relative;
@@ -73,10 +60,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 40px;
+      padding: 0 28px;
       border-bottom: 1px solid var(--border);
-      background: rgba(250,250,250,0.9);
-      backdrop-filter: blur(8px);
+      background: var(--card);
       flex-shrink: 0;
     }
 
@@ -113,10 +99,7 @@
       font-weight: 500;
       color: var(--muted-foreground);
       text-decoration: none;
-      transition: color 0.15s;
     }
-
-    .nav-links a:hover { color: var(--foreground); }
 
     .nav-cta {
       display: inline-flex;
@@ -129,38 +112,67 @@
       font-weight: 600;
       text-decoration: none;
       letter-spacing: 0.01em;
-      transition: opacity 0.15s;
     }
 
-    .nav-cta:hover { opacity: 0.85; }
+    /* ── Split layout ──────────────────────────────── */
+    .split {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
 
-    /* ── Hero ──────────────────────────────────────── */
-    .hero {
+    /* ── Image panel ───────────────────────────────── */
+    .hero-image {
+      flex: 0 0 52%;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
+      background: var(--muted);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    /* Subtle right-edge fade to blend with content panel */
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        transparent 60%,
+        var(--background) 100%
+      );
+    }
+
+    /* ── Content panel ─────────────────────────────── */
+    .hero-content {
       flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding: 0 40px 0;
-      text-align: center;
-      gap: 0;
+      padding: 28px 36px 28px 24px;
+      background: var(--background);
     }
 
     .eyebrow-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.2rem 0.75rem;
+      padding: 0.2rem 0.625rem;
       border-radius: 9999px;
-      border: 1px solid rgba(71,81,176,0.25);
-      background: rgba(71,81,176,0.06);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 6%, transparent);
       color: var(--brand-highlight-blue);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
       letter-spacing: 0.04em;
-      margin-bottom: 1.25rem;
+      width: fit-content;
+      margin-bottom: 1rem;
     }
 
     .eyebrow-dot {
@@ -168,99 +180,92 @@
       height: 5px;
       border-radius: 50%;
       background: var(--brand-highlight-blue);
+      flex-shrink: 0;
     }
 
     h1 {
       font-family: "Lora", Georgia, serif;
       font-style: normal;
       font-weight: 700;
-      font-size: 2.75rem;
-      line-height: 1.1;
+      font-size: 2rem;
+      line-height: 1.12;
       letter-spacing: -0.025em;
       color: var(--foreground);
-      max-width: 18ch;
-      margin-bottom: 0.875rem;
+      margin-bottom: 0.75rem;
     }
 
     .hero-subtitle {
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       line-height: 1.65;
       color: var(--muted-foreground);
-      max-width: 52ch;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.375rem;
     }
 
     /* CTA buttons */
     .cta-group {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
+      gap: 0.625rem;
+      margin-bottom: 1.5rem;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      padding: 0.5rem 1.25rem;
+      padding: 0.45rem 1.125rem;
       border-radius: 9999px;
       background: var(--brand-highlight-blue);
       color: #FAFAFA;
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-decoration: none;
       letter-spacing: 0.01em;
-      box-shadow: 0 2px 12px rgba(71,81,176,0.3);
+      box-shadow: 0 2px 10px color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
     }
 
     .btn-ghost {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      padding: 0.5rem 1rem;
+      gap: 0.3rem;
+      padding: 0.45rem 0.875rem;
       border-radius: 9999px;
       border: 1px solid var(--border);
       color: var(--foreground);
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       font-weight: 500;
       text-decoration: none;
-      letter-spacing: 0.01em;
     }
 
     /* Social proof */
     .social-proof {
       display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column;
+      gap: 0.375rem;
     }
 
     .social-label {
-      font-size: 0.65rem;
-      font-weight: 500;
+      font-size: 0.6rem;
+      font-weight: 600;
       color: var(--muted-foreground);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
     }
 
     .social-logos {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .social-logo {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       color: var(--ring);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
   </style>
 </head>
 <body>
-
-  <!-- Background accent -->
-  <div class="bg-accent"></div>
 
   <!-- ══ NAV ═══════════════════════════════════════════ -->
   <nav>
@@ -278,42 +283,52 @@
     <a href="#" class="nav-cta">Get Early Access</a>
   </nav>
 
-  <!-- ══ HERO ══════════════════════════════════════════ -->
-  <section class="hero">
+  <!-- ══ SPLIT ══════════════════════════════════════════ -->
+  <div class="split">
 
-    <div class="eyebrow-badge">
-      <span class="eyebrow-dot"></span>
-      Now in private beta
+    <!-- Image panel -->
+    <div class="hero-image">
+      <img src="hero-market.jpg" alt="Two people selecting produce at a farmers market" />
     </div>
 
-    <h1>Payments that learn from every transaction.</h1>
+    <!-- Content panel -->
+    <div class="hero-content">
 
-    <p class="hero-subtitle">
-      Aria connects to your payment stack in minutes and starts reducing fraud,
-      automating reconciliation, and surfacing revenue insights — immediately.
-    </p>
-
-    <div class="cta-group">
-      <a href="#" class="btn-primary">Start free trial</a>
-      <a href="#" class="btn-ghost">
-        Watch demo
-        <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="5,3 11,7 5,11" fill="currentColor" stroke="none"/>
-        </svg>
-      </a>
-    </div>
-
-    <div class="social-proof">
-      <span class="social-label">Trusted by teams at</span>
-      <div class="social-logos">
-        <span class="social-logo">Stripe</span>
-        <span class="social-logo">Vercel</span>
-        <span class="social-logo">Linear</span>
-        <span class="social-logo">Notion</span>
+      <div class="eyebrow-badge">
+        <span class="eyebrow-dot"></span>
+        Now in private beta
       </div>
-    </div>
 
-  </section>
+      <h1>Payments that feel human.</h1>
+
+      <p class="hero-subtitle">
+        Aria brings intelligence to every transaction — fraud detection,
+        instant reconciliation, and revenue insights built for the
+        real world.
+      </p>
+
+      <div class="cta-group">
+        <a href="#" class="btn-primary">Start free trial</a>
+        <a href="#" class="btn-ghost">
+          Watch demo
+          <svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor">
+            <polygon points="4,2 11,7 4,12"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="social-proof">
+        <span class="social-label">Trusted by teams at</span>
+        <div class="social-logos">
+          <span class="social-logo">Stripe</span>
+          <span class="social-logo">Vercel</span>
+          <span class="social-logo">Linear</span>
+          <span class="social-logo">Notion</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 </body>
 </html>
