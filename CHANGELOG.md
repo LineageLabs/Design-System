@@ -5,6 +5,26 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.0] — 2026-03-02
+
+### Added
+- **CSS Transitions subsection (§5).** Documents `animations/transitions.css` utility classes (`.transition-*`, `.hover-lift`, `.hover-press`, `.hover-fade`, `.focus-ring`), when to use CSS vs. GSAP, and how the built-in reduced-motion block works.
+- **Reduced Motion implementation guide (§5).** Code examples for `prefersReducedMotion()` and `applyPreset()` named exports from `animations/presets.js`; documents internal reduced-motion handling in all `animations/scroll-triggers.js` factory functions.
+- **`revealLeft`, `revealRight`, `pinSection()` in scroll presets table (§5).** Previously undocumented exports now included with trigger/effect/scrub values and a usage example for `pinSection()`.
+- **Hover column in Animation Assignments table (§6).** Adds Hover column to component animation table: `Card` (interactive) → `hover-lift`, `Button` → `hover-press`. Added `NavigationMenu` → `fadeIn` row. Fixed `Accordion` exit from `reverse` → `reverse expandIn`.
+- **Chart Color Token Reference table (§6).** Maps `--chart-1` through `--chart-5` to data series roles (primary → quinary) with light/dark color descriptions and series-order assignment rule.
+- **Sidebar Tokens subsection (§4).** Documents all 8 `--sidebar-*` tokens from `tokens/colors.css` with purpose descriptions and usage guidance.
+- **Tailwind v4 @theme block note (§4).** Explains the commented-out `@theme inline` block in `tokens/colors.css` and when to copy it into a project.
+
+### Fixed
+- **Icon stroke weight contradiction (§9).** Clarified that `1.5` is the fallback for uncategorized contexts; per-context rules now take explicit precedence. Renamed "Stroke weight consistency" to "Stroke weight by context".
+- **Mobile sidebar collapse pattern (§8).** Replaced vague "Stacked — sidebar below or hidden" with specific `Sheet` component guidance and `min(280px, calc(100vw - 3rem))` width rule.
+- **400ms duration note (§5).** Explains why `slideIn*` presets use 400ms (intentional intermediate, not a named token) and links to `tokens/motion.yaml` as the authoritative token list.
+- **h0 vs .hero-title ambiguity (§2).** Added blockquote note that `.hero-title` was deprecated in `[2026.02.19]` and `.h0` is the canonical display-scale class.
+- **Parallax effect value (§5).** Corrected `yPercent: -15` value in scroll presets table to match actual `parallax()` factory function default in `animations/scroll-triggers.js`.
+
+---
+
 ## [2026.02.24] — 2026-02-26
 
 ### Added

@@ -89,7 +89,11 @@ h1, h2, h3, h4 {
   line-height: 1.0;
   letter-spacing: -0.03em;
 }
+```
 
+> **`.h0` is the canonical display-scale class.** A `.hero-title` class was used in earlier project files; as of `[2026.02.19]` it was aligned to identical values as `.h0` and is no longer part of the design system. In all new code, use `.h0` directly.
+
+```css
 h1 {
   font-size: clamp(2rem, 4vw, 2.75rem);   /* 32px → 44px */
 }
@@ -184,6 +188,29 @@ inputs (`oklch(1 0 0 / 15%)`). Dark `--card` differs from `--background` (lighte
 
 **Full list (all 30+ variables):** [`tokens/colors.css`](tokens/colors.css)
 
+### Sidebar Tokens
+
+Eight `--sidebar-*` tokens power the shadcn `Sidebar` component. Do not use them as general color tokens outside of sidebar contexts.
+
+| Token | Purpose |
+|-------|---------|
+| `--sidebar` | Sidebar panel background |
+| `--sidebar-foreground` | Sidebar text |
+| `--sidebar-primary` | Active nav item background |
+| `--sidebar-primary-foreground` | Active nav item text |
+| `--sidebar-accent` | Hover state background |
+| `--sidebar-accent-foreground` | Hover state text |
+| `--sidebar-border` | Sidebar border / divider |
+| `--sidebar-ring` | Focus ring inside sidebar |
+
+For page-level layouts that happen to include a sidebar, use the standard `--background`, `--border`, etc. tokens — not `--sidebar-*` unless you are styling the shadcn `Sidebar` component. Exact OKLCH values are in [`tokens/colors.css`](tokens/colors.css).
+
+### Tailwind v4 @theme Block
+
+`tokens/colors.css` includes a commented-out `@theme inline` block (Section 3 of the file). Copy this into your project's root CSS file when using **Tailwind v4** — it maps all CSS variables to Tailwind color utilities (`bg-primary`, `text-muted-foreground`, `border-border`, etc.).
+
+**Note:** The block is commented out because it is framework-specific. Tailwind v3 projects use the `tailwind.config.js` `theme.extend.colors` approach instead.
+
 ---
 
 ## 5. Animation & Motion
@@ -200,6 +227,8 @@ Foundation: **GSAP v3**. All presets in [`animations/presets.js`](animations/pre
 | `slow` | `500ms` | Page sections, large reveals |
 | `slower` | `700ms` | Staggered sequences |
 | `slowest` | `1000ms` | Hero/cinematic, logo reveals |
+
+> **Note on 400ms:** The `slideIn*` entrance presets use 400ms (and `slideOut*` exit presets use 300ms). These are intentional intermediate values hardcoded in `animations/presets.js` — they do not map to a named duration token. When referencing these presets' timing, write `400ms` explicitly. All other named tokens above match [`tokens/motion.yaml`](tokens/motion.yaml) exactly.
 
 ### Easings
 
@@ -243,13 +272,100 @@ Foundation: **GSAP v3**. All presets in [`animations/presets.js`](animations/pre
 | `press` | `scale: 0.97` | 100ms |
 | `glow` | Brand-colored box-shadow | 200ms |
 
+### CSS Transitions vs. GSAP
+
+**Use CSS transitions** (`animations/transitions.css`) for:
+- Simple, reversible hover/focus/active states driven by CSS pseudo-classes
+- Effects limited to `transform`, `opacity`, or `box-shadow`
+- Anything that does not require sequencing, timelines, or scroll triggers
+
+**Use GSAP** (`animations/presets.js`) for:
+- Component mount/unmount (Dialog, Sheet, Toast, Popover)
+- Multi-step sequences or timelines (logo reveal, hero entrance)
+- Scroll-triggered animations
+- Anything requiring JS callbacks, dynamic values, or `ScrollTrigger`
+
+#### CSS Transition Utility Classes
+
+Import `animations/transitions.css` into your global stylesheet:
+
+| Class | Effect | Duration |
+|-------|--------|----------|
+| `.transition-instant` | Sets `transition-duration` | 100ms |
+| `.transition-fast` | Sets `transition-duration` | 150ms |
+| `.transition-normal` | Sets `transition-duration` | 300ms |
+| `.transition-slow` | Sets `transition-duration` | 500ms |
+| `.hover-lift` | `translateY(-4px)` + `shadow-md` on `:hover` | 200ms |
+| `.hover-press` | `scale(0.97)` on `:active` | 100ms |
+| `.hover-fade` | `opacity: 0.8` on `:hover` | 150ms |
+| `.focus-ring` | `box-shadow` ring via `var(--ring)` on `:focus-visible` | 150ms |
+
+All duration utilities apply `cubic-bezier(0.25, 0.46, 0.45, 0.94)` — the same easing as `power2.out`. The `@media (prefers-reduced-motion: reduce)` block in the file sets all durations to `0ms` and removes all transforms.
+
+```html
+<!-- Simple card hover → CSS class, no GSAP needed -->
+<div class="hover-lift transition-normal">Card content</div>
+
+<!-- Dialog open/close → GSAP preset -->
+```
+
 ### Scroll-Triggered Presets
 
 | Preset | Trigger | Effect | Scrub |
 |--------|---------|--------|-------|
 | `revealUp` | `top 85%` | `y: 40 → 0, fade in` | No |
+| `revealLeft` | `top 85%` | `x: -40 → 0, fade in` | No |
+| `revealRight` | `top 85%` | `x: 40 → 0, fade in` | No |
 | `parallax` | `top bottom → bottom top` | `yPercent: -15` | Yes |
 | `staggerReveal` | `top 85%` | Stagger `0.08s`, `y: 30, fade in` | No |
+
+**`pinSection(gsap, trigger, pinTarget, options)`** — Pins `pinTarget` in place while the user scrolls through `trigger`. Returns `null` under reduced motion (no pin applied). Use for sticky image / sticky sidebar layouts.
+
+```js
+import { pinSection } from "@/design-system/animations/scroll-triggers";
+// Pin the sidebar image while the right column scrolls past
+pinSection(gsap, ".case-study-section", ".case-study-image");
+```
+
+### Reduced Motion
+
+Every animation must respect `prefers-reduced-motion: reduce`. This is an accessibility requirement.
+
+#### GSAP — use `applyPreset()` or check manually
+
+```js
+// Option 1 (recommended) — handles reduced motion automatically
+import { applyPreset } from "@/design-system/animations/presets";
+applyPreset(gsap, ".dialog-content", "scaleIn");
+
+// Option 2 — manual check when writing raw gsap.fromTo()
+import { prefersReducedMotion } from "@/design-system/animations/presets";
+const duration = prefersReducedMotion() ? 0 : 0.3;
+gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration });
+```
+
+> `prefersReducedMotion()` is a named export from `animations/presets.js`. It returns `true` when the OS reduced-motion setting is active.
+
+#### ScrollTrigger — handled internally
+
+All factory functions in `animations/scroll-triggers.js` check reduced motion internally:
+- `revealUp()`, `staggerReveal()` — call `gsap.set()` to make elements instantly visible; no scroll effect applied.
+- `parallax()` — returns `null`. Element stays in its natural position.
+- `pinSection()` — returns `null`. No pin is applied.
+
+You do not need to guard calls to these factory functions — they self-manage.
+
+#### CSS — already handled
+
+All classes in `animations/transitions.css` include a `@media (prefers-reduced-motion: reduce)` block that sets `transition-duration: 0ms` and removes all transforms. No extra work needed.
+
+#### Rules
+
+1. Never use raw `gsap.to()` / `gsap.from()` without a duration guard. Use `applyPreset()` or call `prefersReducedMotion()` directly.
+2. Never hand-roll scrubbing animations without a reduced-motion guard. Use `parallax()`.
+3. Opacity-only fades are permissible at ≤150ms even under reduced motion. All translate and scale transforms must use `duration: 0`.
+
+---
 
 ### Logo Animation
 
@@ -325,17 +441,20 @@ Key characteristics:
 
 ### Animation Assignments
 
-| Component | Entrance | Exit |
-|-----------|----------|------|
-| `Dialog` / `AlertDialog` | `scaleIn` | `scaleOut` |
-| `Sheet` (left) | `slideInLeft` | `slideOutLeft` |
-| `Sheet` (right) | `slideInRight` | `slideOutRight` |
-| `DropdownMenu` | `slideInDown` | `fadeOut` |
-| `Popover` | `scaleIn` | `fadeOut` |
-| `Tooltip` | `fadeIn` (fast) | `fadeOut` (fast) |
-| `Toast` | `slideInRight` | `slideOutUp` |
-| `Accordion` | `expandIn` | reverse |
-| `Tabs` (panel) | `fadeIn` (fast) | — |
+| Component | Entrance | Exit | Hover |
+|-----------|----------|------|-------|
+| `Dialog` / `AlertDialog` | `scaleIn` | `scaleOut` | — |
+| `Sheet` (left) | `slideInLeft` | `slideOutLeft` | — |
+| `Sheet` (right) | `slideInRight` | `slideOutRight` | — |
+| `DropdownMenu` | `slideInDown` | `fadeOut` | — |
+| `Popover` | `scaleIn` | `fadeOut` | — |
+| `Tooltip` | `fadeIn` (fast) | `fadeOut` (fast) | — |
+| `Toast` | `slideInRight` | `slideOutUp` | — |
+| `Accordion` | `expandIn` | reverse `expandIn` | — |
+| `Tabs` (panel) | `fadeIn` (fast) | — | — |
+| `NavigationMenu` | `fadeIn` | — | — |
+| `Card` (interactive) | — | — | `hover-lift` (CSS class) |
+| `Button` | — | — | `hover-press` (CSS class) |
 
 ### Style Overrides
 
@@ -370,6 +489,18 @@ shadcn/ui includes a `Chart` component backed by [Recharts](https://recharts.org
 3. Include a chart header (title + optional description) and a legend below the chart body.
 4. Keep grid lines subtle — `var(--border)` at 1px. No heavy visual chrome.
 5. Tooltip follows the Maia card aesthetic — rounded, subtle shadow, card background.
+
+#### Chart Color Token Reference
+
+| Token | Light | Dark | Data Series Role |
+|-------|-------|------|-----------------|
+| `--chart-1` | Warm orange | Blue | Primary / first series |
+| `--chart-2` | Teal | Green | Secondary series |
+| `--chart-3` | Navy | Amber | Tertiary series |
+| `--chart-4` | Yellow | Purple | Quaternary series |
+| `--chart-5` | Amber | Red | Quinary series |
+
+**Assignment rule:** Assign tokens by series order — `--chart-1` for the first data series, `--chart-2` for the second, and so on. Never skip a token or assign by color preference. Exact OKLCH values are in [`tokens/colors.css`](tokens/colors.css).
 
 ### Card with Image
 
@@ -554,8 +685,10 @@ Aligned with Tailwind CSS v4 defaults:
 
 | Breakpoint | Behavior |
 |------------|----------|
-| Mobile (default) | Stacked — sidebar below or hidden |
-| `md:` (768px) | Side-by-side — sidebar 280px, content fills rest |
+| Mobile (default) | Sidebar hidden — use `Sheet` (mobile nav drawer) to reveal |
+| `md:` (768px) | Side-by-side — sidebar 280px fixed, content fills remaining width |
+
+**Mobile sidebar pattern:** Use a shadcn `Sheet` component (entrance: `slideInLeft`, exit: `slideOutLeft`) triggered by a hamburger button. Sheet width: `min(280px, calc(100vw - 3rem))`. Do not stack the sidebar below content — it pushes critical content below the fold.
 
 ### Typography
 
@@ -743,7 +876,7 @@ Fixed-height containers (`height: 100vh` + `overflow: hidden`) are the most comm
 | Install | `npm install hugeicons-react` |
 | Import | `import { IconName } from "hugeicons-react"` |
 | Default Size | `20px` (matches shadcn button icon sizing) |
-| Default Stroke | `1.5` |
+| Default Stroke | `1.5` (fallback — see stroke-weight rules below) |
 
 Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific icon is not available in Hugeicons.
 
@@ -768,7 +901,7 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 3. **Neutral backgrounds for icon containers.** When an icon sits inside a tinted container (e.g. a quick-action tile), use `--muted-foreground` at 10% opacity. Do not use brand colors or `--primary` for icon container backgrounds — keep them uniform.
 4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-grass-green` at 12% bg + `--brand-highlight-grass-green` stroke). But this is the exception, not the default.
 5. **Consistent sizing.** Within a row or grid of icons, all icons must use the same width/height and viewBox. Don't mix 18px and 20px icons in the same context.
-6. **Stroke weight consistency.** Toolbar and inline icons use `stroke-width: 1.5–1.75`. Quick action tile icons use `stroke-width: 2`. FAB icons use `stroke-width: 2.5`. Don't mix weights within a context.
+6. **Stroke weight by context.** The `1.5` default above is the fallback for uncategorized contexts. When a recognized context applies, it takes precedence: Inline / toolbar — `1.5` standard, `1.75` emphasized. Quick-action tile — `2`. FAB — `2.5`. Navigation bar — `1.5`. Do not mix weights within a single context.
 
 #### Dark Mode
 
