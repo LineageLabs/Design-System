@@ -235,9 +235,9 @@
       flex-shrink: 0;
       border: 1px solid var(--brand-highlight-light);
     }
-    /* Asterisk accent — offset lavender by default; animated badges cycle through all 4 */
+    /* Asterisk accent — offset green by default; animated badges cycle through all 4 */
     .logo-badge .logo-badge-asterisk,
-    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-lavender); }
+    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-green); }
     .logo-wordmark { font-weight: 700; }
 
     /* Lineage*Labs text wordmark */
@@ -2860,7 +2860,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       }
 
       if (reducedMotion) {
-        gsap.set(asteriskEl, { color: getToken(tokens[0]) });
+        /* CSS already sets --brand-offset-green; nothing to override */
         return null;
       }
 
