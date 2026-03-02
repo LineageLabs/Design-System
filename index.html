@@ -1576,6 +1576,30 @@
         <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
         <div class="card" style="border-left:3px solid var(--destructive);"><div class="card-title">When NOT to use</div><div class="card-sub">Buttons, inputs, cards, body text, borders, error states, focus rings — use shadcn semantic tokens for all standard UI.</div></div>
       </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">Sidebar Tokens</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;">Eight <code>--sidebar-*</code> tokens power the shadcn <code>Sidebar</code> component. Do not use them as general color tokens outside of sidebar contexts.</p>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>--sidebar</code></td><td>Sidebar panel background</td></tr>
+            <tr><td><code>--sidebar-foreground</code></td><td>Sidebar text</td></tr>
+            <tr><td><code>--sidebar-primary</code></td><td>Active nav item background</td></tr>
+            <tr><td><code>--sidebar-primary-foreground</code></td><td>Active nav item text</td></tr>
+            <tr><td><code>--sidebar-accent</code></td><td>Hover state background</td></tr>
+            <tr><td><code>--sidebar-accent-foreground</code></td><td>Hover state text</td></tr>
+            <tr><td><code>--sidebar-border</code></td><td>Sidebar border / divider</td></tr>
+            <tr><td><code>--sidebar-ring</code></td><td>Focus ring inside sidebar</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="card" style="border-left:3px solid var(--border);"><div class="card-title">Tailwind v4 @theme block</div><div class="card-sub"><code>tokens/colors.css</code> includes a commented-out <code>@theme inline</code> block (Section 3). Copy it into your project's root CSS when using Tailwind v4 — it maps all CSS variables to Tailwind utilities (<code>bg-primary</code>, <code>text-muted-foreground</code>, etc.).</div></div>
+        <div class="card" style="border-left:3px solid var(--border);"><div class="card-title">Sidebar vs. standard tokens</div><div class="card-sub">For page layouts that include a sidebar, use standard <code>--background</code>, <code>--border</code>, etc. tokens. Only use <code>--sidebar-*</code> tokens when styling the shadcn <code>Sidebar</code> component itself.</div></div>
+      </div>
     </section>
 
     <!-- SPACING TOKENS -->
@@ -1920,6 +1944,20 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Slides scroll on mobile</div><div class="card-sub">Carousel/slide containers need <code>overflow-y: auto</code> below <code>md:</code>. Content that fits on desktop rarely fits on a phone.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">dvh not vh</div><div class="card-sub"><code>100vh</code> includes browser chrome on mobile. <code>100dvh</code> adjusts dynamically. Always provide <code>vh</code> fallback.</div></div>
       </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Sidebar Layout</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Breakpoint</th><th>Behavior</th></tr></thead>
+          <tbody>
+            <tr><td>Mobile (default)</td><td>Sidebar hidden — use <code>Sheet</code> (mobile nav drawer) to reveal</td></tr>
+            <tr><td><code>md:</code> (768px)</td><td>Side-by-side — sidebar 280px fixed, content fills remaining width</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Mobile sidebar pattern</div><div class="card-sub">Use a shadcn <code>Sheet</code> component (entrance: <code>slideInLeft</code>, exit: <code>slideOutLeft</code>) triggered by a hamburger button. Sheet width: <code>min(280px, calc(100vw - 3rem))</code>. Do not stack the sidebar below content — it pushes critical content below the fold.</div></div>
     </section>
 
     <!-- MOTION TOKENS -->
@@ -1943,6 +1981,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </table>
         </div>
       </div>
+      <div class="card reveal" style="margin-bottom:1.5rem;border-left:3px solid var(--border);"><div class="card-title">Note on 400ms</div><div class="card-sub">The <code>slideIn*</code> entrance presets use <strong>400ms</strong> and <code>slideOut*</code> exit presets use <strong>300ms</strong>. These are intentional intermediate values hardcoded in <code>animations/presets.js</code> — they do not map to a named duration token. When referencing these presets' timing, write <code>400ms</code> explicitly.</div></div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Easings</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
         <div class="table-scroll">
@@ -1959,7 +1998,26 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </table>
         </div>
       </div>
-      <div class="card" style="margin-top:1rem;border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Reduced Motion — Mandatory</div><div class="card-sub">Every animation must check <code>prefers-reduced-motion</code>. When active: GSAP durations → 0, disable scrub/parallax, limit fades to 150ms, disable transforms.</div></div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">Reduced Motion</h3>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light-green);margin-bottom:1rem;"><div class="card-title">Mandatory accessibility requirement</div><div class="card-sub">Every animation must respect <code>prefers-reduced-motion: reduce</code>. The design system handles this automatically in most cases — read the rules below.</div></div>
+      <div class="card-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="card"><div class="card-title">GSAP — use applyPreset()</div><div class="card-sub">The recommended path. <code>applyPreset(gsap, target, "scaleIn")</code> handles reduced motion automatically. For raw <code>gsap.fromTo()</code> calls, check manually: <code>window.matchMedia("(prefers-reduced-motion: reduce)").matches</code> and set <code>duration: 0</code>.</div></div>
+        <div class="card"><div class="card-title">Scroll triggers — self-managed</div><div class="card-sub">All factory functions in <code>scroll-triggers.js</code> check reduced motion internally. <code>revealUp/Left/Right</code> and <code>staggerReveal</code> call <code>gsap.set()</code> (instant). <code>parallax()</code> and <code>pinSection()</code> return <code>null</code>. No extra guard needed.</div></div>
+        <div class="card"><div class="card-title">CSS — already handled</div><div class="card-sub">All classes in <code>animations/transitions.css</code> include a <code>@media (prefers-reduced-motion: reduce)</code> block that sets all durations to <code>0ms</code> and removes all transforms. No extra work needed.</div></div>
+      </div>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>Never use raw <code>gsap.to/from</code> without a duration guard</td><td>Use <code>applyPreset()</code> or check <code>window.matchMedia()</code> directly</td></tr>
+            <tr><td>Never hand-roll scrubbing without a reduced-motion guard</td><td>Use the <code>parallax()</code> factory — it returns <code>null</code> automatically</td></tr>
+            <tr><td>Opacity-only fades ≤ 150ms are permissible</td><td>Even under reduced motion, pure fades under 150ms are acceptable</td></tr>
+            <tr><td>Translate and scale transforms → duration: 0</td><td>All movement must be instant when reduced motion is active</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
     </section>
 
     <!-- ANIMATION PRESETS -->
@@ -1990,6 +2048,47 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         <button class="hover-demo-btn" id="hover-press-btn">Press on click</button>
         <div class="hover-demo-card" id="hover-glow-card">Glow on hover (brand grass green)</div>
       </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">CSS Transitions vs. GSAP</h3>
+      <div class="card-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Use CSS Transitions for</div><div class="card-sub">Simple hover/focus/active states. Effects limited to <code>transform</code>, <code>opacity</code>, <code>box-shadow</code>. Anything reversible by removing a CSS class.</div></div>
+        <div class="card" style="border-left:3px solid var(--primary);"><div class="card-title">Use GSAP for</div><div class="card-sub">Component mount/unmount (Dialog, Sheet, Toast). Multi-step sequences or timelines. Scroll-triggered animations. Anything needing JS callbacks or <code>ScrollTrigger</code>.</div></div>
+      </div>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>CSS Class</th><th>Effect</th><th>Duration</th></tr></thead>
+          <tbody>
+            <tr><td><code>.transition-instant</code></td><td>Sets transition-duration</td><td>100ms</td></tr>
+            <tr><td><code>.transition-fast</code></td><td>Sets transition-duration</td><td>150ms</td></tr>
+            <tr><td><code>.transition-normal</code></td><td>Sets transition-duration</td><td>300ms</td></tr>
+            <tr><td><code>.transition-slow</code></td><td>Sets transition-duration</td><td>500ms</td></tr>
+            <tr><td><code>.hover-lift</code></td><td><code>translateY(-4px)</code> + shadow on <code>:hover</code></td><td>200ms</td></tr>
+            <tr><td><code>.hover-press</code></td><td><code>scale(0.97)</code> on <code>:active</code></td><td>100ms</td></tr>
+            <tr><td><code>.hover-fade</code></td><td><code>opacity: 0.8</code> on <code>:hover</code></td><td>150ms</td></tr>
+            <tr><td><code>.focus-ring</code></td><td><code>box-shadow</code> ring via <code>var(--ring)</code> on <code>:focus-visible</code></td><td>150ms</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Scroll-Triggered Presets</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Preset</th><th>Trigger</th><th>Effect</th><th>Scrub</th></tr></thead>
+          <tbody>
+            <tr><td><code>revealUp</code></td><td><code>top 85%</code></td><td>y: 40 → 0, fade in</td><td>No</td></tr>
+            <tr><td><code>revealLeft</code></td><td><code>top 85%</code></td><td>x: −40 → 0, fade in</td><td>No</td></tr>
+            <tr><td><code>revealRight</code></td><td><code>top 85%</code></td><td>x: 40 → 0, fade in</td><td>No</td></tr>
+            <tr><td><code>parallax</code></td><td>top bottom → bottom top</td><td>yPercent: −15</td><td>Yes</td></tr>
+            <tr><td><code>staggerReveal</code></td><td><code>top 85%</code></td><td>Stagger 0.08s, y: 30, fade in</td><td>No</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light-green);margin-bottom:1rem;"><div class="card-title">pinSection(gsap, trigger, pinTarget, options)</div><div class="card-sub">Pins <code>pinTarget</code> in place while the user scrolls through <code>trigger</code>. Returns <code>null</code> under reduced motion — no pin applied. Use for sticky image / sticky sidebar layouts. Import from <code>animations/scroll-triggers.js</code>.</div></div>
+
       <div class="divider"></div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
       <div class="card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
@@ -2138,6 +2237,26 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             Icon container backgrounds use <code>color-mix()</code> with semantic tokens, so they adapt too.
           </div>
         </div>
+
+        <!-- Stroke weight context table -->
+        <div style="margin-top:1.25rem;">
+          <h4 style="font-size:0.78rem;font-weight:700;color:var(--foreground);margin-bottom:0.625rem;text-transform:uppercase;letter-spacing:0.05em;">Stroke Weight by Context</h4>
+          <div style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+            <div class="table-scroll">
+            <table class="token-table">
+              <thead><tr><th>Context</th><th>stroke-width</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Inline / toolbar (standard)</td><td><code>1.5</code></td><td>Default fallback for uncategorized contexts</td></tr>
+                <tr><td>Inline / toolbar (emphasized)</td><td><code>1.75</code></td><td>When extra visual weight is needed</td></tr>
+                <tr><td>Quick-action tile</td><td><code>2</code></td><td>Larger tap target, needs more presence</td></tr>
+                <tr><td>FAB (floating action button)</td><td><code>2.5</code></td><td>Prominent primary action</td></tr>
+                <tr><td>Navigation bar</td><td><code>1.5</code></td><td>Consistent with inline standard</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:0.5rem;">Do not mix stroke weights within a single context. The <code>1.5</code> default is the fallback for contexts not listed above.</p>
+        </div>
       </div>
 
       <!-- CARDS -->
@@ -2242,6 +2361,26 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- CHART COLOR TOKEN REFERENCE -->
+      <div class="reveal" style="margin-top:2rem;">
+        <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Chart Color Token Reference</h3>
+        <div style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:0.75rem;">
+          <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Data Series Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>--chart-1</code></td><td>Warm orange</td><td>Blue</td><td>Primary / first series</td></tr>
+              <tr><td><code>--chart-2</code></td><td>Teal</td><td>Green</td><td>Secondary series</td></tr>
+              <tr><td><code>--chart-3</code></td><td>Navy</td><td>Amber</td><td>Tertiary series</td></tr>
+              <tr><td><code>--chart-4</code></td><td>Yellow</td><td>Purple</td><td>Quaternary series</td></tr>
+              <tr><td><code>--chart-5</code></td><td>Amber</td><td>Red</td><td>Quinary series</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Assignment rule</div><div class="card-sub">Assign tokens by series order — <code>--chart-1</code> for the first data series, <code>--chart-2</code> for the second, and so on. Never skip a token or assign by color preference. Exact OKLCH values are in <code>tokens/colors.css</code>.</div></div>
       </div>
 
       <!-- FIELD -->
@@ -2395,16 +2534,20 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
         <div class="table-scroll">
         <table class="comp-table">
-          <thead><tr><th>Component</th><th>Entrance</th><th>Exit</th><th>Notes</th></tr></thead>
+          <thead><tr><th>Component</th><th>Entrance</th><th>Exit</th><th>Hover</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr><td><strong>Dialog / AlertDialog</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">scaleOut</span></td><td>Scale + overshoot</td></tr>
-            <tr><td><strong>Sheet (right)</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutRight</span></td><td>Matches open side</td></tr>
-            <tr><td><strong>DropdownMenu</strong></td><td><span class="preset-pill pill-entrance">slideInDown</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Drops down, fades out</td></tr>
-            <tr><td><strong>Popover</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Scale from trigger</td></tr>
-            <tr><td><strong>Tooltip</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>Fast &amp; subtle</td></tr>
-            <tr><td><strong>Toast</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutUp</span></td><td>Slides in, dismisses up</td></tr>
-            <tr><td><strong>Accordion</strong></td><td><span class="preset-pill pill-entrance">expandIn</span></td><td><span style="font-size:0.72rem;color:var(--muted-foreground)">reverse</span></td><td>Height from top</td></tr>
-            <tr><td><strong>Tabs</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>Quick crossfade</td></tr>
+            <tr><td><strong>Dialog / AlertDialog</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">scaleOut</span></td><td>—</td><td>Scale + overshoot</td></tr>
+            <tr><td><strong>Sheet (left)</strong></td><td><span class="preset-pill pill-entrance">slideInLeft</span></td><td><span class="preset-pill pill-exit">slideOutLeft</span></td><td>—</td><td>Mobile nav drawer</td></tr>
+            <tr><td><strong>Sheet (right)</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutRight</span></td><td>—</td><td>Matches open side</td></tr>
+            <tr><td><strong>DropdownMenu</strong></td><td><span class="preset-pill pill-entrance">slideInDown</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>—</td><td>Drops down, fades out</td></tr>
+            <tr><td><strong>Popover</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>—</td><td>Scale from trigger</td></tr>
+            <tr><td><strong>Tooltip</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>Fast &amp; subtle</td></tr>
+            <tr><td><strong>Toast</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutUp</span></td><td>—</td><td>Slides in, dismisses up</td></tr>
+            <tr><td><strong>Accordion</strong></td><td><span class="preset-pill pill-entrance">expandIn</span></td><td><span style="font-size:0.72rem;color:var(--muted-foreground)">reverse expandIn</span></td><td>—</td><td>Height from top</td></tr>
+            <tr><td><strong>Tabs</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>—</td><td>Quick crossfade</td></tr>
+            <tr><td><strong>NavigationMenu</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span></td><td>—</td><td>—</td><td>Dropdown submenu</td></tr>
+            <tr><td><strong>Card (interactive)</strong></td><td>—</td><td>—</td><td><span class="preset-pill" style="background:var(--muted);color:var(--foreground);">hover-lift</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">CSS</span></td><td>Shadow escalation</td></tr>
+            <tr><td><strong>Button</strong></td><td>—</td><td>—</td><td><span class="preset-pill" style="background:var(--muted);color:var(--foreground);">hover-press</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">CSS</span></td><td>scale(0.97) on :active</td></tr>
           </tbody>
         </table>
         </div>
