@@ -5,6 +5,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.9] — 2026-03-02
+
+### Added
+- **DESIGN-SYSTEM.md §2 — "Font Usage Rules" subsection (5 rules).** New subsection inserted between the CSS Setup code block and §3, defining auditable rules for font minimisation: (1) Screen-Type Font Budget — max 2 families on functional app screens; (2) Poppins Heading-Only Constraint — Poppins only on h2–h4, never on UI chrome; (3) Single-Family Hierarchy — achieve all contrast via weight/size/colour, not font switching; (4) UI Chrome = System UI — whitelist of always-System-UI elements; (5) Web Font Load Justification — omit unused families per page. Each rule includes a ✅/❌ audit example.
+- **`index.html` — "Fonts in use on this screen" legend card in the Mobile Example section.** New card (green left-border accent) inserted between "Animation patterns" and "Open standalone" cards. Shows two live font samples (Lora h1 greeting + System UI body weight), per-family annotations, and a footer line "2 FAMILIES · POPPINS NOT LOADED" confirming the reduced font budget.
+
+### Changed
+- **`example-mobile.html` — removed Poppins from `.app-bar-logo` and `.stat-value`.** Both rules incorrectly applied `font-family: "Poppins", sans-serif` to UI chrome elements (app bar title and stat card numbers). Properties removed; both elements now inherit System UI from `body`. Visual result is identical — `font-weight: 700` in System UI is sufficient at these sizes. Screen now demonstrates 2-family budget: System UI (all UI) + Lora (h1 greeting).
+- **`example-mobile.html` — removed Poppins from Google Fonts `<link>`.** `&family=Poppins:wght@600;700;800` removed from the font URL per Rule 5. No h2–h4 headings appear on the mobile screen, so the Poppins request was unjustified. Font URL now loads Lora only.
+
+---
+
 ## [2026.03.8] — 2026-03-02
 
 ### Changed

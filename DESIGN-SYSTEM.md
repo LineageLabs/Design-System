@@ -109,6 +109,58 @@ code, pre {
 }
 ```
 
+### Font Usage Rules
+
+These rules define how many font families may appear on a single screen and which elements are permitted to use each family. Visual hierarchy must be built through weight, size, colour, and spacing — not by adding font families.
+
+#### Rule 1 — Screen-Type Font Budget
+
+Functional app screens (dashboards, task lists, forms, data views) use a **maximum of 2 active font families**: System UI is always one of them. Lora enters only when an `h1` or `.h0` heading is present. Poppins enters only when an `h2`, `h3`, or `h4` heading is present. Editorial and marketing screens may use all three when the hierarchy genuinely requires it. Monospace is always permitted for code elements and is excluded from the count.
+
+```
+✅ App screen: System UI (all UI) + Lora (h1 greeting) = 2 families
+❌ App screen: System UI + Lora + Poppins (app bar title, stat numbers) = 3 families — fail
+```
+
+#### Rule 2 — Poppins is a Heading Font, Not an Emphasis Tool
+
+Poppins must not be applied to any element that is not a structural heading (`h2`, `h3`, or `h4`). Stat values, app bar titles, button text, badge text, nav labels, kicker text, and all data display are UI chrome — they use System UI. Using Poppins to make a number or label "look bolder" is the canonical anti-pattern this rule prevents.
+
+```
+✅ <h3>Quick Actions</h3>                           — Poppins via h3 selector, correct
+❌ .stat-value { font-family: "Poppins"; }           — stat numbers are data, not headings
+❌ .app-bar-logo { font-family: "Poppins"; }         — app bar title is UI chrome, not a heading
+```
+
+#### Rule 3 — Single-Family Hierarchy
+
+When constrained to one font family (System UI on functional screens), achieve all visual hierarchy through **weight, size, colour, and spacing** — never by switching family. System UI provides sufficient range: `400` (body), `500` (secondary labels), `600` (section titles, task names, buttons), `700` (strong emphasis, kickers, stat values). `--muted-foreground` colour and `text-transform: uppercase; letter-spacing` carry additional contrast for smaller labels.
+
+```
+✅ .stat-value { font-size: 1.5rem; font-weight: 700; }              — size + weight in System UI
+❌ .stat-value { font-family: "Poppins"; font-size: 1.5rem; font-weight: 700; }  — adds nothing
+```
+
+#### Rule 4 — UI Chrome is Always System UI
+
+The following element categories always use System UI, without exception: app bar / top bar titles and logos, navigation labels (bottom bar, tab bar, sidebar), button text, input text and placeholders, badge text, toast text, stat and data values, kicker and label text, and section headers within functional app screens.
+
+**Only exceptions:** semantic HTML headings (`h2`, `h3`, `h4`) and brand logo elements (`.logo-badge`, `.logo-text`).
+
+```
+✅ .app-bar-logo { font-weight: 700; font-size: 1.05rem; }           — inherits body System UI
+❌ .app-bar-logo { font-family: "Poppins"; font-weight: 700; }       — UI chrome, not a heading
+```
+
+#### Rule 5 — Web Font Loads Must Be Justified
+
+Every font family in the Google Fonts `<link>` (or `next/font` import) must be actively used by at least one visible semantic element on that specific page. If no `h2`–`h4` appears on a standalone screen, omit Poppins from the font load. If no `h1` or `.h0` appears, omit Lora. On the design system reference page (which demonstrates the full type scale), all families may be loaded.
+
+```
+✅ example-mobile.html: loads Lora only — h1 greeting present, no h2–h4 on screen
+❌ example-mobile.html: loads Poppins even though no h2–h4 appears — wasted network request
+```
+
 ---
 
 ## 3. Brand Colors
