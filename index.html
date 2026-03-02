@@ -2807,32 +2807,24 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
       <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
 
-        <!-- Browser-chrome frame — 1280×720 scaled to 800×450 -->
+        <!-- Pitch deck frame — 1280×720 scaled to 800×450 -->
         <div style="flex:0 0 auto;">
           <div style="
             width: 800px;
-            border-radius: 0.875rem;
+            height: 450px;
+            border-radius: 1.5rem;
             overflow: hidden;
             box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
                         0 32px 80px rgba(0,0,0,0.18),
                         0 8px 24px rgba(0,0,0,0.08);
+            position: relative;
           ">
-            <!-- Chrome bar -->
-            <div style="height:36px;background:var(--muted);display:flex;align-items:center;padding:0 0.875rem;gap:0.5rem;border-bottom:1px solid var(--border);">
-              <span style="width:10px;height:10px;border-radius:50%;background:oklch(0.577 0.245 27.325);display:inline-block;flex-shrink:0;"></span>
-              <span style="width:10px;height:10px;border-radius:50%;background:var(--brand-offset-yellow);display:inline-block;flex-shrink:0;"></span>
-              <span style="width:10px;height:10px;border-radius:50%;background:var(--brand-offset-green);display:inline-block;flex-shrink:0;"></span>
-              <div style="flex:1;margin-left:0.5rem;background:var(--background);border-radius:9999px;height:20px;display:flex;align-items:center;padding:0 0.75rem;font-size:0.65rem;color:var(--muted-foreground);">aria.app/deck</div>
-            </div>
-            <!-- Scaled iframe: 1280×720 → scale(0.625) → 800×450 -->
-            <div style="width:800px;height:450px;overflow:hidden;position:relative;">
-              <iframe
-                src="example-pitchdeck.html"
-                style="width:1280px;height:720px;border:none;transform:scale(0.625);transform-origin:top left;display:block;"
-                scrolling="no"
-                title="Aria — Series A pitch deck slide"
-              ></iframe>
-            </div>
+            <iframe
+              src="example-pitchdeck.html"
+              style="width:1280px;height:720px;border:none;transform:scale(0.625);transform-origin:top left;display:block;pointer-events:auto;"
+              scrolling="no"
+              title="Aria — Series A pitch deck slide"
+            ></iframe>
           </div>
           <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
             SvelteKit + shadcn-svelte &mdash; static export
@@ -2914,38 +2906,30 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       <p class="section-label">Section 12</p>
       <h2 class="section-title">Startup Landing Page</h2>
       <p class="section-desc">
-        Above-the-fold hero for "Aria" — showing the full nav + hero with eyebrow badge, italic Lora
+        Above-the-fold hero for "Aria" — showing the full nav + hero with eyebrow badge, Lora
         headline, CTA pair, and social proof strip. Desktop 1280&times;800.
       </p>
 
       <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
 
-        <!-- Browser-chrome frame — 1280×800 scaled to 800×500 -->
+        <!-- Landing page frame — 1280×800 scaled to 800×500 -->
         <div style="flex:0 0 auto;">
           <div style="
             width: 800px;
-            border-radius: 0.875rem;
+            height: 500px;
+            border-radius: 1.5rem;
             overflow: hidden;
             box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
                         0 32px 80px rgba(0,0,0,0.18),
                         0 8px 24px rgba(0,0,0,0.08);
+            position: relative;
           ">
-            <!-- Chrome bar -->
-            <div style="height:36px;background:var(--muted);display:flex;align-items:center;padding:0 0.875rem;gap:0.5rem;border-bottom:1px solid var(--border);">
-              <span style="width:10px;height:10px;border-radius:50%;background:oklch(0.577 0.245 27.325);display:inline-block;flex-shrink:0;"></span>
-              <span style="width:10px;height:10px;border-radius:50%;background:var(--brand-offset-yellow);display:inline-block;flex-shrink:0;"></span>
-              <span style="width:10px;height:10px;border-radius:50%;background:var(--brand-offset-green);display:inline-block;flex-shrink:0;"></span>
-              <div style="flex:1;margin-left:0.5rem;background:var(--background);border-radius:9999px;height:20px;display:flex;align-items:center;padding:0 0.75rem;font-size:0.65rem;color:var(--muted-foreground);">aria.app</div>
-            </div>
-            <!-- Scaled iframe: 1280×800 → scale(0.625) → 800×500 -->
-            <div style="width:800px;height:500px;overflow:hidden;position:relative;">
-              <iframe
-                src="example-landing.html"
-                style="width:1280px;height:800px;border:none;transform:scale(0.625);transform-origin:top left;display:block;"
-                scrolling="no"
-                title="Aria — startup landing page hero"
-              ></iframe>
-            </div>
+            <iframe
+              src="example-landing.html"
+              style="width:1280px;height:800px;border:none;transform:scale(0.625);transform-origin:top left;display:block;pointer-events:auto;"
+              scrolling="no"
+              title="Aria — startup landing page hero"
+            ></iframe>
           </div>
           <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
             SvelteKit + shadcn-svelte &mdash; static export
@@ -2960,7 +2944,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
               <span>&#x2022; Frosted nav bar (logo + links + CTA)</span>
               <span>&#x2022; Eyebrow badge "Now in private beta"</span>
-              <span>&#x2022; Lora 700 italic headline (3.875rem)</span>
+              <span>&#x2022; Lora 700 headline (3.875rem)</span>
               <span>&#x2022; Subtitle paragraph (System UI)</span>
               <span>&#x2022; CTA pair: filled primary + ghost</span>
               <span>&#x2022; Social proof strip (4 company names)</span>
@@ -2972,7 +2956,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             <div class="card-title">Design decisions</div>
             <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
               <span>&#x2022; Dark hero for gravitas; matches brand surface</span>
-              <span>&#x2022; Lora italic &mdash; warmth without heavy decoration</span>
+              <span>&#x2022; Lora upright &mdash; authority without decoration</span>
               <span>&#x2022; Radial bloom draws eye to headline naturally</span>
               <span>&#x2022; Ghost CTA lowers barrier vs. single primary</span>
               <span>&#x2022; Social proof muted &mdash; present but not competing</span>
@@ -2982,8 +2966,8 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
           <div class="card reveal" style="border-left:3px solid var(--brand-offset-green);">
             <div class="card-title">Fonts in use on this screen</div>
             <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.2rem;">
-              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">Lora · Serif Italic · 700</span>
-              <span style="font-family:'Lora',Georgia,serif;font-style:italic;font-weight:700;font-size:1.1rem;line-height:1.2;color:var(--foreground);">Payments that learn</span>
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">Lora · Serif · 700</span>
+              <span style="font-family:'Lora',Georgia,serif;font-weight:700;font-size:1.1rem;line-height:1.2;color:var(--foreground);">Payments that learn</span>
               <span style="font-size:0.72rem;color:var(--muted-foreground);">h1 · page headline only</span>
             </div>
             <div style="height:1px;background:var(--border);margin:0.75rem 0;"></div>

@@ -24,7 +24,7 @@ and logo assets so every project stays consistent.
 
 1. **Use shadcn/ui as-is.** Install via their CLI. Use the **Gray** base color theme with **Maia** style. Do not rebuild components from scratch.
 2. **Brand colors are additive.** They do NOT replace `--primary`, `--background`, or any shadcn semantic token. Apply them only when the design explicitly calls for brand colors.
-3. **System UI for body, Lora for h0–h1, Poppins for h2–h4.** `.h0` is Lora 400 (display/hero); `h1` is Lora 700. `h2`–`h4` use Poppins 600–800. Everything else uses the native system font stack — no extra install.
+3. **System UI for body, Lora for h0–h1, Poppins for h2–h4.** `.h0` is Lora 400 (display/hero); `h1` is Lora 700. `h2`–`h4` use Poppins 600–800. Everything else uses the native system font stack — no extra install. **Lora is never italic** — always upright (normal) only.
 4. **Hugeicons for icons.** Use `hugeicons-react` as the default icon library. Fallback to Lucide only if unavailable.
 5. **GSAP for animation.** Use the presets in `animations/presets.js`. Do not invent new easing or duration values — use the tokens in `tokens/motion.yaml`.
 6. **Respect reduced motion.** Every GSAP animation must check `prefers-reduced-motion` and fall back to instant or no animation.
