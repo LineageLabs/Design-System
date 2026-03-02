@@ -1297,6 +1297,9 @@
       <a href="#components">Components</a>
       <a href="#start">Get Started</a>
       <a href="#mobile-example">Mobile Example</a>
+      <a href="#pitchdeck">Pitch Deck</a>
+      <a href="#landing">Landing</a>
+      <a href="#reviews">Reviews</a>
       <button class="theme-toggle" id="themeToggle">Dark mode</button>
     </nav>
   </header>
@@ -2790,6 +2793,336 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- PITCH DECK EXAMPLE -->
+    <section id="pitchdeck">
+      <p class="section-label">Section 11</p>
+      <h2 class="section-title">Pitch Deck Slide</h2>
+      <p class="section-desc">
+        A Series A pitch slide for "Aria" — a fictional AI payments startup. Dark navy background,
+        Lora headline for emotional impact, System UI for all data and labels. 16:9 desktop format.
+      </p>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+
+        <!-- Browser-chrome frame — 1280×720 scaled to 800×450 -->
+        <div style="flex:0 0 auto;">
+          <div style="
+            width: 800px;
+            border-radius: 0.875rem;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
+                        0 32px 80px rgba(0,0,0,0.18),
+                        0 8px 24px rgba(0,0,0,0.08);
+          ">
+            <!-- Chrome bar -->
+            <div style="height:36px;background:var(--muted);display:flex;align-items:center;padding:0 0.875rem;gap:0.5rem;border-bottom:1px solid var(--border);">
+              <span style="width:10px;height:10px;border-radius:50%;background:oklch(0.577 0.245 27.325);display:inline-block;flex-shrink:0;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:var(--brand-offset-yellow);display:inline-block;flex-shrink:0;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:var(--brand-offset-green);display:inline-block;flex-shrink:0;"></span>
+              <div style="flex:1;margin-left:0.5rem;background:var(--background);border-radius:9999px;height:20px;display:flex;align-items:center;padding:0 0.75rem;font-size:0.65rem;color:var(--muted-foreground);">aria.app/deck</div>
+            </div>
+            <!-- Scaled iframe: 1280×720 → scale(0.625) → 800×450 -->
+            <div style="width:800px;height:450px;overflow:hidden;position:relative;">
+              <iframe
+                src="example-pitchdeck.html"
+                style="width:1280px;height:720px;border:none;transform:scale(0.625);transform-origin:top left;display:block;"
+                scrolling="no"
+                title="Aria — Series A pitch deck slide"
+              ></iframe>
+            </div>
+          </div>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
+            SvelteKit + shadcn-svelte &mdash; static export
+          </p>
+        </div>
+
+        <!-- Cards column -->
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem;">
+
+          <div class="card reveal">
+            <div class="card-title">Slide components</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Series badge pill (offset-green border)</span>
+              <span>&#x2022; Lora 700 headline (3.1rem)</span>
+              <span>&#x2022; Body subtitle (System UI, muted)</span>
+              <span>&#x2022; Stats row: $2.4M ARR / 18% MoM / 340 customers</span>
+              <span>&#x2022; Wordmark badge (bottom-left)</span>
+              <span>&#x2022; Radial glow + decorative ring (right column)</span>
+              <span>&#x2022; Dot grid overlay (decorative)</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+            <div class="card-title">Design decisions</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Dark navy bg &mdash; authority + brand depth</span>
+              <span>&#x2022; Lora for the headline only &mdash; max emotional pull</span>
+              <span>&#x2022; System UI for all data &mdash; stays crisp at small sizes</span>
+              <span>&#x2022; Right column abstract visual avoids literal imagery</span>
+              <span>&#x2022; Stats use weight + size hierarchy, not color</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-green);">
+            <div class="card-title">Fonts in use on this screen</div>
+            <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">Lora · Serif · 700</span>
+              <span style="font-family:'Lora',Georgia,serif;font-weight:700;font-size:1.1rem;line-height:1.2;color:var(--foreground);">The AI layer</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">h1 · slide headline only</span>
+            </div>
+            <div style="height:1px;background:var(--border);margin:0.75rem 0;"></div>
+            <div style="display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">System UI · Sans · 400–700</span>
+              <span style="font-weight:600;font-size:0.9rem;color:var(--foreground);">$2.4M ARR</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">stats · labels · subtitle · wordmark</span>
+            </div>
+            <div style="margin-top:0.875rem;padding-top:0.625rem;border-top:1px solid var(--border);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">
+              2 families &middot; Poppins not loaded
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);">
+            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;background:var(--brand-offset-lavender);color:#0E1233;padding:0.15rem 0.5rem;border-radius:9999px;display:inline-block;margin-bottom:0.625rem;">SvelteKit</span>
+            <div class="card-title">Open standalone</div>
+            <div class="card-sub" style="margin-top:0.5rem;">
+              View at full 1280&times;720 resolution or inspect source.
+            </div>
+            <a href="example-pitchdeck.html" target="_blank" style="
+              display:inline-flex;align-items:center;gap:0.4rem;
+              margin-top:0.875rem;
+              font-size:0.8rem;font-weight:600;
+              color:var(--foreground);text-decoration:none;
+              padding:0.375rem 0.875rem;
+              border-radius:9999px;
+              box-shadow:inset 0 0 0 1px var(--border);
+              transition:background 0.2s ease-out;
+            " onmouseover="this.style.background='var(--muted)'" onmouseout="this.style.background=''">
+              Open example-pitchdeck.html
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h3v3M10 2L5.5 6.5M4 3H2v7h7V8"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LANDING PAGE EXAMPLE -->
+    <section id="landing">
+      <p class="section-label">Section 12</p>
+      <h2 class="section-title">Startup Landing Page</h2>
+      <p class="section-desc">
+        Above-the-fold hero for "Aria" — showing the full nav + hero with eyebrow badge, italic Lora
+        headline, CTA pair, and social proof strip. Desktop 1280&times;800.
+      </p>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+
+        <!-- Browser-chrome frame — 1280×800 scaled to 800×500 -->
+        <div style="flex:0 0 auto;">
+          <div style="
+            width: 800px;
+            border-radius: 0.875rem;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
+                        0 32px 80px rgba(0,0,0,0.18),
+                        0 8px 24px rgba(0,0,0,0.08);
+          ">
+            <!-- Chrome bar -->
+            <div style="height:36px;background:var(--muted);display:flex;align-items:center;padding:0 0.875rem;gap:0.5rem;border-bottom:1px solid var(--border);">
+              <span style="width:10px;height:10px;border-radius:50%;background:oklch(0.577 0.245 27.325);display:inline-block;flex-shrink:0;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:var(--brand-offset-yellow);display:inline-block;flex-shrink:0;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:var(--brand-offset-green);display:inline-block;flex-shrink:0;"></span>
+              <div style="flex:1;margin-left:0.5rem;background:var(--background);border-radius:9999px;height:20px;display:flex;align-items:center;padding:0 0.75rem;font-size:0.65rem;color:var(--muted-foreground);">aria.app</div>
+            </div>
+            <!-- Scaled iframe: 1280×800 → scale(0.625) → 800×500 -->
+            <div style="width:800px;height:500px;overflow:hidden;position:relative;">
+              <iframe
+                src="example-landing.html"
+                style="width:1280px;height:800px;border:none;transform:scale(0.625);transform-origin:top left;display:block;"
+                scrolling="no"
+                title="Aria — startup landing page hero"
+              ></iframe>
+            </div>
+          </div>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
+            SvelteKit + shadcn-svelte &mdash; static export
+          </p>
+        </div>
+
+        <!-- Cards column -->
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem;">
+
+          <div class="card reveal">
+            <div class="card-title">Page components</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Frosted nav bar (logo + links + CTA)</span>
+              <span>&#x2022; Eyebrow badge "Now in private beta"</span>
+              <span>&#x2022; Lora 700 italic headline (3.875rem)</span>
+              <span>&#x2022; Subtitle paragraph (System UI)</span>
+              <span>&#x2022; CTA pair: filled primary + ghost</span>
+              <span>&#x2022; Social proof strip (4 company names)</span>
+              <span>&#x2022; Radial bloom + grid lines (background)</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+            <div class="card-title">Design decisions</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Dark hero for gravitas; matches brand surface</span>
+              <span>&#x2022; Lora italic &mdash; warmth without heavy decoration</span>
+              <span>&#x2022; Radial bloom draws eye to headline naturally</span>
+              <span>&#x2022; Ghost CTA lowers barrier vs. single primary</span>
+              <span>&#x2022; Social proof muted &mdash; present but not competing</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-green);">
+            <div class="card-title">Fonts in use on this screen</div>
+            <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">Lora · Serif Italic · 700</span>
+              <span style="font-family:'Lora',Georgia,serif;font-style:italic;font-weight:700;font-size:1.1rem;line-height:1.2;color:var(--foreground);">Payments that learn</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">h1 · page headline only</span>
+            </div>
+            <div style="height:1px;background:var(--border);margin:0.75rem 0;"></div>
+            <div style="display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">System UI · Sans · 400–700</span>
+              <span style="font-weight:600;font-size:0.9rem;color:var(--foreground);">Everything else</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">nav · buttons · badge · subtitle · proof</span>
+            </div>
+            <div style="margin-top:0.875rem;padding-top:0.625rem;border-top:1px solid var(--border);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">
+              2 families &middot; Poppins not loaded
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);">
+            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;background:var(--brand-offset-lavender);color:#0E1233;padding:0.15rem 0.5rem;border-radius:9999px;display:inline-block;margin-bottom:0.625rem;">SvelteKit</span>
+            <div class="card-title">Open standalone</div>
+            <div class="card-sub" style="margin-top:0.5rem;">
+              View at full 1280&times;800 resolution or inspect source.
+            </div>
+            <a href="example-landing.html" target="_blank" style="
+              display:inline-flex;align-items:center;gap:0.4rem;
+              margin-top:0.875rem;
+              font-size:0.8rem;font-weight:600;
+              color:var(--foreground);text-decoration:none;
+              padding:0.375rem 0.875rem;
+              border-radius:9999px;
+              box-shadow:inset 0 0 0 1px var(--border);
+              transition:background 0.2s ease-out;
+            " onmouseover="this.style.background='var(--muted)'" onmouseout="this.style.background=''">
+              Open example-landing.html
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h3v3M10 2L5.5 6.5M4 3H2v7h7V8"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS EXAMPLE -->
+    <section id="reviews">
+      <p class="section-label">Section 13</p>
+      <h2 class="section-title">Customer Review Platform</h2>
+      <p class="section-desc">
+        A mobile review screen for "Trustflow" — showing the Aria product page with a rating summary,
+        star breakdown bars, filter chips, and review cards. System UI only — no web font needed.
+      </p>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+
+        <!-- Phone frame preview -->
+        <div style="flex:0 0 auto;">
+          <div style="
+            width: 390px;
+            height: 780px;
+            border-radius: 2.75rem;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
+                        0 32px 80px rgba(0,0,0,0.18),
+                        0 8px 24px rgba(0,0,0,0.08);
+            position: relative;
+          ">
+            <iframe
+              src="example-reviews.html"
+              style="
+                width: 390px;
+                height: 780px;
+                border: none;
+                display: block;
+                pointer-events: auto;
+              "
+              title="Trustflow — customer review platform"
+            ></iframe>
+          </div>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
+            SvelteKit + shadcn-svelte &mdash; fully interactive
+          </p>
+        </div>
+
+        <!-- Cards column -->
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem;">
+
+          <div class="card reveal">
+            <div class="card-title">Screen components</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; App bar (back + title + kebab)</span>
+              <span>&#x2022; Rating summary: 4.7 &#x2605;, 2,341 reviews</span>
+              <span>&#x2022; 5-row star breakdown (CSS-only width bars)</span>
+              <span>&#x2022; Filter chips: All / 5&#x2605; / 4&#x2605; / Verified / Recent</span>
+              <span>&#x2022; Review cards (name, stars, date, text, helpful)</span>
+              <span>&#x2022; Verified badge (green pill)</span>
+              <span>&#x2022; Write review input bar (pinned bottom)</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+            <div class="card-title">Design decisions</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; 1 font family &mdash; no headings warrant Lora/Poppins</span>
+              <span>&#x2022; Star bars via CSS <code>width</code> &mdash; zero JS needed</span>
+              <span>&#x2022; Active chip uses <code>--foreground</code> fill, not brand blue</span>
+              <span>&#x2022; Verified badge mirrors eyebrow pill (offset-green, subtle)</span>
+              <span>&#x2022; Helpful CTA low-prominence &mdash; secondary action</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-green);">
+            <div class="card-title">Fonts in use on this screen</div>
+            <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">System UI · Sans · 400–700</span>
+              <span style="font-weight:600;font-size:1rem;color:var(--foreground);">4.7 &nbsp;★★★★★</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">entire screen — app bar · ratings · reviews</span>
+            </div>
+            <div style="margin-top:0.875rem;padding-top:0.625rem;border-top:1px solid var(--border);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">
+              1 family &middot; Poppins not loaded &middot; Lora not loaded
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);">
+            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;background:var(--brand-offset-lavender);color:#0E1233;padding:0.15rem 0.5rem;border-radius:9999px;display:inline-block;margin-bottom:0.625rem;">SvelteKit</span>
+            <div class="card-title">Open standalone</div>
+            <div class="card-sub" style="margin-top:0.5rem;">
+              View at 390&times;780 or inspect source in a separate tab.
+            </div>
+            <a href="example-reviews.html" target="_blank" style="
+              display:inline-flex;align-items:center;gap:0.4rem;
+              margin-top:0.875rem;
+              font-size:0.8rem;font-weight:600;
+              color:var(--foreground);text-decoration:none;
+              padding:0.375rem 0.875rem;
+              border-radius:9999px;
+              box-shadow:inset 0 0 0 1px var(--border);
+              transition:background 0.2s ease-out;
+            " onmouseover="this.style.background='var(--muted)'" onmouseout="this.style.background=''">
+              Open example-reviews.html
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h3v3M10 2L5.5 6.5M4 3H2v7h7V8"/></svg>
+            </a>
+          </div>
+
+        </div>
       </div>
     </section>
 

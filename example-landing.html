@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--
+  Equivalent SvelteKit component structure:
+
+  <script lang="ts">
+    import Nav   from '$lib/components/Nav.svelte'
+    import Hero  from '$lib/components/Hero.svelte'
+
+    const betaBadge  = true
+    const headline   = 'Payments that learn from every transaction.'
+    const socialProof = ['Stripe', 'Vercel', 'Linear', 'Notion']
+  </script>
+
+  <Nav    logoText="aria*" ctaLabel="Get Early Access" />
+  <Hero   {headline} showBetaBadge={betaBadge} {socialProof} />
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>Aria — Intelligent Payments Infrastructure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand-highlight-navy:  #0E1233;
+      --brand-highlight-blue:  #4751B0;
+      --brand-highlight-light: #F0F0F0;
+      --brand-offset-lavender: #A6A1E2;
+      --brand-offset-green:    #A0D246;
+    }
+
+    html, body {
+      width: 1280px;
+      height: 800px;
+      overflow: hidden;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--brand-highlight-navy);
+      color: var(--brand-highlight-light);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Background radial bloom ───────────────────── */
+    .bg-bloom {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% -5%,
+          rgba(71,81,176,0.45) 0%,
+          rgba(71,81,176,0.12) 50%,
+          transparent 75%),
+        radial-gradient(ellipse 40% 30% at 50% 0%,
+          rgba(166,161,226,0.18) 0%,
+          transparent 60%);
+    }
+
+    /* ── Nav ───────────────────────────────────────── */
+    nav {
+      position: relative;
+      z-index: 10;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 64px;
+      border-bottom: 1px solid rgba(240,240,240,0.08);
+      backdrop-filter: blur(8px);
+      background: rgba(14,18,51,0.6);
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.75rem;
+      border-radius: 0.875rem;
+      border: 1.5px solid rgba(240,240,240,0.6);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      color: rgba(240,240,240,0.95);
+    }
+
+    .nav-badge .asterisk { color: var(--brand-offset-green); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(240,240,240,0.65);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: rgba(240,240,240,0.95); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      background: var(--brand-highlight-blue);
+      color: rgba(240,240,240,0.95);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* ── Hero ──────────────────────────────────────── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 64px 0;
+      text-align: center;
+      gap: 0;
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(160,210,70,0.4);
+      background: rgba(160,210,70,0.08);
+      color: var(--brand-offset-green);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand-offset-green);
+    }
+
+    h1 {
+      font-family: "Lora", Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 3.875rem;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      max-width: 18ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      line-height: 1.65;
+      color: rgba(240,240,240,0.6);
+      max-width: 52ch;
+      margin-bottom: 2.5rem;
+    }
+
+    /* CTA buttons */
+    .cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.875rem;
+      border-radius: 9999px;
+      background: var(--brand-highlight-blue);
+      color: rgba(240,240,240,0.95);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      box-shadow: 0 4px 24px rgba(71,81,176,0.4);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(240,240,240,0.2);
+      color: rgba(240,240,240,0.8);
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    /* Social proof */
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .social-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(240,240,240,0.35);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .social-logos {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .social-logo {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: rgba(240,240,240,0.28);
+      letter-spacing: 0.04em;
+    }
+
+    /* Decorative grid lines */
+    .grid-lines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(240,240,240,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,240,240,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background layers -->
+  <div class="bg-bloom"></div>
+  <div class="grid-lines"></div>
+
+  <!-- ══ NAV ═══════════════════════════════════════════ -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="nav-badge">aria<span class="asterisk">*</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+
+    <a href="#" class="nav-cta">Get Early Access</a>
+  </nav>
+
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <section class="hero">
+
+    <div class="eyebrow-badge">
+      <span class="eyebrow-dot"></span>
+      Now in private beta
+    </div>
+
+    <h1>Payments that learn from every transaction.</h1>
+
+    <p class="hero-subtitle">
+      Aria connects to your payment stack in minutes and starts reducing fraud,
+      automating reconciliation, and surfacing revenue insights — immediately.
+    </p>
+
+    <div class="cta-group">
+      <a href="#" class="btn-primary">Start free trial</a>
+      <a href="#" class="btn-ghost">
+        Watch demo
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5,3 11,7 5,11" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="social-proof">
+      <span class="social-label">Trusted by teams at</span>
+      <div class="social-logos">
+        <span class="social-logo">Stripe</span>
+        <span class="social-logo">Vercel</span>
+        <span class="social-logo">Linear</span>
+        <span class="social-logo">Notion</span>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>

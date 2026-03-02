@@ -5,6 +5,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.10] — 2026-03-02
+
+### Added
+- **Pitch Deck example (§11) — `example-pitchdeck.html`.** 1280×720 dark-background Series A slide for fictional "Aria" payments startup. Left column: series badge, Lora 700 headline (3.1rem), System UI subtitle, 3-stat row (ARR / MoM / customers), wordmark. Right column: radial glow, decorative ring, large logomark badge. Displayed in index.html in a browser-chrome frame at `scale(0.625)` → 800×450.
+- **Landing Page example (§12) — `example-landing.html`.** 1280×800 desktop hero for "Aria". Frosted nav bar (logo + 4 links + CTA button), eyebrow beta badge, Lora 700 italic h1 (3.875rem), subtitle, CTA pair (filled blue + ghost), social proof strip. Radial bloom + grid-line overlay in background. Displayed at `scale(0.625)` → 800×500 in a browser-chrome frame.
+- **Customer Review Platform example (§13) — `example-reviews.html`.** 390×780 mobile screen for "Trustflow". App bar, rating summary (4.7 ★, 2,341 reviews, 5-row CSS width breakdown bars), filter chips (All / 5★ / 4★ / Verified / Recent), 2 review cards (name, stars, date, text, helpful CTA, verified badge), write-review input bar pinned to bottom. System UI only — zero web fonts loaded.
+- **Nav links** for §11–13 (`#pitchdeck`, `#landing`, `#reviews`) added to site navigation in `index.html`.
+- **SvelteKit framework tag** (lavender pill badge) on each of the 3 new "Open standalone" cards, distinguishing them from the plain-HTML mobile example.
+- **Svelte component comment skeletons** at the top of all 3 new standalone HTML files.
+
+---
+
 ## [2026.03.9] — 2026-03-02
 
 ### Added

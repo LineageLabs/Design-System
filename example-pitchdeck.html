@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!--
+  Equivalent SvelteKit component structure:
+
+  <script lang="ts">
+    const metrics = [
+      { value: '$2.4M', label: 'ARR' },
+      { value: '18%',   label: 'MoM Growth' },
+      { value: '340',   label: 'Customers' },
+    ]
+  </script>
+
+  <PitchSlide {metrics} />
+
+  Where PitchSlide.svelte renders:
+    <div class="slide">
+      <div class="slide-left">...</div>
+      <div class="slide-right">...</div>
+    </div>
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>Aria — Series A Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand-highlight-navy:  #0E1233;
+      --brand-highlight-blue:  #4751B0;
+      --brand-highlight-light: #F0F0F0;
+      --brand-offset-lavender: #A6A1E2;
+      --brand-offset-green:    #A0D246;
+    }
+
+    html, body {
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--brand-highlight-navy);
+      color: var(--brand-highlight-light);
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* ── Left column ──────────────────────────────── */
+    .slide-left {
+      width: 55%;
+      padding: 64px 56px 52px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .series-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.875rem;
+      border-radius: 9999px;
+      border: 1.5px solid var(--brand-offset-green);
+      color: var(--brand-offset-green);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-family: "Lora", Georgia, serif;
+      font-weight: 700;
+      font-size: 3.125rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+    }
+
+    .slide-subtitle {
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: rgba(240,240,240,0.65);
+      max-width: 38ch;
+      margin-bottom: 3rem;
+    }
+
+    /* Stats */
+    .stats-row {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stat-value {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(240,240,240,0.5);
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: rgba(240,240,240,0.12);
+      align-self: stretch;
+    }
+
+    /* Wordmark */
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-top: auto;
+    }
+
+    .wordmark-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.125rem 0.625rem;
+      border-radius: 0.875rem;
+      border: 1.5px solid rgba(240,240,240,0.5);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      color: rgba(240,240,240,0.9);
+    }
+
+    .wordmark-asterisk {
+      color: var(--brand-offset-green);
+    }
+
+    .wordmark-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(240,240,240,0.4);
+    }
+
+    /* ── Right column ─────────────────────────────── */
+    .slide-right {
+      width: 45%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Radial glow background */
+    .slide-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%,
+          rgba(71,81,176,0.5) 0%,
+          rgba(71,81,176,0.15) 45%,
+          transparent 75%),
+        radial-gradient(ellipse 50% 40% at 55% 45%,
+          rgba(166,161,226,0.2) 0%,
+          transparent 65%);
+    }
+
+    /* Decorative ring */
+    .glow-ring {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      border: 1px solid rgba(71,81,176,0.4);
+      box-shadow:
+        0 0 80px rgba(71,81,176,0.25),
+        inset 0 0 80px rgba(71,81,176,0.12);
+    }
+
+    .glow-ring-outer {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      border: 1px solid rgba(71,81,176,0.18);
+    }
+
+    /* Logo badge centre */
+    .logo-centre {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.875rem;
+    }
+
+    .logo-badge-large {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 2rem;
+      border-radius: 0.875rem;
+      border: 2px solid rgba(240,240,240,0.8);
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      color: rgba(240,240,240,0.95);
+      background: rgba(14,18,51,0.6);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo-badge-large .asterisk {
+      color: var(--brand-offset-green);
+    }
+
+    .logo-tagline {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(240,240,240,0.4);
+    }
+
+    /* Right-side decorative dots */
+    .dots-grid {
+      position: absolute;
+      bottom: 48px;
+      right: 48px;
+      display: grid;
+      grid-template-columns: repeat(6, 6px);
+      gap: 8px;
+      opacity: 0.2;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand-highlight-light);
+    }
+
+    /* Slide number */
+    .slide-number {
+      position: absolute;
+      bottom: 52px;
+      left: 72px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: rgba(240,240,240,0.25);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ LEFT COLUMN ════════════════════════════════════ -->
+  <div class="slide-left">
+    <div class="slide-content">
+
+      <div class="series-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+        Series A
+      </div>
+
+      <h1>The AI layer for modern payments.</h1>
+
+      <p class="slide-subtitle">
+        Aria turns every transaction into a signal. Smarter fraud detection,
+        instant reconciliation, and revenue intelligence — all without changing
+        your existing infrastructure.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-value">$2.4M</span>
+          <span class="stat-label">ARR</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">18%</span>
+          <span class="stat-label">MoM Growth</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">340</span>
+          <span class="stat-label">Customers</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wordmark">
+      <span class="wordmark-badge">aria<span class="wordmark-asterisk">*</span></span>
+      <span class="wordmark-name">Confidential · 2026</span>
+    </div>
+
+    <span class="slide-number">01 / 12</span>
+  </div>
+
+  <!-- ══ RIGHT COLUMN ═══════════════════════════════════ -->
+  <div class="slide-right">
+    <div class="glow-ring-outer"></div>
+    <div class="glow-ring"></div>
+
+    <div class="logo-centre">
+      <div class="logo-badge-large">aria<span class="asterisk">*</span></div>
+      <span class="logo-tagline">Intelligent Payments Infrastructure</span>
+    </div>
+
+    <div class="dots-grid">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+  </div>
+
+</body>
+</html>
