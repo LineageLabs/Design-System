@@ -55,7 +55,7 @@
     /* ── Nav ───────────────────────────────────────── */
     nav {
       position: relative;
-      z-index: 10;
+      z-index: 20;
       height: 44px;
       display: flex;
       align-items: center;
@@ -66,12 +66,7 @@
       flex-shrink: 0;
     }
 
-    .nav-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-    }
+    .nav-logo { display: inline-flex; align-items: center; text-decoration: none; }
 
     .nav-badge {
       display: inline-flex;
@@ -111,52 +106,43 @@
       font-size: 0.8rem;
       font-weight: 600;
       text-decoration: none;
-      letter-spacing: 0.01em;
     }
 
-    /* ── Split layout ──────────────────────────────── */
-    .split {
+    /* ── Hero ──────────────────────────────────────── */
+    .hero {
       flex: 1;
-      display: flex;
-      overflow: hidden;
-    }
-
-    /* ── Image panel ───────────────────────────────── */
-    .hero-image {
-      flex: 0 0 52%;
       position: relative;
       overflow: hidden;
-      background: var(--muted);
+    }
+
+    /* Full-bleed photo — no overlays, no gradients */
+    .hero-image {
+      position: absolute;
+      inset: 0;
     }
 
     .hero-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center center;
+      object-position: 28% center;
       display: block;
     }
 
-    /* Subtle right-edge fade to blend with content panel */
-    .hero-image::after {
-      content: '';
+    /* Solid white card panel — floats over the right portion of the photo */
+    .hero-card {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        transparent 60%,
-        var(--background) 100%
-      );
-    }
-
-    /* ── Content panel ─────────────────────────────── */
-    .hero-content {
-      flex: 1;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 45%;
+      background: var(--card);
+      border-left: 1px solid var(--border);
+      padding: 36px 40px 32px 36px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 28px 36px 28px 24px;
-      background: var(--background);
+      gap: 0;
     }
 
     .eyebrow-badge {
@@ -187,8 +173,8 @@
       font-family: "Lora", Georgia, serif;
       font-style: normal;
       font-weight: 700;
-      font-size: 2rem;
-      line-height: 1.12;
+      font-size: 2.125rem;
+      line-height: 1.1;
       letter-spacing: -0.025em;
       color: var(--foreground);
       margin-bottom: 0.75rem;
@@ -198,15 +184,14 @@
       font-size: 0.8rem;
       line-height: 1.65;
       color: var(--muted-foreground);
-      margin-bottom: 1.375rem;
+      margin-bottom: 1.5rem;
     }
 
-    /* CTA buttons */
     .cta-group {
       display: flex;
       align-items: center;
       gap: 0.625rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.75rem;
     }
 
     .btn-primary {
@@ -220,7 +205,6 @@
       font-weight: 600;
       text-decoration: none;
       letter-spacing: 0.01em;
-      box-shadow: 0 2px 10px color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
     }
 
     .btn-ghost {
@@ -236,7 +220,6 @@
       text-decoration: none;
     }
 
-    /* Social proof */
     .social-proof {
       display: flex;
       flex-direction: column;
@@ -272,27 +255,25 @@
     <a href="#" class="nav-logo">
       <span class="nav-badge">aria<span class="asterisk">*</span></span>
     </a>
-
     <ul class="nav-links">
       <li><a href="#">Features</a></li>
       <li><a href="#">Pricing</a></li>
       <li><a href="#">Blog</a></li>
       <li><a href="#">About</a></li>
     </ul>
-
     <a href="#" class="nav-cta">Get Early Access</a>
   </nav>
 
-  <!-- ══ SPLIT ══════════════════════════════════════════ -->
-  <div class="split">
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <div class="hero">
 
-    <!-- Image panel -->
+    <!-- Full-bleed photo, no overlays -->
     <div class="hero-image">
       <img src="hero-market.jpg" alt="Two people selecting produce at a farmers market" />
     </div>
 
-    <!-- Content panel -->
-    <div class="hero-content">
+    <!-- Content card — solid white, sits over right portion of photo -->
+    <div class="hero-card">
 
       <div class="eyebrow-badge">
         <span class="eyebrow-dot"></span>
@@ -303,8 +284,7 @@
 
       <p class="hero-subtitle">
         Aria brings intelligence to every transaction — fraud detection,
-        instant reconciliation, and revenue insights built for the
-        real world.
+        instant reconciliation, and revenue insights built for the real world.
       </p>
 
       <div class="cta-group">
