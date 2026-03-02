@@ -224,8 +224,8 @@
       justify-content: center;
       padding: 0.125rem 0.7rem;
       border-radius: 15px;
-      background: #B9F7CE;
-      color: #15552E;
+      background: var(--brand-highlight-light);
+      color: var(--brand-highlight-navy);
       font-family: "Poppins", sans-serif;
       font-weight: 500;
       font-size: 15px;
@@ -233,7 +233,7 @@
       letter-spacing: -0.05em;
       white-space: nowrap;
       flex-shrink: 0;
-      border: 1px solid #15552E;
+      border: 1px solid var(--brand-highlight-navy);
     }
     .logo-wordmark { font-weight: 700; }
     .logo-char { will-change: filter, opacity, transform; }
@@ -258,15 +258,12 @@
       font-size: 36px;
       line-height: 54px;
       letter-spacing: -0.05em;
-      color: #B9F7CE;
+      color: var(--brand-highlight-light);
       white-space: nowrap;
     }
     .logo-text .logo-asterisk,
     .logo-text-dark .logo-asterisk {
       color: var(--brand-highlight-blue);
-    }
-    .logo-text-dark .logo-asterisk {
-      color: #3DC683;
     }
 
     nav {
@@ -1367,7 +1364,7 @@
       <!-- ═══════════════ way*ID Badge ═══════════════ -->
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">way*ID Badge</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Pill-shaped badge with dark green background / light green text. Inverts in dark mode.
+        Pill-shaped badge with navy background / light text. Inverts in dark mode.
       </p>
 
       <!-- way*ID — Light -->
@@ -1416,12 +1413,12 @@
       <!-- ═══════════════ Lineage*Labs Wordmark ═══════════════ -->
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Lineage*Labs Wordmark</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Text wordmark in Poppins 600. Dark green on light backgrounds, light green on dark. The <code>*</code> uses grass green as an accent.
+        Text wordmark in Poppins 600. Navy (<code>--brand-highlight-navy</code>) on light backgrounds, light (<code>--brand-highlight-light</code>) on dark. The <code>*</code> uses <code>--brand-highlight-blue</code> as accent.
       </p>
 
       <!-- Lineage*Labs — Light -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Light Mode <span class="anim-tag">Poppins 600</span> <span class="anim-tag">#15552E</span></div>
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">Poppins 600</span> <span class="anim-tag">--brand-highlight-navy</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;gap:1.5rem;">
           <span class="logo-text" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
           <span class="logo-text" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
@@ -1431,7 +1428,7 @@
 
       <!-- Lineage*Labs — Dark -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Dark Mode <span class="anim-tag">#B9F7CE</span></div>
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">--brand-highlight-light</span></div>
         <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:1.5rem;">
           <span class="logo-text-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
           <span class="logo-text-dark" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
@@ -1498,18 +1495,18 @@
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Background</td>
-                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
-                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#1A1E4C;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F0F0F0;border:1px solid #ccc;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Text color</td>
-                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code></td>
-                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Border</td>
                 <td style="padding:0.5rem 0.75rem;">transparent</td>
-                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> (1px solid)</td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> (1px solid)</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Radius</td>
@@ -1547,12 +1544,12 @@
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Text color</td>
-                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
-                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#1A1E4C;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F0F0F0;border:1px solid #ccc;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Asterisk color</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>#3DC683</code> (grass green) <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#3DC683;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>--brand-highlight-blue</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#4751B0;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Font</td>
@@ -2729,7 +2726,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
               <span>&#x2022; FAB</span>
               <span>&#x2022; Bottom navigation bar</span>
               <span>&#x2022; Toast notifications</span>
-              <span>&#x2022; Badges (light green / grass green / dark green / default)</span>
+              <span>&#x2022; Badges (lavender / blue / navy / default)</span>
             </div>
           </div>
 

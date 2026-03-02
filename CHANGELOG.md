@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.4] — 2026-03-02
+
+### Fixed
+- **`example-mobile.html` — replaced old green brand tokens with new blue palette.** Updated `:root` and `.dark` brand variable blocks to match `tokens/colors.css` (removed `--brand-highlight-light-green`, `--brand-highlight-grass-green`, `--brand-highlight-dark-green`; added full `--brand-*` set). Badge CSS remapped (lavender tint / blue / navy). Phone-frame and bottom-nav backgrounds → `--brand-surface`. Notification dot, avatar circle → `--brand-highlight-blue`. Toast success icon → `--brand-offset-green`. Added Lora for h1 to match main font rules.
+- **`index.html` logo section — replaced hardcoded old green hex values.** `.logo-badge-dark` and `.logo-text-dark` CSS now use `--brand-highlight-light` / `--brand-highlight-navy`. Removed stale grass-green asterisk override; `--brand-highlight-blue` used consistently for `*` in both variants. way\*ID and Lineage\*Labs spec tables updated to show new token names and swatches.
+
+---
+
 ## [2026.03.3] — 2026-03-02
 
 ### Changed

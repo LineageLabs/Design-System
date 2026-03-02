@@ -6,7 +6,7 @@
   <title>Focus — Example Mobile Page</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <style>
@@ -29,9 +29,16 @@
       --input: oklch(0.928 0.006 264.531);
       --ring: oklch(0.707 0.022 261.325);
       --destructive: oklch(0.577 0.245 27.325);
-      --brand-highlight-light-green: #B9F7CE;
-      --brand-highlight-grass-green: #3DC683;
-      --brand-highlight-dark-green: #15552E;
+      --brand-surface: #F0F0F0;
+      --brand-surface-grey: #E4E4EE;
+      --brand-surface-blue: #4751B0;
+      --brand-highlight-blue: #4751B0;
+      --brand-highlight-navy: #1A1E4C;
+      --brand-highlight-light: #F0F0F0;
+      --brand-offset-lavender: #A6A1E2;
+      --brand-offset-green: #A0D246;
+      --brand-offset-yellow: #FFD27D;
+      --brand-offset-coral: #F0936B;
     }
     .dark {
       --background: oklch(0.13 0.028 261.692);
@@ -48,9 +55,16 @@
       --input: oklch(1 0 0 / 15%);
       --ring: oklch(0.551 0.027 264.364);
       --destructive: oklch(0.704 0.191 22.216);
-      --brand-highlight-light-green: #B9F7CE;
-      --brand-highlight-grass-green: #3DC683;
-      --brand-highlight-dark-green: #15552E;
+      --brand-surface: #1A1E4C;
+      --brand-surface-grey: #252963;
+      --brand-surface-blue: #4751B0;
+      --brand-highlight-blue: #4751B0;
+      --brand-highlight-navy: #1A1E4C;
+      --brand-highlight-light: #F0F0F0;
+      --brand-offset-lavender: #B4AFE7;
+      --brand-offset-green: #D5FD8D;
+      --brand-offset-yellow: #FFD27D;
+      --brand-offset-coral: #E99F80;
     }
 
     /* ============================================================
@@ -70,14 +84,15 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
     .dark body { background: oklch(0.08 0.02 264); }
-    h1, h2, h3, h4 { font-family: "Poppins", sans-serif; line-height: 1.2; }
+    h1 { font-family: "Lora", Georgia, serif; font-weight: 700; line-height: 1.2; }
+    h2, h3, h4 { font-family: "Poppins", sans-serif; line-height: 1.2; }
 
     /* ============================================================
        PHONE FRAME
        ============================================================ */
     .phone-frame {
       width: 100%; max-width: 390px;
-      background: var(--background);
+      background: var(--brand-surface);
       border-radius: 2.75rem;
       box-shadow: 0 0 0 1px rgba(0,0,0,0.08),
                   0 40px 100px rgba(0,0,0,0.22),
@@ -89,7 +104,7 @@
       transition: background-color 0.3s ease;
     }
     @media (max-width: 480px) {
-      body { padding: 0; background: var(--background); }
+      body { padding: 0; background: var(--brand-surface); }
       .phone-frame { max-width: 100%; border-radius: 0; box-shadow: none; min-height: 100dvh; }
     }
 
@@ -136,9 +151,9 @@
       font-family: inherit; white-space: nowrap;
     }
     .maia-badge-default { background: var(--secondary); color: var(--secondary-foreground); }
-    .maia-badge-light-green { background: color-mix(in srgb, var(--brand-highlight-light-green) 25%, transparent); color: var(--brand-highlight-dark-green); border: 1px solid color-mix(in srgb, var(--brand-highlight-light-green) 40%, transparent); }
-    .maia-badge-grass-green { background: color-mix(in srgb, var(--brand-highlight-grass-green) 15%, transparent); color: var(--brand-highlight-grass-green); border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent); }
-    .maia-badge-dark-green { background: var(--brand-highlight-dark-green); color: var(--brand-highlight-light-green); border: 1px solid var(--brand-highlight-dark-green); }
+    .maia-badge-light-green { background: color-mix(in srgb, var(--brand-offset-lavender) 20%, transparent); color: var(--brand-highlight-navy); border: 1px solid color-mix(in srgb, var(--brand-offset-lavender) 35%, transparent); }
+    .maia-badge-grass-green { background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent); color: var(--brand-highlight-blue); border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent); }
+    .maia-badge-dark-green { background: var(--brand-highlight-navy); color: var(--brand-highlight-light); border: 1px solid var(--brand-highlight-navy); }
 
     /* Cards */
     .maia-card {
@@ -260,8 +275,8 @@
     .notif-badge {
       position: absolute; top: 5px; right: 5px;
       width: 8px; height: 8px; border-radius: 9999px;
-      background: var(--brand-highlight-dark-green);
-      border: 1.5px solid var(--background);
+      background: var(--brand-highlight-blue);
+      border: 1.5px solid var(--brand-surface);
     }
 
     /* Scrollable content */
@@ -387,7 +402,7 @@
     /* Bottom navigation */
     .bottom-nav {
       display: flex; align-items: center;
-      background: var(--background); border-top: 1px solid var(--border);
+      background: var(--brand-surface); border-top: 1px solid var(--border);
       padding: 0.375rem 0.25rem 0.75rem; gap: 0;
       transition: background-color 0.3s ease;
     }
@@ -512,7 +527,7 @@
           </svg>
         </button>
         <button class="icon-btn" id="avatarBtn" aria-label="Profile" style="padding:0;">
-          <div style="width:32px;height:32px;border-radius:9999px;background:var(--brand-highlight-grass-green);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:#fff;letter-spacing:0.02em;">A</div>
+          <div style="width:32px;height:32px;border-radius:9999px;background:var(--brand-highlight-blue);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:var(--brand-highlight-light);letter-spacing:0.02em;">A</div>
         </button>
       </div>
     </div>
@@ -1007,7 +1022,7 @@
       const id = ++toastId;
       const el = document.createElement("div");
       el.className = "maia-toast"; el.id = "t" + id;
-      const icon = variant === "success" ? `<span style="color:var(--brand-highlight-grass-green);flex-shrink:0;">&#10003;</span>` : "";
+      const icon = variant === "success" ? `<span style="color:var(--brand-offset-green);flex-shrink:0;">&#10003;</span>` : "";
       el.innerHTML = `<span class="maia-toast-text">${icon}${msg}</span><button class="maia-toast-close" aria-label="Dismiss">&times;</button>`;
       document.getElementById("toastContainer").appendChild(el);
       gsap.fromTo(el, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: dur(0.38), ease: "back.out(1.5)" });
