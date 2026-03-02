@@ -15,7 +15,7 @@ An outline pill badge. Transparent background with navy border + text in light m
 | Background | transparent | transparent |
 | Text color | `--brand-highlight-navy` (`#0E1233`) | `--brand-highlight-light` (`#F0F0F0`) |
 | Border | `1.5px solid --brand-highlight-navy` | `1px solid --brand-highlight-light` |
-| Border radius | `9999px` (pill) | `9999px` (pill) |
+| Border radius | `var(--radius)` (0.875rem) | `var(--radius)` (0.875rem) |
 | Font | Poppins, weight 600, `-0.08em` letter-spacing | same |
 | Default size | `15px` | same |
 
@@ -28,7 +28,7 @@ An outline pill badge. Transparent background with navy border + text in light m
   font-weight: 600;
   letter-spacing: -0.08em;
   padding: 0.125rem 0.7rem;
-  border-radius: 9999px;
+  border-radius: var(--radius);
   background: transparent;
   color: var(--brand-highlight-navy);
   border: 1.5px solid var(--brand-highlight-navy);
@@ -48,7 +48,7 @@ An outline pill badge. Transparent background with navy border + text in light m
   font-weight: 600;
   letter-spacing: -0.08em;
   padding: 0.125rem 0.7rem;
-  border-radius: 9999px;
+  border-radius: var(--radius);
   background: transparent;
   color: var(--brand-highlight-light);
   border: 1px solid var(--brand-highlight-light);
@@ -59,38 +59,32 @@ An outline pill badge. Transparent background with navy border + text in light m
 ### HTML Usage
 
 ```html
-<!-- Light background -->
-<span class="logo-badge">way*ID</span>
+<!-- Light background — * wrapped for colour accent -->
+<span class="logo-badge">way<span class="logo-badge-asterisk">*</span>ID</span>
 
 <!-- Dark background -->
-<span class="logo-badge-dark">way*ID</span>
+<span class="logo-badge-dark">way<span class="logo-badge-asterisk">*</span>ID</span>
 ```
+
+The `.logo-badge-asterisk` span gets `color: var(--brand-offset-lavender)` from CSS automatically. No JS needed for static usage.
 
 ### Animated Reveal (GSAP)
 
-Three-phase reveal (~1s total) + continuous post-reveal asterisk cycle:
+Simple reveal + continuous post-reveal asterisk cycle:
 
-1. **Pill materialises** — `scale 0.9→1`, `blur 8px→0`, `back.out(1.7)`, 450ms
-2. **Characters stagger** from center outward (radiates from the `*`) — `blur 4px→0`, `y 6→0`, `power2.out`, 300ms, 0.05s stagger
-3. **Dual-layer glow pulse** — tight (`rgba(14,18,51,0.25)` light / `rgba(240,240,240,0.35)` dark) + wide diffuse layer, 650ms total
-4. **`*` color cycle** — post-reveal, the `*` span (`class="logo-badge-asterisk"`) cycles through `--brand-offset-lavender → green → yellow → coral` every 1.4s, re-reading CSS variables each cycle to respect live dark/light mode switches
+1. **Badge fades in** — `scale 0.94→1`, `opacity 0→1`, `back.out(1.7)`, 300ms
+2. **`*` color cycle** — after reveal, cycles `--brand-offset-lavender → green → yellow → coral` every 1.4s with a 350ms `power2.inOut` crossfade; re-reads CSS vars each step for live dark/light mode compat
 
 ```js
-// Split badge text into per-character spans with class="logo-char"
-// The * span also gets class="logo-badge-asterisk" for the cycle target
-// then run a GSAP timeline:
-
-const tl = gsap.timeline();
-tl.fromTo(badgeEl,
-  { scale: 0.9, opacity: 0, filter: "blur(8px)" },
-  { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "back.out(1.7)" }
-).fromTo(chars,
-  { opacity: 0, filter: "blur(4px)", y: 6 },
-  { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.3, ease: "power2.out",
-    stagger: { each: 0.05, from: "center" } },
-  "-=0.15"
-).call(() => startAsteriskCycle(badgeEl));
-// startAsteriskCycle() reads --brand-offset-* CSS vars each step for dark mode compat
+// Animate the badge element directly — no char splitting needed
+gsap.fromTo(badgeEl,
+  { scale: 0.94, opacity: 0 },
+  { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)",
+    onComplete() { startAsteriskCycle(badgeEl); }
+  }
+);
+// startAsteriskCycle() targets badgeEl.querySelector(".logo-badge-asterisk")
+// and reads --brand-offset-* CSS vars each cycle step
 ```
 
 ---

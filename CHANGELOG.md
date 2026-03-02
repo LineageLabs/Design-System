@@ -5,6 +5,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.8] — 2026-03-02
+
+### Changed
+- **way\*ID badge: border-radius back to design system default.** `9999px → var(--radius)` (0.875rem) on `.logo-badge` and `.logo-badge-dark`.
+- **way\*ID badge: simplified reveal animation.** Replaced 3-phase char-stagger + glow-pulse with a single `scale 0.94→1 / opacity 0→1, back.out(1.7), 300ms` tween. Removed `splitBadgeChars()` function; asterisk span is now in HTML directly.
+- **`*` coloured in all badge instances (static and animated).** `*` is now wrapped in `<span class="logo-badge-asterisk">` in all HTML instances. CSS rule sets `color: var(--brand-offset-lavender)` by default; animated badges still cycle through all 4 offset accents post-reveal. Updated `index.html`, `assets/logos/README.md`.
+
+---
+
 ## [2026.03.7] — 2026-03-02
 
 ### Changed

@@ -200,7 +200,7 @@
       align-items: center;
       justify-content: center;
       padding: 0.125rem 0.7rem;
-      border-radius: 9999px;
+      border-radius: var(--radius);
       background: transparent;
       color: var(--brand-highlight-navy);
       font-family: "Poppins", sans-serif;
@@ -223,7 +223,7 @@
       align-items: center;
       justify-content: center;
       padding: 0.125rem 0.7rem;
-      border-radius: 9999px;
+      border-radius: var(--radius);
       background: transparent;
       color: var(--brand-highlight-light);
       font-family: "Poppins", sans-serif;
@@ -235,8 +235,10 @@
       flex-shrink: 0;
       border: 1px solid var(--brand-highlight-light);
     }
+    /* Asterisk accent — offset lavender by default; animated badges cycle through all 4 */
+    .logo-badge .logo-badge-asterisk,
+    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-lavender); }
     .logo-wordmark { font-weight: 700; }
-    .logo-char { will-change: filter, opacity, transform; }
 
     /* Lineage*Labs text wordmark */
     .logo-text {
@@ -1281,7 +1283,7 @@
 
   <header class="site-header">
     <a href="#" class="logo">
-      <span class="logo-badge">way*ID</span>
+      <span class="logo-badge">way<span class="logo-badge-asterisk">*</span>ID</span>
       <span class="logo-wordmark">Design System</span>
     </a>
     <nav>
@@ -1371,9 +1373,9 @@
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge" style="font-size:22px;padding:0.2rem 1rem;">way*ID</span>
-          <span class="logo-badge" style="font-size:15px;">way*ID</span>
-          <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;">way*ID</span>
+          <span class="logo-badge" style="font-size:22px;padding:0.2rem 1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge" style="font-size:15px;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
         </div>
       </div>
 
@@ -1381,9 +1383,9 @@
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
         <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge-dark" style="font-size:22px;padding:0.2rem 1rem;">way*ID</span>
-          <span class="logo-badge-dark" style="font-size:15px;">way*ID</span>
-          <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;">way*ID</span>
+          <span class="logo-badge-dark" style="font-size:22px;padding:0.2rem 1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge-dark" style="font-size:15px;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
         </div>
       </div>
 
@@ -1394,14 +1396,14 @@
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;">way*ID</span>
+              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
           </div>
           <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;">way*ID</span>
+              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
@@ -1519,10 +1521,8 @@
               <tr>
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">
-                  Phase 1: <code>scale 0.9→1, blur 8→0, back.out(1.7), 450ms</code><br>
-                  Phase 2: <code>chars stagger 0.05s from center, blur 4→0 + y 6→0, power2.out, 300ms</code><br>
-                  Phase 3: <code>dual glow pulse (16px tight + 40px wide), power2.out→in, 650ms</code><br>
-                  Post-reveal: <code>* cycles through offset accents every 1.4s (lavender → green → yellow → coral)</code>
+                  Reveal: <code>scale 0.94→1, opacity 0→1, back.out(1.7), 300ms</code><br>
+                  Post-reveal: <code>* cycles lavender → green → yellow → coral every 1.4s (power2.inOut crossfade)</code>
                 </td>
               </tr>
             </tbody>
@@ -2134,7 +2134,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
       <div class="card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
         <div class="logo" id="logo-demo" style="font-size:1.1rem;gap:0.6rem;">
-          <span class="logo-badge logo-icon-demo" style="font-size:18px;padding:0.15rem 0.85rem;">way*ID</span>
+          <span class="logo-badge logo-icon-demo" style="font-size:18px;padding:0.15rem 0.85rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
           <span class="logo-wordmark logo-wordmark-demo" style="font-size:1.1rem;">Lineage HQ</span>
         </div>
         <button class="theme-toggle" id="logo-replay-btn">Replay logo reveal</button>
@@ -2838,29 +2838,10 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       });
     }
 
-    /* Rich badge-only reveal — 3 phases: elastic pill, staggered char blur, glow pulse */
+    /* Badge reveal + asterisk colour cycling */
     const badgeCycles = new Map(); /* tracks active asterisk cycles per badge element */
 
-    function splitBadgeChars(el) {
-      const text = el.textContent;
-      el.textContent = "";
-      el.style.display = "inline-flex";
-      el.style.alignItems = "center";
-      el.style.justifyContent = "center";
-      const chars = [];
-      for (let i = 0; i < text.length; i++) {
-        const span = document.createElement("span");
-        span.textContent = text[i];
-        span.style.display = "inline-block";
-        /* Mark the asterisk so startAsteriskCycle() can find it */
-        span.className = text[i] === "*" ? "logo-char logo-badge-asterisk" : "logo-char";
-        el.appendChild(span);
-        chars.push(span);
-      }
-      return chars;
-    }
-
-    /* Cycles the * character through the 4 brand offset accent tokens */
+    /* Cycles the * through the 4 brand offset accent tokens after the reveal */
     function startAsteriskCycle(badgeEl) {
       const asteriskEl = badgeEl.querySelector(".logo-badge-asterisk");
       if (!asteriskEl) return null;
@@ -2895,77 +2876,39 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
     }
 
     function playBadgeReveal(badgeEl) {
-      /* Ensure chars are split */
-      let chars = badgeEl.querySelectorAll(".logo-char");
-      if (!chars.length) {
-        chars = splitBadgeChars(badgeEl);
-      } else {
-        chars = Array.from(chars);
-      }
-      const isDark = badgeEl.classList.contains("logo-badge-dark") ||
-                     document.documentElement.classList.contains("dark");
-      /* Navy (#0E1233) glow for light mode; light (#F0F0F0) glow for dark mode */
-      const glowTight = isDark ? "rgba(240, 240, 240, 0.35)" : "rgba(14, 18, 51, 0.25)";
-      const glowWide  = isDark ? "rgba(240, 240, 240, 0.10)" : "rgba(14, 18, 51, 0.08)";
-      const tl = gsap.timeline();
-
       if (reducedMotion) {
-        tl.set(badgeEl, { opacity:1, scale:1 });
-        tl.set(chars, { opacity:1, filter:"blur(0px)" });
-        return tl;
+        gsap.set(badgeEl, { opacity: 1 });
+        const c = startAsteriskCycle(badgeEl);
+        if (c) badgeCycles.set(badgeEl, c);
+        return;
       }
-
-      /* Phase 1: Pill materializes — scale from 0.9 with overshoot + blur dissolve */
-      tl.set(chars, { opacity:0 })
-        .fromTo(badgeEl,
-          { scale:0.9, opacity:0, filter:"blur(8px)", transformOrigin:"center center" },
-          { scale:1, opacity:1, filter:"blur(0px)", duration:0.45, ease:"back.out(1.7)" }
-        )
-        /* Phase 2: Characters stagger from center outward (radiates from the *) with blur-to-sharp */
-        .fromTo(chars,
-          { opacity:0, filter:"blur(4px)", y:6 },
-          { opacity:1, filter:"blur(0px)", y:0, duration:0.3, ease:"power2.out",
-            stagger:{ each:0.05, from:"center" } },
-          "-=0.15"
-        )
-        /* Phase 3: Dual-layer glow pulse — tight bright + wide diffuse, single breathe */
-        .fromTo(badgeEl,
-          { boxShadow:"0 0 0px 0px " + glowTight + ", 0 0 0px 0px " + glowWide },
-          { boxShadow:"0 0 16px 3px " + glowTight + ", 0 0 40px 8px " + glowWide,
-            duration:0.35, ease:"power2.out" },
-          "-=0.05"
-        )
-        .to(badgeEl,
-          { boxShadow:"0 0 0px 0px transparent, 0 0 0px 0px transparent",
-            duration:0.3, ease:"power2.in" }
-        )
-        /* After reveal: start infinite * color cycling through brand offset accents */
-        .call(() => {
-          const cycle = startAsteriskCycle(badgeEl);
-          if (cycle) badgeCycles.set(badgeEl, cycle);
-        });
-
-      return tl;
+      gsap.fromTo(badgeEl,
+        { scale: 0.94, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)",
+          onComplete() {
+            const c = startAsteriskCycle(badgeEl);
+            if (c) badgeCycles.set(badgeEl, c);
+          }
+        }
+      );
     }
 
     function resetBadge(badgeEl) {
-      /* Kill any active asterisk cycle before resetting */
       const cycle = badgeCycles.get(badgeEl);
       if (cycle) { cycle.kill(); badgeCycles.delete(badgeEl); }
-      gsap.set(badgeEl, { clearProps:"all" });
-      const chars = badgeEl.querySelectorAll(".logo-char");
-      if (chars.length) gsap.set(chars, { clearProps:"all" });
+      gsap.set(badgeEl, { clearProps: "all" });
+      /* Reset * colour back to CSS-defined default (removes GSAP inline override) */
+      const asteriskEl = badgeEl.querySelector(".logo-badge-asterisk");
+      if (asteriskEl) gsap.set(asteriskEl, { clearProps: "color" });
     }
 
     /* Animation section (existing simple reveal) */
     setTimeout(() => playReveal(".logo-icon-demo", ".logo-wordmark-demo"), 600);
     wireReplay("logo-replay-btn", ".logo-icon-demo", ".logo-wordmark-demo");
 
-    /* Logo section — rich animated badges */
+    /* Logo section — animated badges */
     const animLightBadge = document.querySelector(".logo-anim-light-badge");
     const animDarkBadge  = document.querySelector(".logo-anim-dark-badge");
-    splitBadgeChars(animLightBadge);
-    splitBadgeChars(animDarkBadge);
 
     document.getElementById("logo-anim-light-replay").addEventListener("click", () => {
       resetBadge(animLightBadge);
