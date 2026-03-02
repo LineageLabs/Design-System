@@ -242,24 +242,27 @@
 
     /* Lineage*Labs text wordmark */
     .logo-text {
-      font-family: "Poppins", sans-serif;
+      font-family: "Lora", Georgia, serif;
+      font-style: normal;
       font-weight: 600;
-      font-size: 36px;
-      line-height: 54px;
-      letter-spacing: -0.05em;
-      color: var(--brand-highlight-navy);
+      font-size: 64px;
+      line-height: 82px;
+      letter-spacing: -0.03em;
+      color: var(--brand-highlight-blue);
       white-space: nowrap;
     }
     .dark .logo-text {
+      font-weight: 400;
       color: var(--brand-highlight-light);
     }
     /* Forced dark variant for always-dark panels */
     .logo-text-dark {
-      font-family: "Poppins", sans-serif;
-      font-weight: 600;
-      font-size: 36px;
-      line-height: 54px;
-      letter-spacing: -0.05em;
+      font-family: "Lora", Georgia, serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 82px;
+      letter-spacing: -0.03em;
       color: var(--brand-highlight-light);
       white-space: nowrap;
     }
@@ -1418,26 +1421,26 @@
       <!-- ═══════════════ Lineage*Labs Wordmark ═══════════════ -->
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Lineage*Labs Wordmark</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Text wordmark in Poppins 600. Navy (<code>--brand-highlight-navy</code>) on light backgrounds, light (<code>--brand-highlight-light</code>) on dark. The <code>*</code> uses <code>--brand-highlight-blue</code> as accent.
+        Text wordmark in Lora. Weight 600 on light (<code>--brand-highlight-blue</code>), weight 400 on dark (<code>--brand-highlight-light</code>). The <code>*</code> uses <code>--brand-highlight-blue</code> as accent.
       </p>
 
       <!-- Lineage*Labs — Light -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Light Mode <span class="anim-tag">Poppins 600</span> <span class="anim-tag">--brand-highlight-navy</span></div>
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">Lora 600</span> <span class="anim-tag">--brand-highlight-blue</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;gap:1.5rem;">
-          <span class="logo-text" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
-          <span class="logo-text" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
-          <span class="logo-text" style="font-size:16px;line-height:24px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text" style="font-size:36px;line-height:46px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text" style="font-size:24px;line-height:31px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
         </div>
       </div>
 
       <!-- Lineage*Labs — Dark -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Dark Mode <span class="anim-tag">--brand-highlight-light</span></div>
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">Lora 400</span> <span class="anim-tag">--brand-highlight-light</span></div>
         <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:1.5rem;">
-          <span class="logo-text-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
-          <span class="logo-text-dark" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
-          <span class="logo-text-dark" style="font-size:16px;line-height:24px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark" style="font-size:36px;line-height:46px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark" style="font-size:24px;line-height:31px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
         </div>
       </div>
 
@@ -1447,15 +1450,15 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
-            <div style="min-height:56px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-text ll-anim-light" id="ll-anim-light" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+            <div style="min-height:82px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-text ll-anim-light" id="ll-anim-light">Lineage<span class="logo-asterisk">*</span>Labs</span>
             </div>
             <button class="theme-toggle" id="ll-anim-light-replay">Replay</button>
           </div>
           <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
-            <div style="min-height:56px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-text-dark ll-anim-dark" id="ll-anim-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+            <div style="min-height:82px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-text-dark ll-anim-dark" id="ll-anim-dark">Lineage<span class="logo-asterisk">*</span>Labs</span>
             </div>
             <button class="theme-toggle" id="ll-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
@@ -1548,7 +1551,7 @@
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Text color</td>
-                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#0E1233;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-blue</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#4751B0;vertical-align:middle;margin-left:0.25rem;"></span></td>
                 <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F0F0F0;border:1px solid #ccc;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
@@ -1557,11 +1560,12 @@
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Font</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 600 weight, <code>-0.05em</code> letter-spacing</td>
+                <td style="padding:0.5rem 0.75rem;">Lora, <strong>600</strong> weight, <code>-0.03em</code> letter-spacing</td>
+                <td style="padding:0.5rem 0.75rem;">Lora, <strong>400</strong> weight, <code>-0.03em</code> letter-spacing</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Default size</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>36px</code> / line-height <code>54px</code></td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>64px</code> / line-height <code>82px</code></td>
               </tr>
               <tr>
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
@@ -3298,7 +3302,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     function playWordmarkReveal(el, chars) {
       const isDark = el.classList.contains("logo-text-dark");
-      const glowColor = isDark ? "rgba(185, 247, 206, 0.3)" : "rgba(21, 85, 46, 0.2)";
+      const glowColor = isDark ? "rgba(240, 240, 240, 0.2)" : "rgba(71, 81, 176, 0.25)";
       const asteriskIdx = chars.findIndex((c) => c.classList.contains("logo-asterisk"));
       const tl = gsap.timeline();
 
