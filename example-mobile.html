@@ -72,7 +72,7 @@
        ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       background: oklch(0.95 0.004 264);
       color: var(--foreground);
       line-height: 1.6;
@@ -718,7 +718,7 @@
       <div style="padding: 0 1.25rem;" id="accordionWrap">
         <div class="maia-accordion-item" data-accordion>
           <button class="maia-accordion-trigger"><span>Design system conventions</span><svg class="maia-accordion-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></button>
-          <div class="maia-accordion-content"><div class="maia-accordion-content-inner">Use Poppins for h1&ndash;h4 only. All body text and UI uses Geist Sans. Brand colors are <em>additive</em> &mdash; never replace semantic tokens like <code>--primary</code>.</div></div>
+          <div class="maia-accordion-content"><div class="maia-accordion-content-inner">Use Lora for h0/h1, Poppins for h2&ndash;h4. All body text and UI uses the system font stack. Brand colors are <em>additive</em> &mdash; never replace semantic tokens like <code>--primary</code>.</div></div>
         </div>
         <div class="maia-accordion-item" data-accordion>
           <button class="maia-accordion-trigger"><span>Animation guidelines</span><svg class="maia-accordion-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></button>

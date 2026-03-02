@@ -13,7 +13,7 @@
 | **Styling** | [Tailwind CSS](https://tailwindcss.com/) (v4, OKLCH) | Comes with shadcn. Use their utilities. |
 | **Animation** | [GSAP v3](https://gsap.com/docs/v3/) | `npm install gsap`. Use our presets. |
 | **Color Format** | OKLCH | Current shadcn/Tailwind v4 standard. |
-| **Body Font** | [Geist Sans](https://vercel.com/font) | Default for all body text, UI elements. |
+| **Body Font** | System UI (native font stack) | Default for all body text, UI elements. No install required. |
 | **Display / H1 Font** | [Lora](https://fonts.google.com/specimen/Lora) | Serif. Used for h0 and h1 only. |
 | **Headline Font** | [Poppins](https://fonts.google.com/specimen/Poppins) | Sans-serif. Used for h2–h4 only. |
 | **Icons** | [Hugeicons](https://hugeicons.com/) | Default icon library. |
@@ -29,7 +29,7 @@ Generated from: `shadcn/create`
 | Style | **Maia** — Soft and rounded, generous spacing |
 | Base Color | **Gray** — Blue-tinted neutral (hue ~262 OKLCH) |
 | Theme | Gray |
-| Font | Geist Sans (body) + **Lora (h0–h1)** + **Poppins (h2–h4)** |
+| Font | System UI (body) + **Lora (h0–h1)** + **Poppins (h2–h4)** |
 | Icon Library | Hugeicons |
 | Radius | Large (`0.875rem`) |
 | Menu Accent | Subtle |
@@ -42,7 +42,7 @@ Generated from: `shadcn/create`
 3. **GSAP for motion.** Use presets from `animations/presets.js`. Don't invent new durations/easings.
 4. **Respect reduced motion.** Every animation checks `prefers-reduced-motion`.
 5. **Never edit shadcn source.** Customise via CSS overrides, Tailwind composition, or wrapper components.
-6. **Geist for body, Lora for h0–h1, Poppins for h2–h4.** h0 is Lora 400 (display); h1 is Lora 700. h2–h4 use Poppins 600–800.
+6. **System UI for body, Lora for h0–h1, Poppins for h2–h4.** h0 is Lora 400 (display); h1 is Lora 700. h2–h4 use Poppins 600–800. Body/UI uses the native system font stack — no install required.
 7. **Use Hugeicons.** Default icon set for all UI elements and illustrations.
 
 ---
@@ -56,7 +56,7 @@ Generated from: `shadcn/create`
 | **Display** (h0) | `"Lora", Georgia, serif` | 400 | Hero / landing display text — huge, light-weight |
 | **H1** | `"Lora", Georgia, serif` | 700 | Page-level titles and hero headings |
 | **Headlines** (h2–h4) | `"Poppins", sans-serif` | 600–800 | Section headers, card titles, sub-headings |
-| **Body / UI** | `"Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif` | 400–700 | All body text, buttons, inputs, labels, navigation |
+| **Body / UI** | `system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"` | 400–700 | All body text, buttons, inputs, labels, navigation |
 | **Code** | `"Geist Mono", "SF Mono", "Fira Code", Consolas, monospace` | 400 | Code blocks, inline code, terminal |
 
 ### Installation
@@ -68,16 +68,11 @@ Generated from: `shadcn/create`
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 ```
 
-```bash
-# Geist (installed via npm or included with Next.js)
-npm install geist
-```
-
 ### CSS Setup
 
 ```css
 body {
-  font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 h1 {

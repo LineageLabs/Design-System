@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.6] — 2026-03-02
+
+### Changed
+- **Body font changed from Geist Sans to native system font stack.** All body text, UI, buttons, and inputs now use `system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`. No install required. Updated across `index.html`, `example-mobile.html`, `DESIGN-SYSTEM.md` (removed `npm install geist` step), `CLAUDE.md`, and `components/shadcn-customizations.yaml`.
+
+---
+
 ## [2026.03.5] — 2026-03-02
 
 ### Changed

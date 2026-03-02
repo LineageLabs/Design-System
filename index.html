@@ -88,7 +88,7 @@
     img, video, svg, canvas, iframe { max-width: 100%; height: auto; }
 
     body {
-      font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       background-color: var(--brand-surface);
       color: var(--foreground);
       line-height: 1.6;
@@ -139,7 +139,7 @@
     section { margin-bottom: 6rem; }
 
     .section-label {
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -155,7 +155,7 @@
     }
 
     .section-desc {
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       color: var(--muted-foreground);
       margin-bottom: 2rem;
       max-width: 60ch;
@@ -302,7 +302,7 @@
 
     .hero-eyebrow {
       display: inline-block;
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -327,7 +327,7 @@
     .hero-title .accent-dark-green { color: var(--brand-highlight-blue); }
 
     .hero-sub {
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 1.125rem;
       color: var(--muted-foreground);
       max-width: 55ch;
@@ -341,7 +341,7 @@
     }
 
     .tag {
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 0.75rem;
       font-weight: 600;
       padding: 0.25rem 0.625rem;
@@ -1317,7 +1317,7 @@
       <div class="hero-tags">
         <span class="tag">shadcn/ui · Maia style</span>
         <span class="tag">Gray base color</span>
-        <span class="tag">Geist + Lora + Poppins</span>
+        <span class="tag">System UI + Lora + Poppins</span>
         <span class="tag">Hugeicons</span>
         <span class="tag">Tailwind v4 · OKLCH</span>
         <span class="tag">GSAP v3</span>
@@ -1331,7 +1331,7 @@
       <h2 class="section-title">Typography</h2>
       <p class="section-desc">
         <strong>Lora</strong> (serif) for h0–h1, <strong>Poppins</strong> for h2–h4,
-        <strong>Geist Sans</strong> for body text and UI, <strong>Geist Mono</strong> for code.
+        <strong>system UI</strong> for body text and UI, <strong>Geist Mono</strong> for code.
       </p>
       <div class="type-preview reveal">
         <div class="type-row"><span class="type-label">h0</span><span class="h0">The quick brown</span></div>
@@ -1340,13 +1340,13 @@
         <div class="type-row"><span class="type-label">h3</span><h3 style="font-size:1.25rem;font-weight:700;">The quick brown fox jumps</h3></div>
         <div class="type-row"><span class="type-label">h4</span><h4 style="font-size:1rem;font-weight:600;">The quick brown fox jumps over</h4></div>
         <div style="height:1px;background:var(--border);"></div>
-        <div class="type-row"><span class="type-label">body</span><p>The quick brown fox jumps over the lazy dog. Body text in Geist Sans.</p></div>
+        <div class="type-row"><span class="type-label">body</span><p>The quick brown fox jumps over the lazy dog. Body text uses the system font stack.</p></div>
         <div class="type-row"><span class="type-label">code</span><code>const theme = "gray-maia";</code></div>
       </div>
       <div class="card-grid" style="margin-top:1.5rem;">
         <div class="card reveal"><div class="card-title">Display &amp; H1 Font</div><div class="card-sub"><strong>Lora</strong> (serif) · 400–700<br>h0 (400) and h1 (700) only</div></div>
         <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 600–800<br>h2–h4 only</div></div>
-        <div class="card reveal"><div class="card-title">Body Font</div><div class="card-sub"><strong>Geist Sans</strong> · 400–700<br>All body, buttons, inputs</div></div>
+        <div class="card reveal"><div class="card-title">Body Font</div><div class="card-sub"><strong>System UI</strong> · 400–700<br>All body, buttons, inputs</div></div>
         <div class="card reveal"><div class="card-title">Code Font</div><div class="card-sub"><strong>Geist Mono</strong> · 400<br>Code blocks, inline <code>code</code></div></div>
         <div class="card reveal"><div class="card-title">Icons</div><div class="card-sub"><strong>Hugeicons</strong><br><code>npm i hugeicons-react</code></div></div>
       </div>
@@ -2562,7 +2562,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             Design tokens are defined in <code>tokens/colors.css</code> (Gray theme OKLCH values), <code>tokens/motion.yaml</code> (duration &amp; easing), and <code>tokens/brand-colors.yaml</code> (additive brand palette). The <code>--radius</code> is set to <code>0.875rem</code> (large).
           </div>
           <div class="maia-tab-panel" id="tab-usage">
-            Install shadcn/ui via their CLI, choose Maia style and Gray base color. Copy <code>tokens/colors.css</code> into your global stylesheet. Import GSAP presets from <code>animations/presets.js</code>. Use Poppins for headlines and Geist Sans for everything else.
+            Install shadcn/ui via their CLI, choose Maia style and Gray base color. Copy <code>tokens/colors.css</code> into your global stylesheet. Import GSAP presets from <code>animations/presets.js</code>. Use Lora for h0/h1, Poppins for h2–h4, and the system font stack for everything else.
           </div>
         </div>
       </div>
