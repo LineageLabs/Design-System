@@ -5,6 +5,27 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.2] — 2026-03-02
+
+### Changed
+- **Brand highlight hex values corrected (tokens/colors.css, tokens/brand-colors.yaml, index.html).**
+  - `--brand-highlight-blue`: #4D5EC0 → #4751B0
+  - `--brand-highlight-navy`: #1C2155 → #1A1E4C
+  - `--brand-highlight-light`: #EEEEFF → #F0F0F0
+  - `--brand-surface` (light): #F4F4FA → #F0F0F0
+  - `--brand-surface` (dark): #101228 → #1A1E4C
+  - `--brand-surface-blue`: #3A4BBA → #4751B0
+  - `--brand-surface-grey` (dark): #1E2050 → #252963
+- **Offset accents are now mode-dependent.** Light and dark/blue surfaces use different offset values for better contrast. Updated `:root` and `.dark` blocks in both `tokens/colors.css` and `index.html`:
+  - `--brand-offset-lavender`: light #A6A1E2 / dark #B4AFE7
+  - `--brand-offset-green`: light #A0D246 / dark #D5FD8D
+  - `--brand-offset-yellow`: #FFD27D (same across modes)
+  - `--brand-offset-coral`: light #F0936B / dark #E99F80
+- **Swatch section in index.html** split into "Offset Accents — Light surface" and "Highlights + Offsets — Dark / Blue surface" panels showing both offset tone sets.
+- **tokens/brand-colors.yaml** updated with dual `hex_light`/`hex_dark` fields for all offset tokens, corrected surface hex values, added `dark_grey` surface entry (#252963).
+
+---
+
 ## [2026.03.1] — 2026-03-02
 
 ### Changed

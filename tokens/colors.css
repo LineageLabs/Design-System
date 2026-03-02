@@ -125,36 +125,36 @@
 
 /* Brand colors — light mode */
 :root {
-  --brand-surface: #F4F4FA;
+  --brand-surface: #F0F0F0;
   --brand-surface-grey: #E4E4EE;
-  --brand-surface-blue: #3A4BBA;          /* blue-mode page background */
+  --brand-surface-blue: #4751B0;          /* blue-mode page background */
 
   /* Highlight pair for light mode */
-  --brand-highlight-blue: #4D5EC0;        /* primary accent */
-  --brand-highlight-navy: #1C2155;        /* dark anchor */
-  --brand-highlight-light: #EEEEFF;       /* near-white — use on dark/blue surfaces */
+  --brand-highlight-blue: #4751B0;        /* primary accent */
+  --brand-highlight-navy: #1A1E4C;        /* dark anchor */
+  --brand-highlight-light: #F0F0F0;       /* near-white — use on dark/blue surfaces */
 
-  /* Offset accents — consistent across all modes */
-  --brand-offset-lavender: #9C91C8;
-  --brand-offset-green: #8DC540;
-  --brand-offset-yellow: #F3C438;
-  --brand-offset-coral: #E05840;
+  /* Offset accents — light surface */
+  --brand-offset-lavender: #A6A1E2;
+  --brand-offset-green: #A0D246;
+  --brand-offset-yellow: #FFD27D;
+  --brand-offset-coral: #F0936B;
 }
 
 .dark {
-  --brand-surface: #101228;
-  --brand-surface-grey: #1E2050;
+  --brand-surface: #1A1E4C;
+  --brand-surface-grey: #252963;
 
   /* Highlight pair for dark mode */
-  --brand-highlight-blue: #4D5EC0;        /* same blue — works on dark bg */
-  --brand-highlight-navy: #1C2155;        /* same navy */
-  --brand-highlight-light: #EEEEFF;       /* near-white — primary text accent on dark */
+  --brand-highlight-blue: #4751B0;        /* same blue — works on dark bg */
+  --brand-highlight-navy: #1A1E4C;        /* same navy */
+  --brand-highlight-light: #F0F0F0;       /* near-white — primary text accent on dark */
 
-  /* Offset accents unchanged */
-  --brand-offset-lavender: #9C91C8;
-  --brand-offset-green: #8DC540;
-  --brand-offset-yellow: #F3C438;
-  --brand-offset-coral: #E05840;
+  /* Offset accents — dark/blue surface (lighter for contrast) */
+  --brand-offset-lavender: #B4AFE7;
+  --brand-offset-green: #D5FD8D;
+  --brand-offset-yellow: #FFD27D;
+  --brand-offset-coral: #E99F80;
 }
 
 /* =============================================================================
