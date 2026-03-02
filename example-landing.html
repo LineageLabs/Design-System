@@ -29,9 +29,12 @@
       --radius: 0.875rem;
       --background:       #FAFAFA;
       --foreground:       oklch(0.13 0.028 261.692);
+      --card:             oklch(1 0 0);
       --muted:            oklch(0.967 0.003 264.542);
       --muted-foreground: oklch(0.551 0.027 264.364);
       --border:           oklch(0.928 0.006 264.531);
+      --ring:             oklch(0.707 0.022 261.325);
+      --radius:           0.875rem;
       --brand-highlight-blue:  #4751B0;
       --brand-highlight-navy:  #0E1233;
       --brand-offset-green:    #A0D246;
@@ -89,7 +92,7 @@
       display: inline-flex;
       align-items: center;
       padding: 0.1rem 0.55rem;
-      border-radius: 0.875rem;
+      border-radius: var(--radius);
       border: 1.5px solid var(--foreground);
       font-size: 0.875rem;
       font-weight: 700;
@@ -250,7 +253,7 @@
     .social-logo {
       font-size: 0.7rem;
       font-weight: 700;
-      color: oklch(0.707 0.022 261.325);
+      color: var(--ring);
       letter-spacing: 0.04em;
     }
   </style>

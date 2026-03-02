@@ -33,15 +33,16 @@
       --radius: 0.875rem;
       --background: #FAFAFA;
       --foreground: oklch(0.13 0.028 261.692);
-      --card: #ffffff;
+      --card: oklch(1 0 0);
       --muted: oklch(0.967 0.003 264.542);
       --muted-foreground: oklch(0.551 0.027 264.364);
       --border: oklch(0.928 0.006 264.531);
+      --ring: oklch(0.707 0.022 261.325);
       --brand-highlight-blue: #4751B0;
       --brand-highlight-navy: #0E1233;
       --brand-offset-green: #A0D246;
       --star-filled: #F5A623;
-      --star-empty: oklch(0.928 0.006 264.531);
+      --star-empty: var(--border);
     }
 
     html, body {
@@ -304,11 +305,11 @@
       gap: 3px;
       padding: 0.1rem 0.45rem;
       border-radius: 9999px;
-      border: 1px solid rgba(160,210,70,0.4);
-      background: rgba(160,210,70,0.08);
+      border: 1px solid color-mix(in srgb, var(--brand-offset-green) 40%, transparent);
+      background: color-mix(in srgb, var(--brand-offset-green) 10%, transparent);
       font-size: 0.62rem;
       font-weight: 600;
-      color: #5a8a1a;
+      color: var(--brand-highlight-navy);
       letter-spacing: 0.04em;
     }
 
