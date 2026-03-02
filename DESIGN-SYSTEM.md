@@ -117,48 +117,56 @@ These rules define which elements are permitted to use each font family. Font fa
 
 Any screen may use up to all three families when the content hierarchy genuinely requires it. A family enters only when an element in its designated role is present on that screen — it does not appear decoratively. Monospace is always permitted for code elements and is excluded from the count.
 
-| Family | Role | Permitted on |
-|--------|------|-------------|
-| System UI | Body + UI chrome | Every element not covered by Lora or Poppins |
-| Lora | Display + major headline | `h1`, `.h0` only |
-| Poppins | Structural subheadings | `h2`, `h3`, `h4` only |
+| Family | Role | Scale |
+|--------|------|-------|
+| System UI | Body text + utility | Paragraphs, subtitles, nav links, button text, inputs, labels, badge text, captions, tooltips |
+| Lora | Display / major headline | `h1`, `.h0`, and any text playing an equivalent display-level role |
+| Poppins | Section headings | `h2`, `h3`, `h4`, and any text playing an equivalent section-title role |
 
 ```
-✅ System UI only — dashboard with no headings
-✅ System UI + Lora — screen with an h1 or .h0, no h2–h4 present
+✅ System UI only — screen with no content above body scale
+✅ System UI + Lora — screen with an h1 or .h0, no section headings
 ✅ System UI + Lora + Poppins — landing page with h1 hero + h2 section titles
-❌ Poppins on a stat value — data display is UI chrome, not a heading
-❌ Lora on a nav label — navigation is UI chrome, not a heading
+❌ Lora on a nav label — nav links are body/utility scale
+❌ System UI on a card title at 1.25rem / 700 — heading-level content, use Poppins
 ```
 
-#### Rule 2 — Poppins is a Heading Font, Not an Emphasis Tool
+#### Rule 2 — Elevated Text Uses Heading Fonts; Body Text Does Not
 
-Poppins must not be applied to any element that is not a structural heading (`h2`, `h3`, or `h4`). Stat values, app bar titles, button text, badge text, nav labels, kicker text, and all data display are UI chrome — they use System UI. Using Poppins to make a number or label "look bolder" is the canonical anti-pattern this rule prevents.
-
-```
-✅ <h3>Quick Actions</h3>                           — Poppins via h3 selector, correct
-❌ .stat-value { font-family: "Poppins"; }           — stat numbers are data, not headings
-❌ .app-bar-logo { font-family: "Poppins"; }         — app bar title is UI chrome, not a heading
-```
-
-#### Rule 3 — Hierarchy Within System UI
-
-On screens where no headings warrant Lora or Poppins, System UI alone covers all hierarchy needs. Achieve full visual contrast through **weight, size, colour, and spacing** — never by pulling in a decorative family for non-heading elements. System UI provides sufficient range: `400` (body), `500` (secondary labels), `600` (section titles, task names, buttons), `700` (strong emphasis, kickers, stat values). `--muted-foreground` colour and `text-transform: uppercase; letter-spacing` carry additional contrast for smaller labels.
+Lora and Poppins belong to text that commands hierarchy — headings, section titles, card titles, prominent display figures. System UI belongs to text at body scale: paragraphs, subtitles, nav links, buttons, labels, badges. The critical anti-pattern in both directions: bolding up a System UI element where a heading font should speak, or scattering Poppins/Lora into body copy for decorative emphasis. If text is asserting structural importance through size and weight, it should speak in the heading font for its level.
 
 ```
-✅ .stat-value { font-size: 1.5rem; font-weight: 700; }              — size + weight in System UI
-❌ .stat-value { font-family: "Poppins"; font-size: 1.5rem; font-weight: 700; }  — adds nothing
+✅ <h3 class="card-title">Recent Payments</h3>       — Poppins via h3, structural heading
+✅ Large stat "2.4M ARR" as display figure            — Poppins (section-heading scale)
+✅ Paragraph description below the stat              — System UI
+❌ .card-title { font-size:1.1rem; font-weight:700; } — heading-level content left in System UI
+❌ em, strong { font-family: "Poppins"; }             — inline emphasis is not a heading
 ```
 
-#### Rule 4 — UI Chrome is Always System UI
+#### Rule 3 — Hierarchy Within System UI (Body and Utility Scale)
 
-The following element categories always use System UI, without exception: app bar / top bar titles and logos, navigation labels (bottom bar, tab bar, sidebar), button text, input text and placeholders, badge text, toast text, stat and data values, kicker and label text, and section headers within functional app screens.
-
-**Only exceptions:** semantic HTML headings (`h2`, `h3`, `h4`) and brand logo elements (`.logo-badge`, `.logo-text`).
+At body and utility scale — labels, captions, small kickers, metadata — System UI covers all hierarchy needs without switching family. Achieve contrast through **weight, size, colour, and spacing**. System UI weight range: `400` (body copy), `500` (secondary labels), `600` (button text, input values), `700` (strong emphasis, small kickers). `--muted-foreground` colour and `text-transform: uppercase; letter-spacing` carry additional contrast for the smallest labels.
 
 ```
-✅ .app-bar-logo { font-weight: 700; font-size: 1.05rem; }           — inherits body System UI
-❌ .app-bar-logo { font-family: "Poppins"; font-weight: 700; }       — UI chrome, not a heading
+✅ .kicker { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+   — small metadata label, System UI is correct at this scale
+❌ .kicker { font-family: "Poppins"; font-size: 0.65rem; }
+   — a 0.65rem label does not warrant a display font
+```
+
+#### Rule 4 — System UI is the Body and Utility Font
+
+System UI covers all text at body scale and below, and all purely functional/utility elements regardless of size: paragraph text, descriptive subtitles, nav links, button text, input text and placeholders, form labels, badge and chip text, toast text, captions, tooltips, and metadata labels.
+
+Text that rises above body level — through prominent size, display weight, or structural role (titling a section, heading a card, leading a slide, anchoring a stat block) — should use **Poppins** (section-heading level) or **Lora** (display/hero level) rather than a heavier or larger System UI weight. The threshold question is: *is this text asserting hierarchy over the content that follows it?* If yes, it belongs in a heading font.
+
+```
+✅ Nav links, button text, input labels, badge text    — System UI (utility scale)
+✅ Card title "Recent Payments" as <h3>               — Poppins (section heading)
+✅ Dashboard stat "2.4M" displayed large               — Poppins (display-level figure)
+✅ Hero headline "Payments that feel human."           — Lora (h1, display level)
+❌ .section-title { font-size:1.1rem; font-weight:700; font-family: system-ui; }
+   — heading-level content should speak in Poppins, not bold System UI
 ```
 
 #### Rule 5 — Web Font Loads Must Be Justified

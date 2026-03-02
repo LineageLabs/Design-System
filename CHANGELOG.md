@@ -5,6 +5,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.12] — 2026-03-02
+
+### Changed
+- **DESIGN-SYSTEM.md §2 — Rule 2 rewritten: "Elevated Text Uses Heading Fonts; Body Text Does Not".** Replaced "Poppins is a Heading Font, Not an Emphasis Tool" with a bidirectional rule: elevated/display content (card titles, section headings, prominent stat figures) must use Poppins or Lora; body/utility text (paragraphs, nav links, buttons, labels) uses System UI. Removes the restriction that Poppins/Lora only applies to strict HTML heading elements.
+- **DESIGN-SYSTEM.md §2 — Rule 3 subtitle updated.** Now "Body and Utility Scale" — clarifies this rule applies to text at that scale specifically; stat value example replaced with a small kicker label.
+- **DESIGN-SYSTEM.md §2 — Rule 4 rewritten: "System UI is the Body and Utility Font".** Replaced "UI Chrome is Always System UI". New rule: body text + utility-scale elements use System UI; anything asserting structural hierarchy through size/prominence uses Poppins or Lora. Adds threshold question to guide decisions.
+- **DESIGN-SYSTEM.md §2 — Rule 1 table updated.** System UI entry now reads "Body text + utility" with an explicit list. Lora and Poppins entries now reference "visually equivalent" content alongside strict HTML heading elements.
+- **`CLAUDE.md` Cardinal Rule 3 and Theme Configuration table updated.** Reflects the same principle: System UI = body/utility scale; anything elevated = Poppins or Lora.
+
+---
+
 ## [2026.03.11] — 2026-03-02
 
 ### Changed
