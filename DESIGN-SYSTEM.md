@@ -339,12 +339,10 @@ import { applyPreset } from "@/design-system/animations/presets";
 applyPreset(gsap, ".dialog-content", "scaleIn");
 
 // Option 2 — manual check when writing raw gsap.fromTo()
-import { prefersReducedMotion } from "@/design-system/animations/presets";
-const duration = prefersReducedMotion() ? 0 : 0.3;
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const duration = reducedMotion ? 0 : 0.3;
 gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration });
 ```
-
-> `prefersReducedMotion()` is a named export from `animations/presets.js`. It returns `true` when the OS reduced-motion setting is active.
 
 #### ScrollTrigger — handled internally
 
@@ -361,7 +359,7 @@ All classes in `animations/transitions.css` include a `@media (prefers-reduced-m
 
 #### Rules
 
-1. Never use raw `gsap.to()` / `gsap.from()` without a duration guard. Use `applyPreset()` or call `prefersReducedMotion()` directly.
+1. Never use raw `gsap.to()` / `gsap.from()` without a duration guard. Use `applyPreset()` or check `window.matchMedia("(prefers-reduced-motion: reduce)").matches` directly.
 2. Never hand-roll scrubbing animations without a reduced-motion guard. Use `parallax()`.
 3. Opacity-only fades are permissible at ≤150ms even under reduced motion. All translate and scale transforms must use `duration: 0`.
 
