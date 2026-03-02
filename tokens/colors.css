@@ -123,21 +123,38 @@
    Usage:  background-color: var(--brand-surface);
    ============================================================================= */
 
-/* Brand colors — same values for LIGHT and DARK */
+/* Brand colors — light mode */
 :root {
-  --brand-surface: #FAFAFA;
-  --brand-surface-grey: #EAEAEA;
-  --brand-highlight-light-green: #B9F7CE;
-  --brand-highlight-grass-green: #3DC683;
-  --brand-highlight-dark-green: #15552E;
+  --brand-surface: #F4F4FA;
+  --brand-surface-grey: #E4E4EE;
+  --brand-surface-blue: #3A4BBA;          /* blue-mode page background */
+
+  /* Highlight pair for light mode */
+  --brand-highlight-blue: #4D5EC0;        /* primary accent */
+  --brand-highlight-navy: #1C2155;        /* dark anchor */
+  --brand-highlight-light: #EEEEFF;       /* near-white — use on dark/blue surfaces */
+
+  /* Offset accents — consistent across all modes */
+  --brand-offset-lavender: #9C91C8;
+  --brand-offset-green: #8DC540;
+  --brand-offset-yellow: #F3C438;
+  --brand-offset-coral: #E05840;
 }
 
 .dark {
-  --brand-surface: #151515;
-  --brand-surface-grey: #EAEAEA; /* same — used for contrast elements on dark */
-  --brand-highlight-light-green: #B9F7CE;
-  --brand-highlight-grass-green: #3DC683;
-  --brand-highlight-dark-green: #15552E;
+  --brand-surface: #101228;
+  --brand-surface-grey: #1E2050;
+
+  /* Highlight pair for dark mode */
+  --brand-highlight-blue: #4D5EC0;        /* same blue — works on dark bg */
+  --brand-highlight-navy: #1C2155;        /* same navy */
+  --brand-highlight-light: #EEEEFF;       /* near-white — primary text accent on dark */
+
+  /* Offset accents unchanged */
+  --brand-offset-lavender: #9C91C8;
+  --brand-offset-green: #8DC540;
+  --brand-offset-yellow: #F3C438;
+  --brand-offset-coral: #E05840;
 }
 
 /* =============================================================================

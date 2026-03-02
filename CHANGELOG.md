@@ -5,6 +5,28 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.1] — 2026-03-02
+
+### Changed
+- **Brand color palette replaced — green → blue/indigo (§4, tokens/brand-colors.yaml, tokens/colors.css).**
+  Full rebrand from a green-based palette to a blue/indigo palette across all three files.
+  - `--brand-highlight-grass-green` (#3DC683) → `--brand-highlight-blue` (#4D5EC0)
+  - `--brand-highlight-light-green` (#B9F7CE) → `--brand-highlight-light` (#EEEEFF)
+  - `--brand-highlight-dark-green` (#15552E) → `--brand-highlight-navy` (#1C2155)
+  - `--brand-surface` (light) #FAFAFA → #F4F4FA
+  - `--brand-surface` (dark) #151515 → #101228
+  - `--brand-surface-grey` #EAEAEA → #E4E4EE (light) / #1E2050 (dark)
+- **Added `--brand-surface-blue` (#3A4BBA).** New token for blue-mode marketing/hero section backgrounds. No equivalent previously existed.
+- **Added four offset accent tokens.** New supplementary palette consistent across all modes:
+  - `--brand-offset-lavender`: #9C91C8
+  - `--brand-offset-green`: #8DC540
+  - `--brand-offset-yellow`: #F3C438
+  - `--brand-offset-coral`: #E05840
+- **All brand variable references in `index.html` renamed** to match new token names (bulk replace, 106 occurrences). Swatch display section, code snippets, and CSS all updated.
+- **`tokens/brand-colors.yaml` rewritten** with new palette structure: highlights (blue/navy/light), surfaces (light/grey/blue/dark), offsets (lavender/green/yellow/coral), updated usage philosophy adding Tier 3 offset rules and new contrast warnings.
+
+---
+
 ## [2026.03.0] — 2026-03-02
 
 ### Added

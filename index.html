@@ -29,11 +29,16 @@
       --ring: oklch(0.707 0.022 261.325);
       --destructive: oklch(0.577 0.245 27.325);
 
-      --brand-surface: #FAFAFA;
-      --brand-surface-grey: #EAEAEA;
-      --brand-highlight-light-green: #B9F7CE;
-      --brand-highlight-grass-green: #3DC683;
-      --brand-highlight-dark-green: #15552E;
+      --brand-surface: #F4F4FA;
+      --brand-surface-grey: #E4E4EE;
+      --brand-surface-blue: #3A4BBA;
+      --brand-highlight-blue: #4D5EC0;
+      --brand-highlight-navy: #1C2155;
+      --brand-highlight-light: #EEEEFF;
+      --brand-offset-lavender: #9C91C8;
+      --brand-offset-green: #8DC540;
+      --brand-offset-yellow: #F3C438;
+      --brand-offset-coral: #E05840;
 
       --chart-1: oklch(0.646 0.222 41.116);
       --chart-2: oklch(0.6 0.118 184.704);
@@ -57,11 +62,16 @@
       --ring: oklch(0.551 0.027 264.364);
       --destructive: oklch(0.704 0.191 22.216);
 
-      --brand-surface: #151515;
-      --brand-surface-grey: #EAEAEA;
-      --brand-highlight-light-green: #B9F7CE;
-      --brand-highlight-grass-green: #3DC683;
-      --brand-highlight-dark-green: #15552E;
+      --brand-surface: #101228;
+      --brand-surface-grey: #1E2050;
+      --brand-surface-blue: #3A4BBA;
+      --brand-highlight-blue: #4D5EC0;
+      --brand-highlight-navy: #1C2155;
+      --brand-highlight-light: #EEEEFF;
+      --brand-offset-lavender: #9C91C8;
+      --brand-offset-green: #8DC540;
+      --brand-offset-yellow: #F3C438;
+      --brand-offset-coral: #E05840;
 
       --chart-1: oklch(0.488 0.243 264.376);
       --chart-2: oklch(0.696 0.17 162.48);
@@ -187,8 +197,8 @@
       justify-content: center;
       padding: 0.125rem 0.7rem;
       border-radius: 15px;
-      background: var(--brand-highlight-dark-green);
-      color: var(--brand-highlight-light-green);
+      background: var(--brand-highlight-navy);
+      color: var(--brand-highlight-light);
       font-family: "Poppins", sans-serif;
       font-weight: 500;
       font-size: 15px;
@@ -199,9 +209,9 @@
       border: 1px solid transparent;
     }
     .dark .logo-badge {
-      background: var(--brand-highlight-light-green);
-      color: var(--brand-highlight-dark-green);
-      border-color: var(--brand-highlight-dark-green);
+      background: var(--brand-highlight-light);
+      color: var(--brand-highlight-navy);
+      border-color: var(--brand-highlight-navy);
     }
     /* Forced dark variant — for always-dark preview panels */
     .logo-badge-dark {
@@ -231,11 +241,11 @@
       font-size: 36px;
       line-height: 54px;
       letter-spacing: -0.05em;
-      color: var(--brand-highlight-dark-green);
+      color: var(--brand-highlight-navy);
       white-space: nowrap;
     }
     .dark .logo-text {
-      color: var(--brand-highlight-light-green);
+      color: var(--brand-highlight-light);
     }
     /* Forced dark variant for always-dark panels */
     .logo-text-dark {
@@ -249,7 +259,7 @@
     }
     .logo-text .logo-asterisk,
     .logo-text-dark .logo-asterisk {
-      color: var(--brand-highlight-grass-green);
+      color: var(--brand-highlight-blue);
     }
     .logo-text-dark .logo-asterisk {
       color: #3DC683;
@@ -298,7 +308,7 @@
       text-transform: uppercase;
       padding: 0.25rem 0.75rem;
       border-radius: 999px;
-      background: var(--brand-highlight-light-green);
+      background: var(--brand-highlight-light);
       color: #000;
       margin-bottom: 1.5rem;
     }
@@ -312,8 +322,8 @@
       letter-spacing: -0.03em;
     }
 
-    .hero-title .accent-grass-green  { color: var(--brand-highlight-grass-green); }
-    .hero-title .accent-dark-green { color: var(--brand-highlight-grass-green); }
+    .hero-title .accent-grass-green  { color: var(--brand-highlight-blue); }
+    .hero-title .accent-dark-green { color: var(--brand-highlight-blue); }
 
     .hero-sub {
       font-family: "Geist Sans", -apple-system, sans-serif;
@@ -453,7 +463,7 @@
     .token-table tr:hover td, .comp-table tr:hover td { background: var(--muted); }
 
     .duration-bar-wrap { display: flex; align-items: center; gap: 0.75rem; }
-    .duration-bar { height: 6px; border-radius: 999px; background: var(--brand-highlight-grass-green); flex-shrink: 0; }
+    .duration-bar { height: 6px; border-radius: 999px; background: var(--brand-highlight-blue); flex-shrink: 0; }
 
     .easing-badge {
       display: inline-block;
@@ -487,7 +497,7 @@
       cursor: pointer;
       transition: border-color 0.15s ease-out;
     }
-    .demo-card:hover { border-color: var(--brand-highlight-grass-green); }
+    .demo-card:hover { border-color: var(--brand-highlight-blue); }
 
     .demo-box {
       width: 48px; height: 48px;
@@ -497,7 +507,7 @@
     }
     .demo-label { font-size: 0.8rem; font-weight: 600; text-align: center; }
     .demo-sublabel { font-size: 0.7rem; color: var(--muted-foreground); text-align: center; }
-    .play-hint { font-size: 0.7rem; color: var(--brand-highlight-grass-green); font-weight: 500; }
+    .play-hint { font-size: 0.7rem; color: var(--brand-highlight-blue); font-weight: 500; }
 
     /* =========================================================
        HOVER DEMO
@@ -556,14 +566,14 @@
       margin: 0.1rem;
     }
     .pill-entrance {
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 12%, transparent);
-      color: var(--brand-highlight-grass-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
+      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
     }
     .pill-exit {
-      background: color-mix(in srgb, var(--brand-highlight-dark-green) 12%, transparent);
-      color: var(--brand-highlight-dark-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-dark-green) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-navy) 12%, transparent);
+      color: var(--brand-highlight-navy);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-navy) 30%, transparent);
     }
 
     /* =========================================================
@@ -647,21 +657,21 @@
 
     /* Feature badge (anim-tag) dark mode — boost contrast */
     .dark .comp-demo-label .anim-tag {
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 18%, transparent);
-      color: var(--brand-highlight-light-green);
-      border-color: color-mix(in srgb, var(--brand-highlight-grass-green) 40%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 18%, transparent);
+      color: var(--brand-highlight-light);
+      border-color: color-mix(in srgb, var(--brand-highlight-blue) 40%, transparent);
     }
 
     /* Badge light-green dark mode — swap to light text on tinted bg */
     .dark .maia-badge-light-green {
-      background: color-mix(in srgb, var(--brand-highlight-dark-green) 50%, transparent);
-      color: var(--brand-highlight-light-green);
-      border-color: color-mix(in srgb, var(--brand-highlight-grass-green) 35%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-navy) 50%, transparent);
+      color: var(--brand-highlight-light);
+      border-color: color-mix(in srgb, var(--brand-highlight-blue) 35%, transparent);
     }
     .code-block .cm { color: oklch(0.6 0 0); }
-    .code-block .kw { color: var(--brand-highlight-grass-green); }
-    .code-block .st { color: var(--brand-highlight-light-green); }
-    .code-block .fn { color: var(--brand-highlight-dark-green); }
+    .code-block .kw { color: var(--brand-highlight-blue); }
+    .code-block .st { color: var(--brand-highlight-light); }
+    .code-block .fn { color: var(--brand-highlight-navy); }
 
     .step-list { display: flex; flex-direction: column; gap: 1.5rem; }
     .step { display: flex; gap: 1rem; align-items: flex-start; }
@@ -838,19 +848,19 @@
     .maia-badge-default { background: var(--secondary); color: var(--secondary-foreground); }
     .maia-badge-outline { background: transparent; color: var(--foreground); box-shadow: inset 0 0 0 1px var(--border); }
     .maia-badge-light-green {
-      background: color-mix(in srgb, var(--brand-highlight-light-green) 25%, transparent);
-      color: var(--brand-highlight-dark-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-light-green) 40%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-light) 25%, transparent);
+      color: var(--brand-highlight-navy);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-light) 40%, transparent);
     }
     .maia-badge-grass-green {
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 15%, transparent);
-      color: var(--brand-highlight-grass-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent);
+      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
     }
     .maia-badge-dark-green {
-      background: var(--brand-highlight-dark-green);
-      color: var(--brand-highlight-light-green);
-      border: 1px solid var(--brand-highlight-dark-green);
+      background: var(--brand-highlight-navy);
+      color: var(--brand-highlight-light);
+      border: 1px solid var(--brand-highlight-navy);
     }
 
     /* Cards — Maia rounded-2xl with ring instead of border */
@@ -1187,9 +1197,9 @@
       font-size: 0.65rem;
       padding: 0.1rem 0.4rem;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 12%, transparent);
-      color: var(--brand-highlight-grass-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
+      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
       letter-spacing: 0; text-transform: none;
     }
     .comp-demo-area {
@@ -1242,7 +1252,7 @@
     }
     .container-demo-gutter {
       flex: 0 0 1.5rem;
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 15%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1569,24 +1579,35 @@
         These are <em>additive</em> — they never replace shadcn semantic tokens.
         Apply via <code>--brand-*</code> only when a design explicitly calls for brand treatment.
       </p>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights — Light backgrounds</h3>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights</h3>
       <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="swatch"><div class="swatch-color" style="background:#B9F7CE;"></div><div class="swatch-info"><div class="swatch-name">Light Green</div><div class="swatch-hex">#B9F7CE</div><div class="swatch-var">--brand-highlight-light-green</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#3DC683;"></div><div class="swatch-info"><div class="swatch-name">Grass Green</div><div class="swatch-hex">#3DC683</div><div class="swatch-var">--brand-highlight-grass-green</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#15552E;"></div><div class="swatch-info"><div class="swatch-name">Dark Green</div><div class="swatch-hex">#15552E</div><div class="swatch-var">--brand-highlight-dark-green</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FAFAFA;border-bottom:1px solid #eaeaea;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FAFAFA</div><div class="swatch-var">--brand-surface</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#EAEAEA;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#EAEAEA</div><div class="swatch-var">--brand-surface-grey</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#4D5EC0;"></div><div class="swatch-info"><div class="swatch-name">Blue</div><div class="swatch-hex">#4D5EC0</div><div class="swatch-var">--brand-highlight-blue</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1C2155;"></div><div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#1C2155</div><div class="swatch-var">--brand-highlight-navy</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EEEEFF;border-bottom:1px solid #D0D0F0;"></div><div class="swatch-info"><div class="swatch-name">Light</div><div class="swatch-hex">#EEEEFF</div><div class="swatch-var">--brand-highlight-light</div></div></div>
       </div>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights — Dark backgrounds</h3>
-      <div class="swatch-grid reveal" style="background:#151515;padding:1rem;border-radius:var(--radius);border:1px solid #2a2a2a;">
-        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#B9F7CE;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Light Green</div><div class="swatch-hex" style="color:#888;">#B9F7CE</div><div class="swatch-var" style="color:#888;">--brand-highlight-light-green</div></div></div>
-        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#3DC683;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Grass Green</div><div class="swatch-hex" style="color:#888;">#3DC683</div><div class="swatch-var" style="color:#888;">--brand-highlight-grass-green</div></div></div>
-        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#15552E;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Dark Green</div><div class="swatch-hex" style="color:#888;">#15552E</div><div class="swatch-var" style="color:#888;">--brand-highlight-dark-green</div></div></div>
-        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#151515;border-bottom:1px solid #2a2a2a;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Surface</div><div class="swatch-hex" style="color:#888;">#151515</div><div class="swatch-var" style="color:#888;">--brand-surface</div></div></div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Surfaces</h3>
+      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="swatch"><div class="swatch-color" style="background:#F4F4FA;border-bottom:1px solid #E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#F4F4FA</div><div class="swatch-var">--brand-surface</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#E4E4EE</div><div class="swatch-var">--brand-surface-grey</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3A4BBA;"></div><div class="swatch-info"><div class="swatch-name">Surface Blue</div><div class="swatch-hex">#3A4BBA</div><div class="swatch-var">--brand-surface-blue</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#101228;"></div><div class="swatch-info" style="color:#fff;background:#1C2155;"><div class="swatch-name">Surface Dark</div><div class="swatch-hex" style="color:#9C91C8;">#101228</div><div class="swatch-var" style="color:#9C91C8;">--brand-surface (dark)</div></div></div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Offset Accents</h3>
+      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="swatch"><div class="swatch-color" style="background:#9C91C8;"></div><div class="swatch-info"><div class="swatch-name">Lavender</div><div class="swatch-hex">#9C91C8</div><div class="swatch-var">--brand-offset-lavender</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#8DC540;"></div><div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#8DC540</div><div class="swatch-var">--brand-offset-green</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F3C438;"></div><div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#F3C438</div><div class="swatch-var">--brand-offset-yellow</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E05840;"></div><div class="swatch-info"><div class="swatch-name">Coral</div><div class="swatch-hex">#E05840</div><div class="swatch-var">--brand-offset-coral</div></div></div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights on dark / blue surfaces</h3>
+      <div class="swatch-grid reveal" style="background:#101228;padding:1rem;border-radius:var(--radius);border:1px solid #1C2155;">
+        <div class="swatch" style="border-color:#1C2155;"><div class="swatch-color" style="background:#4D5EC0;"></div><div class="swatch-info" style="background:#1C2155;color:#fff;"><div class="swatch-name">Blue</div><div class="swatch-hex" style="color:#9C91C8;">#4D5EC0</div><div class="swatch-var" style="color:#9C91C8;">--brand-highlight-blue</div></div></div>
+        <div class="swatch" style="border-color:#1C2155;"><div class="swatch-color" style="background:#EEEEFF;"></div><div class="swatch-info" style="background:#1C2155;color:#fff;"><div class="swatch-name">Light</div><div class="swatch-hex" style="color:#9C91C8;">#EEEEFF</div><div class="swatch-var" style="color:#9C91C8;">--brand-highlight-light</div></div></div>
+        <div class="swatch" style="border-color:#1C2155;"><div class="swatch-color" style="background:#3A4BBA;"></div><div class="swatch-info" style="background:#1C2155;color:#fff;"><div class="swatch-name">Surface Blue</div><div class="swatch-hex" style="color:#9C91C8;">#3A4BBA</div><div class="swatch-var" style="color:#9C91C8;">--brand-surface-blue</div></div></div>
       </div>
       <div class="divider"></div>
       <div class="card-grid">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
         <div class="card" style="border-left:3px solid var(--destructive);"><div class="card-title">When NOT to use</div><div class="card-sub">Buttons, inputs, cards, body text, borders, error states, focus rings — use shadcn semantic tokens for all standard UI.</div></div>
       </div>
 
@@ -1630,19 +1651,19 @@
         <table class="token-table">
           <thead><tr><th>Token</th><th>rem</th><th>px</th><th>Tailwind</th><th style="width:40%;">Visual</th></tr></thead>
           <tbody>
-            <tr><td><code>0.5</code></td><td>0.125</td><td>2</td><td>0.5</td><td><div style="width:2px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>1</code></td><td>0.25</td><td>4</td><td>1</td><td><div style="width:4px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>2</code></td><td>0.5</td><td>8</td><td>2</td><td><div style="width:8px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>3</code></td><td>0.75</td><td>12</td><td>3</td><td><div style="width:12px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>4</code></td><td>1</td><td>16</td><td>4</td><td><div style="width:16px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>5</code></td><td>1.25</td><td>20</td><td>5</td><td><div style="width:20px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>6</code></td><td>1.5</td><td>24</td><td>6</td><td><div style="width:24px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>8</code></td><td>2</td><td>32</td><td>8</td><td><div style="width:32px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>10</code></td><td>2.5</td><td>40</td><td>10</td><td><div style="width:40px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>12</code></td><td>3</td><td>48</td><td>12</td><td><div style="width:48px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>16</code></td><td>4</td><td>64</td><td>16</td><td><div style="width:64px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>20</code></td><td>5</td><td>80</td><td>20</td><td><div style="width:80px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>0.5</code></td><td>0.125</td><td>2</td><td>0.5</td><td><div style="width:2px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>1</code></td><td>0.25</td><td>4</td><td>1</td><td><div style="width:4px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>2</code></td><td>0.5</td><td>8</td><td>2</td><td><div style="width:8px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>3</code></td><td>0.75</td><td>12</td><td>3</td><td><div style="width:12px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>4</code></td><td>1</td><td>16</td><td>4</td><td><div style="width:16px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>5</code></td><td>1.25</td><td>20</td><td>5</td><td><div style="width:20px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>6</code></td><td>1.5</td><td>24</td><td>6</td><td><div style="width:24px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>8</code></td><td>2</td><td>32</td><td>8</td><td><div style="width:32px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>10</code></td><td>2.5</td><td>40</td><td>10</td><td><div style="width:40px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>12</code></td><td>3</td><td>48</td><td>12</td><td><div style="width:48px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>16</code></td><td>4</td><td>64</td><td>16</td><td><div style="width:64px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>20</code></td><td>5</td><td>80</td><td>20</td><td><div style="width:80px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
           </tbody>
         </table>
         </div>
@@ -1716,9 +1737,9 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
       <div class="card-grid reveal">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">4px grid</div><div class="card-sub">All spacing is a multiple of 4px (0.25rem). No arbitrary values like 0.3rem or 7px.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Generous by default</div><div class="card-sub">Maia style. Cards get <code>p-6</code> not <code>p-4</code>. Sections get <code>mb-20</code> not <code>mb-12</code>. When in doubt, size up.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Gap over margin</div><div class="card-sub">Use flexbox/grid <code>gap</code> for layout spacing. Avoid margin for sibling separation.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">4px grid</div><div class="card-sub">All spacing is a multiple of 4px (0.25rem). No arbitrary values like 0.3rem or 7px.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Generous by default</div><div class="card-sub">Maia style. Cards get <code>p-6</code> not <code>p-4</code>. Sections get <code>mb-20</code> not <code>mb-12</code>. When in doubt, size up.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Gap over margin</div><div class="card-sub">Use flexbox/grid <code>gap</code> for layout spacing. Avoid margin for sibling separation.</div></div>
         <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">44px touch targets</div><div class="card-sub">Interactive elements must be &ge;44&times;44px. Use padding or <code>min-height</code> to reach this.</div></div>
       </div>
     </section>
@@ -1740,7 +1761,7 @@
           <tbody>
             <tr><td><code>mobile</code></td><td>0px</td><td>(default)</td><td>Base styles — all CSS starts here</td></tr>
             <tr><td><code>sm</code></td><td>640px</td><td><code>sm:</code></td><td>Large phones landscape — rarely needed</td></tr>
-            <tr style="background:color-mix(in srgb, var(--brand-highlight-grass-green) 8%, transparent);"><td><code>md</code></td><td><strong>768px</strong></td><td><code>md:</code></td><td><strong>Primary breakpoint</strong> — layout shifts here</td></tr>
+            <tr style="background:color-mix(in srgb, var(--brand-highlight-blue) 8%, transparent);"><td><code>md</code></td><td><strong>768px</strong></td><td><code>md:</code></td><td><strong>Primary breakpoint</strong> — layout shifts here</td></tr>
             <tr><td><code>lg</code></td><td>1024px</td><td><code>lg:</code></td><td>Desktop — full multi-column layouts</td></tr>
             <tr><td><code>xl</code></td><td>1280px</td><td><code>xl:</code></td><td>Wide desktop — optional refinement</td></tr>
           </tbody>
@@ -1750,7 +1771,7 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Live Grid Demo <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— resize your browser to see columns change</span></h3>
       <div class="reveal" style="margin-bottom:1rem;">
-        <p class="bp-indicator" id="bpIndicator" style="font-size:0.8rem;font-weight:600;margin-bottom:0.75rem;padding:0.375rem 0.75rem;border-radius:9999px;display:inline-block;background:var(--brand-highlight-dark-green);color:var(--brand-highlight-light-green);">
+        <p class="bp-indicator" id="bpIndicator" style="font-size:0.8rem;font-weight:600;margin-bottom:0.75rem;padding:0.375rem 0.75rem;border-radius:9999px;display:inline-block;background:var(--brand-highlight-navy);color:var(--brand-highlight-light);">
           📱 Mobile — 1 column
         </p>
       </div>
@@ -1785,10 +1806,10 @@
           <thead><tr><th>Element</th><th>Mobile → Desktop</th><th>Changes?</th></tr></thead>
           <tbody>
             <tr><td>Component padding</td><td>Same everywhere</td><td style="color:var(--muted-foreground);">No</td></tr>
-            <tr><td>Page gutter</td><td>1.5rem → 2rem</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — at md:</td></tr>
-            <tr><td>Section spacing</td><td>May compress one step</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — below md:</td></tr>
-            <tr><td>Grid columns</td><td>1 → 2 → 3</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — at md: and lg:</td></tr>
-            <tr><td>Headlines</td><td>Fluid via clamp()</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Fluid</td></tr>
+            <tr><td>Page gutter</td><td>1.5rem → 2rem</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — at md:</td></tr>
+            <tr><td>Section spacing</td><td>May compress one step</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — below md:</td></tr>
+            <tr><td>Grid columns</td><td>1 → 2 → 3</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — at md: and lg:</td></tr>
+            <tr><td>Headlines</td><td>Fluid via clamp()</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Fluid</td></tr>
             <tr><td>Body text</td><td>1rem fixed</td><td style="color:var(--muted-foreground);">No</td></tr>
             <tr><td>Touch targets</td><td>44px minimum</td><td style="color:var(--muted-foreground);">No</td></tr>
           </tbody>
@@ -1832,7 +1853,7 @@
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;" class="reveal mobile-compact-grid">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);">
           <div class="card-title">Compresses on mobile</div>
           <div class="card-sub" style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.5rem;line-height:1.7;">
             <span>&#x2022; Section spacing (one step down)</span>
@@ -1856,13 +1877,13 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
       <div class="card-grid reveal">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Layout shifts at md:</div><div class="card-sub">768px is where single-column becomes multi-column. Sidebars appear. Navigation expands.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for h0–h2. No breakpoint-based <code>font-size</code> changes. Body stays at <code>1rem</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Layout shifts at md:</div><div class="card-sub">768px is where single-column becomes multi-column. Sidebars appear. Navigation expands.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for h0–h2. No breakpoint-based <code>font-size</code> changes. Body stays at <code>1rem</code>.</div></div>
         <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">Fixed component padding</div><div class="card-sub">Buttons, cards, inputs keep the same padding at every screen size. Only page-level spacing adapts.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins and large gaps (<code>gap-lg</code>, <code>gap-xl</code>) each drop one step below <code>md:</code>.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Restructure, don't hide</div><div class="card-sub">If content matters on desktop, show it on mobile. Change layout (stack, reorder), not visibility.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins and large gaps (<code>gap-lg</code>, <code>gap-xl</code>) each drop one step below <code>md:</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Restructure, don't hide</div><div class="card-sub">If content matters on desktop, show it on mobile. Change layout (stack, reorder), not visibility.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
       </div>
 
       <div class="divider"></div>
@@ -1953,9 +1974,9 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       </div>
 
       <div class="card-grid reveal" style="margin-bottom:2rem;">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">min-height not height</div><div class="card-sub"><code>min-height: 100dvh</code> lets content grow. <code>height: 100vh</code> clips it.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Slides scroll on mobile</div><div class="card-sub">Carousel/slide containers need <code>overflow-y: auto</code> below <code>md:</code>. Content that fits on desktop rarely fits on a phone.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">dvh not vh</div><div class="card-sub"><code>100vh</code> includes browser chrome on mobile. <code>100dvh</code> adjusts dynamically. Always provide <code>vh</code> fallback.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">min-height not height</div><div class="card-sub"><code>min-height: 100dvh</code> lets content grow. <code>height: 100vh</code> clips it.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Slides scroll on mobile</div><div class="card-sub">Carousel/slide containers need <code>overflow-y: auto</code> below <code>md:</code>. Content that fits on desktop rarely fits on a phone.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">dvh not vh</div><div class="card-sub"><code>100vh</code> includes browser chrome on mobile. <code>100dvh</code> adjusts dynamically. Always provide <code>vh</code> fallback.</div></div>
       </div>
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Sidebar Layout</h3>
@@ -1970,7 +1991,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </table>
         </div>
       </div>
-      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Mobile sidebar pattern</div><div class="card-sub">Use a shadcn <code>Sheet</code> component (entrance: <code>slideInLeft</code>, exit: <code>slideOutLeft</code>) triggered by a hamburger button. Sheet width: <code>min(280px, calc(100vw - 3rem))</code>. Do not stack the sidebar below content — it pushes critical content below the fold.</div></div>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Mobile sidebar pattern</div><div class="card-sub">Use a shadcn <code>Sheet</code> component (entrance: <code>slideInLeft</code>, exit: <code>slideOutLeft</code>) triggered by a hamburger button. Sheet width: <code>min(280px, calc(100vw - 3rem))</code>. Do not stack the sidebar below content — it pushes critical content below the fold.</div></div>
     </section>
 
     <!-- MOTION TOKENS -->
@@ -2012,7 +2033,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </div>
       </div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">Reduced Motion</h3>
-      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light-green);margin-bottom:1rem;"><div class="card-title">Mandatory accessibility requirement</div><div class="card-sub">Every animation must respect <code>prefers-reduced-motion: reduce</code>. The design system handles this automatically in most cases — read the rules below.</div></div>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);margin-bottom:1rem;"><div class="card-title">Mandatory accessibility requirement</div><div class="card-sub">Every animation must respect <code>prefers-reduced-motion: reduce</code>. The design system handles this automatically in most cases — read the rules below.</div></div>
       <div class="card-grid reveal" style="margin-bottom:1.5rem;">
         <div class="card"><div class="card-title">GSAP — use applyPreset()</div><div class="card-sub">The recommended path. <code>applyPreset(gsap, target, "scaleIn")</code> handles reduced motion automatically. For raw <code>gsap.fromTo()</code> calls, check manually: <code>window.matchMedia("(prefers-reduced-motion: reduce)").matches</code> and set <code>duration: 0</code>.</div></div>
         <div class="card"><div class="card-title">Scroll triggers — self-managed</div><div class="card-sub">All factory functions in <code>scroll-triggers.js</code> check reduced motion internally. <code>revealUp/Left/Right</code> and <code>staggerReveal</code> call <code>gsap.set()</code> (instant). <code>parallax()</code> and <code>pinSection()</code> return <code>null</code>. No extra guard needed.</div></div>
@@ -2064,7 +2085,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">CSS Transitions vs. GSAP</h3>
       <div class="card-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Use CSS Transitions for</div><div class="card-sub">Simple hover/focus/active states. Effects limited to <code>transform</code>, <code>opacity</code>, <code>box-shadow</code>. Anything reversible by removing a CSS class.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Use CSS Transitions for</div><div class="card-sub">Simple hover/focus/active states. Effects limited to <code>transform</code>, <code>opacity</code>, <code>box-shadow</code>. Anything reversible by removing a CSS class.</div></div>
         <div class="card" style="border-left:3px solid var(--primary);"><div class="card-title">Use GSAP for</div><div class="card-sub">Component mount/unmount (Dialog, Sheet, Toast). Multi-step sequences or timelines. Scroll-triggered animations. Anything needing JS callbacks or <code>ScrollTrigger</code>.</div></div>
       </div>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
@@ -2100,7 +2121,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </table>
         </div>
       </div>
-      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light-green);margin-bottom:1rem;"><div class="card-title">pinSection(gsap, trigger, pinTarget, options)</div><div class="card-sub">Pins <code>pinTarget</code> in place while the user scrolls through <code>trigger</code>. Returns <code>null</code> under reduced motion — no pin applied. Use for sticky image / sticky sidebar layouts. Import from <code>animations/scroll-triggers.js</code>.</div></div>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);margin-bottom:1rem;"><div class="card-title">pinSection(gsap, trigger, pinTarget, options)</div><div class="card-sub">Pins <code>pinTarget</code> in place while the user scrolls through <code>trigger</code>. Returns <code>null</code> under reduced motion — no pin applied. Use for sticky image / sticky sidebar layouts. Import from <code>animations/scroll-triggers.js</code>.</div></div>
 
       <div class="divider"></div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
@@ -2393,7 +2414,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           </table>
           </div>
         </div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Assignment rule</div><div class="card-sub">Assign tokens by series order — <code>--chart-1</code> for the first data series, <code>--chart-2</code> for the second, and so on. Never skip a token or assign by color preference. Exact OKLCH values are in <code>tokens/colors.css</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Assignment rule</div><div class="card-sub">Assign tokens by series order — <code>--chart-1</code> for the first data series, <code>--chart-2</code> for the second, and so on. Never skip a token or assign by color preference. Exact OKLCH values are in <code>tokens/colors.css</code>.</div></div>
       </div>
 
       <!-- FIELD -->
@@ -2613,14 +2634,19 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Poppins for headlines</div><div class="code-block"><span class="cm">/* globals.css */</span>
 <span class="kw">h1, h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
         <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Copy brand tokens</div><div class="code-block"><span class="kw">:root</span> {
-  <span class="fn">--brand-surface</span>: <span class="st">#FAFAFA</span>;
-  <span class="fn">--brand-highlight-light-green</span>: <span class="st">#B9F7CE</span>;
-  <span class="fn">--brand-highlight-grass-green</span>: <span class="st">#3DC683</span>;
-  <span class="fn">--brand-highlight-dark-green</span>: <span class="st">#15552E</span>;
+  <span class="fn">--brand-surface</span>: <span class="st">#F4F4FA</span>;
+  <span class="fn">--brand-surface-blue</span>: <span class="st">#3A4BBA</span>;
+  <span class="fn">--brand-highlight-blue</span>: <span class="st">#4D5EC0</span>;
+  <span class="fn">--brand-highlight-navy</span>: <span class="st">#1C2155</span>;
+  <span class="fn">--brand-highlight-light</span>: <span class="st">#EEEEFF</span>;
+  <span class="fn">--brand-offset-lavender</span>: <span class="st">#9C91C8</span>;
+  <span class="fn">--brand-offset-green</span>: <span class="st">#8DC540</span>;
+  <span class="fn">--brand-offset-yellow</span>: <span class="st">#F3C438</span>;
+  <span class="fn">--brand-offset-coral</span>: <span class="st">#E05840</span>;
 }</div></div></div>
         <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Import animation presets</div><div class="code-block"><span class="kw">import</span> { <span class="fn">ENTRANCE</span>, <span class="fn">EXIT</span>, <span class="fn">HOVER</span> } <span class="kw">from</span> <span class="st">"@/design-system/animations/presets"</span>;</div></div></div>
       </div>
-      <div class="card" style="margin-top:2rem;border-left:3px solid var(--brand-highlight-dark-green);">
+      <div class="card" style="margin-top:2rem;border-left:3px solid var(--brand-highlight-navy);">
         <div class="card-title">Key files</div>
         <div class="card-sub" style="margin-top:0.5rem;">
           <code>DESIGN-SYSTEM.md</code> · Full spec<br>
@@ -2695,7 +2721,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             </div>
           </div>
 
-          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-grass-green);">
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
             <div class="card-title">Animation patterns</div>
             <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
               <span>&#x2022; Staggered entrance sequence on load</span>
@@ -2711,7 +2737,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             </div>
           </div>
 
-          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light-green);">
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);">
             <div class="card-title">Open standalone</div>
             <div class="card-sub" style="margin-top:0.5rem;">
               View at full size or inspect source in a separate tab.
