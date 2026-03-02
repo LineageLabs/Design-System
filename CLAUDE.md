@@ -16,14 +16,15 @@ and logo assets so every project stays consistent.
 | **Base Color** | Gray — Blue-tinted neutrals |
 | **Radius** | Large (`--radius: 0.875rem`) |
 | **Body Font** | Geist Sans |
-| **Headline Font** | Poppins (h1–h4 only) |
+| **Display / H1 Font** | Lora (h0 and h1 only — serif) |
+| **Headline Font** | Poppins (h2–h4 only) |
 | **Icons** | Hugeicons |
 
 ## Cardinal Rules
 
 1. **Use shadcn/ui as-is.** Install via their CLI. Use the **Gray** base color theme with **Maia** style. Do not rebuild components from scratch.
 2. **Brand colors are additive.** They do NOT replace `--primary`, `--background`, or any shadcn semantic token. Apply them only when the design explicitly calls for brand colors.
-3. **Geist for body, Poppins for headlines.** Apply `font-family: "Poppins"` to h0–h4 elements only. h0 is a utility class (`.h0`) at weight 400 for display/hero text; h1–h4 use weights 600–800. Everything else uses Geist Sans.
+3. **Geist for body, Lora for h0–h1, Poppins for h2–h4.** `.h0` is Lora 400 (display/hero); `h1` is Lora 700. `h2`–`h4` use Poppins 600–800. Everything else uses Geist Sans.
 4. **Hugeicons for icons.** Use `hugeicons-react` as the default icon library. Fallback to Lucide only if unavailable.
 5. **GSAP for animation.** Use the presets in `animations/presets.js`. Do not invent new easing or duration values — use the tokens in `tokens/motion.yaml`.
 6. **Respect reduced motion.** Every GSAP animation must check `prefers-reduced-motion` and fall back to instant or no animation.
@@ -73,10 +74,10 @@ When you modify any file in this repo (tokens, animations, components, docs, ass
 npx shadcn@latest init  # Choose: Gray base color, Maia style
 # 3. Install dependencies
 npm install gsap hugeicons-react
-# 4. Add Poppins for headlines
-#    (via Google Fonts link or next/font)
+# 4. Add Lora + Poppins via Google Fonts
+#    Lora: ital,wght@0,400;0,700;1,400 | Poppins: wght@600;700;800
 # 5. Copy tokens/colors.css into your global stylesheet
-# 6. Set font-family: "Poppins" on h1-h4 in your CSS
+# 6. Set Lora on h0/h1 and Poppins on h2-h4 in your CSS
 # 7. Import animation presets where needed
 import { ENTRANCE, EXIT, HOVER } from "@/design-system/animations/presets";
 ```

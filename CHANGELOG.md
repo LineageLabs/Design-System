@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.3] — 2026-03-02
+
+### Changed
+- **Lora (serif) added as display and h1 font.** h0 (`.h0`) and h1 now use `"Lora", Georgia, serif` instead of Poppins. h2–h4 remain on Poppins. Updated `DESIGN-SYSTEM.md` (§2 Font Stack, Installation, CSS Setup, Cardinal Rule 6), `CLAUDE.md` (Theme Configuration table + Rule 3), and `index.html` (Google Fonts link, CSS rules, typography demo, Get Started snippet). Google Fonts URL updated to load `Lora:ital,wght@0,400;0,700;1,400` alongside `Poppins:wght@600;700;800`.
+- **Get Started code snippet in `index.html` — brand token values corrected.** Step 5 previously showed stale hex values from before the rebrand; now shows the current correct values matching `tokens/colors.css`.
+
+---
+
 ## [2026.03.2] — 2026-03-02
 
 ### Changed

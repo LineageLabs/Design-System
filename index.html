@@ -6,7 +6,7 @@
   <title>Design System Reference</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <style>
@@ -103,13 +103,17 @@
     }
 
     h1, h2, h3, h4 {
-      font-family: "Poppins", sans-serif;
       line-height: 1.2;
     }
-    h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
+    h1 {
+      font-family: "Lora", Georgia, serif;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+    }
+    h2, h3, h4 { font-family: "Poppins", sans-serif; }
     h2 { font-size: clamp(1.5rem, 3vw, 1.75rem); }
     .h0 {
-      font-family: "Poppins", sans-serif;
+      font-family: "Lora", Georgia, serif;
       font-weight: 400;
       font-size: clamp(3.5rem, 8vw, 6rem);
       line-height: 1.0;
@@ -314,7 +318,7 @@
     }
 
     .hero-title {
-      font-family: "Poppins", sans-serif;
+      font-family: "Lora", Georgia, serif;
       font-size: clamp(3.5rem, 8vw, 6rem);
       font-weight: 400;
       line-height: 1.0;
@@ -1316,7 +1320,7 @@
       <div class="hero-tags">
         <span class="tag">shadcn/ui · Maia style</span>
         <span class="tag">Gray base color</span>
-        <span class="tag">Geist + Poppins</span>
+        <span class="tag">Geist + Lora + Poppins</span>
         <span class="tag">Hugeicons</span>
         <span class="tag">Tailwind v4 · OKLCH</span>
         <span class="tag">GSAP v3</span>
@@ -1329,12 +1333,12 @@
       <p class="section-label">Section 01</p>
       <h2 class="section-title">Typography</h2>
       <p class="section-desc">
-        <strong>Poppins</strong> for headlines (h0–h4), <strong>Geist Sans</strong> for
-        body text and UI, <strong>Geist Mono</strong> for code.
+        <strong>Lora</strong> (serif) for h0–h1, <strong>Poppins</strong> for h2–h4,
+        <strong>Geist Sans</strong> for body text and UI, <strong>Geist Mono</strong> for code.
       </p>
       <div class="type-preview reveal">
         <div class="type-row"><span class="type-label">h0</span><span class="h0">The quick brown</span></div>
-        <div class="type-row"><span class="type-label">h1</span><h1 style="font-weight:800;">The quick brown fox</h1></div>
+        <div class="type-row"><span class="type-label">h1</span><h1 style="font-weight:700;">The quick brown fox</h1></div>
         <div class="type-row"><span class="type-label">h2</span><h2 style="font-weight:700;">The quick brown fox</h2></div>
         <div class="type-row"><span class="type-label">h3</span><h3 style="font-size:1.25rem;font-weight:700;">The quick brown fox jumps</h3></div>
         <div class="type-row"><span class="type-label">h4</span><h4 style="font-size:1rem;font-weight:600;">The quick brown fox jumps over</h4></div>
@@ -1343,7 +1347,8 @@
         <div class="type-row"><span class="type-label">code</span><code>const theme = "gray-maia";</code></div>
       </div>
       <div class="card-grid" style="margin-top:1.5rem;">
-        <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 400 (h0), 600–800 (h1–h4)<br>h0–h4 only</div></div>
+        <div class="card reveal"><div class="card-title">Display &amp; H1 Font</div><div class="card-sub"><strong>Lora</strong> (serif) · 400–700<br>h0 (400) and h1 (700) only</div></div>
+        <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 600–800<br>h2–h4 only</div></div>
         <div class="card reveal"><div class="card-title">Body Font</div><div class="card-sub"><strong>Geist Sans</strong> · 400–700<br>All body, buttons, inputs</div></div>
         <div class="card reveal"><div class="card-title">Code Font</div><div class="card-sub"><strong>Geist Mono</strong> · 400<br>Code blocks, inline <code>code</code></div></div>
         <div class="card reveal"><div class="card-title">Icons</div><div class="card-sub"><strong>Hugeicons</strong><br><code>npm i hugeicons-react</code></div></div>
@@ -2635,18 +2640,21 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Install shadcn/ui (Maia style, Gray base)</div><div class="code-block">npx shadcn@latest init
 <span class="cm"># Choose: Gray base color, Maia style, Large radius</span></div></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Install GSAP + Hugeicons</div><div class="code-block">npm install gsap hugeicons-react</div></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Poppins for headlines</div><div class="code-block"><span class="cm">/* globals.css */</span>
-<span class="kw">h1, h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Lora + Poppins for headlines</div><div class="code-block"><span class="cm">/* Google Fonts */</span>
+<span class="cm">/* Lora: ital,wght@0,400;0,700;1,400 | Poppins: wght@600;700;800 */</span>
+<span class="kw">h1</span>, <span class="kw">.h0</span> { <span class="fn">font-family</span>: <span class="st">"Lora"</span>, Georgia, serif; }
+<span class="kw">h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
         <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Copy brand tokens</div><div class="code-block"><span class="kw">:root</span> {
-  <span class="fn">--brand-surface</span>: <span class="st">#F4F4FA</span>;
-  <span class="fn">--brand-surface-blue</span>: <span class="st">#3A4BBA</span>;
-  <span class="fn">--brand-highlight-blue</span>: <span class="st">#4D5EC0</span>;
-  <span class="fn">--brand-highlight-navy</span>: <span class="st">#1C2155</span>;
-  <span class="fn">--brand-highlight-light</span>: <span class="st">#EEEEFF</span>;
-  <span class="fn">--brand-offset-lavender</span>: <span class="st">#9C91C8</span>;
-  <span class="fn">--brand-offset-green</span>: <span class="st">#8DC540</span>;
-  <span class="fn">--brand-offset-yellow</span>: <span class="st">#F3C438</span>;
-  <span class="fn">--brand-offset-coral</span>: <span class="st">#E05840</span>;
+  <span class="fn">--brand-surface</span>: <span class="st">#F0F0F0</span>;
+  <span class="fn">--brand-surface-grey</span>: <span class="st">#E4E4EE</span>;
+  <span class="fn">--brand-surface-blue</span>: <span class="st">#4751B0</span>;
+  <span class="fn">--brand-highlight-blue</span>: <span class="st">#4751B0</span>;
+  <span class="fn">--brand-highlight-navy</span>: <span class="st">#1A1E4C</span>;
+  <span class="fn">--brand-highlight-light</span>: <span class="st">#F0F0F0</span>;
+  <span class="fn">--brand-offset-lavender</span>: <span class="st">#A6A1E2</span>;
+  <span class="fn">--brand-offset-green</span>: <span class="st">#A0D246</span>;
+  <span class="fn">--brand-offset-yellow</span>: <span class="st">#FFD27D</span>;
+  <span class="fn">--brand-offset-coral</span>: <span class="st">#F0936B</span>;
 }</div></div></div>
         <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Import animation presets</div><div class="code-block"><span class="kw">import</span> { <span class="fn">ENTRANCE</span>, <span class="fn">EXIT</span>, <span class="fn">HOVER</span> } <span class="kw">from</span> <span class="st">"@/design-system/animations/presets"</span>;</div></div></div>
       </div>
