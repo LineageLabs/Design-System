@@ -26,10 +26,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --brand-highlight-navy:  #0E1233;
+      --radius: 0.875rem;
+      --background:       #FAFAFA;
+      --foreground:       oklch(0.13 0.028 261.692);
+      --muted:            oklch(0.967 0.003 264.542);
+      --muted-foreground: oklch(0.551 0.027 264.364);
+      --border:           oklch(0.928 0.006 264.531);
       --brand-highlight-blue:  #4751B0;
-      --brand-highlight-light: #F0F0F0;
-      --brand-offset-lavender: #A6A1E2;
+      --brand-highlight-navy:  #0E1233;
       --brand-offset-green:    #A0D246;
     }
 
@@ -38,29 +42,25 @@
       height: 500px;
       overflow: hidden;
       font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
     }
 
     body {
-      background: var(--brand-highlight-navy);
-      color: var(--brand-highlight-light);
       display: flex;
       flex-direction: column;
     }
 
-    /* ── Background radial bloom ───────────────────── */
-    .bg-bloom {
+    /* ── Subtle top glow (light version) ───────────── */
+    .bg-accent {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       background:
-        radial-gradient(ellipse 80% 55% at 50% -5%,
-          rgba(71,81,176,0.45) 0%,
-          rgba(71,81,176,0.12) 50%,
-          transparent 75%),
-        radial-gradient(ellipse 40% 30% at 50% 0%,
-          rgba(166,161,226,0.18) 0%,
-          transparent 60%);
+        radial-gradient(ellipse 60% 40% at 50% -10%,
+          rgba(71,81,176,0.07) 0%,
+          transparent 70%);
     }
 
     /* ── Nav ───────────────────────────────────────── */
@@ -72,9 +72,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 40px;
-      border-bottom: 1px solid rgba(240,240,240,0.08);
+      border-bottom: 1px solid var(--border);
+      background: rgba(250,250,250,0.9);
       backdrop-filter: blur(8px);
-      background: rgba(14,18,51,0.6);
       flex-shrink: 0;
     }
 
@@ -90,14 +90,14 @@
       align-items: center;
       padding: 0.1rem 0.55rem;
       border-radius: 0.875rem;
-      border: 1.5px solid rgba(240,240,240,0.6);
+      border: 1.5px solid var(--foreground);
       font-size: 0.875rem;
       font-weight: 700;
       letter-spacing: -0.06em;
-      color: rgba(240,240,240,0.95);
+      color: var(--foreground);
     }
 
-    .nav-badge .asterisk { color: var(--brand-offset-green); }
+    .nav-badge .asterisk { color: var(--brand-highlight-blue); }
 
     .nav-links {
       display: flex;
@@ -109,20 +109,20 @@
     .nav-links a {
       font-size: 0.8rem;
       font-weight: 500;
-      color: rgba(240,240,240,0.65);
+      color: var(--muted-foreground);
       text-decoration: none;
       transition: color 0.15s;
     }
 
-    .nav-links a:hover { color: rgba(240,240,240,0.95); }
+    .nav-links a:hover { color: var(--foreground); }
 
     .nav-cta {
       display: inline-flex;
       align-items: center;
       padding: 0.35rem 0.875rem;
       border-radius: 9999px;
-      background: var(--brand-highlight-blue);
-      color: rgba(240,240,240,0.95);
+      background: var(--brand-highlight-navy);
+      color: #FAFAFA;
       font-size: 0.8rem;
       font-weight: 600;
       text-decoration: none;
@@ -130,7 +130,7 @@
       transition: opacity 0.15s;
     }
 
-    .nav-cta:hover { opacity: 0.88; }
+    .nav-cta:hover { opacity: 0.85; }
 
     /* ── Hero ──────────────────────────────────────── */
     .hero {
@@ -152,9 +152,9 @@
       gap: 0.4rem;
       padding: 0.2rem 0.75rem;
       border-radius: 9999px;
-      border: 1px solid rgba(160,210,70,0.4);
-      background: rgba(160,210,70,0.08);
-      color: var(--brand-offset-green);
+      border: 1px solid rgba(71,81,176,0.25);
+      background: rgba(71,81,176,0.06);
+      color: var(--brand-highlight-blue);
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.04em;
@@ -165,17 +165,17 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: var(--brand-offset-green);
+      background: var(--brand-highlight-blue);
     }
 
     h1 {
       font-family: "Lora", Georgia, serif;
       font-style: normal;
       font-weight: 700;
-      font-size: 2.5rem;
-      line-height: 1.12;
+      font-size: 2.75rem;
+      line-height: 1.1;
       letter-spacing: -0.025em;
-      color: #ffffff;
+      color: var(--foreground);
       max-width: 18ch;
       margin-bottom: 0.875rem;
     }
@@ -183,7 +183,7 @@
     .hero-subtitle {
       font-size: 0.875rem;
       line-height: 1.65;
-      color: rgba(240,240,240,0.6);
+      color: var(--muted-foreground);
       max-width: 52ch;
       margin-bottom: 1.5rem;
     }
@@ -202,12 +202,12 @@
       padding: 0.5rem 1.25rem;
       border-radius: 9999px;
       background: var(--brand-highlight-blue);
-      color: rgba(240,240,240,0.95);
+      color: #FAFAFA;
       font-size: 0.875rem;
       font-weight: 600;
       text-decoration: none;
       letter-spacing: 0.01em;
-      box-shadow: 0 4px 24px rgba(71,81,176,0.4);
+      box-shadow: 0 2px 12px rgba(71,81,176,0.3);
     }
 
     .btn-ghost {
@@ -216,8 +216,8 @@
       gap: 0.35rem;
       padding: 0.5rem 1rem;
       border-radius: 9999px;
-      border: 1px solid rgba(240,240,240,0.2);
-      color: rgba(240,240,240,0.8);
+      border: 1px solid var(--border);
+      color: var(--foreground);
       font-size: 0.875rem;
       font-weight: 500;
       text-decoration: none;
@@ -236,7 +236,7 @@
     .social-label {
       font-size: 0.65rem;
       font-weight: 500;
-      color: rgba(240,240,240,0.35);
+      color: var(--muted-foreground);
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
@@ -250,29 +250,15 @@
     .social-logo {
       font-size: 0.7rem;
       font-weight: 700;
-      color: rgba(240,240,240,0.28);
+      color: oklch(0.707 0.022 261.325);
       letter-spacing: 0.04em;
-    }
-
-    /* Decorative grid lines */
-    .grid-lines {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(240,240,240,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(240,240,240,0.025) 1px, transparent 1px);
-      background-size: 50px 50px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
     }
   </style>
 </head>
 <body>
 
-  <!-- Background layers -->
-  <div class="bg-bloom"></div>
-  <div class="grid-lines"></div>
+  <!-- Background accent -->
+  <div class="bg-accent"></div>
 
   <!-- ══ NAV ═══════════════════════════════════════════ -->
   <nav>
