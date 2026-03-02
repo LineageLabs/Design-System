@@ -91,40 +91,48 @@ gsap.fromTo(badgeEl,
 
 ## Variant 2 — Lineage\*Labs Wordmark
 
-A text wordmark in Poppins 600. Dark green on light, light green on dark.
-The `*` uses grass green as an accent in both modes.
+A text wordmark in Lora. Brand blue on light backgrounds; near-white on dark.
+The `*` uses the brand offset green as an accent in both modes.
 
 ### Spec
 
 | Property | Light Mode | Dark Mode |
 |----------|-----------|----------|
-| Text color | `#15552E` (dark green) | `#B9F7CE` (light green) |
+| Text color | `#4751B0` (`var(--brand-highlight-blue)`) | `#F0F0F0` (`var(--brand-highlight-light)`) |
 | Asterisk (`*`) color | `#3DC683` (grass green) | `#3DC683` (grass green) |
-| Font | Poppins, weight **600**, `-0.05em` letter-spacing | same |
-| Default size | `36px` / line-height `54px` | same |
+| Font | Lora, weight **600**, `-0.03em` letter-spacing | Lora, weight **400**, `-0.03em` letter-spacing |
+| Default size | `64px` / line-height `82px` | `64px` / line-height `82px` |
 
 ### CSS Classes
 
 ```css
 /* Light mode wordmark */
 .logo-text {
-  font-family: "Poppins", sans-serif;
+  font-family: "Lora", Georgia, serif;
+  font-style: normal;
   font-weight: 600;
-  font-size: 36px;
-  line-height: 54px;
-  letter-spacing: -0.05em;
-  color: #15552E;
+  font-size: 64px;
+  line-height: 82px;
+  letter-spacing: -0.03em;
+  color: var(--brand-highlight-blue); /* #4751B0 */
   white-space: nowrap;
+}
+
+/* Dark mode override (via .dark parent) */
+.dark .logo-text {
+  font-weight: 400;
+  color: var(--brand-highlight-light); /* #F0F0F0 */
 }
 
 /* Forced dark-mode wordmark (always-dark surfaces) */
 .logo-text-dark {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 54px;
-  letter-spacing: -0.05em;
-  color: #B9F7CE;
+  font-family: "Lora", Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 82px;
+  letter-spacing: -0.03em;
+  color: var(--brand-highlight-light); /* #F0F0F0 */
   white-space: nowrap;
 }
 
@@ -180,9 +188,10 @@ Both variants scale with font-size. Documented sizes in use:
 
 | Size | Context |
 |------|---------|
-| `36px` | Default / hero / large placements |
-| `24px` | Medium placements |
-| `16px` | Small / compact placements |
+| `64px` | Default / hero / large placements |
+| `36px` | Medium placements |
+| `24px` | Small / compact placements |
+| `16px` | Minimum readable size |
 | `22px` | Badge default (way\*ID) |
 | `15px` | Badge standard (way\*ID) |
 | `12px` | Badge minimum — never smaller |

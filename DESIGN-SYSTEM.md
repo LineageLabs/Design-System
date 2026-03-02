@@ -458,14 +458,14 @@ Animation:
 - Static badges: `*` shows `--brand-offset-lavender` via CSS (no JS needed)
 
 #### Lineage\*Labs Wordmark
-Text wordmark. Poppins 600, `-0.05em`. The `*` is always grass green (`#3DC683`).
+Text wordmark. Lora, brand blue on light / near-white on dark. The `*` is always grass green (`#3DC683`).
 
 | Property | Light | Dark |
 |----------|-------|------|
-| Text | `#15552E` (dark green) | `#B9F7CE` (light green) |
+| Text | `var(--brand-highlight-blue)` `#4751B0` | `var(--brand-highlight-light)` `#F0F0F0` |
 | Asterisk | `#3DC683` | `#3DC683` |
-| Font | Poppins 600, `-0.05em` | same |
-| Default size | `36px` / `54px` line-height | same |
+| Font | Lora **600**, `-0.03em` | Lora **400**, `-0.03em` |
+| Default size | `64px` / `82px` line-height | same |
 
 Animation — three phases (~1s total):
 1. Characters stagger from left: `blur 6px→0`, `x -16→0`, `y 8→0`, 0.04s stagger

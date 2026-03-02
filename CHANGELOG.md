@@ -5,6 +5,23 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.13] — 2026-03-02
+
+### Changed
+- **`assets/logos/README.md` — Lineage\*Labs wordmark spec updated.**
+  - Font: Poppins → **Lora** (aligns with display-font rule for elevated brand text)
+  - Weight: 600 both modes → **600 light / 400 dark**
+  - Size: 36px / 54px line-height → **64px / 82px**
+  - Letter-spacing: `-0.05em` → **`-0.03em`**
+  - Light color: `#15552E` (dark green) → **`var(--brand-highlight-blue)` `#4751B0`**
+  - Dark color: `#B9F7CE` (light green) → **`var(--brand-highlight-light)` `#F0F0F0`**
+  - Added `.dark .logo-text` CSS override so the single class adapts automatically in addition to the explicit `.logo-text-dark` forced variant.
+  - Asterisk (`#3DC683`) and GSAP animation unchanged.
+  - Sizes table: default size bumped from `36px` to `64px`; scale adjusted.
+- **`DESIGN-SYSTEM.md` §5 — Lineage\*Labs summary table updated** to match.
+
+---
+
 ## [2026.03.12] — 2026-03-02
 
 ### Changed
