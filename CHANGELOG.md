@@ -5,6 +5,24 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.7] — 2026-03-02
+
+### Changed
+- **way\*ID badge redesigned to outline style (Figma update).** Badge is now transparent-background with a solid border instead of a filled pill.
+  - Light mode: `background: transparent`, `color: --brand-highlight-navy`, `border: 1.5px solid --brand-highlight-navy`
+  - Dark mode: `background: transparent`, `color: --brand-highlight-light`, `border: 1px solid --brand-highlight-light`
+  - Border-radius updated `15px → 9999px` (true pill); font-weight `500 → 600`; letter-spacing `-0.05em → -0.08em`
+  - Updated in `index.html` (CSS, all demo instances, spec table), `assets/logos/README.md`, `DESIGN-SYSTEM.md`
+
+### Added
+- **Asterisk color-cycling animation on way\*ID badge.** After the reveal completes, the `*` character cycles through `--brand-offset-lavender → --brand-offset-green → --brand-offset-yellow → --brand-offset-coral` every 1.4s with a 350ms `power2.inOut` crossfade. CSS variables are re-read each cycle to respect live dark/light mode switches. Reduced motion: static lavender color, no cycling.
+  - New `startAsteriskCycle(badgeEl)` function in `index.html`
+  - `splitBadgeChars()` updated to add `logo-badge-asterisk` class to the `*` span
+  - `resetBadge()` updated to kill any active cycle before reset
+  - `playBadgeReveal()` glow colors updated from old green rgba values to navy/light rgba matching new brand
+
+---
+
 ## [2026.03.6] — 2026-03-02
 
 ### Changed

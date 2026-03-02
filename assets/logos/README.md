@@ -6,17 +6,17 @@ Two logo variants are in use. Both have light/dark mode treatments and animated 
 
 ## Variant 1 — way\*ID Badge
 
-A pill-shaped badge. Colors invert between light and dark mode.
+An outline pill badge. Transparent background with navy border + text in light mode; light border + text in dark mode.
 
 ### Spec
 
 | Property | Light Mode | Dark Mode |
 |----------|-----------|----------|
-| Background | `#15552E` (dark green) | `#B9F7CE` (light green) |
-| Text color | `#B9F7CE` (light green) | `#15552E` (dark green) |
-| Border | none | `1px solid #15552E` |
-| Border radius | `15px` | `15px` |
-| Font | Poppins, weight 500, `-0.05em` letter-spacing | same |
+| Background | transparent | transparent |
+| Text color | `--brand-highlight-navy` (`#0E1233`) | `--brand-highlight-light` (`#F0F0F0`) |
+| Border | `1.5px solid --brand-highlight-navy` | `1px solid --brand-highlight-light` |
+| Border radius | `9999px` (pill) | `9999px` (pill) |
+| Font | Poppins, weight 600, `-0.08em` letter-spacing | same |
 | Default size | `15px` | same |
 
 ### CSS Classes
@@ -25,25 +25,33 @@ A pill-shaped badge. Colors invert between light and dark mode.
 /* Light mode badge */
 .logo-badge {
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.05em;
+  font-weight: 600;
+  letter-spacing: -0.08em;
   padding: 0.125rem 0.7rem;
-  border-radius: 15px;
-  background: #15552E;
-  color: #B9F7CE;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--brand-highlight-navy);
+  border: 1.5px solid var(--brand-highlight-navy);
   white-space: nowrap;
+}
+
+/* Dark mode override (via .dark parent) */
+.dark .logo-badge {
+  background: transparent;
+  color: var(--brand-highlight-light);
+  border: 1px solid var(--brand-highlight-light);
 }
 
 /* Forced dark-mode badge (always-dark surfaces) */
 .logo-badge-dark {
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.05em;
+  font-weight: 600;
+  letter-spacing: -0.08em;
   padding: 0.125rem 0.7rem;
-  border-radius: 15px;
-  background: #B9F7CE;
-  color: #15552E;
-  border: 1px solid #15552E;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--brand-highlight-light);
+  border: 1px solid var(--brand-highlight-light);
   white-space: nowrap;
 }
 ```
@@ -60,14 +68,16 @@ A pill-shaped badge. Colors invert between light and dark mode.
 
 ### Animated Reveal (GSAP)
 
-Three-phase sequence (~1s total):
+Three-phase reveal (~1s total) + continuous post-reveal asterisk cycle:
 
 1. **Pill materialises** — `scale 0.9→1`, `blur 8px→0`, `back.out(1.7)`, 450ms
 2. **Characters stagger** from center outward (radiates from the `*`) — `blur 4px→0`, `y 6→0`, `power2.out`, 300ms, 0.05s stagger
-3. **Dual-layer glow pulse** — tight bright (`rgba(185,247,206,…)`) + wide diffuse (`rgba(61,198,131,…)`), 650ms total
+3. **Dual-layer glow pulse** — tight (`rgba(14,18,51,0.25)` light / `rgba(240,240,240,0.35)` dark) + wide diffuse layer, 650ms total
+4. **`*` color cycle** — post-reveal, the `*` span (`class="logo-badge-asterisk"`) cycles through `--brand-offset-lavender → green → yellow → coral` every 1.4s, re-reading CSS variables each cycle to respect live dark/light mode switches
 
 ```js
 // Split badge text into per-character spans with class="logo-char"
+// The * span also gets class="logo-badge-asterisk" for the cycle target
 // then run a GSAP timeline:
 
 const tl = gsap.timeline();
@@ -79,7 +89,8 @@ tl.fromTo(badgeEl,
   { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.3, ease: "power2.out",
     stagger: { each: 0.05, from: "center" } },
   "-=0.15"
-);
+).call(() => startAsteriskCycle(badgeEl));
+// startAsteriskCycle() reads --brand-offset-* CSS vars each step for dark mode compat
 ```
 
 ---

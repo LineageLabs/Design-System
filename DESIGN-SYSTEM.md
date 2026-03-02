@@ -373,18 +373,21 @@ Two logo variants — both have light/dark treatments and animated GSAP reveals.
 Full spec and CSS classes: [`assets/logos/README.md`](assets/logos/README.md)
 
 #### way\*ID Badge
-Pill badge. Colors **invert** between modes (dark-green bg + light-green text on light; reversed on dark).
+Outline pill badge. Transparent background; navy border + text in light mode, light border + text in dark mode.
 
 | Property | Light | Dark |
 |----------|-------|------|
-| Background | `#15552E` | `#B9F7CE` |
-| Text | `#B9F7CE` | `#15552E` |
-| Font | Poppins 500, `-0.05em` | same |
+| Background | transparent | transparent |
+| Text | `--brand-highlight-navy` | `--brand-highlight-light` |
+| Border | `1.5px solid --brand-highlight-navy` | `1px solid --brand-highlight-light` |
+| Radius | `9999px` (pill) | same |
+| Font | Poppins 600, `-0.08em` | same |
 
-Animation — three phases (~1s total):
+Animation — three phases (~1s total) + post-reveal:
 1. Pill: `scale 0.9→1`, `blur 8px→0`, `back.out(1.7)`, 450ms
 2. Characters stagger from center (the `*`): `blur 4px→0`, `y 6→0`, 0.05s stagger
 3. Dual glow pulse: tight + wide layer, 650ms
+4. Post-reveal: `*` cycles through `--brand-offset-lavender → green → yellow → coral` every 1.4s (re-reads CSS vars each cycle to respect dark mode switches)
 
 #### Lineage\*Labs Wordmark
 Text wordmark. Poppins 600, `-0.05em`. The `*` is always grass green (`#3DC683`).

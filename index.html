@@ -200,22 +200,22 @@
       align-items: center;
       justify-content: center;
       padding: 0.125rem 0.7rem;
-      border-radius: 15px;
-      background: var(--brand-highlight-navy);
-      color: var(--brand-highlight-light);
+      border-radius: 9999px;
+      background: transparent;
+      color: var(--brand-highlight-navy);
       font-family: "Poppins", sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 15px;
       line-height: 22px;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.08em;
       white-space: nowrap;
       flex-shrink: 0;
-      border: 1px solid transparent;
+      border: 1.5px solid var(--brand-highlight-navy);
     }
     .dark .logo-badge {
-      background: var(--brand-highlight-light);
-      color: var(--brand-highlight-navy);
-      border-color: var(--brand-highlight-navy);
+      background: transparent;
+      color: var(--brand-highlight-light);
+      border: 1px solid var(--brand-highlight-light);
     }
     /* Forced dark variant — for always-dark preview panels */
     .logo-badge-dark {
@@ -223,17 +223,17 @@
       align-items: center;
       justify-content: center;
       padding: 0.125rem 0.7rem;
-      border-radius: 15px;
-      background: var(--brand-highlight-light);
-      color: var(--brand-highlight-navy);
+      border-radius: 9999px;
+      background: transparent;
+      color: var(--brand-highlight-light);
       font-family: "Poppins", sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 15px;
       line-height: 22px;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.08em;
       white-space: nowrap;
       flex-shrink: 0;
-      border: 1px solid var(--brand-highlight-navy);
+      border: 1px solid var(--brand-highlight-light);
     }
     .logo-wordmark { font-weight: 700; }
     .logo-char { will-change: filter, opacity, transform; }
@@ -1371,9 +1371,9 @@
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge" style="font-size:22px;padding:0.2rem 1rem;border-radius:18px;">way*ID</span>
+          <span class="logo-badge" style="font-size:22px;padding:0.2rem 1rem;">way*ID</span>
           <span class="logo-badge" style="font-size:15px;">way*ID</span>
-          <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+          <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;">way*ID</span>
         </div>
       </div>
 
@@ -1381,9 +1381,9 @@
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
         <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge-dark" style="font-size:22px;padding:0.2rem 1rem;border-radius:18px;">way*ID</span>
+          <span class="logo-badge-dark" style="font-size:22px;padding:0.2rem 1rem;">way*ID</span>
           <span class="logo-badge-dark" style="font-size:15px;">way*ID</span>
-          <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+          <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;">way*ID</span>
         </div>
       </div>
 
@@ -1394,14 +1394,14 @@
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
+              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;">way*ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
           </div>
           <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
+              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;">way*ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
@@ -1495,33 +1495,34 @@
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Background</td>
+                <td style="padding:0.5rem 0.75rem;">transparent</td>
+                <td style="padding:0.5rem 0.75rem;">transparent</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Text color</td>
                 <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#0E1233;vertical-align:middle;margin-left:0.25rem;"></span></td>
                 <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F0F0F0;border:1px solid #ccc;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Text color</td>
-                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code></td>
-                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code></td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Border</td>
-                <td style="padding:0.5rem 0.75rem;">transparent</td>
-                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> (1px solid)</td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> (1.5px solid)</td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> (1px solid)</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Radius</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>15px</code></td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>9999px</code> (pill)</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Font</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 500 weight, <code>-0.05em</code> letter-spacing</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 600 weight, <code>-0.08em</code> letter-spacing</td>
               </tr>
               <tr>
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">
                   Phase 1: <code>scale 0.9→1, blur 8→0, back.out(1.7), 450ms</code><br>
                   Phase 2: <code>chars stagger 0.05s from center, blur 4→0 + y 6→0, power2.out, 300ms</code><br>
-                  Phase 3: <code>dual glow pulse (16px tight + 40px wide), power2.out→in, 650ms</code>
+                  Phase 3: <code>dual glow pulse (16px tight + 40px wide), power2.out→in, 650ms</code><br>
+                  Post-reveal: <code>* cycles through offset accents every 1.4s (lavender → green → yellow → coral)</code>
                 </td>
               </tr>
             </tbody>
@@ -2838,6 +2839,8 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
     }
 
     /* Rich badge-only reveal — 3 phases: elastic pill, staggered char blur, glow pulse */
+    const badgeCycles = new Map(); /* tracks active asterisk cycles per badge element */
+
     function splitBadgeChars(el) {
       const text = el.textContent;
       el.textContent = "";
@@ -2849,11 +2852,46 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         const span = document.createElement("span");
         span.textContent = text[i];
         span.style.display = "inline-block";
-        span.className = "logo-char";
+        /* Mark the asterisk so startAsteriskCycle() can find it */
+        span.className = text[i] === "*" ? "logo-char logo-badge-asterisk" : "logo-char";
         el.appendChild(span);
         chars.push(span);
       }
       return chars;
+    }
+
+    /* Cycles the * character through the 4 brand offset accent tokens */
+    function startAsteriskCycle(badgeEl) {
+      const asteriskEl = badgeEl.querySelector(".logo-badge-asterisk");
+      if (!asteriskEl) return null;
+
+      const tokens = [
+        "--brand-offset-lavender",
+        "--brand-offset-green",
+        "--brand-offset-yellow",
+        "--brand-offset-coral",
+      ];
+      let index = 0;
+      let call = null;
+
+      function getToken(token) {
+        return getComputedStyle(document.documentElement).getPropertyValue(token).trim();
+      }
+
+      if (reducedMotion) {
+        gsap.set(asteriskEl, { color: getToken(tokens[0]) });
+        return null;
+      }
+
+      function cycle() {
+        const color = getToken(tokens[index]);
+        gsap.to(asteriskEl, { color, duration: 0.35, ease: "power2.inOut" });
+        index = (index + 1) % tokens.length;
+        call = gsap.delayedCall(1.4, cycle);
+      }
+
+      cycle();
+      return { kill: () => { if (call) call.kill(); } };
     }
 
     function playBadgeReveal(badgeEl) {
@@ -2864,9 +2902,11 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       } else {
         chars = Array.from(chars);
       }
-      const isDark = badgeEl.classList.contains("logo-badge-dark");
-      const glowTight = isDark ? "rgba(185, 247, 206, 0.4)"  : "rgba(61, 198, 131, 0.3)";
-      const glowWide  = isDark ? "rgba(185, 247, 206, 0.12)" : "rgba(61, 198, 131, 0.08)";
+      const isDark = badgeEl.classList.contains("logo-badge-dark") ||
+                     document.documentElement.classList.contains("dark");
+      /* Navy (#0E1233) glow for light mode; light (#F0F0F0) glow for dark mode */
+      const glowTight = isDark ? "rgba(240, 240, 240, 0.35)" : "rgba(14, 18, 51, 0.25)";
+      const glowWide  = isDark ? "rgba(240, 240, 240, 0.10)" : "rgba(14, 18, 51, 0.08)";
       const tl = gsap.timeline();
 
       if (reducedMotion) {
@@ -2898,12 +2938,20 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         .to(badgeEl,
           { boxShadow:"0 0 0px 0px transparent, 0 0 0px 0px transparent",
             duration:0.3, ease:"power2.in" }
-        );
+        )
+        /* After reveal: start infinite * color cycling through brand offset accents */
+        .call(() => {
+          const cycle = startAsteriskCycle(badgeEl);
+          if (cycle) badgeCycles.set(badgeEl, cycle);
+        });
 
       return tl;
     }
 
     function resetBadge(badgeEl) {
+      /* Kill any active asterisk cycle before resetting */
+      const cycle = badgeCycles.get(badgeEl);
+      if (cycle) { cycle.kill(); badgeCycles.delete(badgeEl); }
       gsap.set(badgeEl, { clearProps:"all" });
       const chars = badgeEl.querySelectorAll(".logo-char");
       if (chars.length) gsap.set(chars, { clearProps:"all" });
