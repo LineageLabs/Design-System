@@ -29,7 +29,7 @@ surfaces:
     use: "Full-bleed brand sections, hero backgrounds, marketing pages with blue treatment"
 
   dark_background:
-    hex: "#1A1E4C"
+    hex: "#0E1233"
     css_var: "--brand-surface"
     context: "dark theme"
     use: "Page-level background when design calls for brand surface instead of shadcn --background"
@@ -48,7 +48,7 @@ highlights:
     use: "Primary brand accent, interactive highlights, CTAs, badges, status indicators"
 
   navy:
-    hex: "#1A1E4C"
+    hex: "#0E1233"
     css_var: "--brand-highlight-navy"
     context: "light and blue modes — on light and blue surfaces"
     use: "Deep brand anchor, text on light surfaces, strong emphasis, dark badges"
@@ -61,7 +61,7 @@ highlights:
 
 offsets:
   # Offsets have two tones — use the light set on #F0F0F0 surface,
-  # use the dark/blue set on #1A1E4C or #4751B0 surfaces.
+  # use the dark/blue set on #0E1233 or #4751B0 surfaces.
 
   lavender:
     hex_light: "#A6A1E2"

@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.5] — 2026-03-02
+
+### Changed
+- **Navy and dark surface color updated: #1A1E4C → #0E1233.** Affects `--brand-highlight-navy` and `--brand-surface` (dark mode) across all files: `tokens/colors.css`, `tokens/brand-colors.yaml`, `index.html` (CSS vars, swatches, spec table, Get Started snippet), `example-mobile.html` (CSS vars).
+
+---
+
 ## [2026.03.4] — 2026-03-02
 
 ### Fixed

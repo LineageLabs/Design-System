@@ -131,7 +131,7 @@
 
   /* Highlight pair for light mode */
   --brand-highlight-blue: #4751B0;        /* primary accent */
-  --brand-highlight-navy: #1A1E4C;        /* dark anchor */
+  --brand-highlight-navy: #0E1233;        /* dark anchor */
   --brand-highlight-light: #F0F0F0;       /* near-white — use on dark/blue surfaces */
 
   /* Offset accents — light surface */
@@ -142,12 +142,12 @@
 }
 
 .dark {
-  --brand-surface: #1A1E4C;
+  --brand-surface: #0E1233;
   --brand-surface-grey: #252963;
 
   /* Highlight pair for dark mode */
   --brand-highlight-blue: #4751B0;        /* same blue — works on dark bg */
-  --brand-highlight-navy: #1A1E4C;        /* same navy */
+  --brand-highlight-navy: #0E1233;        /* same navy */
   --brand-highlight-light: #F0F0F0;       /* near-white — primary text accent on dark */
 
   /* Offset accents — dark/blue surface (lighter for contrast) */
