@@ -5,6 +5,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.11] — 2026-03-02
+
+### Changed
+- **DESIGN-SYSTEM.md §2 — "Font Usage Rules" Rule 1 rewritten.** Removed the screen-type distinction (functional = max 2 families; editorial = up to 3). Replaced with a role-based table: any screen may use all three families when the heading hierarchy calls for it. Rule renamed from "Screen-Type Font Budget" to "Font Family Roles". The ❌ example for "3 families on an app screen" removed; new ❌ examples cover using Poppins/Lora on UI chrome elements instead.
+- **DESIGN-SYSTEM.md §2 — Rule 3 heading + intro updated.** Renamed from "Single-Family Hierarchy" to "Hierarchy Within System UI". Opening sentence no longer frames System UI as a constraint — it's guidance for screens that have no h1–h4 headings rather than a restriction on all functional screens.
+- **DESIGN-SYSTEM.md §2 — preamble sentence updated.** Removed "Visual hierarchy must be built… not by adding font families" (implied families were always bad); replaced with "Font families are used purposefully by role — not for arbitrary visual contrast."
+- **`CLAUDE.md` Cardinal Rule 3 updated.** Added explicit note that all three families may coexist on the same screen when the heading hierarchy warrants it (e.g. landing page with h1 + h2 subheadings).
+
+---
+
 ## [2026.03.10] — 2026-03-02
 
 ### Added
