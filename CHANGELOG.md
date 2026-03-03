@@ -5,6 +5,74 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.23] — 2026-03-03
+
+### Fixed
+- **`index.html` — dark demo panel backgrounds changed from hardcoded oklch to `var(--brand-highlight-navy)`.**
+  All 4 forced-dark demo panels (way\*ID static, way\*ID animated, Lineage\*Labs static, Lineage\*Labs animated) previously used `oklch(0.13 0.028 261.692)` (#1E1E1E). Now use `var(--brand-highlight-navy)` which always resolves to `#0E1233`. Avoids the cascade issue that made logo text invisible when `--brand-surface` was set inline on the parent.
+
+---
+
+## [2026.03.22] — 2026-03-03
+
+### Changed
+- **`index.html` — Lineage\*Labs wordmark CSS implemented (light + dark).** Applied updated spec to demo page: `.logo-text` (Lora 600, #4751B0 text, #0E1233 asterisk), `.logo-text-dark` (Lora 400, #F0F0F0 text, #A0D246 asterisk), `.dark .logo-text` override. Animated reveal demo container `min-height` updated `56px → 82px`. Spec table size row updated `36px/54px → 64px/82px`.
+
+---
+
+## [2026.03.21] — 2026-03-03
+
+### Fixed
+- **`index.html` — Lineage\*Labs wordmark asterisk corrected from brand blue to grass green (#3DC683).** `.logo-text .logo-asterisk` was incorrectly set to `var(--brand-highlight-blue)` after the rebrand; should be `#3DC683` per README. Fixed to `#3DC683` (subsequently superseded by mode-specific tokens in [2026.03.14]).
+
+---
+
+## [2026.03.20] — 2026-03-02
+
+### Changed
+- **`example-landing.html` — hero layout changed to full-bleed photo + solid white card overlay.** Replaced split-panel layout (photo left, content right) with a full-bleed `hero-market.jpg` background covering the entire hero viewport. A solid white card (45% width) is overlaid on the right at `top: 0 / right: 0 / height: 100%` to hold the headline, subtitle, and CTAs. No gradient — strict per DESIGN-SYSTEM.md Cardinal Rule 8. Nav label updated from "Split layout" to "Full-bleed photo".
+- **`index.html` — landing page section description updated** to reflect full-bleed + solid card approach.
+
+---
+
+## [2026.03.19] — 2026-03-02
+
+### Added
+- **`hero-market.jpg` — photography asset for landing page example.** Stock photo of a farmers market vendor added to root of repo for use in `example-landing.html` hero section.
+
+---
+
+## [2026.03.18] — 2026-03-02
+
+### Added
+- **`example-landing.html` — split-layout hero with hero photography.** Landing page hero redesigned with a two-column split: full-height photo panel on the left, content column (headline, subtitle, CTAs, social proof) on the right. Hero image served from `hero-market.jpg`. Previous radial-bloom background removed.
+
+---
+
+## [2026.03.17] — 2026-03-02
+
+### Fixed
+- **All three example pages — DESIGN-SYSTEM.md strict compliance audit.** `example-pitchdeck.html`, `example-landing.html`, `example-reviews.html` audited and corrected: removed any `--primary`/`--background` overrides, replaced non-brand color values with canonical tokens, verified Lora italic removed, confirmed System UI used for all body/utility text.
+- **All three example pages — brand token values aligned to `tokens/colors.css`.** Replaced any stale or mismatched hex values with the canonical token references from `tokens/colors.css`; `.dark` overrides confirmed consistent.
+
+---
+
+## [2026.03.16] — 2026-03-02
+
+### Changed
+- **`example-landing.html` — converted from dark to light mode.** Hero background changed from dark navy to white/light surface. Font load violations fixed: removed unused families from Google Fonts request.
+- **`index.html` — pitchdeck and landing iframes rendered at native embed size.** Removed CSS `scale()` transform approach; iframes now sized directly at their embed dimensions (`width`/`height` attributes). Eliminates the need for a containing scale wrapper.
+
+---
+
+## [2026.03.15] — 2026-03-02
+
+### Changed
+- **`index.html` — removed decorative browser chrome overlay from pitchdeck and landing iframes.** The `<div class="browser-chrome">` wrapper with address bar decoration removed from §11 and §12 embed containers. Iframes now display content directly.
+- **Lora italic removed globally.** `font-style: italic` removed from all h1/h0 Lora rules in `index.html`, `example-landing.html`, and `DESIGN-SYSTEM.md`. Lora is now always upright (normal) only. Updated CLAUDE.md Cardinal Rule 3 to state "Lora is never italic".
+
+---
+
 ## [2026.03.14] — 2026-03-03
 
 ### Changed
