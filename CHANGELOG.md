@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.32] — 2026-03-03
+
+### Changed
+- **Brand color swatches updated to display primitive names.** Each swatch that has a `-light` or `-dark` primitive now shows both the adaptive variable name (primary) and the primitive name (secondary, slightly dimmed via `.swatch-prim` class). Surfaces section split into "Surfaces — Light" and "Surfaces — Dark" panels; added missing `--brand-surface-grey-dark` (#252963) swatch. Updated: `index.html`.
+
+---
+
 ## [2026.03.31] — 2026-03-03
 
 ### Added
