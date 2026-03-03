@@ -245,8 +245,10 @@
       border: 1px solid var(--brand-highlight-light);
     }
     /* Asterisk accent — offset green by default; animated badges cycle through all 4 */
-    .logo-badge .logo-badge-asterisk,
-    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-green); }
+    /* .logo-badge is on a light background → adaptive green (light: #A0D246, dark: #D5FD8D) */
+    .logo-badge .logo-badge-asterisk { color: var(--brand-offset-green); }
+    /* .logo-badge-dark is always on navy (#0E1233) → always use the bright green primitive */
+    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-green-dark); }
     .logo-wordmark { font-weight: 700; }
 
     /* Lineage*Labs text wordmark */
@@ -260,14 +262,12 @@
       color: var(--brand-highlight-navy);
       white-space: nowrap;
     }
+    /* Asterisk uses adaptive green — resolves to #A0D246 in light, #D5FD8D in dark */
     .logo-text .logo-asterisk {
       color: var(--brand-offset-green);
     }
     .dark .logo-text {
       color: var(--brand-surface);
-    }
-    .dark .logo-text .logo-asterisk {
-      color: var(--brand-offset-green);
     }
     /* Forced dark variant for always-dark panels */
     .logo-text-dark {
@@ -277,9 +277,11 @@
       font-size: 64px;
       line-height: 82px;
       letter-spacing: -0.03em;
-      color: var(--brand-surface);
+      /* Always near-white — must NOT use adaptive --brand-surface (would be navy in dark mode) */
+      color: var(--brand-surface-light);
       white-space: nowrap;
     }
+    /* Always on navy background → always use bright green primitive */
     .logo-text-dark .logo-asterisk {
       color: var(--brand-offset-green-dark);
     }
