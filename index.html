@@ -1670,7 +1670,7 @@
 
       <!-- way*ID — Animated -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">center stagger</span> <span class="anim-tag">glow pulse</span></div>
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">center stagger</span></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
@@ -1719,7 +1719,7 @@
 
       <!-- Lineage*Labs — Animated -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">left stagger</span> <span class="anim-tag">asterisk pop</span> <span class="anim-tag">glow pulse</span></div>
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">left stagger</span> <span class="anim-tag">asterisk pop</span></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
@@ -1845,8 +1845,7 @@
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">
                   Phase 1: <code>chars stagger 0.04s from left, blur 6→0 + x -16→0 + y 8→0, power2.out, 400ms</code><br>
-                  Phase 2: <code>asterisk scale pop 1→1.28→1, sine.out + power2.inOut, 700ms (keyframes)</code><br>
-                  Phase 3: <code>text-shadow glow pulse 0→20px→0, power2.out→in, 600ms</code>
+                  Phase 2: <code>asterisk scale pop 1→1.28→1, sine.out + power2.inOut, 700ms (keyframes)</code>
                 </td>
               </tr>
             </tbody>
@@ -4226,8 +4225,6 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
     }
 
     function playWordmarkReveal(el, chars) {
-      const isDark = el.classList.contains("logo-text-dark");
-      const glowColor = isDark ? "rgba(240, 240, 240, 0.2)" : "rgba(71, 81, 176, 0.25)";
       const asteriskIdx = chars.findIndex((c) => c.classList.contains("logo-asterisk"));
       const tl = gsap.timeline();
 
@@ -4257,21 +4254,16 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         }, asteriskDelay + 0.25);
       }
 
-      /* Phase 3: Subtle text-shadow glow pulse */
-      tl.fromTo(el,
-        { textShadow:"0 0 0px " + glowColor },
-        { textShadow:"0 0 20px " + glowColor, duration:0.3, ease:"power2.out" },
-        "-=0.3"
-      ).to(el,
-        { textShadow:"0 0 0px transparent", duration:0.3, ease:"power2.in" }
-      );
-
       return tl;
     }
 
     function resetWordmark(el, chars) {
+      gsap.killTweensOf([el, ...chars]);
+      /* Clear only animation props on chars — preserves display:inline-block
+         set by splitWordmarkChars (clearProps:"all" would wipe it, breaking replay) */
+      chars.forEach((c) => gsap.set(c, { clearProps:"opacity,filter,transform,x,y,scale" }));
       gsap.set(el, { clearProps:"all" });
-      chars.forEach((c) => gsap.set(c, { clearProps:"all" }));
+      gsap.set(el, { opacity:0 }); /* pre-hide so playWordmarkReveal starts from hidden */
     }
 
     const llLightEl = document.querySelector(".ll-anim-light");
@@ -4283,12 +4275,10 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     document.getElementById("ll-anim-light-replay").addEventListener("click", () => {
       resetWordmark(llLightEl, llLightChars);
-      gsap.set(llLightEl, { opacity:0 });
       playWordmarkReveal(llLightEl, llLightChars);
     });
     document.getElementById("ll-anim-dark-replay").addEventListener("click", () => {
       resetWordmark(llDarkEl, llDarkChars);
-      gsap.set(llDarkEl, { opacity:0 });
       playWordmarkReveal(llDarkEl, llDarkChars);
     });
 

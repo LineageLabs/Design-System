@@ -5,6 +5,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.30] — 2026-03-03
+
+### Changed
+- **Wordmark reveal animation — glow phase removed.** `playWordmarkReveal` previously had a Phase 3 `text-shadow` pulse (`0 → 20px → 0`, `rgba` based on light/dark mode). Removed Phase 3 and the `glowColor` variable entirely. Animation now has two phases only: character stagger blur-in (Phase 1) and asterisk scale pop (Phase 2). Updated: `index.html`.
+
+### Fixed
+- **Wordmark replay inconsistency.** `resetWordmark` used `clearProps:"all"` on char `<span>` elements, which removed the `display:inline-block` style set by `splitWordmarkChars` directly on the DOM (not via GSAP). After reset, chars reverted to `display:inline`, causing GSAP `x`/`y` transforms to behave differently on replay versus the initial ScrollTrigger-driven play. Fix: use specific `clearProps:"opacity,filter,transform,x,y,scale"` on chars to preserve `display:inline-block`. Also added `gsap.killTweensOf([el, ...chars])` to cleanly stop in-progress tweens, and moved the `opacity:0` re-hide into `resetWordmark` (removing redundant `gsap.set` calls from both replay handlers). Updated: `index.html`.
+- **Wordmark anim-tags cleaned.** Removed `glow pulse` anim-tag badge from the Lineage*Labs Animated Reveal `comp-demo-label`. Removed Phase 3 row from the wordmark animation spec table. Updated: `index.html`.
+
+---
+
 ## [2026.03.29] — 2026-03-03
 
 ### Added
