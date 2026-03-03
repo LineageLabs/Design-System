@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<!--
+  Equivalent SvelteKit component structure:
+
+  <script lang="ts">
+    import Nav   from '$lib/components/Nav.svelte'
+    import Hero  from '$lib/components/Hero.svelte'
+
+    const headline   = 'Payments that feel human.'
+    const socialProof = ['Stripe', 'Vercel', 'Linear', 'Notion']
+  </script>
+
+  <Nav    logoText="aria*" ctaLabel="Get Early Access" />
+  <Hero   {headline} heroImage="/images/hero-market.jpg" {socialProof} />
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800" />
+  <title>Aria — Intelligent Payments Infrastructure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --background:       #FAFAFA;
+      --foreground:       oklch(0.13 0.028 261.692);
+      --card:             oklch(1 0 0);
+      --muted:            oklch(0.967 0.003 264.542);
+      --muted-foreground: oklch(0.551 0.027 264.364);
+      --border:           oklch(0.928 0.006 264.531);
+      --ring:             oklch(0.707 0.022 261.325);
+      --radius:           0.875rem;
+      --brand-highlight-blue:  #4751B0;
+      --brand-highlight-navy:  #0E1233;
+      --brand-offset-green:    #A0D246;
+    }
+
+    html, body {
+      width: 800px;
+      height: 500px;
+      overflow: hidden;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Nav ───────────────────────────────────────── */
+    nav {
+      position: relative;
+      z-index: 20;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+      flex-shrink: 0;
+    }
+
+    .nav-logo { display: inline-flex; align-items: center; text-decoration: none; }
+
+    .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.1rem 0.55rem;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--foreground);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      color: var(--foreground);
+    }
+
+    .nav-badge .asterisk { color: var(--brand-highlight-blue); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.875rem;
+      border-radius: 9999px;
+      background: var(--brand-highlight-navy);
+      color: #FAFAFA;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* ── Hero ──────────────────────────────────────── */
+    .hero {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Full-bleed photo — no overlays, no gradients */
+    .hero-image {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 28% center;
+      display: block;
+    }
+
+    /* Solid white card panel — floats over the right portion of the photo */
+    .hero-card {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 45%;
+      background: var(--card);
+      border-left: 1px solid var(--border);
+      padding: 36px 40px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.625rem;
+      border-radius: 9999px;
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 6%, transparent);
+      color: var(--brand-highlight-blue);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      width: fit-content;
+      margin-bottom: 1rem;
+    }
+
+    .eyebrow-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--brand-highlight-blue);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: "Lora", Georgia, serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 2.125rem;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--foreground);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.8rem;
+      line-height: 1.65;
+      color: var(--muted-foreground);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-group {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 1.125rem;
+      border-radius: 9999px;
+      background: var(--brand-highlight-blue);
+      color: #FAFAFA;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.45rem 0.875rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      color: var(--foreground);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .social-proof {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .social-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--muted-foreground);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .social-logos {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .social-logo {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--ring);
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ═══════════════════════════════════════════ -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="nav-badge">aria<span class="asterisk">*</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Get Early Access</a>
+  </nav>
+
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <div class="hero">
+
+    <!-- Full-bleed photo, no overlays -->
+    <div class="hero-image">
+      <img src="hero-market.jpg" alt="Two people selecting produce at a farmers market" />
+    </div>
+
+    <!-- Content card — solid white, sits over right portion of photo -->
+    <div class="hero-card">
+
+      <div class="eyebrow-badge">
+        <span class="eyebrow-dot"></span>
+        Now in private beta
+      </div>
+
+      <h1>Payments that feel human.</h1>
+
+      <p class="hero-subtitle">
+        Aria brings intelligence to every transaction — fraud detection,
+        instant reconciliation, and revenue insights built for the real world.
+      </p>
+
+      <div class="cta-group">
+        <a href="#" class="btn-primary">Start free trial</a>
+        <a href="#" class="btn-ghost">
+          Watch demo
+          <svg width="10" height="10" viewBox="0 0 14 14" fill="currentColor">
+            <polygon points="4,2 11,7 4,12"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="social-proof">
+        <span class="social-label">Trusted by teams at</span>
+        <div class="social-logos">
+          <span class="social-logo">Stripe</span>
+          <span class="social-logo">Vercel</span>
+          <span class="social-logo">Linear</span>
+          <span class="social-logo">Notion</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

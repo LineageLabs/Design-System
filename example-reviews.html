@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<!--
+  Equivalent SvelteKit component structure:
+
+  <script lang="ts">
+    import AppBar        from '$lib/components/AppBar.svelte'
+    import RatingSummary from '$lib/components/RatingSummary.svelte'
+    import FilterChips   from '$lib/components/FilterChips.svelte'
+    import ReviewCard    from '$lib/components/ReviewCard.svelte'
+    import WriteReview   from '$lib/components/WriteReview.svelte'
+
+    export let productId: string
+    let activeFilter = 'all'
+  </script>
+
+  <AppBar title="Aria — Reviews" />
+  <RatingSummary rating={4.7} count={2341} breakdown={[68,20,7,3,2]} />
+  <FilterChips bind:active={activeFilter} />
+  {#each reviews as review}
+    <ReviewCard {review} />
+  {/each}
+  <WriteReview />
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390" />
+  <title>Aria — Reviews · Trustflow</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --radius: 0.875rem;
+      --background: #FAFAFA;
+      --foreground: oklch(0.13 0.028 261.692);
+      --card: oklch(1 0 0);
+      --muted: oklch(0.967 0.003 264.542);
+      --muted-foreground: oklch(0.551 0.027 264.364);
+      --border: oklch(0.928 0.006 264.531);
+      --ring: oklch(0.707 0.022 261.325);
+      --brand-highlight-blue: #4751B0;
+      --brand-highlight-navy: #0E1233;
+      --brand-offset-green: #A0D246;
+      --star-filled: #F5A623;
+      --star-empty: var(--border);
+    }
+
+    html, body {
+      width: 390px;
+      height: 780px;
+      overflow: hidden;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+    }
+
+    .screen {
+      width: 390px;
+      height: 780px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── App bar ─────────────────────────────────── */
+    .app-bar {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+      background: var(--background);
+      flex-shrink: 0;
+    }
+
+    .app-bar-back {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      color: var(--muted-foreground);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .app-bar-title {
+      flex: 1;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    .app-bar-more {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted-foreground);
+      cursor: pointer;
+    }
+
+    /* ── Scroll area ─────────────────────────────── */
+    .scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0 16px 8px;
+      scrollbar-width: none;
+    }
+
+    .scroll-area::-webkit-scrollbar { display: none; }
+
+    /* ── Rating summary ──────────────────────────── */
+    .rating-summary {
+      padding: 20px 0 16px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .rating-big {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .rating-number {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--foreground);
+      letter-spacing: -0.03em;
+    }
+
+    .stars-row {
+      display: flex;
+      gap: 2px;
+    }
+
+    .star {
+      font-size: 1rem;
+    }
+
+    .star.filled { color: var(--star-filled); }
+    .star.empty  { color: var(--star-empty); }
+
+    .rating-count {
+      font-size: 0.7rem;
+      color: var(--muted-foreground);
+      font-weight: 500;
+    }
+
+    /* Breakdown bars */
+    .breakdown {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-top: 4px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breakdown-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      width: 16px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .breakdown-bar-bg {
+      flex: 1;
+      height: 5px;
+      border-radius: 9999px;
+      background: var(--muted);
+      overflow: hidden;
+    }
+
+    .breakdown-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: var(--brand-highlight-blue);
+    }
+
+    .breakdown-pct {
+      font-size: 0.68rem;
+      color: var(--muted-foreground);
+      width: 24px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── Filter chips ─────────────────────────────── */
+    .filter-chips {
+      display: flex;
+      gap: 8px;
+      padding: 0 0 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex-shrink: 0;
+    }
+
+    .filter-chips::-webkit-scrollbar { display: none; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted-foreground);
+      flex-shrink: 0;
+    }
+
+    .chip.active {
+      background: var(--foreground);
+      color: var(--background);
+      border-color: var(--foreground);
+      font-weight: 600;
+    }
+
+    /* ── Section heading ─────────────────────────── */
+    .section-heading {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+      margin: 0 0 12px;
+    }
+
+    /* ── Review card ─────────────────────────────── */
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .reviewer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .reviewer-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    .review-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 1px;
+    }
+
+    .review-star {
+      font-size: 0.7rem;
+    }
+
+    .review-star.filled { color: var(--star-filled); }
+    .review-star.empty  { color: var(--star-empty); }
+
+    .review-date {
+      font-size: 0.7rem;
+      color: var(--muted-foreground);
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 0.1rem 0.45rem;
+      border-radius: 9999px;
+      border: 1px solid color-mix(in srgb, var(--brand-offset-green) 40%, transparent);
+      background: color-mix(in srgb, var(--brand-offset-green) 10%, transparent);
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--brand-highlight-navy);
+      letter-spacing: 0.04em;
+    }
+
+    .review-text {
+      font-size: 0.825rem;
+      line-height: 1.6;
+      color: var(--foreground);
+      margin-bottom: 12px;
+    }
+
+    .review-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .helpful-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      cursor: pointer;
+    }
+
+    /* ── Write review bar ────────────────────────── */
+    .write-bar {
+      flex-shrink: 0;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 10px;
+      border-top: 1px solid var(--border);
+      background: var(--background);
+    }
+
+    .write-input {
+      flex: 1;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      background: var(--muted);
+      padding: 0 1rem;
+      font-size: 0.825rem;
+      color: var(--muted-foreground);
+      display: flex;
+      align-items: center;
+    }
+
+    .send-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 9999px;
+      background: var(--brand-highlight-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="screen">
+
+  <!-- ══ APP BAR ══════════════════════════════════════ -->
+  <div class="app-bar">
+    <div class="app-bar-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 2L4 7l5 5"/>
+      </svg>
+    </div>
+    <span class="app-bar-title">Aria &mdash; Reviews</span>
+    <div class="app-bar-more">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <circle cx="8" cy="3" r="1.2"/><circle cx="8" cy="8" r="1.2"/><circle cx="8" cy="13" r="1.2"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══ SCROLL AREA ═══════════════════════════════════ -->
+  <div class="scroll-area">
+
+    <!-- Rating summary -->
+    <div class="rating-summary">
+      <div class="rating-big">
+        <span class="rating-number">4.7</span>
+        <div class="stars-row">
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star filled">★</span>
+          <span class="star filled" style="opacity:0.5;">★</span>
+        </div>
+        <span class="rating-count">2,341 reviews</span>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-row">
+          <span class="breakdown-label">5</span>
+          <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" style="width:68%;"></div></div>
+          <span class="breakdown-pct">68%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">4</span>
+          <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" style="width:20%;opacity:0.6;"></div></div>
+          <span class="breakdown-pct">20%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">3</span>
+          <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" style="width:7%;opacity:0.4;"></div></div>
+          <span class="breakdown-pct">7%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">2</span>
+          <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" style="width:3%;opacity:0.3;"></div></div>
+          <span class="breakdown-pct">3%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">1</span>
+          <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" style="width:2%;opacity:0.2;"></div></div>
+          <span class="breakdown-pct">2%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="filter-chips">
+      <button class="chip active">All</button>
+      <button class="chip">5 ★</button>
+      <button class="chip">4 ★</button>
+      <button class="chip">Verified</button>
+      <button class="chip">Most recent</button>
+    </div>
+
+    <!-- Reviews -->
+    <p class="section-heading">2,341 reviews</p>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-info">
+          <span class="reviewer-name">Sarah K.</span>
+          <div class="review-meta">
+            <div class="review-stars">
+              <span class="review-star filled">★</span>
+              <span class="review-star filled">★</span>
+              <span class="review-star filled">★</span>
+              <span class="review-star filled">★</span>
+              <span class="review-star filled">★</span>
+            </div>
+            <span class="review-date">3 days ago</span>
+          </div>
+        </div>
+        <span class="verified-badge">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1.5,4 3.5,6 6.5,2"/></svg>
+          Verified
+        </span>
+      </div>
+      <p class="review-text">
+        Aria has completely changed how we handle payment reconciliation. What used to take our finance team half a day every week is now automated. The fraud detection caught three suspicious charges in our first month that would have slipped through.
+      </p>
+      <div class="review-footer">
+        <button class="helpful-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M2 7.5V10.5H1V7.5H2ZM3 4L5.5 1L6.5 1.5C6.8 1.7 7 2.1 7 2.5V4H9.5C10 4 10.5 4.5 10.5 5L9.5 9C9.3 9.4 9 9.5 8.5 9.5H3V4Z"/>
+          </svg>
+          Helpful (12)
+        </button>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-info">
+          <span class="reviewer-name">Marc D.</span>
+          <div class="review-meta">
+            <div class="review-stars">
+              <span class="review-star filled">★</span>
+              <span class="review-star filled">★</span>
+              <span class="review-star filled">★</span>
+              <span class="review-star filled">★</span>
+              <span class="review-star empty">★</span>
+            </div>
+            <span class="review-date">1 week ago</span>
+          </div>
+        </div>
+      </div>
+      <p class="review-text">
+        Solid product — integration was surprisingly quick, maybe two hours total. The dashboard is clean and the insights are genuinely useful. Knocked one star because the webhook retry logic needs some documentation improvements, but support was responsive.
+      </p>
+      <div class="review-footer">
+        <button class="helpful-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M2 7.5V10.5H1V7.5H2ZM3 4L5.5 1L6.5 1.5C6.8 1.7 7 2.1 7 2.5V4H9.5C10 4 10.5 4.5 10.5 5L9.5 9C9.3 9.4 9 9.5 8.5 9.5H3V4Z"/>
+          </svg>
+          Helpful (5)
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /scroll-area -->
+
+  <!-- ══ WRITE REVIEW BAR ═══════════════════════════════ -->
+  <div class="write-bar">
+    <div class="write-input">Write a review&hellip;</div>
+    <div class="send-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="2" y1="8" x2="14" y2="8"/>
+        <polyline points="9,3 14,8 9,13"/>
+      </svg>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

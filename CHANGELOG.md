@@ -5,6 +5,269 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.23] — 2026-03-03
+
+### Fixed
+- **`index.html` — dark demo panel backgrounds changed from hardcoded oklch to `var(--brand-highlight-navy)`.**
+  All 4 forced-dark demo panels (way\*ID static, way\*ID animated, Lineage\*Labs static, Lineage\*Labs animated) previously used `oklch(0.13 0.028 261.692)` (#1E1E1E). Now use `var(--brand-highlight-navy)` which always resolves to `#0E1233`. Avoids the cascade issue that made logo text invisible when `--brand-surface` was set inline on the parent.
+
+---
+
+## [2026.03.22] — 2026-03-03
+
+### Changed
+- **`index.html` — Lineage\*Labs wordmark CSS implemented (light + dark).** Applied updated spec to demo page: `.logo-text` (Lora 600, #4751B0 text, #0E1233 asterisk), `.logo-text-dark` (Lora 400, #F0F0F0 text, #A0D246 asterisk), `.dark .logo-text` override. Animated reveal demo container `min-height` updated `56px → 82px`. Spec table size row updated `36px/54px → 64px/82px`.
+
+---
+
+## [2026.03.21] — 2026-03-03
+
+### Fixed
+- **`index.html` — Lineage\*Labs wordmark asterisk corrected from brand blue to grass green (#3DC683).** `.logo-text .logo-asterisk` was incorrectly set to `var(--brand-highlight-blue)` after the rebrand; should be `#3DC683` per README. Fixed to `#3DC683` (subsequently superseded by mode-specific tokens in [2026.03.14]).
+
+---
+
+## [2026.03.20] — 2026-03-02
+
+### Changed
+- **`example-landing.html` — hero layout changed to full-bleed photo + solid white card overlay.** Replaced split-panel layout (photo left, content right) with a full-bleed `hero-market.jpg` background covering the entire hero viewport. A solid white card (45% width) is overlaid on the right at `top: 0 / right: 0 / height: 100%` to hold the headline, subtitle, and CTAs. No gradient — strict per DESIGN-SYSTEM.md Cardinal Rule 8. Nav label updated from "Split layout" to "Full-bleed photo".
+- **`index.html` — landing page section description updated** to reflect full-bleed + solid card approach.
+
+---
+
+## [2026.03.19] — 2026-03-02
+
+### Added
+- **`hero-market.jpg` — photography asset for landing page example.** Stock photo of a farmers market vendor added to root of repo for use in `example-landing.html` hero section.
+
+---
+
+## [2026.03.18] — 2026-03-02
+
+### Added
+- **`example-landing.html` — split-layout hero with hero photography.** Landing page hero redesigned with a two-column split: full-height photo panel on the left, content column (headline, subtitle, CTAs, social proof) on the right. Hero image served from `hero-market.jpg`. Previous radial-bloom background removed.
+
+---
+
+## [2026.03.17] — 2026-03-02
+
+### Fixed
+- **All three example pages — DESIGN-SYSTEM.md strict compliance audit.** `example-pitchdeck.html`, `example-landing.html`, `example-reviews.html` audited and corrected: removed any `--primary`/`--background` overrides, replaced non-brand color values with canonical tokens, verified Lora italic removed, confirmed System UI used for all body/utility text.
+- **All three example pages — brand token values aligned to `tokens/colors.css`.** Replaced any stale or mismatched hex values with the canonical token references from `tokens/colors.css`; `.dark` overrides confirmed consistent.
+
+---
+
+## [2026.03.16] — 2026-03-02
+
+### Changed
+- **`example-landing.html` — converted from dark to light mode.** Hero background changed from dark navy to white/light surface. Font load violations fixed: removed unused families from Google Fonts request.
+- **`index.html` — pitchdeck and landing iframes rendered at native embed size.** Removed CSS `scale()` transform approach; iframes now sized directly at their embed dimensions (`width`/`height` attributes). Eliminates the need for a containing scale wrapper.
+
+---
+
+## [2026.03.15] — 2026-03-02
+
+### Changed
+- **`index.html` — removed decorative browser chrome overlay from pitchdeck and landing iframes.** The `<div class="browser-chrome">` wrapper with address bar decoration removed from §11 and §12 embed containers. Iframes now display content directly.
+- **Lora italic removed globally.** `font-style: italic` removed from all h1/h0 Lora rules in `index.html`, `example-landing.html`, and `DESIGN-SYSTEM.md`. Lora is now always upright (normal) only. Updated CLAUDE.md Cardinal Rule 3 to state "Lora is never italic".
+
+---
+
+## [2026.03.14] — 2026-03-03
+
+### Changed
+- **Lineage\*Labs wordmark asterisk colours updated — mode-specific.**
+  - Light `*`: `#3DC683` → `var(--brand-highlight-navy)` `#0E1233`
+  - Dark `*`: `#3DC683` → `var(--brand-offset-green)` (`#A0D246` light-root / `#D5FD8D` dark-mode)
+- **Lineage\*Labs dark mode text token updated.**
+  - Dark text: `var(--brand-highlight-light)` → `var(--brand-surface)` (resolves to `#F0F0F0` in forced-dark context)
+- **Asterisk CSS selector split into per-mode rules** in `index.html`, `assets/logos/README.md`.
+- **`DESIGN-SYSTEM.md` §5 and `assets/logos/README.md` spec tables updated** to reflect all four token changes.
+
+---
+
+## [2026.03.13] — 2026-03-02
+
+### Changed
+- **`assets/logos/README.md` — Lineage\*Labs wordmark spec updated.**
+  - Font: Poppins → **Lora** (aligns with display-font rule for elevated brand text)
+  - Weight: 600 both modes → **600 light / 400 dark**
+  - Size: 36px / 54px line-height → **64px / 82px**
+  - Letter-spacing: `-0.05em` → **`-0.03em`**
+  - Light color: `#15552E` (dark green) → **`var(--brand-highlight-blue)` `#4751B0`**
+  - Dark color: `#B9F7CE` (light green) → **`var(--brand-highlight-light)` `#F0F0F0`**
+  - Added `.dark .logo-text` CSS override so the single class adapts automatically in addition to the explicit `.logo-text-dark` forced variant.
+  - Asterisk (`#3DC683`) and GSAP animation unchanged.
+  - Sizes table: default size bumped from `36px` to `64px`; scale adjusted.
+- **`DESIGN-SYSTEM.md` §5 — Lineage\*Labs summary table updated** to match.
+
+---
+
+## [2026.03.12] — 2026-03-02
+
+### Changed
+- **DESIGN-SYSTEM.md §2 — Rule 2 rewritten: "Elevated Text Uses Heading Fonts; Body Text Does Not".** Replaced "Poppins is a Heading Font, Not an Emphasis Tool" with a bidirectional rule: elevated/display content (card titles, section headings, prominent stat figures) must use Poppins or Lora; body/utility text (paragraphs, nav links, buttons, labels) uses System UI. Removes the restriction that Poppins/Lora only applies to strict HTML heading elements.
+- **DESIGN-SYSTEM.md §2 — Rule 3 subtitle updated.** Now "Body and Utility Scale" — clarifies this rule applies to text at that scale specifically; stat value example replaced with a small kicker label.
+- **DESIGN-SYSTEM.md §2 — Rule 4 rewritten: "System UI is the Body and Utility Font".** Replaced "UI Chrome is Always System UI". New rule: body text + utility-scale elements use System UI; anything asserting structural hierarchy through size/prominence uses Poppins or Lora. Adds threshold question to guide decisions.
+- **DESIGN-SYSTEM.md §2 — Rule 1 table updated.** System UI entry now reads "Body text + utility" with an explicit list. Lora and Poppins entries now reference "visually equivalent" content alongside strict HTML heading elements.
+- **`CLAUDE.md` Cardinal Rule 3 and Theme Configuration table updated.** Reflects the same principle: System UI = body/utility scale; anything elevated = Poppins or Lora.
+
+---
+
+## [2026.03.11] — 2026-03-02
+
+### Changed
+- **DESIGN-SYSTEM.md §2 — "Font Usage Rules" Rule 1 rewritten.** Removed the screen-type distinction (functional = max 2 families; editorial = up to 3). Replaced with a role-based table: any screen may use all three families when the heading hierarchy calls for it. Rule renamed from "Screen-Type Font Budget" to "Font Family Roles". The ❌ example for "3 families on an app screen" removed; new ❌ examples cover using Poppins/Lora on UI chrome elements instead.
+- **DESIGN-SYSTEM.md §2 — Rule 3 heading + intro updated.** Renamed from "Single-Family Hierarchy" to "Hierarchy Within System UI". Opening sentence no longer frames System UI as a constraint — it's guidance for screens that have no h1–h4 headings rather than a restriction on all functional screens.
+- **DESIGN-SYSTEM.md §2 — preamble sentence updated.** Removed "Visual hierarchy must be built… not by adding font families" (implied families were always bad); replaced with "Font families are used purposefully by role — not for arbitrary visual contrast."
+- **`CLAUDE.md` Cardinal Rule 3 updated.** Added explicit note that all three families may coexist on the same screen when the heading hierarchy warrants it (e.g. landing page with h1 + h2 subheadings).
+
+---
+
+## [2026.03.10] — 2026-03-02
+
+### Added
+- **Pitch Deck example (§11) — `example-pitchdeck.html`.** 1280×720 dark-background Series A slide for fictional "Aria" payments startup. Left column: series badge, Lora 700 headline (3.1rem), System UI subtitle, 3-stat row (ARR / MoM / customers), wordmark. Right column: radial glow, decorative ring, large logomark badge. Displayed in index.html in a browser-chrome frame at `scale(0.625)` → 800×450.
+- **Landing Page example (§12) — `example-landing.html`.** 1280×800 desktop hero for "Aria". Frosted nav bar (logo + 4 links + CTA button), eyebrow beta badge, Lora 700 italic h1 (3.875rem), subtitle, CTA pair (filled blue + ghost), social proof strip. Radial bloom + grid-line overlay in background. Displayed at `scale(0.625)` → 800×500 in a browser-chrome frame.
+- **Customer Review Platform example (§13) — `example-reviews.html`.** 390×780 mobile screen for "Trustflow". App bar, rating summary (4.7 ★, 2,341 reviews, 5-row CSS width breakdown bars), filter chips (All / 5★ / 4★ / Verified / Recent), 2 review cards (name, stars, date, text, helpful CTA, verified badge), write-review input bar pinned to bottom. System UI only — zero web fonts loaded.
+- **Nav links** for §11–13 (`#pitchdeck`, `#landing`, `#reviews`) added to site navigation in `index.html`.
+- **SvelteKit framework tag** (lavender pill badge) on each of the 3 new "Open standalone" cards, distinguishing them from the plain-HTML mobile example.
+- **Svelte component comment skeletons** at the top of all 3 new standalone HTML files.
+
+---
+
+## [2026.03.9] — 2026-03-02
+
+### Added
+- **DESIGN-SYSTEM.md §2 — "Font Usage Rules" subsection (5 rules).** New subsection inserted between the CSS Setup code block and §3, defining auditable rules for font minimisation: (1) Screen-Type Font Budget — max 2 families on functional app screens; (2) Poppins Heading-Only Constraint — Poppins only on h2–h4, never on UI chrome; (3) Single-Family Hierarchy — achieve all contrast via weight/size/colour, not font switching; (4) UI Chrome = System UI — whitelist of always-System-UI elements; (5) Web Font Load Justification — omit unused families per page. Each rule includes a ✅/❌ audit example.
+- **`index.html` — "Fonts in use on this screen" legend card in the Mobile Example section.** New card (green left-border accent) inserted between "Animation patterns" and "Open standalone" cards. Shows two live font samples (Lora h1 greeting + System UI body weight), per-family annotations, and a footer line "2 FAMILIES · POPPINS NOT LOADED" confirming the reduced font budget.
+
+### Changed
+- **`example-mobile.html` — removed Poppins from `.app-bar-logo` and `.stat-value`.** Both rules incorrectly applied `font-family: "Poppins", sans-serif` to UI chrome elements (app bar title and stat card numbers). Properties removed; both elements now inherit System UI from `body`. Visual result is identical — `font-weight: 700` in System UI is sufficient at these sizes. Screen now demonstrates 2-family budget: System UI (all UI) + Lora (h1 greeting).
+- **`example-mobile.html` — removed Poppins from Google Fonts `<link>`.** `&family=Poppins:wght@600;700;800` removed from the font URL per Rule 5. No h2–h4 headings appear on the mobile screen, so the Poppins request was unjustified. Font URL now loads Lora only.
+
+---
+
+## [2026.03.8] — 2026-03-02
+
+### Changed
+- **way\*ID badge: border-radius back to design system default.** `9999px → var(--radius)` (0.875rem) on `.logo-badge` and `.logo-badge-dark`.
+- **way\*ID badge: simplified reveal animation.** Replaced 3-phase char-stagger + glow-pulse with a single `scale 0.94→1 / opacity 0→1, back.out(1.7), 300ms` tween. Removed `splitBadgeChars()` function; asterisk span is now in HTML directly.
+- **`*` coloured in all badge instances (static and animated).** `*` is now wrapped in `<span class="logo-badge-asterisk">` in all HTML instances. CSS rule sets `color: var(--brand-offset-lavender)` by default; animated badges still cycle through all 4 offset accents post-reveal. Updated `index.html`, `assets/logos/README.md`.
+
+---
+
+## [2026.03.7] — 2026-03-02
+
+### Changed
+- **way\*ID badge redesigned to outline style (Figma update).** Badge is now transparent-background with a solid border instead of a filled pill.
+  - Light mode: `background: transparent`, `color: --brand-highlight-navy`, `border: 1.5px solid --brand-highlight-navy`
+  - Dark mode: `background: transparent`, `color: --brand-highlight-light`, `border: 1px solid --brand-highlight-light`
+  - Border-radius updated `15px → 9999px` (true pill); font-weight `500 → 600`; letter-spacing `-0.05em → -0.08em`
+  - Updated in `index.html` (CSS, all demo instances, spec table), `assets/logos/README.md`, `DESIGN-SYSTEM.md`
+
+### Added
+- **Asterisk color-cycling animation on way\*ID badge.** After the reveal completes, the `*` character cycles through `--brand-offset-lavender → --brand-offset-green → --brand-offset-yellow → --brand-offset-coral` every 1.4s with a 350ms `power2.inOut` crossfade. CSS variables are re-read each cycle to respect live dark/light mode switches. Reduced motion: static lavender color, no cycling.
+  - New `startAsteriskCycle(badgeEl)` function in `index.html`
+  - `splitBadgeChars()` updated to add `logo-badge-asterisk` class to the `*` span
+  - `resetBadge()` updated to kill any active cycle before reset
+  - `playBadgeReveal()` glow colors updated from old green rgba values to navy/light rgba matching new brand
+
+---
+
+## [2026.03.6] — 2026-03-02
+
+### Changed
+- **Body font changed from Geist Sans to native system font stack.** All body text, UI, buttons, and inputs now use `system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`. No install required. Updated across `index.html`, `example-mobile.html`, `DESIGN-SYSTEM.md` (removed `npm install geist` step), `CLAUDE.md`, and `components/shadcn-customizations.yaml`.
+
+---
+
+## [2026.03.5] — 2026-03-02
+
+### Changed
+- **Navy and dark surface color updated: #1A1E4C → #0E1233.** Affects `--brand-highlight-navy` and `--brand-surface` (dark mode) across all files: `tokens/colors.css`, `tokens/brand-colors.yaml`, `index.html` (CSS vars, swatches, spec table, Get Started snippet), `example-mobile.html` (CSS vars).
+
+---
+
+## [2026.03.4] — 2026-03-02
+
+### Fixed
+- **`example-mobile.html` — replaced old green brand tokens with new blue palette.** Updated `:root` and `.dark` brand variable blocks to match `tokens/colors.css` (removed `--brand-highlight-light-green`, `--brand-highlight-grass-green`, `--brand-highlight-dark-green`; added full `--brand-*` set). Badge CSS remapped (lavender tint / blue / navy). Phone-frame and bottom-nav backgrounds → `--brand-surface`. Notification dot, avatar circle → `--brand-highlight-blue`. Toast success icon → `--brand-offset-green`. Added Lora for h1 to match main font rules.
+- **`index.html` logo section — replaced hardcoded old green hex values.** `.logo-badge-dark` and `.logo-text-dark` CSS now use `--brand-highlight-light` / `--brand-highlight-navy`. Removed stale grass-green asterisk override; `--brand-highlight-blue` used consistently for `*` in both variants. way\*ID and Lineage\*Labs spec tables updated to show new token names and swatches.
+
+---
+
+## [2026.03.3] — 2026-03-02
+
+### Changed
+- **Lora (serif) added as display and h1 font.** h0 (`.h0`) and h1 now use `"Lora", Georgia, serif` instead of Poppins. h2–h4 remain on Poppins. Updated `DESIGN-SYSTEM.md` (§2 Font Stack, Installation, CSS Setup, Cardinal Rule 6), `CLAUDE.md` (Theme Configuration table + Rule 3), and `index.html` (Google Fonts link, CSS rules, typography demo, Get Started snippet). Google Fonts URL updated to load `Lora:ital,wght@0,400;0,700;1,400` alongside `Poppins:wght@600;700;800`.
+- **Get Started code snippet in `index.html` — brand token values corrected.** Step 5 previously showed stale hex values from before the rebrand; now shows the current correct values matching `tokens/colors.css`.
+
+---
+
+## [2026.03.2] — 2026-03-02
+
+### Changed
+- **Brand highlight hex values corrected (tokens/colors.css, tokens/brand-colors.yaml, index.html).**
+  - `--brand-highlight-blue`: #4D5EC0 → #4751B0
+  - `--brand-highlight-navy`: #1C2155 → #1A1E4C
+  - `--brand-highlight-light`: #EEEEFF → #F0F0F0
+  - `--brand-surface` (light): #F4F4FA → #F0F0F0
+  - `--brand-surface` (dark): #101228 → #1A1E4C
+  - `--brand-surface-blue`: #3A4BBA → #4751B0
+  - `--brand-surface-grey` (dark): #1E2050 → #252963
+- **Offset accents are now mode-dependent.** Light and dark/blue surfaces use different offset values for better contrast. Updated `:root` and `.dark` blocks in both `tokens/colors.css` and `index.html`:
+  - `--brand-offset-lavender`: light #A6A1E2 / dark #B4AFE7
+  - `--brand-offset-green`: light #A0D246 / dark #D5FD8D
+  - `--brand-offset-yellow`: #FFD27D (same across modes)
+  - `--brand-offset-coral`: light #F0936B / dark #E99F80
+- **Swatch section in index.html** split into "Offset Accents — Light surface" and "Highlights + Offsets — Dark / Blue surface" panels showing both offset tone sets.
+- **tokens/brand-colors.yaml** updated with dual `hex_light`/`hex_dark` fields for all offset tokens, corrected surface hex values, added `dark_grey` surface entry (#252963).
+
+---
+
+## [2026.03.1] — 2026-03-02
+
+### Changed
+- **Brand color palette replaced — green → blue/indigo (§4, tokens/brand-colors.yaml, tokens/colors.css).**
+  Full rebrand from a green-based palette to a blue/indigo palette across all three files.
+  - `--brand-highlight-grass-green` (#3DC683) → `--brand-highlight-blue` (#4D5EC0)
+  - `--brand-highlight-light-green` (#B9F7CE) → `--brand-highlight-light` (#EEEEFF)
+  - `--brand-highlight-dark-green` (#15552E) → `--brand-highlight-navy` (#1C2155)
+  - `--brand-surface` (light) #FAFAFA → #F4F4FA
+  - `--brand-surface` (dark) #151515 → #101228
+  - `--brand-surface-grey` #EAEAEA → #E4E4EE (light) / #1E2050 (dark)
+- **Added `--brand-surface-blue` (#3A4BBA).** New token for blue-mode marketing/hero section backgrounds. No equivalent previously existed.
+- **Added four offset accent tokens.** New supplementary palette consistent across all modes:
+  - `--brand-offset-lavender`: #9C91C8
+  - `--brand-offset-green`: #8DC540
+  - `--brand-offset-yellow`: #F3C438
+  - `--brand-offset-coral`: #E05840
+- **All brand variable references in `index.html` renamed** to match new token names (bulk replace, 106 occurrences). Swatch display section, code snippets, and CSS all updated.
+- **`tokens/brand-colors.yaml` rewritten** with new palette structure: highlights (blue/navy/light), surfaces (light/grey/blue/dark), offsets (lavender/green/yellow/coral), updated usage philosophy adding Tier 3 offset rules and new contrast warnings.
+
+---
+
+## [2026.03.0] — 2026-03-02
+
+### Added
+- **CSS Transitions subsection (§5).** Documents `animations/transitions.css` utility classes (`.transition-*`, `.hover-lift`, `.hover-press`, `.hover-fade`, `.focus-ring`), when to use CSS vs. GSAP, and how the built-in reduced-motion block works.
+- **Reduced Motion implementation guide (§5).** Code examples for `prefersReducedMotion()` and `applyPreset()` named exports from `animations/presets.js`; documents internal reduced-motion handling in all `animations/scroll-triggers.js` factory functions.
+- **`revealLeft`, `revealRight`, `pinSection()` in scroll presets table (§5).** Previously undocumented exports now included with trigger/effect/scrub values and a usage example for `pinSection()`.
+- **Hover column in Animation Assignments table (§6).** Adds Hover column to component animation table: `Card` (interactive) → `hover-lift`, `Button` → `hover-press`. Added `NavigationMenu` → `fadeIn` row. Fixed `Accordion` exit from `reverse` → `reverse expandIn`.
+- **Chart Color Token Reference table (§6).** Maps `--chart-1` through `--chart-5` to data series roles (primary → quinary) with light/dark color descriptions and series-order assignment rule.
+- **Sidebar Tokens subsection (§4).** Documents all 8 `--sidebar-*` tokens from `tokens/colors.css` with purpose descriptions and usage guidance.
+- **Tailwind v4 @theme block note (§4).** Explains the commented-out `@theme inline` block in `tokens/colors.css` and when to copy it into a project.
+
+### Fixed
+- **Icon stroke weight contradiction (§9).** Clarified that `1.5` is the fallback for uncategorized contexts; per-context rules now take explicit precedence. Renamed "Stroke weight consistency" to "Stroke weight by context".
+- **Mobile sidebar collapse pattern (§8).** Replaced vague "Stacked — sidebar below or hidden" with specific `Sheet` component guidance and `min(280px, calc(100vw - 3rem))` width rule.
+- **400ms duration note (§5).** Explains why `slideIn*` presets use 400ms (intentional intermediate, not a named token) and links to `tokens/motion.yaml` as the authoritative token list.
+- **h0 vs .hero-title ambiguity (§2).** Added blockquote note that `.hero-title` was deprecated in `[2026.02.19]` and `.h0` is the canonical display-scale class.
+- **Parallax effect value (§5).** Corrected `yPercent: -15` value in scroll presets table to match actual `parallax()` factory function default in `animations/scroll-triggers.js`.
+
+---
+
 ## [2026.02.24] — 2026-02-26
 
 ### Added

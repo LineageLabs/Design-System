@@ -9,7 +9,7 @@
 #   - Style: Maia (soft and rounded, generous spacing)
 #   - Base Color: Gray (blue-tinted neutrals)
 #   - Radius: Large (--radius: 0.875rem)
-#   - Font: Geist Sans (body) + Poppins (headlines h1-h4)
+#   - Font: System UI (body) + Lora (h0, h1) + Poppins (h2-h4)
 #   - Icons: Hugeicons
 #
 # Rules:
@@ -26,8 +26,9 @@ general_rules:
   - "Set --radius to 0.875rem (large — Maia soft/rounded aesthetic)"
   - "Never override --primary, --background, etc. with brand colors globally"
   - "Apply brand colors via --brand-* custom properties only where designs specify"
-  - "Use Geist Sans for all body text and UI elements"
-  - "Use Poppins (weight 600-800) for h1-h4 headings only"
+  - "Use system UI font stack for all body text and UI elements"
+  - "Use Lora (weight 400) for .h0 display text, Lora (weight 700) for h1"
+  - "Use Poppins (weight 600-800) for h2-h4 headings only"
   - "Use Hugeicons as the default icon library"
 
 # ==============================================================================
@@ -35,7 +36,7 @@ general_rules:
 # ==============================================================================
 
 typography:
-  body_font: "Geist Sans"
+  body_font: "system-ui, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif"
   headline_font: "Poppins"
   code_font: "Geist Mono"
   headline_elements: [".h0", "h1", "h2", "h3", "h4"]
@@ -48,10 +49,10 @@ typography:
     letter_spacing: "-0.03em"
     usage: "Hero / landing display text — huge, light-weight"
   notes: |
-    Poppins is used ONLY for h0-h4 elements.
+    Lora is used for .h0 (400) and h1 (700) only.
+    Poppins is used ONLY for h2-h4 elements (600-800).
     h0 is a utility class (.h0), not a native HTML element — use it on any tag for display-size text.
-    h0 uses weight 400 (regular); h1-h4 use 600-800.
-    All other text (body, buttons, inputs, labels, nav) uses Geist Sans.
+    All other text (body, buttons, inputs, labels, nav) uses the system font stack — no install required.
     Code blocks use Geist Mono.
 
 # ==============================================================================

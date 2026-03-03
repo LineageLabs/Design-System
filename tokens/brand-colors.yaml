@@ -11,41 +11,85 @@
 
 surfaces:
   light_background:
-    hex: "#FAFAFA"
+    hex: "#F0F0F0"
     css_var: "--brand-surface"
     context: "light theme"
     use: "Page-level background when design calls for brand surface instead of shadcn --background"
 
   light_grey:
-    hex: "#EAEAEA"
+    hex: "#E4E4EE"
     css_var: "--brand-surface-grey"
     context: "light theme"
     use: "Subtle section dividers, secondary cards, visual separation on light backgrounds"
 
+  blue_background:
+    hex: "#4751B0"
+    css_var: "--brand-surface-blue"
+    context: "blue mode (marketing, hero, branded sections)"
+    use: "Full-bleed brand sections, hero backgrounds, marketing pages with blue treatment"
+
   dark_background:
-    hex: "#151515"
+    hex: "#0E1233"
     css_var: "--brand-surface"
     context: "dark theme"
     use: "Page-level background when design calls for brand surface instead of shadcn --background"
 
-highlights:
-  light_green:
-    hex: "#B9F7CE"
-    css_var: "--brand-highlight-light-green"
-    context: "both light and dark backgrounds"
-    use: "Soft backgrounds, success-adjacent emphasis, subtle brand tints, card accents"
+  dark_grey:
+    hex: "#252963"
+    css_var: "--brand-surface-grey"
+    context: "dark theme"
+    use: "Subtle elevation on dark surfaces — card backgrounds, divider accents"
 
-  grass_green:
-    hex: "#3DC683"
-    css_var: "--brand-highlight-grass-green"
-    context: "both light and dark backgrounds"
+highlights:
+  blue:
+    hex: "#4751B0"
+    css_var: "--brand-highlight-blue"
+    context: "all modes — same value on light, dark, and blue surfaces"
     use: "Primary brand accent, interactive highlights, CTAs, badges, status indicators"
 
-  dark_green:
-    hex: "#15552E"
-    css_var: "--brand-highlight-dark-green"
-    context: "both light and dark backgrounds"
-    use: "Deep brand accent, text on light-green backgrounds, strong emphasis, dark badges"
+  navy:
+    hex: "#0E1233"
+    css_var: "--brand-highlight-navy"
+    context: "light and blue modes — on light and blue surfaces"
+    use: "Deep brand anchor, text on light surfaces, strong emphasis, dark badges"
+
+  light:
+    hex: "#F0F0F0"
+    css_var: "--brand-highlight-light"
+    context: "dark and blue modes — on dark and blue surfaces only"
+    use: "Near-white for text, soft highlights, and card accents on dark/blue backgrounds"
+
+offsets:
+  # Offsets have two tones — use the light set on #F0F0F0 surface,
+  # use the dark/blue set on #0E1233 or #4751B0 surfaces.
+
+  lavender:
+    hex_light: "#A6A1E2"
+    hex_dark: "#B4AFE7"
+    css_var: "--brand-offset-lavender"
+    context: "light surface: #A6A1E2 / dark+blue surface: #B4AFE7"
+    use: "Secondary accent, decorative elements, category tags, subtle brand tints"
+
+  green:
+    hex_light: "#A0D246"
+    hex_dark: "#D5FD8D"
+    css_var: "--brand-offset-green"
+    context: "light surface: #A0D246 / dark+blue surface: #D5FD8D"
+    use: "Positive/success-adjacent emphasis, growth indicators, complementary accent"
+
+  yellow:
+    hex_light: "#FFD27D"
+    hex_dark: "#FFD27D"
+    css_var: "--brand-offset-yellow"
+    context: "same value across all surfaces"
+    use: "Warmth, attention, star ratings, highlight callouts"
+
+  coral:
+    hex_light: "#F0936B"
+    hex_dark: "#E99F80"
+    css_var: "--brand-offset-coral"
+    context: "light surface: #F0936B / dark+blue surface: #E99F80"
+    use: "Energetic accent, notification badges, heat indicators — not for errors (use --destructive)"
 
 # ==============================================================================
 # COLOR USAGE PHILOSOPHY
@@ -56,11 +100,16 @@ highlights:
 #   --foreground, --muted-foreground, --border, --background, surfaces, greys.
 #   Use for the vast majority of UI.
 #
-# Tier 2 — Brand greens (purposeful):
+# Tier 2 — Brand highlights (purposeful):
+#   --brand-highlight-blue / --brand-highlight-navy / --brand-highlight-light.
 #   May be decorative (avatars, badges, accents) but must still serve a purpose.
 #   Don't scatter brand color without intent.
 #
-# Tier 3 — Non-brand colors (functional only):
+# Tier 3 — Offset accents (sparing):
+#   --brand-offset-* colors. Use one per composition maximum.
+#   Each must earn its place — never two offsets competing in the same section.
+#
+# Tier 4 — Non-brand colors (functional only):
 #   --destructive (red), etc. Only when the color itself conveys meaning
 #   (errors, warnings, overdue). Never purely decorative.
 # ==============================================================================
@@ -73,9 +122,9 @@ when_to_use:
   - "Hero sections and marketing pages — brand highlights on headings or CTAs"
   - "Status badges and tags — highlight colors for special emphasis"
   - "Illustrated content — brand palette for custom illustrations or icons"
-  - "Custom branded backgrounds — #FAFAFA / #151515 as page-level overrides"
+  - "Custom branded backgrounds — use --brand-surface-* variants"
   - "Avatars, branded accents — decorative but purposeful identity touches"
-  - "Gradient accents using brand green palette"
+  - "Gradient accents using brand blue / navy pair"
   - "Any element the design explicitly marks as 'brand colored'"
 
 when_NOT_to_use:
@@ -84,5 +133,8 @@ when_NOT_to_use:
   - "Borders and dividers — use --border"
   - "Error states — use --destructive"
   - "Focus rings — use --ring"
-  - "Functional indicators where color conveys status (e.g. priority levels) — use neutrals, not brand colors"
+  - "Functional indicators where color conveys status (e.g. priority levels) — use neutrals"
   - "Any UI element not explicitly marked as 'brand colored' in the design"
+  - "--brand-highlight-light on light backgrounds (insufficient contrast)"
+  - "--brand-highlight-navy on dark backgrounds (insufficient contrast)"
+  - "Two offset colors in the same visual section"

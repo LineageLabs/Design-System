@@ -13,8 +13,9 @@
 | **Styling** | [Tailwind CSS](https://tailwindcss.com/) (v4, OKLCH) | Comes with shadcn. Use their utilities. |
 | **Animation** | [GSAP v3](https://gsap.com/docs/v3/) | `npm install gsap`. Use our presets. |
 | **Color Format** | OKLCH | Current shadcn/Tailwind v4 standard. |
-| **Body Font** | [Geist Sans](https://vercel.com/font) | Default for all body text, UI elements. |
-| **Headline Font** | [Poppins](https://fonts.google.com/specimen/Poppins) | Used for h1–h4 headings only. |
+| **Body Font** | System UI (native font stack) | Default for all body text, UI elements. No install required. |
+| **Display / H1 Font** | [Lora](https://fonts.google.com/specimen/Lora) | Serif. Used for h0 and h1 only. |
+| **Headline Font** | [Poppins](https://fonts.google.com/specimen/Poppins) | Sans-serif. Used for h2–h4 only. |
 | **Icons** | [Hugeicons](https://hugeicons.com/) | Default icon library. |
 | **Border Radius** | Large (`--radius: 0.875rem`) | Maia style — soft and rounded. |
 
@@ -28,7 +29,7 @@ Generated from: `shadcn/create`
 | Style | **Maia** — Soft and rounded, generous spacing |
 | Base Color | **Gray** — Blue-tinted neutral (hue ~262 OKLCH) |
 | Theme | Gray |
-| Font | Geist Sans (body) + **Poppins (headlines)** |
+| Font | System UI (body) + **Lora (h0–h1)** + **Poppins (h2–h4)** |
 | Icon Library | Hugeicons |
 | Radius | Large (`0.875rem`) |
 | Menu Accent | Subtle |
@@ -41,7 +42,7 @@ Generated from: `shadcn/create`
 3. **GSAP for motion.** Use presets from `animations/presets.js`. Don't invent new durations/easings.
 4. **Respect reduced motion.** Every animation checks `prefers-reduced-motion`.
 5. **Never edit shadcn source.** Customise via CSS overrides, Tailwind composition, or wrapper components.
-6. **Geist for body, Poppins for headlines.** Apply Poppins to h0–h4 elements only. h0 uses weight 400 (regular); h1–h4 use 600–800.
+6. **System UI for body, Lora for h0–h1, Poppins for h2–h4.** h0 is Lora 400 (display); h1 is Lora 700. h2–h4 use Poppins 600–800. Body/UI uses the native system font stack — no install required.
 7. **Use Hugeicons.** Default icon set for all UI elements and illustrations.
 
 ---
@@ -52,44 +53,49 @@ Generated from: `shadcn/create`
 
 | Role | Font Family | Weight Range | Usage |
 |------|-------------|-------------|-------|
-| **Display** (h0) | `"Poppins", sans-serif` | 400 | Hero / landing display text — huge, light-weight |
-| **Headlines** (h1–h4) | `"Poppins", sans-serif` | 600–800 | Page titles, section headers, hero text |
-| **Body / UI** | `"Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif` | 400–700 | All body text, buttons, inputs, labels, navigation |
+| **Display** (h0) | `"Lora", Georgia, serif` | 400 | Hero / landing display text — huge, light-weight |
+| **H1** | `"Lora", Georgia, serif` | 700 | Page-level titles and hero headings |
+| **Headlines** (h2–h4) | `"Poppins", sans-serif` | 600–800 | Section headers, card titles, sub-headings |
+| **Body / UI** | `system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"` | 400–700 | All body text, buttons, inputs, labels, navigation |
 | **Code** | `"Geist Mono", "SF Mono", "Fira Code", Consolas, monospace` | 400 | Code blocks, inline code, terminal |
 
 ### Installation
 
 ```html
-<!-- Google Fonts — Poppins (headlines only) -->
+<!-- Google Fonts — Lora (h0, h1) + Poppins (h2–h4) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-```
-
-```bash
-# Geist (installed via npm or included with Next.js)
-npm install geist
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 ```
 
 ### CSS Setup
 
 ```css
 body {
-  font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-h1, h2, h3, h4 {
+h1 {
+  font-family: "Lora", Georgia, serif;
+  font-weight: 700;
+}
+
+h2, h3, h4 {
   font-family: "Poppins", sans-serif;
 }
 
 .h0 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Lora", Georgia, serif;
   font-weight: 400;
   font-size: clamp(3.5rem, 8vw, 6rem);
   line-height: 1.0;
   letter-spacing: -0.03em;
 }
+```
 
+> **`.h0` is the canonical display-scale class.** A `.hero-title` class was used in earlier project files; as of `[2026.02.19]` it was aligned to identical values as `.h0` and is no longer part of the design system. In all new code, use `.h0` directly.
+
+```css
 h1 {
   font-size: clamp(2rem, 4vw, 2.75rem);   /* 32px → 44px */
 }
@@ -101,6 +107,75 @@ h2 {
 code, pre {
   font-family: "Geist Mono", "SF Mono", "Fira Code", Consolas, monospace;
 }
+```
+
+### Font Usage Rules
+
+These rules define which elements are permitted to use each font family. Font families are used purposefully by role — not for arbitrary visual contrast. Visual hierarchy within a family is built through weight, size, colour, and spacing.
+
+#### Rule 1 — Font Family Roles
+
+Any screen may use up to all three families when the content hierarchy genuinely requires it. A family enters only when an element in its designated role is present on that screen — it does not appear decoratively. Monospace is always permitted for code elements and is excluded from the count.
+
+| Family | Role | Scale |
+|--------|------|-------|
+| System UI | Body text + utility | Paragraphs, subtitles, nav links, button text, inputs, labels, badge text, captions, tooltips |
+| Lora | Display / major headline | `h1`, `.h0`, and any text playing an equivalent display-level role |
+| Poppins | Section headings | `h2`, `h3`, `h4`, and any text playing an equivalent section-title role |
+
+```
+✅ System UI only — screen with no content above body scale
+✅ System UI + Lora — screen with an h1 or .h0, no section headings
+✅ System UI + Lora + Poppins — landing page with h1 hero + h2 section titles
+❌ Lora on a nav label — nav links are body/utility scale
+❌ System UI on a card title at 1.25rem / 700 — heading-level content, use Poppins
+```
+
+#### Rule 2 — Elevated Text Uses Heading Fonts; Body Text Does Not
+
+Lora and Poppins belong to text that commands hierarchy — headings, section titles, card titles, prominent display figures. System UI belongs to text at body scale: paragraphs, subtitles, nav links, buttons, labels, badges. The critical anti-pattern in both directions: bolding up a System UI element where a heading font should speak, or scattering Poppins/Lora into body copy for decorative emphasis. If text is asserting structural importance through size and weight, it should speak in the heading font for its level.
+
+```
+✅ <h3 class="card-title">Recent Payments</h3>       — Poppins via h3, structural heading
+✅ Large stat "2.4M ARR" as display figure            — Poppins (section-heading scale)
+✅ Paragraph description below the stat              — System UI
+❌ .card-title { font-size:1.1rem; font-weight:700; } — heading-level content left in System UI
+❌ em, strong { font-family: "Poppins"; }             — inline emphasis is not a heading
+```
+
+#### Rule 3 — Hierarchy Within System UI (Body and Utility Scale)
+
+At body and utility scale — labels, captions, small kickers, metadata — System UI covers all hierarchy needs without switching family. Achieve contrast through **weight, size, colour, and spacing**. System UI weight range: `400` (body copy), `500` (secondary labels), `600` (button text, input values), `700` (strong emphasis, small kickers). `--muted-foreground` colour and `text-transform: uppercase; letter-spacing` carry additional contrast for the smallest labels.
+
+```
+✅ .kicker { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+   — small metadata label, System UI is correct at this scale
+❌ .kicker { font-family: "Poppins"; font-size: 0.65rem; }
+   — a 0.65rem label does not warrant a display font
+```
+
+#### Rule 4 — System UI is the Body and Utility Font
+
+System UI covers all text at body scale and below, and all purely functional/utility elements regardless of size: paragraph text, descriptive subtitles, nav links, button text, input text and placeholders, form labels, badge and chip text, toast text, captions, tooltips, and metadata labels.
+
+Text that rises above body level — through prominent size, display weight, or structural role (titling a section, heading a card, leading a slide, anchoring a stat block) — should use **Poppins** (section-heading level) or **Lora** (display/hero level) rather than a heavier or larger System UI weight. The threshold question is: *is this text asserting hierarchy over the content that follows it?* If yes, it belongs in a heading font.
+
+```
+✅ Nav links, button text, input labels, badge text    — System UI (utility scale)
+✅ Card title "Recent Payments" as <h3>               — Poppins (section heading)
+✅ Dashboard stat "2.4M" displayed large               — Poppins (display-level figure)
+✅ Hero headline "Payments that feel human."           — Lora (h1, display level)
+❌ .section-title { font-size:1.1rem; font-weight:700; font-family: system-ui; }
+   — heading-level content should speak in Poppins, not bold System UI
+```
+
+#### Rule 5 — Web Font Loads Must Be Justified
+
+Every font family in the Google Fonts `<link>` (or `next/font` import) must be actively used by at least one visible semantic element on that specific page. If no `h2`–`h4` appears on a standalone screen, omit Poppins from the font load. If no `h1` or `.h0` appears, omit Lora. On the design system reference page (which demonstrates the full type scale), all families may be loaded.
+
+```
+✅ example-mobile.html: loads Lora only — h1 greeting present, no h2–h4 on screen
+❌ example-mobile.html: loads Poppins even though no h2–h4 appears — wasted network request
 ```
 
 ---
@@ -184,6 +259,29 @@ inputs (`oklch(1 0 0 / 15%)`). Dark `--card` differs from `--background` (lighte
 
 **Full list (all 30+ variables):** [`tokens/colors.css`](tokens/colors.css)
 
+### Sidebar Tokens
+
+Eight `--sidebar-*` tokens power the shadcn `Sidebar` component. Do not use them as general color tokens outside of sidebar contexts.
+
+| Token | Purpose |
+|-------|---------|
+| `--sidebar` | Sidebar panel background |
+| `--sidebar-foreground` | Sidebar text |
+| `--sidebar-primary` | Active nav item background |
+| `--sidebar-primary-foreground` | Active nav item text |
+| `--sidebar-accent` | Hover state background |
+| `--sidebar-accent-foreground` | Hover state text |
+| `--sidebar-border` | Sidebar border / divider |
+| `--sidebar-ring` | Focus ring inside sidebar |
+
+For page-level layouts that happen to include a sidebar, use the standard `--background`, `--border`, etc. tokens — not `--sidebar-*` unless you are styling the shadcn `Sidebar` component. Exact OKLCH values are in [`tokens/colors.css`](tokens/colors.css).
+
+### Tailwind v4 @theme Block
+
+`tokens/colors.css` includes a commented-out `@theme inline` block (Section 3 of the file). Copy this into your project's root CSS file when using **Tailwind v4** — it maps all CSS variables to Tailwind color utilities (`bg-primary`, `text-muted-foreground`, `border-border`, etc.).
+
+**Note:** The block is commented out because it is framework-specific. Tailwind v3 projects use the `tailwind.config.js` `theme.extend.colors` approach instead.
+
 ---
 
 ## 5. Animation & Motion
@@ -200,6 +298,8 @@ Foundation: **GSAP v3**. All presets in [`animations/presets.js`](animations/pre
 | `slow` | `500ms` | Page sections, large reveals |
 | `slower` | `700ms` | Staggered sequences |
 | `slowest` | `1000ms` | Hero/cinematic, logo reveals |
+
+> **Note on 400ms:** The `slideIn*` entrance presets use 400ms (and `slideOut*` exit presets use 300ms). These are intentional intermediate values hardcoded in `animations/presets.js` — they do not map to a named duration token. When referencing these presets' timing, write `400ms` explicitly. All other named tokens above match [`tokens/motion.yaml`](tokens/motion.yaml) exactly.
 
 ### Easings
 
@@ -243,13 +343,98 @@ Foundation: **GSAP v3**. All presets in [`animations/presets.js`](animations/pre
 | `press` | `scale: 0.97` | 100ms |
 | `glow` | Brand-colored box-shadow | 200ms |
 
+### CSS Transitions vs. GSAP
+
+**Use CSS transitions** (`animations/transitions.css`) for:
+- Simple, reversible hover/focus/active states driven by CSS pseudo-classes
+- Effects limited to `transform`, `opacity`, or `box-shadow`
+- Anything that does not require sequencing, timelines, or scroll triggers
+
+**Use GSAP** (`animations/presets.js`) for:
+- Component mount/unmount (Dialog, Sheet, Toast, Popover)
+- Multi-step sequences or timelines (logo reveal, hero entrance)
+- Scroll-triggered animations
+- Anything requiring JS callbacks, dynamic values, or `ScrollTrigger`
+
+#### CSS Transition Utility Classes
+
+Import `animations/transitions.css` into your global stylesheet:
+
+| Class | Effect | Duration |
+|-------|--------|----------|
+| `.transition-instant` | Sets `transition-duration` | 100ms |
+| `.transition-fast` | Sets `transition-duration` | 150ms |
+| `.transition-normal` | Sets `transition-duration` | 300ms |
+| `.transition-slow` | Sets `transition-duration` | 500ms |
+| `.hover-lift` | `translateY(-4px)` + `shadow-md` on `:hover` | 200ms |
+| `.hover-press` | `scale(0.97)` on `:active` | 100ms |
+| `.hover-fade` | `opacity: 0.8` on `:hover` | 150ms |
+| `.focus-ring` | `box-shadow` ring via `var(--ring)` on `:focus-visible` | 150ms |
+
+All duration utilities apply `cubic-bezier(0.25, 0.46, 0.45, 0.94)` — the same easing as `power2.out`. The `@media (prefers-reduced-motion: reduce)` block in the file sets all durations to `0ms` and removes all transforms.
+
+```html
+<!-- Simple card hover → CSS class, no GSAP needed -->
+<div class="hover-lift transition-normal">Card content</div>
+
+<!-- Dialog open/close → GSAP preset -->
+```
+
 ### Scroll-Triggered Presets
 
 | Preset | Trigger | Effect | Scrub |
 |--------|---------|--------|-------|
 | `revealUp` | `top 85%` | `y: 40 → 0, fade in` | No |
+| `revealLeft` | `top 85%` | `x: -40 → 0, fade in` | No |
+| `revealRight` | `top 85%` | `x: 40 → 0, fade in` | No |
 | `parallax` | `top bottom → bottom top` | `yPercent: -15` | Yes |
 | `staggerReveal` | `top 85%` | Stagger `0.08s`, `y: 30, fade in` | No |
+
+**`pinSection(gsap, trigger, pinTarget, options)`** — Pins `pinTarget` in place while the user scrolls through `trigger`. Returns `null` under reduced motion (no pin applied). Use for sticky image / sticky sidebar layouts.
+
+```js
+import { pinSection } from "@/design-system/animations/scroll-triggers";
+// Pin the sidebar image while the right column scrolls past
+pinSection(gsap, ".case-study-section", ".case-study-image");
+```
+
+### Reduced Motion
+
+Every animation must respect `prefers-reduced-motion: reduce`. This is an accessibility requirement.
+
+#### GSAP — use `applyPreset()` or check manually
+
+```js
+// Option 1 (recommended) — handles reduced motion automatically
+import { applyPreset } from "@/design-system/animations/presets";
+applyPreset(gsap, ".dialog-content", "scaleIn");
+
+// Option 2 — manual check when writing raw gsap.fromTo()
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const duration = reducedMotion ? 0 : 0.3;
+gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration });
+```
+
+#### ScrollTrigger — handled internally
+
+All factory functions in `animations/scroll-triggers.js` check reduced motion internally:
+- `revealUp()`, `staggerReveal()` — call `gsap.set()` to make elements instantly visible; no scroll effect applied.
+- `parallax()` — returns `null`. Element stays in its natural position.
+- `pinSection()` — returns `null`. No pin is applied.
+
+You do not need to guard calls to these factory functions — they self-manage.
+
+#### CSS — already handled
+
+All classes in `animations/transitions.css` include a `@media (prefers-reduced-motion: reduce)` block that sets `transition-duration: 0ms` and removes all transforms. No extra work needed.
+
+#### Rules
+
+1. Never use raw `gsap.to()` / `gsap.from()` without a duration guard. Use `applyPreset()` or check `window.matchMedia("(prefers-reduced-motion: reduce)").matches` directly.
+2. Never hand-roll scrubbing animations without a reduced-motion guard. Use `parallax()`.
+3. Opacity-only fades are permissible at ≤150ms even under reduced motion. All translate and scale transforms must use `duration: 0`.
+
+---
 
 ### Logo Animation
 
@@ -257,28 +442,30 @@ Two logo variants — both have light/dark treatments and animated GSAP reveals.
 Full spec and CSS classes: [`assets/logos/README.md`](assets/logos/README.md)
 
 #### way\*ID Badge
-Pill badge. Colors **invert** between modes (dark-green bg + light-green text on light; reversed on dark).
+Outline pill badge. Transparent background; navy border + text in light mode, light border + text in dark mode.
 
 | Property | Light | Dark |
 |----------|-------|------|
-| Background | `#15552E` | `#B9F7CE` |
-| Text | `#B9F7CE` | `#15552E` |
-| Font | Poppins 500, `-0.05em` | same |
+| Background | transparent | transparent |
+| Text | `--brand-highlight-navy` | `--brand-highlight-light` |
+| Border | `1.5px solid --brand-highlight-navy` | `1px solid --brand-highlight-light` |
+| Radius | `var(--radius)` (0.875rem) | same |
+| Font | Poppins 600, `-0.08em` | same |
 
-Animation — three phases (~1s total):
-1. Pill: `scale 0.9→1`, `blur 8px→0`, `back.out(1.7)`, 450ms
-2. Characters stagger from center (the `*`): `blur 4px→0`, `y 6→0`, 0.05s stagger
-3. Dual glow pulse: tight + wide layer, 650ms
+Animation:
+- Reveal: `scale 0.94→1`, `opacity 0→1`, `back.out(1.7)`, 300ms
+- Post-reveal: `*` cycles `--brand-offset-lavender → green → yellow → coral` every 1.4s; re-reads CSS vars each step for dark mode compat
+- Static badges: `*` shows `--brand-offset-lavender` via CSS (no JS needed)
 
 #### Lineage\*Labs Wordmark
-Text wordmark. Poppins 600, `-0.05em`. The `*` is always grass green (`#3DC683`).
+Text wordmark. Lora, brand blue on light / near-white on dark. The `*` uses navy on light, offset green on dark.
 
 | Property | Light | Dark |
 |----------|-------|------|
-| Text | `#15552E` (dark green) | `#B9F7CE` (light green) |
-| Asterisk | `#3DC683` | `#3DC683` |
-| Font | Poppins 600, `-0.05em` | same |
-| Default size | `36px` / `54px` line-height | same |
+| Text | `var(--brand-highlight-blue)` `#4751B0` | `var(--brand-surface)` `#F0F0F0` |
+| Asterisk | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-offset-green)` `#A0D246` / `#D5FD8D` |
+| Font | Lora **600**, `-0.03em` | Lora **400**, `-0.03em` |
+| Default size | `64px` / `82px` line-height | same |
 
 Animation — three phases (~1s total):
 1. Characters stagger from left: `blur 6px→0`, `x -16→0`, `y 8→0`, 0.04s stagger
@@ -325,17 +512,20 @@ Key characteristics:
 
 ### Animation Assignments
 
-| Component | Entrance | Exit |
-|-----------|----------|------|
-| `Dialog` / `AlertDialog` | `scaleIn` | `scaleOut` |
-| `Sheet` (left) | `slideInLeft` | `slideOutLeft` |
-| `Sheet` (right) | `slideInRight` | `slideOutRight` |
-| `DropdownMenu` | `slideInDown` | `fadeOut` |
-| `Popover` | `scaleIn` | `fadeOut` |
-| `Tooltip` | `fadeIn` (fast) | `fadeOut` (fast) |
-| `Toast` | `slideInRight` | `slideOutUp` |
-| `Accordion` | `expandIn` | reverse |
-| `Tabs` (panel) | `fadeIn` (fast) | — |
+| Component | Entrance | Exit | Hover |
+|-----------|----------|------|-------|
+| `Dialog` / `AlertDialog` | `scaleIn` | `scaleOut` | — |
+| `Sheet` (left) | `slideInLeft` | `slideOutLeft` | — |
+| `Sheet` (right) | `slideInRight` | `slideOutRight` | — |
+| `DropdownMenu` | `slideInDown` | `fadeOut` | — |
+| `Popover` | `scaleIn` | `fadeOut` | — |
+| `Tooltip` | `fadeIn` (fast) | `fadeOut` (fast) | — |
+| `Toast` | `slideInRight` | `slideOutUp` | — |
+| `Accordion` | `expandIn` | reverse `expandIn` | — |
+| `Tabs` (panel) | `fadeIn` (fast) | — | — |
+| `NavigationMenu` | `fadeIn` | — | — |
+| `Card` (interactive) | — | — | `hover-lift` (CSS class) |
+| `Button` | — | — | `hover-press` (CSS class) |
 
 ### Style Overrides
 
@@ -370,6 +560,18 @@ shadcn/ui includes a `Chart` component backed by [Recharts](https://recharts.org
 3. Include a chart header (title + optional description) and a legend below the chart body.
 4. Keep grid lines subtle — `var(--border)` at 1px. No heavy visual chrome.
 5. Tooltip follows the Maia card aesthetic — rounded, subtle shadow, card background.
+
+#### Chart Color Token Reference
+
+| Token | Light | Dark | Data Series Role |
+|-------|-------|------|-----------------|
+| `--chart-1` | Warm orange | Blue | Primary / first series |
+| `--chart-2` | Teal | Green | Secondary series |
+| `--chart-3` | Navy | Amber | Tertiary series |
+| `--chart-4` | Yellow | Purple | Quaternary series |
+| `--chart-5` | Amber | Red | Quinary series |
+
+**Assignment rule:** Assign tokens by series order — `--chart-1` for the first data series, `--chart-2` for the second, and so on. Never skip a token or assign by color preference. Exact OKLCH values are in [`tokens/colors.css`](tokens/colors.css).
 
 ### Card with Image
 
@@ -554,8 +756,10 @@ Aligned with Tailwind CSS v4 defaults:
 
 | Breakpoint | Behavior |
 |------------|----------|
-| Mobile (default) | Stacked — sidebar below or hidden |
-| `md:` (768px) | Side-by-side — sidebar 280px, content fills rest |
+| Mobile (default) | Sidebar hidden — use `Sheet` (mobile nav drawer) to reveal |
+| `md:` (768px) | Side-by-side — sidebar 280px fixed, content fills remaining width |
+
+**Mobile sidebar pattern:** Use a shadcn `Sheet` component (entrance: `slideInLeft`, exit: `slideOutLeft`) triggered by a hamburger button. Sheet width: `min(280px, calc(100vw - 3rem))`. Do not stack the sidebar below content — it pushes critical content below the fold.
 
 ### Typography
 
@@ -743,7 +947,7 @@ Fixed-height containers (`height: 100vh` + `overflow: hidden`) are the most comm
 | Install | `npm install hugeicons-react` |
 | Import | `import { IconName } from "hugeicons-react"` |
 | Default Size | `20px` (matches shadcn button icon sizing) |
-| Default Stroke | `1.5` |
+| Default Stroke | `1.5` (fallback — see stroke-weight rules below) |
 
 Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific icon is not available in Hugeicons.
 
@@ -768,7 +972,7 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 3. **Neutral backgrounds for icon containers.** When an icon sits inside a tinted container (e.g. a quick-action tile), use `--muted-foreground` at 10% opacity. Do not use brand colors or `--primary` for icon container backgrounds — keep them uniform.
 4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-grass-green` at 12% bg + `--brand-highlight-grass-green` stroke). But this is the exception, not the default.
 5. **Consistent sizing.** Within a row or grid of icons, all icons must use the same width/height and viewBox. Don't mix 18px and 20px icons in the same context.
-6. **Stroke weight consistency.** Toolbar and inline icons use `stroke-width: 1.5–1.75`. Quick action tile icons use `stroke-width: 2`. FAB icons use `stroke-width: 2.5`. Don't mix weights within a context.
+6. **Stroke weight by context.** The `1.5` default above is the fallback for uncategorized contexts. When a recognized context applies, it takes precedence: Inline / toolbar — `1.5` standard, `1.75` emphasized. Quick-action tile — `2`. FAB — `2.5`. Navigation bar — `1.5`. Do not mix weights within a single context.
 
 #### Dark Mode
 

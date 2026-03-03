@@ -6,7 +6,7 @@
   <title>Design System Reference</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <style>
@@ -29,11 +29,22 @@
       --ring: oklch(0.707 0.022 261.325);
       --destructive: oklch(0.577 0.245 27.325);
 
-      --brand-surface: #FAFAFA;
-      --brand-surface-grey: #EAEAEA;
-      --brand-highlight-light-green: #B9F7CE;
-      --brand-highlight-grass-green: #3DC683;
-      --brand-highlight-dark-green: #15552E;
+      --brand-surface: #F0F0F0;
+      --brand-surface-grey: #E4E4EE;
+      --brand-surface-blue: #4751B0;
+      --brand-highlight-blue: #4751B0;
+      --brand-highlight-navy: #0E1233;
+      --brand-highlight-light: #F0F0F0;
+      --brand-offset-lavender: #A6A1E2;
+      --brand-offset-green: #A0D246;
+      --brand-offset-yellow: #FFD27D;
+      --brand-offset-coral: #F0936B;
+
+      --chart-1: oklch(0.646 0.222 41.116);
+      --chart-2: oklch(0.6 0.118 184.704);
+      --chart-3: oklch(0.398 0.07 227.392);
+      --chart-4: oklch(0.828 0.189 84.429);
+      --chart-5: oklch(0.769 0.188 70.08);
     }
 
     .dark {
@@ -51,11 +62,22 @@
       --ring: oklch(0.551 0.027 264.364);
       --destructive: oklch(0.704 0.191 22.216);
 
-      --brand-surface: #151515;
-      --brand-surface-grey: #EAEAEA;
-      --brand-highlight-light-green: #B9F7CE;
-      --brand-highlight-grass-green: #3DC683;
-      --brand-highlight-dark-green: #15552E;
+      --brand-surface: #0E1233;
+      --brand-surface-grey: #252963;
+      --brand-surface-blue: #4751B0;
+      --brand-highlight-blue: #4751B0;
+      --brand-highlight-navy: #0E1233;
+      --brand-highlight-light: #F0F0F0;
+      --brand-offset-lavender: #B4AFE7;
+      --brand-offset-green: #D5FD8D;
+      --brand-offset-yellow: #FFD27D;
+      --brand-offset-coral: #E99F80;
+
+      --chart-1: oklch(0.488 0.243 264.376);
+      --chart-2: oklch(0.696 0.17 162.48);
+      --chart-3: oklch(0.769 0.188 70.08);
+      --chart-4: oklch(0.627 0.265 303.9);
+      --chart-5: oklch(0.645 0.246 16.439);
     }
 
     /* =========================================================
@@ -66,8 +88,8 @@
     img, video, svg, canvas, iframe { max-width: 100%; height: auto; }
 
     body {
-      font-family: "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--background);
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background-color: var(--brand-surface);
       color: var(--foreground);
       line-height: 1.6;
       overflow-wrap: break-word;
@@ -81,13 +103,17 @@
     }
 
     h1, h2, h3, h4 {
-      font-family: "Poppins", sans-serif;
       line-height: 1.2;
     }
-    h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
+    h1 {
+      font-family: "Lora", Georgia, serif;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+    }
+    h2, h3, h4 { font-family: "Poppins", sans-serif; }
     h2 { font-size: clamp(1.5rem, 3vw, 1.75rem); }
     .h0 {
-      font-family: "Poppins", sans-serif;
+      font-family: "Lora", Georgia, serif;
       font-weight: 400;
       font-size: clamp(3.5rem, 8vw, 6rem);
       line-height: 1.0;
@@ -113,7 +139,7 @@
     section { margin-bottom: 6rem; }
 
     .section-label {
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -129,7 +155,7 @@
     }
 
     .section-desc {
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       color: var(--muted-foreground);
       margin-bottom: 2rem;
       max-width: 60ch;
@@ -148,7 +174,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--background);
+      background: var(--brand-surface);
       border-bottom: 1px solid var(--border);
       padding: 0 1.5rem;
       display: flex;
@@ -174,22 +200,22 @@
       align-items: center;
       justify-content: center;
       padding: 0.125rem 0.7rem;
-      border-radius: 15px;
-      background: var(--brand-highlight-dark-green);
-      color: var(--brand-highlight-light-green);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--brand-highlight-navy);
       font-family: "Poppins", sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 15px;
       line-height: 22px;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.08em;
       white-space: nowrap;
       flex-shrink: 0;
-      border: 1px solid transparent;
+      border: 1.5px solid var(--brand-highlight-navy);
     }
     .dark .logo-badge {
-      background: var(--brand-highlight-light-green);
-      color: var(--brand-highlight-dark-green);
-      border-color: var(--brand-highlight-dark-green);
+      background: transparent;
+      color: var(--brand-highlight-light);
+      border: 1px solid var(--brand-highlight-light);
     }
     /* Forced dark variant — for always-dark preview panels */
     .logo-badge-dark {
@@ -197,50 +223,57 @@
       align-items: center;
       justify-content: center;
       padding: 0.125rem 0.7rem;
-      border-radius: 15px;
-      background: #B9F7CE;
-      color: #15552E;
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--brand-highlight-light);
       font-family: "Poppins", sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 15px;
       line-height: 22px;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.08em;
       white-space: nowrap;
       flex-shrink: 0;
-      border: 1px solid #15552E;
+      border: 1px solid var(--brand-highlight-light);
     }
+    /* Asterisk accent — offset green by default; animated badges cycle through all 4 */
+    .logo-badge .logo-badge-asterisk,
+    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-green); }
     .logo-wordmark { font-weight: 700; }
-    .logo-char { will-change: filter, opacity, transform; }
 
     /* Lineage*Labs text wordmark */
     .logo-text {
-      font-family: "Poppins", sans-serif;
+      font-family: "Lora", Georgia, serif;
+      font-style: normal;
       font-weight: 600;
-      font-size: 36px;
-      line-height: 54px;
-      letter-spacing: -0.05em;
-      color: var(--brand-highlight-dark-green);
+      font-size: 64px;
+      line-height: 82px;
+      letter-spacing: -0.03em;
+      color: var(--brand-highlight-blue);
       white-space: nowrap;
     }
+    .logo-text .logo-asterisk {
+      color: var(--brand-highlight-navy);
+    }
     .dark .logo-text {
-      color: var(--brand-highlight-light-green);
+      font-weight: 400;
+      color: var(--brand-surface);
+    }
+    .dark .logo-text .logo-asterisk {
+      color: var(--brand-offset-green);
     }
     /* Forced dark variant for always-dark panels */
     .logo-text-dark {
-      font-family: "Poppins", sans-serif;
-      font-weight: 600;
-      font-size: 36px;
-      line-height: 54px;
-      letter-spacing: -0.05em;
-      color: #B9F7CE;
+      font-family: "Lora", Georgia, serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 82px;
+      letter-spacing: -0.03em;
+      color: var(--brand-surface);
       white-space: nowrap;
     }
-    .logo-text .logo-asterisk,
     .logo-text-dark .logo-asterisk {
-      color: var(--brand-highlight-grass-green);
-    }
-    .logo-text-dark .logo-asterisk {
-      color: #3DC683;
+      color: var(--brand-offset-green);
     }
 
     nav {
@@ -279,20 +312,20 @@
 
     .hero-eyebrow {
       display: inline-block;
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       padding: 0.25rem 0.75rem;
       border-radius: 999px;
-      background: var(--brand-highlight-light-green);
+      background: var(--brand-highlight-light);
       color: #000;
       margin-bottom: 1.5rem;
     }
 
     .hero-title {
-      font-family: "Poppins", sans-serif;
+      font-family: "Lora", Georgia, serif;
       font-size: clamp(3.5rem, 8vw, 6rem);
       font-weight: 400;
       line-height: 1.0;
@@ -300,11 +333,11 @@
       letter-spacing: -0.03em;
     }
 
-    .hero-title .accent-grass-green  { color: var(--brand-highlight-grass-green); }
-    .hero-title .accent-dark-green { color: var(--brand-highlight-grass-green); }
+    .hero-title .accent-grass-green  { color: var(--brand-highlight-blue); }
+    .hero-title .accent-dark-green { color: var(--brand-highlight-blue); }
 
     .hero-sub {
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 1.125rem;
       color: var(--muted-foreground);
       max-width: 55ch;
@@ -318,7 +351,7 @@
     }
 
     .tag {
-      font-family: "Geist Sans", -apple-system, sans-serif;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 0.75rem;
       font-weight: 600;
       padding: 0.25rem 0.625rem;
@@ -441,7 +474,7 @@
     .token-table tr:hover td, .comp-table tr:hover td { background: var(--muted); }
 
     .duration-bar-wrap { display: flex; align-items: center; gap: 0.75rem; }
-    .duration-bar { height: 6px; border-radius: 999px; background: var(--brand-highlight-grass-green); flex-shrink: 0; }
+    .duration-bar { height: 6px; border-radius: 999px; background: var(--brand-highlight-blue); flex-shrink: 0; }
 
     .easing-badge {
       display: inline-block;
@@ -475,7 +508,7 @@
       cursor: pointer;
       transition: border-color 0.15s ease-out;
     }
-    .demo-card:hover { border-color: var(--brand-highlight-grass-green); }
+    .demo-card:hover { border-color: var(--brand-highlight-blue); }
 
     .demo-box {
       width: 48px; height: 48px;
@@ -485,7 +518,7 @@
     }
     .demo-label { font-size: 0.8rem; font-weight: 600; text-align: center; }
     .demo-sublabel { font-size: 0.7rem; color: var(--muted-foreground); text-align: center; }
-    .play-hint { font-size: 0.7rem; color: var(--brand-highlight-grass-green); font-weight: 500; }
+    .play-hint { font-size: 0.7rem; color: var(--brand-highlight-blue); font-weight: 500; }
 
     /* =========================================================
        HOVER DEMO
@@ -544,14 +577,14 @@
       margin: 0.1rem;
     }
     .pill-entrance {
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 12%, transparent);
-      color: var(--brand-highlight-grass-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
+      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
     }
     .pill-exit {
-      background: color-mix(in srgb, var(--brand-highlight-dark-green) 12%, transparent);
-      color: var(--brand-highlight-dark-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-dark-green) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-navy) 12%, transparent);
+      color: var(--brand-highlight-navy);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-navy) 30%, transparent);
     }
 
     /* =========================================================
@@ -635,21 +668,21 @@
 
     /* Feature badge (anim-tag) dark mode — boost contrast */
     .dark .comp-demo-label .anim-tag {
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 18%, transparent);
-      color: var(--brand-highlight-light-green);
-      border-color: color-mix(in srgb, var(--brand-highlight-grass-green) 40%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 18%, transparent);
+      color: var(--brand-highlight-light);
+      border-color: color-mix(in srgb, var(--brand-highlight-blue) 40%, transparent);
     }
 
     /* Badge light-green dark mode — swap to light text on tinted bg */
     .dark .maia-badge-light-green {
-      background: color-mix(in srgb, var(--brand-highlight-dark-green) 50%, transparent);
-      color: var(--brand-highlight-light-green);
-      border-color: color-mix(in srgb, var(--brand-highlight-grass-green) 35%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-navy) 50%, transparent);
+      color: var(--brand-highlight-light);
+      border-color: color-mix(in srgb, var(--brand-highlight-blue) 35%, transparent);
     }
     .code-block .cm { color: oklch(0.6 0 0); }
-    .code-block .kw { color: var(--brand-highlight-grass-green); }
-    .code-block .st { color: var(--brand-highlight-light-green); }
-    .code-block .fn { color: var(--brand-highlight-dark-green); }
+    .code-block .kw { color: var(--brand-highlight-blue); }
+    .code-block .st { color: var(--brand-highlight-light); }
+    .code-block .fn { color: var(--brand-highlight-navy); }
 
     .step-list { display: flex; flex-direction: column; gap: 1.5rem; }
     .step { display: flex; gap: 1rem; align-items: flex-start; }
@@ -826,19 +859,19 @@
     .maia-badge-default { background: var(--secondary); color: var(--secondary-foreground); }
     .maia-badge-outline { background: transparent; color: var(--foreground); box-shadow: inset 0 0 0 1px var(--border); }
     .maia-badge-light-green {
-      background: color-mix(in srgb, var(--brand-highlight-light-green) 25%, transparent);
-      color: var(--brand-highlight-dark-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-light-green) 40%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-light) 25%, transparent);
+      color: var(--brand-highlight-navy);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-light) 40%, transparent);
     }
     .maia-badge-grass-green {
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 15%, transparent);
-      color: var(--brand-highlight-grass-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent);
+      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
     }
     .maia-badge-dark-green {
-      background: var(--brand-highlight-dark-green);
-      color: var(--brand-highlight-light-green);
-      border: 1px solid var(--brand-highlight-dark-green);
+      background: var(--brand-highlight-navy);
+      color: var(--brand-highlight-light);
+      border: 1px solid var(--brand-highlight-navy);
     }
 
     /* Cards — Maia rounded-2xl with ring instead of border */
@@ -1025,16 +1058,17 @@
       height: 200px;
     }
     .maia-chart-bar-group {
-      display: flex; align-items: flex-end; gap: 0.5rem;
+      display: flex; gap: 0.5rem;
       height: 100%; padding-top: 1rem;
     }
     .maia-chart-bar-col {
-      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.375rem;
+      flex: 1; height: 100%; display: flex; flex-direction: column;
+      justify-content: flex-end; align-items: center; gap: 0.375rem;
     }
     .maia-chart-bar {
       width: 100%; border-radius: 0.375rem 0.375rem 0 0;
       min-height: 4px;
-      transition: opacity 0.2s ease-out;
+      transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s ease-out;
     }
     .maia-chart-bar-col:hover .maia-chart-bar { opacity: 0.8; }
     .maia-chart-bar-label {
@@ -1174,9 +1208,9 @@
       font-size: 0.65rem;
       padding: 0.1rem 0.4rem;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 12%, transparent);
-      color: var(--brand-highlight-grass-green);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-grass-green) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
+      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
       letter-spacing: 0; text-transform: none;
     }
     .comp-demo-area {
@@ -1229,7 +1263,7 @@
     }
     .container-demo-gutter {
       flex: 0 0 1.5rem;
-      background: color-mix(in srgb, var(--brand-highlight-grass-green) 15%, transparent);
+      background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1257,7 +1291,7 @@
 
   <header class="site-header">
     <a href="#" class="logo">
-      <span class="logo-badge">way*ID</span>
+      <span class="logo-badge">way<span class="logo-badge-asterisk">*</span>ID</span>
       <span class="logo-wordmark">Design System</span>
     </a>
     <nav>
@@ -1271,6 +1305,9 @@
       <a href="#components">Components</a>
       <a href="#start">Get Started</a>
       <a href="#mobile-example">Mobile Example</a>
+      <a href="#pitchdeck">Pitch Deck</a>
+      <a href="#landing">Landing</a>
+      <a href="#reviews">Reviews</a>
       <button class="theme-toggle" id="themeToggle">Dark mode</button>
     </nav>
   </header>
@@ -1293,7 +1330,7 @@
       <div class="hero-tags">
         <span class="tag">shadcn/ui · Maia style</span>
         <span class="tag">Gray base color</span>
-        <span class="tag">Geist + Poppins</span>
+        <span class="tag">System UI + Lora + Poppins</span>
         <span class="tag">Hugeicons</span>
         <span class="tag">Tailwind v4 · OKLCH</span>
         <span class="tag">GSAP v3</span>
@@ -1306,22 +1343,23 @@
       <p class="section-label">Section 01</p>
       <h2 class="section-title">Typography</h2>
       <p class="section-desc">
-        <strong>Poppins</strong> for headlines (h0–h4), <strong>Geist Sans</strong> for
-        body text and UI, <strong>Geist Mono</strong> for code.
+        <strong>Lora</strong> (serif) for h0–h1, <strong>Poppins</strong> for h2–h4,
+        <strong>system UI</strong> for body text and UI, <strong>Geist Mono</strong> for code.
       </p>
       <div class="type-preview reveal">
         <div class="type-row"><span class="type-label">h0</span><span class="h0">The quick brown</span></div>
-        <div class="type-row"><span class="type-label">h1</span><h1 style="font-weight:800;">The quick brown fox</h1></div>
+        <div class="type-row"><span class="type-label">h1</span><h1 style="font-weight:700;">The quick brown fox</h1></div>
         <div class="type-row"><span class="type-label">h2</span><h2 style="font-weight:700;">The quick brown fox</h2></div>
         <div class="type-row"><span class="type-label">h3</span><h3 style="font-size:1.25rem;font-weight:700;">The quick brown fox jumps</h3></div>
         <div class="type-row"><span class="type-label">h4</span><h4 style="font-size:1rem;font-weight:600;">The quick brown fox jumps over</h4></div>
         <div style="height:1px;background:var(--border);"></div>
-        <div class="type-row"><span class="type-label">body</span><p>The quick brown fox jumps over the lazy dog. Body text in Geist Sans.</p></div>
+        <div class="type-row"><span class="type-label">body</span><p>The quick brown fox jumps over the lazy dog. Body text uses the system font stack.</p></div>
         <div class="type-row"><span class="type-label">code</span><code>const theme = "gray-maia";</code></div>
       </div>
       <div class="card-grid" style="margin-top:1.5rem;">
-        <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 400 (h0), 600–800 (h1–h4)<br>h0–h4 only</div></div>
-        <div class="card reveal"><div class="card-title">Body Font</div><div class="card-sub"><strong>Geist Sans</strong> · 400–700<br>All body, buttons, inputs</div></div>
+        <div class="card reveal"><div class="card-title">Display &amp; H1 Font</div><div class="card-sub"><strong>Lora</strong> (serif) · 400–700<br>h0 (400) and h1 (700) only</div></div>
+        <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 600–800<br>h2–h4 only</div></div>
+        <div class="card reveal"><div class="card-title">Body Font</div><div class="card-sub"><strong>System UI</strong> · 400–700<br>All body, buttons, inputs</div></div>
         <div class="card reveal"><div class="card-title">Code Font</div><div class="card-sub"><strong>Geist Mono</strong> · 400<br>Code blocks, inline <code>code</code></div></div>
         <div class="card reveal"><div class="card-title">Icons</div><div class="card-sub"><strong>Hugeicons</strong><br><code>npm i hugeicons-react</code></div></div>
       </div>
@@ -1339,26 +1377,26 @@
       <!-- ═══════════════ way*ID Badge ═══════════════ -->
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">way*ID Badge</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Pill-shaped badge with dark green background / light green text. Inverts in dark mode.
+        Pill-shaped badge with navy background / light text. Inverts in dark mode.
       </p>
 
       <!-- way*ID — Light -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge" style="font-size:22px;padding:0.2rem 1rem;border-radius:18px;">way*ID</span>
-          <span class="logo-badge" style="font-size:15px;">way*ID</span>
-          <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+          <span class="logo-badge" style="font-size:22px;padding:0.2rem 1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge" style="font-size:15px;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
         </div>
       </div>
 
       <!-- way*ID — Dark -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
-        <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge-dark" style="font-size:22px;padding:0.2rem 1rem;border-radius:18px;">way*ID</span>
-          <span class="logo-badge-dark" style="font-size:15px;">way*ID</span>
-          <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;border-radius:12px;">way*ID</span>
+        <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+          <span class="logo-badge-dark" style="font-size:22px;padding:0.2rem 1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge-dark" style="font-size:15px;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
         </div>
       </div>
 
@@ -1369,14 +1407,14 @@
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
+              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
           </div>
-          <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+          <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;border-radius:18px;">way*ID</span>
+              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
@@ -1388,26 +1426,26 @@
       <!-- ═══════════════ Lineage*Labs Wordmark ═══════════════ -->
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Lineage*Labs Wordmark</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Text wordmark in Poppins 600. Dark green on light backgrounds, light green on dark. The <code>*</code> uses grass green as an accent.
+        Text wordmark in Lora. Weight 600 on light (<code>--brand-highlight-blue</code>), weight 400 on dark (<code>--brand-surface</code>). The <code>*</code> uses <code>--brand-highlight-navy</code> on light, <code>--brand-offset-green</code> on dark.
       </p>
 
       <!-- Lineage*Labs — Light -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Light Mode <span class="anim-tag">Poppins 600</span> <span class="anim-tag">#15552E</span></div>
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">Lora 600</span> <span class="anim-tag">--brand-highlight-blue</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;gap:1.5rem;">
-          <span class="logo-text" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
-          <span class="logo-text" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
-          <span class="logo-text" style="font-size:16px;line-height:24px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text" style="font-size:36px;line-height:46px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text" style="font-size:24px;line-height:31px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
         </div>
       </div>
 
       <!-- Lineage*Labs — Dark -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Dark Mode <span class="anim-tag">#B9F7CE</span></div>
-        <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:1.5rem;">
-          <span class="logo-text-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
-          <span class="logo-text-dark" style="font-size:24px;line-height:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
-          <span class="logo-text-dark" style="font-size:16px;line-height:24px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">Lora 400</span> <span class="anim-tag">--brand-surface</span></div>
+        <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:1.5rem;">
+          <span class="logo-text-dark">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark" style="font-size:36px;line-height:46px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+          <span class="logo-text-dark" style="font-size:24px;line-height:31px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
         </div>
       </div>
 
@@ -1417,15 +1455,15 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
-            <div style="min-height:56px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-text ll-anim-light" id="ll-anim-light" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+            <div style="min-height:82px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-text ll-anim-light" id="ll-anim-light">Lineage<span class="logo-asterisk">*</span>Labs</span>
             </div>
             <button class="theme-toggle" id="ll-anim-light-replay">Replay</button>
           </div>
-          <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+          <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
-            <div style="min-height:56px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-text-dark ll-anim-dark" id="ll-anim-dark" style="font-size:36px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
+            <div style="min-height:82px;display:flex;align-items:center;justify-content:center;">
+              <span class="logo-text-dark ll-anim-dark" id="ll-anim-dark">Lineage<span class="logo-asterisk">*</span>Labs</span>
             </div>
             <button class="theme-toggle" id="ll-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
@@ -1470,33 +1508,32 @@
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Background</td>
-                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
-                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;">transparent</td>
+                <td style="padding:0.5rem 0.75rem;">transparent</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Text color</td>
-                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code></td>
-                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#0E1233;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F0F0F0;border:1px solid #ccc;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Border</td>
-                <td style="padding:0.5rem 0.75rem;">transparent</td>
-                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> (1px solid)</td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> (1.5px solid)</td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> (1px solid)</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Radius</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>15px</code></td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>9999px</code> (pill)</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Font</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 500 weight, <code>-0.05em</code> letter-spacing</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 600 weight, <code>-0.08em</code> letter-spacing</td>
               </tr>
               <tr>
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">
-                  Phase 1: <code>scale 0.9→1, blur 8→0, back.out(1.7), 450ms</code><br>
-                  Phase 2: <code>chars stagger 0.05s from center, blur 4→0 + y 6→0, power2.out, 300ms</code><br>
-                  Phase 3: <code>dual glow pulse (16px tight + 40px wide), power2.out→in, 650ms</code>
+                  Reveal: <code>scale 0.94→1, opacity 0→1, back.out(1.7), 300ms</code><br>
+                  Post-reveal: <code>* cycles lavender → green → yellow → coral every 1.4s (power2.inOut crossfade)</code>
                 </td>
               </tr>
             </tbody>
@@ -1519,20 +1556,21 @@
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Text color</td>
-                <td style="padding:0.5rem 0.75rem;"><code>#15552E</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#15552E;vertical-align:middle;margin-left:0.25rem;"></span></td>
-                <td style="padding:0.5rem 0.75rem;"><code>#B9F7CE</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#B9F7CE;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-blue</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#4751B0;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F0F0F0;border:1px solid #ccc;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Asterisk color</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>#3DC683</code> (grass green) <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#3DC683;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>--brand-highlight-blue</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#4751B0;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Font</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 600 weight, <code>-0.05em</code> letter-spacing</td>
+                <td style="padding:0.5rem 0.75rem;">Lora, <strong>600</strong> weight, <code>-0.03em</code> letter-spacing</td>
+                <td style="padding:0.5rem 0.75rem;">Lora, <strong>400</strong> weight, <code>-0.03em</code> letter-spacing</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Default size</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>36px</code> / line-height <code>54px</code></td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>64px</code> / line-height <code>82px</code></td>
               </tr>
               <tr>
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
@@ -1556,25 +1594,64 @@
         These are <em>additive</em> — they never replace shadcn semantic tokens.
         Apply via <code>--brand-*</code> only when a design explicitly calls for brand treatment.
       </p>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights — Light backgrounds</h3>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights</h3>
       <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="swatch"><div class="swatch-color" style="background:#B9F7CE;"></div><div class="swatch-info"><div class="swatch-name">Light Green</div><div class="swatch-hex">#B9F7CE</div><div class="swatch-var">--brand-highlight-light-green</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#3DC683;"></div><div class="swatch-info"><div class="swatch-name">Grass Green</div><div class="swatch-hex">#3DC683</div><div class="swatch-var">--brand-highlight-grass-green</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#15552E;"></div><div class="swatch-info"><div class="swatch-name">Dark Green</div><div class="swatch-hex">#15552E</div><div class="swatch-var">--brand-highlight-dark-green</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FAFAFA;border-bottom:1px solid #eaeaea;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FAFAFA</div><div class="swatch-var">--brand-surface</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#EAEAEA;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#EAEAEA</div><div class="swatch-var">--brand-surface-grey</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info"><div class="swatch-name">Blue</div><div class="swatch-hex">#4751B0</div><div class="swatch-var">--brand-highlight-blue</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0E1233;"></div><div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#0E1233</div><div class="swatch-var">--brand-highlight-navy</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F0F0F0;border-bottom:1px solid #E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Light</div><div class="swatch-hex">#F0F0F0</div><div class="swatch-var">--brand-highlight-light</div></div></div>
       </div>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights — Dark backgrounds</h3>
-      <div class="swatch-grid reveal" style="background:#151515;padding:1rem;border-radius:var(--radius);border:1px solid #2a2a2a;">
-        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#B9F7CE;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Light Green</div><div class="swatch-hex" style="color:#888;">#B9F7CE</div><div class="swatch-var" style="color:#888;">--brand-highlight-light-green</div></div></div>
-        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#3DC683;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Grass Green</div><div class="swatch-hex" style="color:#888;">#3DC683</div><div class="swatch-var" style="color:#888;">--brand-highlight-grass-green</div></div></div>
-        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#15552E;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Dark Green</div><div class="swatch-hex" style="color:#888;">#15552E</div><div class="swatch-var" style="color:#888;">--brand-highlight-dark-green</div></div></div>
-        <div class="swatch" style="border-color:#2a2a2a;"><div class="swatch-color" style="background:#151515;border-bottom:1px solid #2a2a2a;"></div><div class="swatch-info" style="background:#1e1e1e;color:#fff;"><div class="swatch-name">Surface</div><div class="swatch-hex" style="color:#888;">#151515</div><div class="swatch-var" style="color:#888;">--brand-surface</div></div></div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Surfaces</h3>
+      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="swatch"><div class="swatch-color" style="background:#F0F0F0;border-bottom:1px solid #E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#F0F0F0</div><div class="swatch-var">--brand-surface</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#E4E4EE</div><div class="swatch-var">--brand-surface-grey</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info"><div class="swatch-name">Surface Blue</div><div class="swatch-hex">#4751B0</div><div class="swatch-var">--brand-surface-blue</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0E1233;"></div><div class="swatch-info" style="color:#fff;background:#252963;"><div class="swatch-name">Surface Dark</div><div class="swatch-hex" style="color:#B4AFE7;">#0E1233</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface (dark)</div></div></div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Offset Accents — Light surface</h3>
+      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="swatch"><div class="swatch-color" style="background:#A6A1E2;"></div><div class="swatch-info"><div class="swatch-name">Lavender</div><div class="swatch-hex">#A6A1E2</div><div class="swatch-var">--brand-offset-lavender</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#A0D246;"></div><div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#A0D246</div><div class="swatch-var">--brand-offset-green</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFD27D;"></div><div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#FFD27D</div><div class="swatch-var">--brand-offset-yellow</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F0936B;"></div><div class="swatch-info"><div class="swatch-name">Coral</div><div class="swatch-hex">#F0936B</div><div class="swatch-var">--brand-offset-coral</div></div></div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights + Offsets — Dark / Blue surface</h3>
+      <div class="swatch-grid reveal" style="background:#0E1233;padding:1rem;border-radius:var(--radius);border:1px solid #252963;">
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Blue</div><div class="swatch-hex" style="color:#B4AFE7;">#4751B0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-highlight-blue</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#F0F0F0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Light</div><div class="swatch-hex" style="color:#B4AFE7;">#F0F0F0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-highlight-light</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Surface Blue</div><div class="swatch-hex" style="color:#B4AFE7;">#4751B0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface-blue</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#B4AFE7;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Lavender</div><div class="swatch-hex" style="color:#B4AFE7;">#B4AFE7</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-lavender</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#D5FD8D;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Green</div><div class="swatch-hex" style="color:#B4AFE7;">#D5FD8D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-green</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#FFD27D;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Yellow</div><div class="swatch-hex" style="color:#B4AFE7;">#FFD27D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-yellow</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#E99F80;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Coral</div><div class="swatch-hex" style="color:#B4AFE7;">#E99F80</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-coral</div></div></div>
       </div>
       <div class="divider"></div>
       <div class="card-grid">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
         <div class="card" style="border-left:3px solid var(--destructive);"><div class="card-title">When NOT to use</div><div class="card-sub">Buttons, inputs, cards, body text, borders, error states, focus rings — use shadcn semantic tokens for all standard UI.</div></div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">Sidebar Tokens</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1rem;">Eight <code>--sidebar-*</code> tokens power the shadcn <code>Sidebar</code> component. Do not use them as general color tokens outside of sidebar contexts.</p>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>--sidebar</code></td><td>Sidebar panel background</td></tr>
+            <tr><td><code>--sidebar-foreground</code></td><td>Sidebar text</td></tr>
+            <tr><td><code>--sidebar-primary</code></td><td>Active nav item background</td></tr>
+            <tr><td><code>--sidebar-primary-foreground</code></td><td>Active nav item text</td></tr>
+            <tr><td><code>--sidebar-accent</code></td><td>Hover state background</td></tr>
+            <tr><td><code>--sidebar-accent-foreground</code></td><td>Hover state text</td></tr>
+            <tr><td><code>--sidebar-border</code></td><td>Sidebar border / divider</td></tr>
+            <tr><td><code>--sidebar-ring</code></td><td>Focus ring inside sidebar</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="card" style="border-left:3px solid var(--border);"><div class="card-title">Tailwind v4 @theme block</div><div class="card-sub"><code>tokens/colors.css</code> includes a commented-out <code>@theme inline</code> block (Section 3). Copy it into your project's root CSS when using Tailwind v4 — it maps all CSS variables to Tailwind utilities (<code>bg-primary</code>, <code>text-muted-foreground</code>, etc.).</div></div>
+        <div class="card" style="border-left:3px solid var(--border);"><div class="card-title">Sidebar vs. standard tokens</div><div class="card-sub">For page layouts that include a sidebar, use standard <code>--background</code>, <code>--border</code>, etc. tokens. Only use <code>--sidebar-*</code> tokens when styling the shadcn <code>Sidebar</code> component itself.</div></div>
       </div>
     </section>
 
@@ -1593,19 +1670,19 @@
         <table class="token-table">
           <thead><tr><th>Token</th><th>rem</th><th>px</th><th>Tailwind</th><th style="width:40%;">Visual</th></tr></thead>
           <tbody>
-            <tr><td><code>0.5</code></td><td>0.125</td><td>2</td><td>0.5</td><td><div style="width:2px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>1</code></td><td>0.25</td><td>4</td><td>1</td><td><div style="width:4px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>2</code></td><td>0.5</td><td>8</td><td>2</td><td><div style="width:8px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>3</code></td><td>0.75</td><td>12</td><td>3</td><td><div style="width:12px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>4</code></td><td>1</td><td>16</td><td>4</td><td><div style="width:16px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>5</code></td><td>1.25</td><td>20</td><td>5</td><td><div style="width:20px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>6</code></td><td>1.5</td><td>24</td><td>6</td><td><div style="width:24px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>8</code></td><td>2</td><td>32</td><td>8</td><td><div style="width:32px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>10</code></td><td>2.5</td><td>40</td><td>10</td><td><div style="width:40px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>12</code></td><td>3</td><td>48</td><td>12</td><td><div style="width:48px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>16</code></td><td>4</td><td>64</td><td>16</td><td><div style="width:64px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>20</code></td><td>5</td><td>80</td><td>20</td><td><div style="width:80px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
-            <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-highlight-grass-green);border-radius:2px;"></div></td></tr>
+            <tr><td><code>0.5</code></td><td>0.125</td><td>2</td><td>0.5</td><td><div style="width:2px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>1</code></td><td>0.25</td><td>4</td><td>1</td><td><div style="width:4px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>2</code></td><td>0.5</td><td>8</td><td>2</td><td><div style="width:8px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>3</code></td><td>0.75</td><td>12</td><td>3</td><td><div style="width:12px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>4</code></td><td>1</td><td>16</td><td>4</td><td><div style="width:16px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>5</code></td><td>1.25</td><td>20</td><td>5</td><td><div style="width:20px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>6</code></td><td>1.5</td><td>24</td><td>6</td><td><div style="width:24px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>8</code></td><td>2</td><td>32</td><td>8</td><td><div style="width:32px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>10</code></td><td>2.5</td><td>40</td><td>10</td><td><div style="width:40px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>12</code></td><td>3</td><td>48</td><td>12</td><td><div style="width:48px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>16</code></td><td>4</td><td>64</td><td>16</td><td><div style="width:64px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>20</code></td><td>5</td><td>80</td><td>20</td><td><div style="width:80px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
           </tbody>
         </table>
         </div>
@@ -1679,9 +1756,9 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
       <div class="card-grid reveal">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">4px grid</div><div class="card-sub">All spacing is a multiple of 4px (0.25rem). No arbitrary values like 0.3rem or 7px.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Generous by default</div><div class="card-sub">Maia style. Cards get <code>p-6</code> not <code>p-4</code>. Sections get <code>mb-20</code> not <code>mb-12</code>. When in doubt, size up.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Gap over margin</div><div class="card-sub">Use flexbox/grid <code>gap</code> for layout spacing. Avoid margin for sibling separation.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">4px grid</div><div class="card-sub">All spacing is a multiple of 4px (0.25rem). No arbitrary values like 0.3rem or 7px.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Generous by default</div><div class="card-sub">Maia style. Cards get <code>p-6</code> not <code>p-4</code>. Sections get <code>mb-20</code> not <code>mb-12</code>. When in doubt, size up.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Gap over margin</div><div class="card-sub">Use flexbox/grid <code>gap</code> for layout spacing. Avoid margin for sibling separation.</div></div>
         <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">44px touch targets</div><div class="card-sub">Interactive elements must be &ge;44&times;44px. Use padding or <code>min-height</code> to reach this.</div></div>
       </div>
     </section>
@@ -1703,7 +1780,7 @@
           <tbody>
             <tr><td><code>mobile</code></td><td>0px</td><td>(default)</td><td>Base styles — all CSS starts here</td></tr>
             <tr><td><code>sm</code></td><td>640px</td><td><code>sm:</code></td><td>Large phones landscape — rarely needed</td></tr>
-            <tr style="background:color-mix(in srgb, var(--brand-highlight-grass-green) 8%, transparent);"><td><code>md</code></td><td><strong>768px</strong></td><td><code>md:</code></td><td><strong>Primary breakpoint</strong> — layout shifts here</td></tr>
+            <tr style="background:color-mix(in srgb, var(--brand-highlight-blue) 8%, transparent);"><td><code>md</code></td><td><strong>768px</strong></td><td><code>md:</code></td><td><strong>Primary breakpoint</strong> — layout shifts here</td></tr>
             <tr><td><code>lg</code></td><td>1024px</td><td><code>lg:</code></td><td>Desktop — full multi-column layouts</td></tr>
             <tr><td><code>xl</code></td><td>1280px</td><td><code>xl:</code></td><td>Wide desktop — optional refinement</td></tr>
           </tbody>
@@ -1713,7 +1790,7 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Live Grid Demo <span style="font-weight:400;color:var(--muted-foreground);font-size:0.75rem;">— resize your browser to see columns change</span></h3>
       <div class="reveal" style="margin-bottom:1rem;">
-        <p class="bp-indicator" id="bpIndicator" style="font-size:0.8rem;font-weight:600;margin-bottom:0.75rem;padding:0.375rem 0.75rem;border-radius:9999px;display:inline-block;background:var(--brand-highlight-dark-green);color:var(--brand-highlight-light-green);">
+        <p class="bp-indicator" id="bpIndicator" style="font-size:0.8rem;font-weight:600;margin-bottom:0.75rem;padding:0.375rem 0.75rem;border-radius:9999px;display:inline-block;background:var(--brand-highlight-navy);color:var(--brand-highlight-light);">
           📱 Mobile — 1 column
         </p>
       </div>
@@ -1748,10 +1825,10 @@
           <thead><tr><th>Element</th><th>Mobile → Desktop</th><th>Changes?</th></tr></thead>
           <tbody>
             <tr><td>Component padding</td><td>Same everywhere</td><td style="color:var(--muted-foreground);">No</td></tr>
-            <tr><td>Page gutter</td><td>1.5rem → 2rem</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — at md:</td></tr>
-            <tr><td>Section spacing</td><td>May compress one step</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — below md:</td></tr>
-            <tr><td>Grid columns</td><td>1 → 2 → 3</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Yes — at md: and lg:</td></tr>
-            <tr><td>Headlines</td><td>Fluid via clamp()</td><td style="color:var(--brand-highlight-grass-green);font-weight:600;">Fluid</td></tr>
+            <tr><td>Page gutter</td><td>1.5rem → 2rem</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — at md:</td></tr>
+            <tr><td>Section spacing</td><td>May compress one step</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — below md:</td></tr>
+            <tr><td>Grid columns</td><td>1 → 2 → 3</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — at md: and lg:</td></tr>
+            <tr><td>Headlines</td><td>Fluid via clamp()</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Fluid</td></tr>
             <tr><td>Body text</td><td>1rem fixed</td><td style="color:var(--muted-foreground);">No</td></tr>
             <tr><td>Touch targets</td><td>44px minimum</td><td style="color:var(--muted-foreground);">No</td></tr>
           </tbody>
@@ -1795,7 +1872,7 @@
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;" class="reveal mobile-compact-grid">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);">
           <div class="card-title">Compresses on mobile</div>
           <div class="card-sub" style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.5rem;line-height:1.7;">
             <span>&#x2022; Section spacing (one step down)</span>
@@ -1819,13 +1896,13 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
       <div class="card-grid reveal">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Layout shifts at md:</div><div class="card-sub">768px is where single-column becomes multi-column. Sidebars appear. Navigation expands.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for h0–h2. No breakpoint-based <code>font-size</code> changes. Body stays at <code>1rem</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Layout shifts at md:</div><div class="card-sub">768px is where single-column becomes multi-column. Sidebars appear. Navigation expands.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for h0–h2. No breakpoint-based <code>font-size</code> changes. Body stays at <code>1rem</code>.</div></div>
         <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">Fixed component padding</div><div class="card-sub">Buttons, cards, inputs keep the same padding at every screen size. Only page-level spacing adapts.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins and large gaps (<code>gap-lg</code>, <code>gap-xl</code>) each drop one step below <code>md:</code>.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Restructure, don't hide</div><div class="card-sub">If content matters on desktop, show it on mobile. Change layout (stack, reorder), not visibility.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins and large gaps (<code>gap-lg</code>, <code>gap-xl</code>) each drop one step below <code>md:</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Restructure, don't hide</div><div class="card-sub">If content matters on desktop, show it on mobile. Change layout (stack, reorder), not visibility.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
       </div>
 
       <div class="divider"></div>
@@ -1916,10 +1993,24 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       </div>
 
       <div class="card-grid reveal" style="margin-bottom:2rem;">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-grass-green);"><div class="card-title">min-height not height</div><div class="card-sub"><code>min-height: 100dvh</code> lets content grow. <code>height: 100vh</code> clips it.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Slides scroll on mobile</div><div class="card-sub">Carousel/slide containers need <code>overflow-y: auto</code> below <code>md:</code>. Content that fits on desktop rarely fits on a phone.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-dark-green);"><div class="card-title">dvh not vh</div><div class="card-sub"><code>100vh</code> includes browser chrome on mobile. <code>100dvh</code> adjusts dynamically. Always provide <code>vh</code> fallback.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">min-height not height</div><div class="card-sub"><code>min-height: 100dvh</code> lets content grow. <code>height: 100vh</code> clips it.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Slides scroll on mobile</div><div class="card-sub">Carousel/slide containers need <code>overflow-y: auto</code> below <code>md:</code>. Content that fits on desktop rarely fits on a phone.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">dvh not vh</div><div class="card-sub"><code>100vh</code> includes browser chrome on mobile. <code>100dvh</code> adjusts dynamically. Always provide <code>vh</code> fallback.</div></div>
       </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Sidebar Layout</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Breakpoint</th><th>Behavior</th></tr></thead>
+          <tbody>
+            <tr><td>Mobile (default)</td><td>Sidebar hidden — use <code>Sheet</code> (mobile nav drawer) to reveal</td></tr>
+            <tr><td><code>md:</code> (768px)</td><td>Side-by-side — sidebar 280px fixed, content fills remaining width</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Mobile sidebar pattern</div><div class="card-sub">Use a shadcn <code>Sheet</code> component (entrance: <code>slideInLeft</code>, exit: <code>slideOutLeft</code>) triggered by a hamburger button. Sheet width: <code>min(280px, calc(100vw - 3rem))</code>. Do not stack the sidebar below content — it pushes critical content below the fold.</div></div>
     </section>
 
     <!-- MOTION TOKENS -->
@@ -1943,6 +2034,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </table>
         </div>
       </div>
+      <div class="card reveal" style="margin-bottom:1.5rem;border-left:3px solid var(--border);"><div class="card-title">Note on 400ms</div><div class="card-sub">The <code>slideIn*</code> entrance presets use <strong>400ms</strong> and <code>slideOut*</code> exit presets use <strong>300ms</strong>. These are intentional intermediate values hardcoded in <code>animations/presets.js</code> — they do not map to a named duration token. When referencing these presets' timing, write <code>400ms</code> explicitly.</div></div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Easings</h3>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
         <div class="table-scroll">
@@ -1959,7 +2051,26 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </table>
         </div>
       </div>
-      <div class="card" style="margin-top:1rem;border-left:3px solid var(--brand-highlight-light-green);"><div class="card-title">Reduced Motion — Mandatory</div><div class="card-sub">Every animation must check <code>prefers-reduced-motion</code>. When active: GSAP durations → 0, disable scrub/parallax, limit fades to 150ms, disable transforms.</div></div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">Reduced Motion</h3>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);margin-bottom:1rem;"><div class="card-title">Mandatory accessibility requirement</div><div class="card-sub">Every animation must respect <code>prefers-reduced-motion: reduce</code>. The design system handles this automatically in most cases — read the rules below.</div></div>
+      <div class="card-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="card"><div class="card-title">GSAP — use applyPreset()</div><div class="card-sub">The recommended path. <code>applyPreset(gsap, target, "scaleIn")</code> handles reduced motion automatically. For raw <code>gsap.fromTo()</code> calls, check manually: <code>window.matchMedia("(prefers-reduced-motion: reduce)").matches</code> and set <code>duration: 0</code>.</div></div>
+        <div class="card"><div class="card-title">Scroll triggers — self-managed</div><div class="card-sub">All factory functions in <code>scroll-triggers.js</code> check reduced motion internally. <code>revealUp/Left/Right</code> and <code>staggerReveal</code> call <code>gsap.set()</code> (instant). <code>parallax()</code> and <code>pinSection()</code> return <code>null</code>. No extra guard needed.</div></div>
+        <div class="card"><div class="card-title">CSS — already handled</div><div class="card-sub">All classes in <code>animations/transitions.css</code> include a <code>@media (prefers-reduced-motion: reduce)</code> block that sets all durations to <code>0ms</code> and removes all transforms. No extra work needed.</div></div>
+      </div>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>Never use raw <code>gsap.to/from</code> without a duration guard</td><td>Use <code>applyPreset()</code> or check <code>window.matchMedia()</code> directly</td></tr>
+            <tr><td>Never hand-roll scrubbing without a reduced-motion guard</td><td>Use the <code>parallax()</code> factory — it returns <code>null</code> automatically</td></tr>
+            <tr><td>Opacity-only fades ≤ 150ms are permissible</td><td>Even under reduced motion, pure fades under 150ms are acceptable</td></tr>
+            <tr><td>Translate and scale transforms → duration: 0</td><td>All movement must be instant when reduced motion is active</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
     </section>
 
     <!-- ANIMATION PRESETS -->
@@ -1990,11 +2101,52 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         <button class="hover-demo-btn" id="hover-press-btn">Press on click</button>
         <div class="hover-demo-card" id="hover-glow-card">Glow on hover (brand grass green)</div>
       </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">CSS Transitions vs. GSAP</h3>
+      <div class="card-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Use CSS Transitions for</div><div class="card-sub">Simple hover/focus/active states. Effects limited to <code>transform</code>, <code>opacity</code>, <code>box-shadow</code>. Anything reversible by removing a CSS class.</div></div>
+        <div class="card" style="border-left:3px solid var(--primary);"><div class="card-title">Use GSAP for</div><div class="card-sub">Component mount/unmount (Dialog, Sheet, Toast). Multi-step sequences or timelines. Scroll-triggered animations. Anything needing JS callbacks or <code>ScrollTrigger</code>.</div></div>
+      </div>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>CSS Class</th><th>Effect</th><th>Duration</th></tr></thead>
+          <tbody>
+            <tr><td><code>.transition-instant</code></td><td>Sets transition-duration</td><td>100ms</td></tr>
+            <tr><td><code>.transition-fast</code></td><td>Sets transition-duration</td><td>150ms</td></tr>
+            <tr><td><code>.transition-normal</code></td><td>Sets transition-duration</td><td>300ms</td></tr>
+            <tr><td><code>.transition-slow</code></td><td>Sets transition-duration</td><td>500ms</td></tr>
+            <tr><td><code>.hover-lift</code></td><td><code>translateY(-4px)</code> + shadow on <code>:hover</code></td><td>200ms</td></tr>
+            <tr><td><code>.hover-press</code></td><td><code>scale(0.97)</code> on <code>:active</code></td><td>100ms</td></tr>
+            <tr><td><code>.hover-fade</code></td><td><code>opacity: 0.8</code> on <code>:hover</code></td><td>150ms</td></tr>
+            <tr><td><code>.focus-ring</code></td><td><code>box-shadow</code> ring via <code>var(--ring)</code> on <code>:focus-visible</code></td><td>150ms</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Scroll-Triggered Presets</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;">
+        <div class="table-scroll">
+        <table class="token-table">
+          <thead><tr><th>Preset</th><th>Trigger</th><th>Effect</th><th>Scrub</th></tr></thead>
+          <tbody>
+            <tr><td><code>revealUp</code></td><td><code>top 85%</code></td><td>y: 40 → 0, fade in</td><td>No</td></tr>
+            <tr><td><code>revealLeft</code></td><td><code>top 85%</code></td><td>x: −40 → 0, fade in</td><td>No</td></tr>
+            <tr><td><code>revealRight</code></td><td><code>top 85%</code></td><td>x: 40 → 0, fade in</td><td>No</td></tr>
+            <tr><td><code>parallax</code></td><td>top bottom → bottom top</td><td>yPercent: −15</td><td>Yes</td></tr>
+            <tr><td><code>staggerReveal</code></td><td><code>top 85%</code></td><td>Stagger 0.08s, y: 30, fade in</td><td>No</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);margin-bottom:1rem;"><div class="card-title">pinSection(gsap, trigger, pinTarget, options)</div><div class="card-sub">Pins <code>pinTarget</code> in place while the user scrolls through <code>trigger</code>. Returns <code>null</code> under reduced motion — no pin applied. Use for sticky image / sticky sidebar layouts. Import from <code>animations/scroll-triggers.js</code>.</div></div>
+
       <div class="divider"></div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
       <div class="card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
         <div class="logo" id="logo-demo" style="font-size:1.1rem;gap:0.6rem;">
-          <span class="logo-badge logo-icon-demo" style="font-size:18px;padding:0.15rem 0.85rem;">way*ID</span>
+          <span class="logo-badge logo-icon-demo" style="font-size:18px;padding:0.15rem 0.85rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
           <span class="logo-wordmark logo-wordmark-demo" style="font-size:1.1rem;">Lineage HQ</span>
         </div>
         <button class="theme-toggle" id="logo-replay-btn">Replay logo reveal</button>
@@ -2138,6 +2290,26 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             Icon container backgrounds use <code>color-mix()</code> with semantic tokens, so they adapt too.
           </div>
         </div>
+
+        <!-- Stroke weight context table -->
+        <div style="margin-top:1.25rem;">
+          <h4 style="font-size:0.78rem;font-weight:700;color:var(--foreground);margin-bottom:0.625rem;text-transform:uppercase;letter-spacing:0.05em;">Stroke Weight by Context</h4>
+          <div style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+            <div class="table-scroll">
+            <table class="token-table">
+              <thead><tr><th>Context</th><th>stroke-width</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Inline / toolbar (standard)</td><td><code>1.5</code></td><td>Default fallback for uncategorized contexts</td></tr>
+                <tr><td>Inline / toolbar (emphasized)</td><td><code>1.75</code></td><td>When extra visual weight is needed</td></tr>
+                <tr><td>Quick-action tile</td><td><code>2</code></td><td>Larger tap target, needs more presence</td></tr>
+                <tr><td>FAB (floating action button)</td><td><code>2.5</code></td><td>Prominent primary action</td></tr>
+                <tr><td>Navigation bar</td><td><code>1.5</code></td><td>Consistent with inline standard</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:0.5rem;">Do not mix stroke weights within a single context. The <code>1.5</code> default is the fallback for contexts not listed above.</p>
+        </div>
       </div>
 
       <!-- CARDS -->
@@ -2242,6 +2414,26 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- CHART COLOR TOKEN REFERENCE -->
+      <div class="reveal" style="margin-top:2rem;">
+        <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Chart Color Token Reference</h3>
+        <div style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:0.75rem;">
+          <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Data Series Role</th></tr></thead>
+            <tbody>
+              <tr><td><code>--chart-1</code></td><td>Warm orange</td><td>Blue</td><td>Primary / first series</td></tr>
+              <tr><td><code>--chart-2</code></td><td>Teal</td><td>Green</td><td>Secondary series</td></tr>
+              <tr><td><code>--chart-3</code></td><td>Navy</td><td>Amber</td><td>Tertiary series</td></tr>
+              <tr><td><code>--chart-4</code></td><td>Yellow</td><td>Purple</td><td>Quaternary series</td></tr>
+              <tr><td><code>--chart-5</code></td><td>Amber</td><td>Red</td><td>Quinary series</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Assignment rule</div><div class="card-sub">Assign tokens by series order — <code>--chart-1</code> for the first data series, <code>--chart-2</code> for the second, and so on. Never skip a token or assign by color preference. Exact OKLCH values are in <code>tokens/colors.css</code>.</div></div>
       </div>
 
       <!-- FIELD -->
@@ -2383,7 +2575,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             Design tokens are defined in <code>tokens/colors.css</code> (Gray theme OKLCH values), <code>tokens/motion.yaml</code> (duration &amp; easing), and <code>tokens/brand-colors.yaml</code> (additive brand palette). The <code>--radius</code> is set to <code>0.875rem</code> (large).
           </div>
           <div class="maia-tab-panel" id="tab-usage">
-            Install shadcn/ui via their CLI, choose Maia style and Gray base color. Copy <code>tokens/colors.css</code> into your global stylesheet. Import GSAP presets from <code>animations/presets.js</code>. Use Poppins for headlines and Geist Sans for everything else.
+            Install shadcn/ui via their CLI, choose Maia style and Gray base color. Copy <code>tokens/colors.css</code> into your global stylesheet. Import GSAP presets from <code>animations/presets.js</code>. Use Lora for h0/h1, Poppins for h2–h4, and the system font stack for everything else.
           </div>
         </div>
       </div>
@@ -2395,16 +2587,20 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
         <div class="table-scroll">
         <table class="comp-table">
-          <thead><tr><th>Component</th><th>Entrance</th><th>Exit</th><th>Notes</th></tr></thead>
+          <thead><tr><th>Component</th><th>Entrance</th><th>Exit</th><th>Hover</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr><td><strong>Dialog / AlertDialog</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">scaleOut</span></td><td>Scale + overshoot</td></tr>
-            <tr><td><strong>Sheet (right)</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutRight</span></td><td>Matches open side</td></tr>
-            <tr><td><strong>DropdownMenu</strong></td><td><span class="preset-pill pill-entrance">slideInDown</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Drops down, fades out</td></tr>
-            <tr><td><strong>Popover</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>Scale from trigger</td></tr>
-            <tr><td><strong>Tooltip</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>Fast &amp; subtle</td></tr>
-            <tr><td><strong>Toast</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutUp</span></td><td>Slides in, dismisses up</td></tr>
-            <tr><td><strong>Accordion</strong></td><td><span class="preset-pill pill-entrance">expandIn</span></td><td><span style="font-size:0.72rem;color:var(--muted-foreground)">reverse</span></td><td>Height from top</td></tr>
-            <tr><td><strong>Tabs</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>Quick crossfade</td></tr>
+            <tr><td><strong>Dialog / AlertDialog</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">scaleOut</span></td><td>—</td><td>Scale + overshoot</td></tr>
+            <tr><td><strong>Sheet (left)</strong></td><td><span class="preset-pill pill-entrance">slideInLeft</span></td><td><span class="preset-pill pill-exit">slideOutLeft</span></td><td>—</td><td>Mobile nav drawer</td></tr>
+            <tr><td><strong>Sheet (right)</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutRight</span></td><td>—</td><td>Matches open side</td></tr>
+            <tr><td><strong>DropdownMenu</strong></td><td><span class="preset-pill pill-entrance">slideInDown</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>—</td><td>Drops down, fades out</td></tr>
+            <tr><td><strong>Popover</strong></td><td><span class="preset-pill pill-entrance">scaleIn</span></td><td><span class="preset-pill pill-exit">fadeOut</span></td><td>—</td><td>Scale from trigger</td></tr>
+            <tr><td><strong>Tooltip</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td><span class="preset-pill pill-exit">fadeOut</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>Fast &amp; subtle</td></tr>
+            <tr><td><strong>Toast</strong></td><td><span class="preset-pill pill-entrance">slideInRight</span></td><td><span class="preset-pill pill-exit">slideOutUp</span></td><td>—</td><td>Slides in, dismisses up</td></tr>
+            <tr><td><strong>Accordion</strong></td><td><span class="preset-pill pill-entrance">expandIn</span></td><td><span style="font-size:0.72rem;color:var(--muted-foreground)">reverse expandIn</span></td><td>—</td><td>Height from top</td></tr>
+            <tr><td><strong>Tabs</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">150ms</span></td><td>—</td><td>—</td><td>Quick crossfade</td></tr>
+            <tr><td><strong>NavigationMenu</strong></td><td><span class="preset-pill pill-entrance">fadeIn</span></td><td>—</td><td>—</td><td>Dropdown submenu</td></tr>
+            <tr><td><strong>Card (interactive)</strong></td><td>—</td><td>—</td><td><span class="preset-pill" style="background:var(--muted);color:var(--foreground);">hover-lift</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">CSS</span></td><td>Shadow escalation</td></tr>
+            <tr><td><strong>Button</strong></td><td>—</td><td>—</td><td><span class="preset-pill" style="background:var(--muted);color:var(--foreground);">hover-press</span> <span style="font-size:0.7rem;color:var(--muted-foreground)">CSS</span></td><td>scale(0.97) on :active</td></tr>
           </tbody>
         </table>
         </div>
@@ -2454,17 +2650,25 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Install shadcn/ui (Maia style, Gray base)</div><div class="code-block">npx shadcn@latest init
 <span class="cm"># Choose: Gray base color, Maia style, Large radius</span></div></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Install GSAP + Hugeicons</div><div class="code-block">npm install gsap hugeicons-react</div></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Poppins for headlines</div><div class="code-block"><span class="cm">/* globals.css */</span>
-<span class="kw">h1, h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Lora + Poppins for headlines</div><div class="code-block"><span class="cm">/* Google Fonts */</span>
+<span class="cm">/* Lora: ital,wght@0,400;0,700;1,400 | Poppins: wght@600;700;800 */</span>
+<span class="kw">h1</span>, <span class="kw">.h0</span> { <span class="fn">font-family</span>: <span class="st">"Lora"</span>, Georgia, serif; }
+<span class="kw">h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
         <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Copy brand tokens</div><div class="code-block"><span class="kw">:root</span> {
-  <span class="fn">--brand-surface</span>: <span class="st">#FAFAFA</span>;
-  <span class="fn">--brand-highlight-light-green</span>: <span class="st">#B9F7CE</span>;
-  <span class="fn">--brand-highlight-grass-green</span>: <span class="st">#3DC683</span>;
-  <span class="fn">--brand-highlight-dark-green</span>: <span class="st">#15552E</span>;
+  <span class="fn">--brand-surface</span>: <span class="st">#F0F0F0</span>;
+  <span class="fn">--brand-surface-grey</span>: <span class="st">#E4E4EE</span>;
+  <span class="fn">--brand-surface-blue</span>: <span class="st">#4751B0</span>;
+  <span class="fn">--brand-highlight-blue</span>: <span class="st">#4751B0</span>;
+  <span class="fn">--brand-highlight-navy</span>: <span class="st">#0E1233</span>;
+  <span class="fn">--brand-highlight-light</span>: <span class="st">#F0F0F0</span>;
+  <span class="fn">--brand-offset-lavender</span>: <span class="st">#A6A1E2</span>;
+  <span class="fn">--brand-offset-green</span>: <span class="st">#A0D246</span>;
+  <span class="fn">--brand-offset-yellow</span>: <span class="st">#FFD27D</span>;
+  <span class="fn">--brand-offset-coral</span>: <span class="st">#F0936B</span>;
 }</div></div></div>
         <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Import animation presets</div><div class="code-block"><span class="kw">import</span> { <span class="fn">ENTRANCE</span>, <span class="fn">EXIT</span>, <span class="fn">HOVER</span> } <span class="kw">from</span> <span class="st">"@/design-system/animations/presets"</span>;</div></div></div>
       </div>
-      <div class="card" style="margin-top:2rem;border-left:3px solid var(--brand-highlight-dark-green);">
+      <div class="card" style="margin-top:2rem;border-left:3px solid var(--brand-highlight-navy);">
         <div class="card-title">Key files</div>
         <div class="card-sub" style="margin-top:0.5rem;">
           <code>DESIGN-SYSTEM.md</code> · Full spec<br>
@@ -2535,11 +2739,11 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
               <span>&#x2022; FAB</span>
               <span>&#x2022; Bottom navigation bar</span>
               <span>&#x2022; Toast notifications</span>
-              <span>&#x2022; Badges (light green / grass green / dark green / default)</span>
+              <span>&#x2022; Badges (lavender / blue / navy / default)</span>
             </div>
           </div>
 
-          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-grass-green);">
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
             <div class="card-title">Animation patterns</div>
             <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
               <span>&#x2022; Staggered entrance sequence on load</span>
@@ -2555,7 +2759,29 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             </div>
           </div>
 
-          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light-green);">
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-green);">
+            <div class="card-title">Fonts in use on this screen</div>
+            <!-- Row 1 — Lora -->
+            <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">Lora · Serif · 400 / 700</span>
+              <span style="font-family:'Lora',Georgia,serif;font-weight:700;font-size:1.1rem;line-height:1.2;color:var(--foreground);">Good morning</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">h1 · greeting heading only</span>
+            </div>
+            <!-- Divider -->
+            <div style="height:1px;background:var(--border);margin:0.75rem 0;"></div>
+            <!-- Row 2 — System UI -->
+            <div style="display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">System UI · Sans · 400–700</span>
+              <span style="font-weight:600;font-size:0.9rem;color:var(--foreground);">Everything else</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">buttons · labels · stats · nav · badges</span>
+            </div>
+            <!-- Footer -->
+            <div style="margin-top:0.875rem;padding-top:0.625rem;border-top:1px solid var(--border);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">
+              2 families &middot; Poppins not loaded
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);">
             <div class="card-title">Open standalone</div>
             <div class="card-sub" style="margin-top:0.5rem;">
               View at full size or inspect source in a separate tab.
@@ -2576,6 +2802,321 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- PITCH DECK EXAMPLE -->
+    <section id="pitchdeck">
+      <p class="section-label">Section 11</p>
+      <h2 class="section-title">Pitch Deck Slide</h2>
+      <p class="section-desc">
+        A Series A pitch slide for "Aria" — a fictional AI payments startup. Dark navy background,
+        Lora headline for emotional impact, System UI for all data and labels. 16:9 desktop format.
+      </p>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+
+        <!-- Pitch deck frame — native 800×450 -->
+        <div style="flex:0 0 auto;">
+          <div style="
+            width: 800px;
+            height: 450px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
+                        0 32px 80px rgba(0,0,0,0.18),
+                        0 8px 24px rgba(0,0,0,0.08);
+            position: relative;
+          ">
+            <iframe
+              src="example-pitchdeck.html"
+              style="width:800px;height:450px;border:none;display:block;pointer-events:auto;"
+              scrolling="no"
+              title="Aria — Series A pitch deck slide"
+            ></iframe>
+          </div>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
+            SvelteKit + shadcn-svelte &mdash; static export
+          </p>
+        </div>
+
+        <!-- Cards column -->
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem;">
+
+          <div class="card reveal">
+            <div class="card-title">Slide components</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Series badge pill (offset-green border)</span>
+              <span>&#x2022; Lora 700 headline (3.1rem)</span>
+              <span>&#x2022; Body subtitle (System UI, muted)</span>
+              <span>&#x2022; Stats row: $2.4M ARR / 18% MoM / 340 customers</span>
+              <span>&#x2022; Wordmark badge (bottom-left)</span>
+              <span>&#x2022; Radial glow + decorative ring (right column)</span>
+              <span>&#x2022; Dot grid overlay (decorative)</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+            <div class="card-title">Design decisions</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Dark navy bg &mdash; authority + brand depth</span>
+              <span>&#x2022; Lora for the headline only &mdash; max emotional pull</span>
+              <span>&#x2022; System UI for all data &mdash; stays crisp at small sizes</span>
+              <span>&#x2022; Right column abstract visual avoids literal imagery</span>
+              <span>&#x2022; Stats use weight + size hierarchy, not color</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-green);">
+            <div class="card-title">Fonts in use on this screen</div>
+            <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">Lora · Serif · 700</span>
+              <span style="font-family:'Lora',Georgia,serif;font-weight:700;font-size:1.1rem;line-height:1.2;color:var(--foreground);">The AI layer</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">h1 · slide headline only</span>
+            </div>
+            <div style="height:1px;background:var(--border);margin:0.75rem 0;"></div>
+            <div style="display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">System UI · Sans · 400–700</span>
+              <span style="font-weight:600;font-size:0.9rem;color:var(--foreground);">$2.4M ARR</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">stats · labels · subtitle · wordmark</span>
+            </div>
+            <div style="margin-top:0.875rem;padding-top:0.625rem;border-top:1px solid var(--border);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">
+              2 families &middot; Poppins not loaded
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);">
+            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;background:var(--brand-offset-lavender);color:#0E1233;padding:0.15rem 0.5rem;border-radius:9999px;display:inline-block;margin-bottom:0.625rem;">SvelteKit</span>
+            <div class="card-title">Open standalone</div>
+            <div class="card-sub" style="margin-top:0.5rem;">
+              View at full 800&times;450 resolution or inspect source.
+            </div>
+            <a href="example-pitchdeck.html" target="_blank" style="
+              display:inline-flex;align-items:center;gap:0.4rem;
+              margin-top:0.875rem;
+              font-size:0.8rem;font-weight:600;
+              color:var(--foreground);text-decoration:none;
+              padding:0.375rem 0.875rem;
+              border-radius:9999px;
+              box-shadow:inset 0 0 0 1px var(--border);
+              transition:background 0.2s ease-out;
+            " onmouseover="this.style.background='var(--muted)'" onmouseout="this.style.background=''">
+              Open example-pitchdeck.html
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h3v3M10 2L5.5 6.5M4 3H2v7h7V8"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LANDING PAGE EXAMPLE -->
+    <section id="landing">
+      <p class="section-label">Section 12</p>
+      <h2 class="section-title">Startup Landing Page</h2>
+      <p class="section-desc">
+        Above-the-fold hero for "Aria" — light mode. Full nav + eyebrow badge, Lora
+        headline, CTA pair, and social proof strip. Desktop 800&times;500.
+      </p>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+
+        <!-- Landing page frame — native 800×500 -->
+        <div style="flex:0 0 auto;">
+          <div style="
+            width: 800px;
+            height: 500px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
+                        0 32px 80px rgba(0,0,0,0.18),
+                        0 8px 24px rgba(0,0,0,0.08);
+            position: relative;
+          ">
+            <iframe
+              src="example-landing.html"
+              style="width:800px;height:500px;border:none;display:block;pointer-events:auto;"
+              scrolling="no"
+              title="Aria — startup landing page hero"
+            ></iframe>
+          </div>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
+            SvelteKit + shadcn-svelte &mdash; static export
+          </p>
+        </div>
+
+        <!-- Cards column -->
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem;">
+
+          <div class="card reveal">
+            <div class="card-title">Page components</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Flat nav bar (logo + links + CTA)</span>
+              <span>&#x2022; Full-bleed photo &mdash; extends behind entire hero area</span>
+              <span>&#x2022; Solid white card (45%) overlaid right &mdash; no fade</span>
+              <span>&#x2022; Eyebrow badge "Now in private beta"</span>
+              <span>&#x2022; Lora 700 headline (2rem)</span>
+              <span>&#x2022; Subtitle paragraph (System UI)</span>
+              <span>&#x2022; CTA pair: filled primary + ghost</span>
+              <span>&#x2022; Social proof strip (4 company names)</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+            <div class="card-title">Design decisions</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; Hero photo anchors human context; copy stays minimal</span>
+              <span>&#x2022; Hard card edge &mdash; white panel sits over photo, border-left divider</span>
+              <span>&#x2022; Lora upright &mdash; authority without decoration</span>
+              <span>&#x2022; Ghost CTA lowers barrier vs. single primary</span>
+              <span>&#x2022; Social proof muted &mdash; present but not competing</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-green);">
+            <div class="card-title">Fonts in use on this screen</div>
+            <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">Lora · Serif · 700</span>
+              <span style="font-family:'Lora',Georgia,serif;font-weight:700;font-size:1.1rem;line-height:1.2;color:var(--foreground);">Payments that feel human.</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">h1 · page headline only</span>
+            </div>
+            <div style="height:1px;background:var(--border);margin:0.75rem 0;"></div>
+            <div style="display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">System UI · Sans · 400–700</span>
+              <span style="font-weight:600;font-size:0.9rem;color:var(--foreground);">Everything else</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">nav · buttons · badge · subtitle · proof</span>
+            </div>
+            <div style="margin-top:0.875rem;padding-top:0.625rem;border-top:1px solid var(--border);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">
+              2 families &middot; Poppins not loaded
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);">
+            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;background:var(--brand-offset-lavender);color:#0E1233;padding:0.15rem 0.5rem;border-radius:9999px;display:inline-block;margin-bottom:0.625rem;">SvelteKit</span>
+            <div class="card-title">Open standalone</div>
+            <div class="card-sub" style="margin-top:0.5rem;">
+              View at full 800&times;500 resolution or inspect source.
+            </div>
+            <a href="example-landing.html" target="_blank" style="
+              display:inline-flex;align-items:center;gap:0.4rem;
+              margin-top:0.875rem;
+              font-size:0.8rem;font-weight:600;
+              color:var(--foreground);text-decoration:none;
+              padding:0.375rem 0.875rem;
+              border-radius:9999px;
+              box-shadow:inset 0 0 0 1px var(--border);
+              transition:background 0.2s ease-out;
+            " onmouseover="this.style.background='var(--muted)'" onmouseout="this.style.background=''">
+              Open example-landing.html
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h3v3M10 2L5.5 6.5M4 3H2v7h7V8"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS EXAMPLE -->
+    <section id="reviews">
+      <p class="section-label">Section 13</p>
+      <h2 class="section-title">Customer Review Platform</h2>
+      <p class="section-desc">
+        A mobile review screen for "Trustflow" — showing the Aria product page with a rating summary,
+        star breakdown bars, filter chips, and review cards. System UI only — no web font needed.
+      </p>
+
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+
+        <!-- Phone frame preview -->
+        <div style="flex:0 0 auto;">
+          <div style="
+            width: 390px;
+            height: 780px;
+            border-radius: 2.75rem;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 12%, transparent),
+                        0 32px 80px rgba(0,0,0,0.18),
+                        0 8px 24px rgba(0,0,0,0.08);
+            position: relative;
+          ">
+            <iframe
+              src="example-reviews.html"
+              style="
+                width: 390px;
+                height: 780px;
+                border: none;
+                display: block;
+                pointer-events: auto;
+              "
+              title="Trustflow — customer review platform"
+            ></iframe>
+          </div>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted-foreground);margin-top:0.75rem;">
+            SvelteKit + shadcn-svelte &mdash; fully interactive
+          </p>
+        </div>
+
+        <!-- Cards column -->
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem;">
+
+          <div class="card reveal">
+            <div class="card-title">Screen components</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; App bar (back + title + kebab)</span>
+              <span>&#x2022; Rating summary: 4.7 &#x2605;, 2,341 reviews</span>
+              <span>&#x2022; 5-row star breakdown (CSS-only width bars)</span>
+              <span>&#x2022; Filter chips: All / 5&#x2605; / 4&#x2605; / Verified / Recent</span>
+              <span>&#x2022; Review cards (name, stars, date, text, helpful)</span>
+              <span>&#x2022; Verified badge (green pill)</span>
+              <span>&#x2022; Write review input bar (pinned bottom)</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+            <div class="card-title">Design decisions</div>
+            <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
+              <span>&#x2022; 1 font family &mdash; no headings warrant Lora/Poppins</span>
+              <span>&#x2022; Star bars via CSS <code>width</code> &mdash; zero JS needed</span>
+              <span>&#x2022; Active chip uses <code>--foreground</code> fill, not brand blue</span>
+              <span>&#x2022; Verified badge mirrors eyebrow pill (offset-green, subtle)</span>
+              <span>&#x2022; Helpful CTA low-prominence &mdash; secondary action</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-green);">
+            <div class="card-title">Fonts in use on this screen</div>
+            <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.2rem;">
+              <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">System UI · Sans · 400–700</span>
+              <span style="font-weight:600;font-size:1rem;color:var(--foreground);">4.7 &nbsp;★★★★★</span>
+              <span style="font-size:0.72rem;color:var(--muted-foreground);">entire screen — app bar · ratings · reviews</span>
+            </div>
+            <div style="margin-top:0.875rem;padding-top:0.625rem;border-top:1px solid var(--border);font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted-foreground);">
+              1 family &middot; Poppins not loaded &middot; Lora not loaded
+            </div>
+          </div>
+
+          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-light);">
+            <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;background:var(--brand-offset-lavender);color:#0E1233;padding:0.15rem 0.5rem;border-radius:9999px;display:inline-block;margin-bottom:0.625rem;">SvelteKit</span>
+            <div class="card-title">Open standalone</div>
+            <div class="card-sub" style="margin-top:0.5rem;">
+              View at 390&times;780 or inspect source in a separate tab.
+            </div>
+            <a href="example-reviews.html" target="_blank" style="
+              display:inline-flex;align-items:center;gap:0.4rem;
+              margin-top:0.875rem;
+              font-size:0.8rem;font-weight:600;
+              color:var(--foreground);text-decoration:none;
+              padding:0.375rem 0.875rem;
+              border-radius:9999px;
+              box-shadow:inset 0 0 0 1px var(--border);
+              transition:background 0.2s ease-out;
+            " onmouseover="this.style.background='var(--muted)'" onmouseout="this.style.background=''">
+              Open example-reviews.html
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h3v3M10 2L5.5 6.5M4 3H2v7h7V8"/></svg>
+            </a>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -2646,87 +3187,77 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       });
     }
 
-    /* Rich badge-only reveal — 3 phases: elastic pill, staggered char blur, glow pulse */
-    function splitBadgeChars(el) {
-      const text = el.textContent;
-      el.textContent = "";
-      el.style.display = "inline-flex";
-      el.style.alignItems = "center";
-      el.style.justifyContent = "center";
-      const chars = [];
-      for (let i = 0; i < text.length; i++) {
-        const span = document.createElement("span");
-        span.textContent = text[i];
-        span.style.display = "inline-block";
-        span.className = "logo-char";
-        el.appendChild(span);
-        chars.push(span);
+    /* Badge reveal + asterisk colour cycling */
+    const badgeCycles = new Map(); /* tracks active asterisk cycles per badge element */
+
+    /* Cycles the * through the 4 brand offset accent tokens after the reveal */
+    function startAsteriskCycle(badgeEl) {
+      const asteriskEl = badgeEl.querySelector(".logo-badge-asterisk");
+      if (!asteriskEl) return null;
+
+      const tokens = [
+        "--brand-offset-lavender",
+        "--brand-offset-green",
+        "--brand-offset-yellow",
+        "--brand-offset-coral",
+      ];
+      let index = 0;
+      let call = null;
+
+      function getToken(token) {
+        return getComputedStyle(document.documentElement).getPropertyValue(token).trim();
       }
-      return chars;
+
+      if (reducedMotion) {
+        /* CSS already sets --brand-offset-green; nothing to override */
+        return null;
+      }
+
+      function cycle() {
+        const color = getToken(tokens[index]);
+        gsap.to(asteriskEl, { color, duration: 0.35, ease: "power2.inOut" });
+        index = (index + 1) % tokens.length;
+        call = gsap.delayedCall(1.4, cycle);
+      }
+
+      cycle();
+      return { kill: () => { if (call) call.kill(); } };
     }
 
     function playBadgeReveal(badgeEl) {
-      /* Ensure chars are split */
-      let chars = badgeEl.querySelectorAll(".logo-char");
-      if (!chars.length) {
-        chars = splitBadgeChars(badgeEl);
-      } else {
-        chars = Array.from(chars);
-      }
-      const isDark = badgeEl.classList.contains("logo-badge-dark");
-      const glowTight = isDark ? "rgba(185, 247, 206, 0.4)"  : "rgba(61, 198, 131, 0.3)";
-      const glowWide  = isDark ? "rgba(185, 247, 206, 0.12)" : "rgba(61, 198, 131, 0.08)";
-      const tl = gsap.timeline();
-
       if (reducedMotion) {
-        tl.set(badgeEl, { opacity:1, scale:1 });
-        tl.set(chars, { opacity:1, filter:"blur(0px)" });
-        return tl;
+        gsap.set(badgeEl, { opacity: 1 });
+        const c = startAsteriskCycle(badgeEl);
+        if (c) badgeCycles.set(badgeEl, c);
+        return;
       }
-
-      /* Phase 1: Pill materializes — scale from 0.9 with overshoot + blur dissolve */
-      tl.set(chars, { opacity:0 })
-        .fromTo(badgeEl,
-          { scale:0.9, opacity:0, filter:"blur(8px)", transformOrigin:"center center" },
-          { scale:1, opacity:1, filter:"blur(0px)", duration:0.45, ease:"back.out(1.7)" }
-        )
-        /* Phase 2: Characters stagger from center outward (radiates from the *) with blur-to-sharp */
-        .fromTo(chars,
-          { opacity:0, filter:"blur(4px)", y:6 },
-          { opacity:1, filter:"blur(0px)", y:0, duration:0.3, ease:"power2.out",
-            stagger:{ each:0.05, from:"center" } },
-          "-=0.15"
-        )
-        /* Phase 3: Dual-layer glow pulse — tight bright + wide diffuse, single breathe */
-        .fromTo(badgeEl,
-          { boxShadow:"0 0 0px 0px " + glowTight + ", 0 0 0px 0px " + glowWide },
-          { boxShadow:"0 0 16px 3px " + glowTight + ", 0 0 40px 8px " + glowWide,
-            duration:0.35, ease:"power2.out" },
-          "-=0.05"
-        )
-        .to(badgeEl,
-          { boxShadow:"0 0 0px 0px transparent, 0 0 0px 0px transparent",
-            duration:0.3, ease:"power2.in" }
-        );
-
-      return tl;
+      gsap.fromTo(badgeEl,
+        { scale: 0.94, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)",
+          onComplete() {
+            const c = startAsteriskCycle(badgeEl);
+            if (c) badgeCycles.set(badgeEl, c);
+          }
+        }
+      );
     }
 
     function resetBadge(badgeEl) {
-      gsap.set(badgeEl, { clearProps:"all" });
-      const chars = badgeEl.querySelectorAll(".logo-char");
-      if (chars.length) gsap.set(chars, { clearProps:"all" });
+      const cycle = badgeCycles.get(badgeEl);
+      if (cycle) { cycle.kill(); badgeCycles.delete(badgeEl); }
+      gsap.set(badgeEl, { clearProps: "all" });
+      /* Reset * colour back to CSS-defined default (removes GSAP inline override) */
+      const asteriskEl = badgeEl.querySelector(".logo-badge-asterisk");
+      if (asteriskEl) gsap.set(asteriskEl, { clearProps: "color" });
     }
 
     /* Animation section (existing simple reveal) */
     setTimeout(() => playReveal(".logo-icon-demo", ".logo-wordmark-demo"), 600);
     wireReplay("logo-replay-btn", ".logo-icon-demo", ".logo-wordmark-demo");
 
-    /* Logo section — rich animated badges */
+    /* Logo section — animated badges */
     const animLightBadge = document.querySelector(".logo-anim-light-badge");
     const animDarkBadge  = document.querySelector(".logo-anim-dark-badge");
-    splitBadgeChars(animLightBadge);
-    splitBadgeChars(animDarkBadge);
 
     document.getElementById("logo-anim-light-replay").addEventListener("click", () => {
       resetBadge(animLightBadge);
@@ -2776,7 +3307,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     function playWordmarkReveal(el, chars) {
       const isDark = el.classList.contains("logo-text-dark");
-      const glowColor = isDark ? "rgba(185, 247, 206, 0.3)" : "rgba(21, 85, 46, 0.2)";
+      const glowColor = isDark ? "rgba(240, 240, 240, 0.2)" : "rgba(71, 81, 176, 0.25)";
       const asteriskIdx = chars.findIndex((c) => c.classList.contains("logo-asterisk"));
       const tl = gsap.timeline();
 
