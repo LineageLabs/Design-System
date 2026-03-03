@@ -5,6 +5,25 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.28] — 2026-03-03
+
+### Added
+- **Section 09 — Images.** New `<section id="images">` in `index.html` with 6 live demos (Hero/full-bleed, Section/editorial 21:9, Card cover 3-up grid with `object-position` variants, Aspect ratio reference for 5 ratios, Background with text overlay, Avatar row with 5 sizes + initials fallback), 7 rules tables (aspect ratios, `object-position`, border-radius, `loading`/`decoding`, responsive behaviour, overlay gradient recipes, `overflow: hidden` containment), shadcn `AspectRatio`/`Card`/`Avatar` mapping cards, and a full CSS class reference table.
+- **Image CSS utilities block.** Nine new utility classes added to `<style>` in `index.html`: `.img-hero`, `.img-fill`, `.img-ar` (+ nested `img`), `.img-avatar` (+ 5 size modifiers: xl/lg/md/sm/xs), `.img-avatar-initials`, `.img-overlay-wrap`, `.img-overlay`, `.img-overlay-content`. Responsive override `@media (max-width: 767px)` compresses hero to `40dvh` and collapses `.img-card-grid` to 1 column.
+- **Nav link — Images.** Added `<a href="#images">Images</a>` to main nav between Components and Get Started.
+
+### Changed
+- **Section labels renumbered.** Sections 09–13 incremented to 10–14: `#start` (09→10), `#mobile-example` (10→11), `#pitchdeck` (11→12), `#landing` (12→13), `#reviews` (13→14). Semantic IDs unchanged.
+
+---
+
+## [2026.03.27] — 2026-03-03
+
+### Fixed
+- **Logo animation asterisk — smoothed pop.** Replaced two-tween approach (`fromTo back.out(3)` + `to power2.out`) that produced a visible hitch at the join point with a single GSAP `keyframes` tween: `[scale 1.28 sine.out 280ms] → [scale 1 power2.inOut 420ms]` with `transformOrigin: "50% 50%"`. Scale peak reduced from 1.3 → 1.28. Updated `index.html` (GSAP script block).
+
+---
+
 ## [2026.03.26] — 2026-03-03
 
 ### Fixed
