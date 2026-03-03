@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.26] — 2026-03-03
+
+### Fixed
+- **Lineage\*Labs wordmark — forced-dark panels asterisk now correctly `#D5FD8D`.**
+  `.logo-text-dark .logo-asterisk` previously used `var(--brand-offset-green)` which resolves to `#A0D246` (the light-root value) because `.logo-text-dark` panels have no `.dark` ancestor. Hardcoded to `#D5FD8D` — the explicit dark value of `--brand-offset-green`. Updated: `index.html` (CSS), `assets/logos/README.md` (spec table + CSS block), `DESIGN-SYSTEM.md` (§5 table).
+
+---
+
 ## [2026.03.25] — 2026-03-03
 
 ### Changed
