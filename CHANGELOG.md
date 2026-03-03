@@ -5,6 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.31] — 2026-03-03
+
+### Added
+- **Brand color primitive tokens.** Ten new immutable CSS custom properties — one per unique brand hex, suffixed `-light` or `-dark` — defined once in `:root` and never redefined in `.dark`: `--brand-surface-light` / `--brand-surface-dark`, `--brand-surface-grey-light` / `--brand-surface-grey-dark`, `--brand-offset-lavender-light` / `--brand-offset-lavender-dark`, `--brand-offset-green-light` / `--brand-offset-green-dark`, `--brand-offset-coral-light` / `--brand-offset-coral-dark`. Use these when an element needs a specific shade regardless of colour mode (e.g. forced-dark components without a `.dark` ancestor). Updated: `tokens/colors.css`, `index.html`.
+
+### Changed
+- **Brand semantic tokens now delegate to primitives via `var()`.** The 5 adaptive variables (`--brand-surface`, `--brand-surface-grey`, `--brand-offset-lavender`, `--brand-offset-green`, `--brand-offset-coral`) in both `:root` and `.dark` now reference the new primitives instead of holding literal hex values. Adaptive behaviour is identical; every unique hex now has its own unambiguous name. Updated: `tokens/colors.css`, `index.html`.
+- **Hardcoded `#D5FD8D` replaced with `var(--brand-offset-green-dark)`.** `.logo-text-dark .logo-asterisk` in `index.html` previously hardcoded the dark green because no named variable existed for it. Now uses the new primitive. Updated: `index.html`.
+- **`tokens/brand-colors.yaml` updated.** Added `css_var_light` and `css_var_dark` fields to all five dual-mode colors. Updated offset comments to document the three-variable pattern (adaptive + two primitives). Updated: `tokens/brand-colors.yaml`.
+- **`DESIGN-SYSTEM.md` §3 Brand Colors rewritten.** Replaced stale `--brand-highlight-light-green`, `--brand-highlight-grass-green`, `--brand-highlight-dark-green` references (these variables no longer exist) with the current `--brand-highlight-*` and `--brand-offset-*` system. Added "Two-Tier Token System" sub-section explaining when to use primitives vs adaptive tokens. Updated surface and offset tables to show both hex values and all three CSS variable names. Updated icons section rules to remove stale grass-green references. Updated wordmark table: asterisk dark column changed from hardcoded `#D5FD8D` to `var(--brand-offset-green-dark)`. Updated: `DESIGN-SYSTEM.md`.
+
+---
+
 ## [2026.03.30] — 2026-03-03
 
 ### Changed

@@ -29,16 +29,29 @@
       --ring: oklch(0.707 0.022 261.325);
       --destructive: oklch(0.577 0.245 27.325);
 
-      --brand-surface: #F0F0F0;
-      --brand-surface-grey: #E4E4EE;
-      --brand-surface-blue: #4751B0;
-      --brand-highlight-blue: #4751B0;
-      --brand-highlight-navy: #0E1233;
+      /* Brand primitives — unique name per hex, never redefined in .dark */
+      --brand-surface-light:          #F0F0F0;
+      --brand-surface-dark:           #0E1233;
+      --brand-surface-grey-light:     #E4E4EE;
+      --brand-surface-grey-dark:      #252963;
+      --brand-offset-lavender-light:  #A6A1E2;
+      --brand-offset-lavender-dark:   #B4AFE7;
+      --brand-offset-green-light:     #A0D246;
+      --brand-offset-green-dark:      #D5FD8D;
+      --brand-offset-coral-light:     #F0936B;
+      --brand-offset-coral-dark:      #E99F80;
+
+      /* Brand semantics — adaptive, reference primitives */
+      --brand-surface:         var(--brand-surface-light);
+      --brand-surface-grey:    var(--brand-surface-grey-light);
+      --brand-surface-blue:    #4751B0;
+      --brand-highlight-blue:  #4751B0;
+      --brand-highlight-navy:  #0E1233;
       --brand-highlight-light: #F0F0F0;
-      --brand-offset-lavender: #A6A1E2;
-      --brand-offset-green: #A0D246;
-      --brand-offset-yellow: #FFD27D;
-      --brand-offset-coral: #F0936B;
+      --brand-offset-lavender: var(--brand-offset-lavender-light);
+      --brand-offset-green:    var(--brand-offset-green-light);
+      --brand-offset-yellow:   #FFD27D;
+      --brand-offset-coral:    var(--brand-offset-coral-light);
 
       --chart-1: oklch(0.646 0.222 41.116);
       --chart-2: oklch(0.6 0.118 184.704);
@@ -62,16 +75,12 @@
       --ring: oklch(0.551 0.027 264.364);
       --destructive: oklch(0.704 0.191 22.216);
 
-      --brand-surface: #0E1233;
-      --brand-surface-grey: #252963;
-      --brand-surface-blue: #4751B0;
-      --brand-highlight-blue: #4751B0;
-      --brand-highlight-navy: #0E1233;
-      --brand-highlight-light: #F0F0F0;
-      --brand-offset-lavender: #B4AFE7;
-      --brand-offset-green: #D5FD8D;
-      --brand-offset-yellow: #FFD27D;
-      --brand-offset-coral: #E99F80;
+      /* Brand semantics — dark mode overrides reference dark primitives */
+      --brand-surface:         var(--brand-surface-dark);
+      --brand-surface-grey:    var(--brand-surface-grey-dark);
+      --brand-offset-lavender: var(--brand-offset-lavender-dark);
+      --brand-offset-green:    var(--brand-offset-green-dark);
+      --brand-offset-coral:    var(--brand-offset-coral-dark);
 
       --chart-1: oklch(0.488 0.243 264.376);
       --chart-2: oklch(0.696 0.17 162.48);
@@ -272,7 +281,7 @@
       white-space: nowrap;
     }
     .logo-text-dark .logo-asterisk {
-      color: #D5FD8D; /* --brand-offset-green dark value — hardcoded because no .dark ancestor */
+      color: var(--brand-offset-green-dark);
     }
 
     nav {

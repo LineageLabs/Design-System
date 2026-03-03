@@ -12,31 +12,35 @@
 surfaces:
   light_background:
     hex: "#F0F0F0"
-    css_var: "--brand-surface"
+    css_var: "--brand-surface"          # adaptive — #F0F0F0 in light, #0E1233 in dark
+    css_var_light: "--brand-surface-light"  # always #F0F0F0
     context: "light theme"
     use: "Page-level background when design calls for brand surface instead of shadcn --background"
 
   light_grey:
     hex: "#E4E4EE"
-    css_var: "--brand-surface-grey"
+    css_var: "--brand-surface-grey"          # adaptive — #E4E4EE in light, #252963 in dark
+    css_var_light: "--brand-surface-grey-light"  # always #E4E4EE
     context: "light theme"
     use: "Subtle section dividers, secondary cards, visual separation on light backgrounds"
 
   blue_background:
     hex: "#4751B0"
     css_var: "--brand-surface-blue"
-    context: "blue mode (marketing, hero, branded sections)"
+    context: "blue mode (marketing, hero, branded sections) — same value in all modes"
     use: "Full-bleed brand sections, hero backgrounds, marketing pages with blue treatment"
 
   dark_background:
     hex: "#0E1233"
-    css_var: "--brand-surface"
+    css_var: "--brand-surface"         # adaptive — resolves to this in dark mode
+    css_var_dark: "--brand-surface-dark"   # always #0E1233
     context: "dark theme"
     use: "Page-level background when design calls for brand surface instead of shadcn --background"
 
   dark_grey:
     hex: "#252963"
-    css_var: "--brand-surface-grey"
+    css_var: "--brand-surface-grey"         # adaptive — resolves to this in dark mode
+    css_var_dark: "--brand-surface-grey-dark"   # always #252963
     context: "dark theme"
     use: "Subtle elevation on dark surfaces — card backgrounds, divider accents"
 
@@ -62,18 +66,27 @@ highlights:
 offsets:
   # Offsets have two tones — use the light set on #F0F0F0 surface,
   # use the dark/blue set on #0E1233 or #4751B0 surfaces.
+  #
+  # Each offset has THREE CSS variables:
+  #   css_var       — adaptive semantic token (switches with .dark class) — use this for most UI
+  #   css_var_light — primitive, always the light-surface hex — use when no .dark ancestor exists
+  #   css_var_dark  — primitive, always the dark-surface hex  — use when no .dark ancestor exists
 
   lavender:
     hex_light: "#A6A1E2"
     hex_dark: "#B4AFE7"
-    css_var: "--brand-offset-lavender"
+    css_var: "--brand-offset-lavender"              # adaptive
+    css_var_light: "--brand-offset-lavender-light"  # always #A6A1E2
+    css_var_dark: "--brand-offset-lavender-dark"    # always #B4AFE7
     context: "light surface: #A6A1E2 / dark+blue surface: #B4AFE7"
     use: "Secondary accent, decorative elements, category tags, subtle brand tints"
 
   green:
     hex_light: "#A0D246"
     hex_dark: "#D5FD8D"
-    css_var: "--brand-offset-green"
+    css_var: "--brand-offset-green"              # adaptive
+    css_var_light: "--brand-offset-green-light"  # always #A0D246
+    css_var_dark: "--brand-offset-green-dark"    # always #D5FD8D
     context: "light surface: #A0D246 / dark+blue surface: #D5FD8D"
     use: "Positive/success-adjacent emphasis, growth indicators, complementary accent"
 
@@ -81,13 +94,15 @@ offsets:
     hex_light: "#FFD27D"
     hex_dark: "#FFD27D"
     css_var: "--brand-offset-yellow"
-    context: "same value across all surfaces"
+    context: "same value across all surfaces — no primitives needed"
     use: "Warmth, attention, star ratings, highlight callouts"
 
   coral:
     hex_light: "#F0936B"
     hex_dark: "#E99F80"
-    css_var: "--brand-offset-coral"
+    css_var: "--brand-offset-coral"              # adaptive
+    css_var_light: "--brand-offset-coral-light"  # always #F0936B
+    css_var_dark: "--brand-offset-coral-dark"    # always #E99F80
     context: "light surface: #F0936B / dark+blue surface: #E99F80"
     use: "Energetic accent, notification badges, heat indicators — not for errors (use --destructive)"
 

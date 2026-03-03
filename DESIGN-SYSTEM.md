@@ -185,21 +185,41 @@ Every font family in the Google Fonts `<link>` (or `next/font` import) must be a
 > **Rule:** These do NOT replace shadcn tokens. They are additional `--brand-*` CSS
 > custom properties used only when a design explicitly calls for brand treatment.
 
+### Two-Tier Token System
+
+Brand colors use a **two-tier** structure so every unique hex has its own unambiguous name:
+
+| Tier | Naming | Defined in | Behaviour |
+|------|--------|-----------|-----------|
+| **Primitive** | `--brand-offset-green-light`, `--brand-offset-green-dark` | `:root` only, never redefined | Always resolves to that exact hex regardless of colour mode. Use when an element is always on a dark/light surface with no `.dark` ancestor (e.g. a forced-dark card, logo variants). |
+| **Semantic / adaptive** | `--brand-offset-green` | `:root` + `.dark` override | References the appropriate primitive via `var()`. Automatically switches with `.dark`. Use for the majority of UI. |
+
+Colors that are **identical** in both modes (`--brand-highlight-blue`, `--brand-highlight-navy`, `--brand-highlight-light`, `--brand-surface-blue`, `--brand-offset-yellow`) are not split — they are single literal-hex variables with no primitive/dark variant.
+
 ### Surfaces
 
-| Name | Hex | CSS Variable | Context |
-|------|-----|-------------|---------|
-| Light Background | `#FAFAFA` | `--brand-surface` | Light theme pages |
-| Light Grey | `#EAEAEA` | `--brand-surface-grey` | Dividers, secondary cards |
-| Dark Background | `#151515` | `--brand-surface` (dark) | Dark theme pages |
+| Name | Hex (light) | Hex (dark) | Adaptive variable | Primitive variables |
+|------|-------------|-----------|-------------------|----------------------|
+| Background | `#F0F0F0` | `#0E1233` | `--brand-surface` | `--brand-surface-light` / `--brand-surface-dark` |
+| Grey | `#E4E4EE` | `#252963` | `--brand-surface-grey` | `--brand-surface-grey-light` / `--brand-surface-grey-dark` |
+| Blue (all modes) | `#4751B0` | — | `--brand-surface-blue` | — |
 
-### Highlights — Light & Dark (same values)
+### Highlights (same hex in both modes — no split)
 
 | Color | Hex | CSS Variable |
 |-------|-----|-------------|
-| Light Green | `#B9F7CE` | `--brand-highlight-light-green` |
-| Grass Green | `#3DC683` | `--brand-highlight-grass-green` |
-| Dark Green | `#15552E` | `--brand-highlight-dark-green` |
+| Blue | `#4751B0` | `--brand-highlight-blue` |
+| Navy | `#0E1233` | `--brand-highlight-navy` |
+| Light | `#F0F0F0` | `--brand-highlight-light` |
+
+### Offset Accents
+
+| Color | Hex (light) | Hex (dark) | Adaptive variable | Primitive variables |
+|-------|-------------|-----------|-------------------|----------------------|
+| Lavender | `#A6A1E2` | `#B4AFE7` | `--brand-offset-lavender` | `--brand-offset-lavender-light` / `--brand-offset-lavender-dark` |
+| Green | `#A0D246` | `#D5FD8D` | `--brand-offset-green` | `--brand-offset-green-light` / `--brand-offset-green-dark` |
+| Yellow (all modes) | `#FFD27D` | — | `--brand-offset-yellow` | — |
+| Coral | `#F0936B` | `#E99F80` | `--brand-offset-coral` | `--brand-offset-coral-light` / `--brand-offset-coral-dark` |
 
 ### Color Usage Philosophy
 
@@ -208,8 +228,9 @@ Every font family in the Google Fonts `<link>` (or `next/font` import) must be a
 | Tier | Colors | Rule |
 |------|--------|------|
 | **1. Neutrals (default)** | `--foreground`, `--muted-foreground`, `--border`, `--background`, surfaces, greys | Use for the vast majority of UI. Text, borders, backgrounds, cards, dividers. |
-| **2. Brand greens (purposeful)** | `--brand-highlight-light-green`, `--brand-highlight-grass-green`, `--brand-highlight-dark-green` | May be decorative (avatars, badges, accents) but must still serve a purpose — identity, emphasis, or visual hierarchy. Don't scatter brand color without intent. |
-| **3. Non-brand colors (functional only)** | `--destructive` (red), any other non-neutral color | Only when the color itself conveys meaning: errors, warnings, destructive actions, overdue states. Never purely decorative. |
+| **2. Brand highlights (purposeful)** | `--brand-highlight-blue`, `--brand-highlight-navy`, `--brand-highlight-light` | May be decorative (avatars, badges, accents) but must still serve a purpose — identity, emphasis, or visual hierarchy. Don't scatter brand color without intent. |
+| **3. Offset accents (sparing)** | `--brand-offset-lavender`, `--brand-offset-green`, `--brand-offset-yellow`, `--brand-offset-coral` | Use one per composition maximum. Each must earn its place — never two offsets competing in the same section. |
+| **4. Non-brand colors (functional only)** | `--destructive` (red), any other non-neutral color | Only when the color itself conveys meaning: errors, warnings, destructive actions, overdue states. Never purely decorative. |
 
 ### When to Use Brand Colors
 
@@ -217,7 +238,7 @@ Every font family in the Google Fonts `<link>` (or `next/font` import) must be a
 - Status badges, tags — highlight colors for special emphasis
 - Illustrated content — brand palette for custom illustrations
 - Avatars, branded accents — decorative but purposeful identity touches
-- Gradient accents using brand green palette
+- Gradient accents using the brand highlight pair (navy + blue)
 - Any element the design **explicitly marks** as "brand colored"
 
 ### When NOT to Use
@@ -227,6 +248,9 @@ Every font family in the Google Fonts `<link>` (or `next/font` import) must be a
 - Borders — use `--border`
 - Error states — use `--destructive`
 - Functional indicators where color conveys status (e.g. priority levels) — use neutrals or semantic tokens, not brand colors
+- Two offset colors in the same visual section
+- `--brand-highlight-light` on light backgrounds (insufficient contrast)
+- `--brand-highlight-navy` on dark backgrounds (insufficient contrast)
 - Anything not explicitly marked as brand-colored in the design
 
 **Full spec:** [`tokens/brand-colors.yaml`](tokens/brand-colors.yaml)
@@ -463,7 +487,7 @@ Text wordmark. Lora 400, navy on light / near-white on dark. The `*` uses navy o
 | Property | Light | Dark |
 |----------|-------|------|
 | Text | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-surface)` `#F0F0F0` |
-| Asterisk | `var(--brand-offset-green)` `#A0D246` | `#D5FD8D` (dark value of `--brand-offset-green`) |
+| Asterisk | `var(--brand-offset-green)` `#A0D246` | `var(--brand-offset-green-dark)` `#D5FD8D` |
 | Font | Lora **400**, `-0.03em` | Lora **400**, `-0.03em` |
 | Default size | `64px` / `82px` line-height | same |
 
@@ -970,7 +994,7 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 1. **One treatment per context.** All icons in the same context (e.g. a quick-action grid) must use the same color and background. Do not mix brand, primary, and neutral tints across sibling icons.
 2. **`currentColor` by default.** Icons should inherit their color from the parent element, not set an explicit stroke/fill color. This ensures they adapt to light/dark mode and state changes (hover, active, disabled) automatically.
 3. **Neutral backgrounds for icon containers.** When an icon sits inside a tinted container (e.g. a quick-action tile), use `--muted-foreground` at 10% opacity. Do not use brand colors or `--primary` for icon container backgrounds — keep them uniform.
-4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-grass-green` at 12% bg + `--brand-highlight-grass-green` stroke). But this is the exception, not the default.
+4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-blue` at 12% bg + `--brand-highlight-blue` stroke). But this is the exception, not the default.
 5. **Consistent sizing.** Within a row or grid of icons, all icons must use the same width/height and viewBox. Don't mix 18px and 20px icons in the same context.
 6. **Stroke weight by context.** The `1.5` default above is the fallback for uncategorized contexts. When a recognized context applies, it takes precedence: Inline / toolbar — `1.5` standard, `1.75` emphasized. Quick-action tile — `2`. FAB — `2.5`. Navigation bar — `1.5`. Do not mix weights within a single context.
 
@@ -995,7 +1019,7 @@ Icons adapt automatically when using `currentColor` — no additional work requi
 **Common dark mode icon bugs:**
 1. Hardcoded `stroke="#333"` — invisible on dark backgrounds. Fix: use `currentColor`.
 2. Hardcoded container `background: rgba(0,0,0,0.1)` — invisible in dark mode. Fix: use `color-mix(in srgb, var(--muted-foreground) 10%, transparent)`.
-3. Brand color icons that don't change — `--brand-highlight-grass-green` (#3DC683) is the same in both modes by design, so it remains visible on both light and dark. No fix needed.
+3. Brand highlight icons — `--brand-highlight-blue` (#4751B0) and `--brand-highlight-navy` (#0E1233) are the same in both modes, so they remain visible on both surfaces by design. No fix needed.
 
 ---
 
