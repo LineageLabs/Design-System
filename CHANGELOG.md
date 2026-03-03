@@ -5,6 +5,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.25] — 2026-03-03
+
+### Changed
+- **Lineage\*Labs wordmark — light mode asterisk updated.**
+  - `*` color: `var(--brand-highlight-navy)` `#0E1233` → `var(--brand-offset-green)` `#A0D246`
+  - Both modes now use `--brand-offset-green` for the asterisk (light: `#A0D246`, dark: `#D5FD8D`)
+  - Updated: `index.html` (CSS + spec table), `assets/logos/README.md` (spec table + CSS block), `DESIGN-SYSTEM.md` (§5 summary table)
+
+---
+
 ## [2026.03.24] — 2026-03-03
 
 ### Changed

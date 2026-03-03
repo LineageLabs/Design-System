@@ -99,7 +99,7 @@ The `*` uses the brand offset green as an accent in both modes.
 | Property | Light Mode | Dark Mode |
 |----------|-----------|----------|
 | Text color | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-surface)` `#F0F0F0` |
-| Asterisk (`*`) color | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-offset-green)` `#A0D246` / `#D5FD8D` dark |
+| Asterisk (`*`) color | `var(--brand-offset-green)` `#A0D246` | `var(--brand-offset-green)` `#A0D246` / `#D5FD8D` dark |
 | Font | Lora, weight **400**, `-0.03em` letter-spacing | Lora, weight **400**, `-0.03em` letter-spacing |
 | Default size | `64px` / line-height `82px` | `64px` / line-height `82px` |
 
@@ -118,7 +118,7 @@ The `*` uses the brand offset green as an accent in both modes.
   white-space: nowrap;
 }
 .logo-text .logo-asterisk {
-  color: var(--brand-highlight-navy); /* #0E1233 */
+  color: var(--brand-offset-green); /* #A0D246 */
 }
 
 /* Dark mode override (via .dark parent) */

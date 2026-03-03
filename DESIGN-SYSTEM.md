@@ -463,7 +463,7 @@ Text wordmark. Lora 400, navy on light / near-white on dark. The `*` uses navy o
 | Property | Light | Dark |
 |----------|-------|------|
 | Text | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-surface)` `#F0F0F0` |
-| Asterisk | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-offset-green)` `#A0D246` / `#D5FD8D` |
+| Asterisk | `var(--brand-offset-green)` `#A0D246` | `var(--brand-offset-green)` `#A0D246` / `#D5FD8D` |
 | Font | Lora **400**, `-0.03em` | Lora **400**, `-0.03em` |
 | Default size | `64px` / `82px` line-height | same |
 
