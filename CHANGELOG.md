@@ -5,6 +5,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.29] — 2026-03-03
+
+### Added
+- **Images section — hero and section image composition demos.** Expanded Demo 1 (Hero) with two new sub-demos: text overlay (`.img-hero-wrap` + `.img-hero-scrim` + `.img-hero-content`) and split panel (`.img-hero-split` grid). Expanded Demo 2 (Section Image) with side-by-side text grid (`.img-text-grid` + `.img-text-grid-body`) and figure+caption (`<figure>` + `.img-figure` + `.img-caption`). Added "Image Composition Patterns" rules table (5 rows) before the existing rules tables. Updated: `index.html`.
+- **New CSS utilities (13 classes):** `.img-hero-wrap`, `.img-hero-scrim`, `.img-hero-content`, `.img-hero-headline`, `.img-hero-sub`, `.img-hero-actions`, `.img-hero-split`, `.img-hero-split-image`, `.img-hero-split-panel`, `.img-text-grid`, `.img-text-grid-body`, `.img-figure`, `.img-caption`. Added responsive overrides at `max-width: 767px` and `max-width: 600px`. Updated: `index.html` `<style>` block.
+- **DESIGN-SYSTEM.md §11 — Images.** New section covering all CSS utilities, aspect ratio system, composition patterns, `object-position` focal points, border-radius rules, `loading`/`decoding` attributes, overlay gradient recipes, responsive behaviour, `overflow:hidden` rules, and `.maia-btn-outline` on dark backgrounds. File Map renumbered to §12.
+
+---
+
 ## [2026.03.28] — 2026-03-03
 
 ### Added

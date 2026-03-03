@@ -1222,7 +1222,169 @@
     @media (max-width: 767px) {
       .img-hero { height: 40dvh; }
       .img-card-grid { grid-template-columns: 1fr !important; }
+      .img-hero-wrap { height: 40dvh; }
+      .img-text-grid  { grid-template-columns: 1fr; }
     }
+    @media (max-width: 600px) {
+      .img-hero-split {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
+      }
+      .img-hero-split-image { height: 35dvh; }
+      .img-hero-split-panel {
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+    }
+
+    /* =========================================================
+       HERO COMPOSITION UTILITIES
+       ========================================================= */
+
+    /* Wrapper: owns height; .img-fill inside fills it */
+    .img-hero-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 60dvh;
+      min-height: 280px;
+    }
+
+    /* Generic dark scrim — rgba-based, works on any photography */
+    .img-hero-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.72) 0%,
+        rgba(0,0,0,0.32) 45%,
+        transparent 80%
+      );
+      pointer-events: none;
+    }
+
+    /* Absolute text layer inside .img-hero-wrap */
+    .img-hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      color: #fff;
+    }
+
+    /* Display headline — Lora */
+    .img-hero-headline {
+      font-family: "Lora", Georgia, serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 0.75rem;
+      max-width: 22ch;
+    }
+
+    /* Sub-copy */
+    .img-hero-sub {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      line-height: 1.5;
+      margin: 0 0 1.5rem;
+      max-width: 46ch;
+    }
+
+    /* CTA row */
+    .img-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* Split: image left, card panel right */
+    .img-hero-split {
+      display: grid;
+      grid-template-columns: 1fr min(46%, 460px);
+      height: 60dvh;
+      min-height: 320px;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+    .img-hero-split-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .img-hero-split-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 28% center;
+    }
+    .img-hero-split-panel {
+      background: var(--card);
+      border-left: 1px solid var(--border);
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
+    }
+    .img-hero-split-panel h3 {
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(1rem, 2vw, 1.375rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 0 0.75rem;
+    }
+    .img-hero-split-panel p {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+      margin: 0 0 1.5rem;
+    }
+
+    /* =========================================================
+       SECTION IMAGE + TEXT COMPOSITIONS
+       ========================================================= */
+
+    /* 1:1 side-by-side grid */
+    .img-text-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .img-text-grid-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .img-text-grid-body h3 {
+      font-family: "Poppins", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .img-text-grid-body p {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Figure + caption */
+    .img-figure { margin: 0; }
+    .img-caption {
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+      line-height: 1.5;
+      margin-top: 0.625rem;
+      padding-top: 0.625rem;
+      border-top: 1px solid var(--border);
+    }
+    .img-caption strong { color: var(--foreground); }
 
     /* Field — label + input + description + error */
     .maia-field {
@@ -2792,6 +2954,99 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </div>
       </div>
 
+      <!-- DEMO 1b — HERO WITH TEXT OVERLAY -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Hero — Text Overlay
+          <span class="anim-tag">img-hero-wrap</span>
+          <span class="anim-tag">img-hero-scrim</span>
+          <span class="anim-tag">img-hero-content</span>
+          <span class="anim-tag">Lora headline + CTAs</span>
+        </div>
+        <div class="img-hero-wrap" style="margin-bottom:1rem;">
+          <img class="img-fill" src="hero-market.jpg"
+               alt="Two people selecting produce at a farmers market"
+               loading="eager" decoding="sync"
+               style="object-position:28% center;" />
+          <div class="img-hero-scrim"></div>
+          <div class="img-hero-content">
+            <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;margin-bottom:0.5rem;display:block;">Fresh &amp; Local</span>
+            <h2 class="img-hero-headline">The market, at your doorstep.</h2>
+            <p class="img-hero-sub">Seasonal produce from regional growers, delivered every Thursday.</p>
+            <div class="img-hero-actions">
+              <button class="maia-btn maia-btn-primary maia-press">Get Started</button>
+              <button class="maia-btn maia-btn-outline maia-press"
+                      style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.55);">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* .img-hero-wrap owns the height; .img-fill fills it */</span>
+<span class="code-comment">/* Use .img-fill — NOT .img-hero — inside the wrap */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-wrap"&gt;
+  &lt;<span class="code-selector">img</span> <span class="code-prop">class</span>="img-fill" <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…"
+       <span class="code-prop">loading</span>="eager" <span class="code-prop">decoding</span>="sync"
+       <span class="code-prop">style</span>="object-position:28% center;" /&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-scrim"&gt;&lt;/<span class="code-selector">div</span>&gt;   <span class="code-comment">&lt;!-- dark gradient, bottom-up --&gt;</span>
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-content"&gt;
+    &lt;<span class="code-selector">span</span>&gt;Eyebrow label&lt;/<span class="code-selector">span</span>&gt;
+    &lt;<span class="code-selector">h2</span> <span class="code-prop">class</span>="img-hero-headline"&gt;Headline copy.&lt;/<span class="code-selector">h2</span>&gt;
+    &lt;<span class="code-selector">p</span> <span class="code-prop">class</span>="img-hero-sub"&gt;Supporting sub-copy.&lt;/<span class="code-selector">p</span>&gt;
+    &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-actions"&gt;
+      &lt;<span class="code-selector">button</span> <span class="code-prop">class</span>="maia-btn maia-btn-primary"&gt;Primary CTA&lt;/<span class="code-selector">button</span>&gt;
+      <span class="code-comment">&lt;!-- Outline on dark bg: override color + box-shadow --&gt;</span>
+      &lt;<span class="code-selector">button</span> <span class="code-prop">class</span>="maia-btn maia-btn-outline"
+              <span class="code-prop">style</span>="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.55);"&gt;
+        Secondary CTA
+      &lt;/<span class="code-selector">button</span>&gt;
+    &lt;/<span class="code-selector">div</span>&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 1c — HERO WITH SPLIT PANEL -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Hero — Split Panel
+          <span class="anim-tag">img-hero-split</span>
+          <span class="anim-tag">grid 1fr + min(46%, 460px)</span>
+          <span class="anim-tag">card panel</span>
+          <span class="anim-tag">stacks ≤600px</span>
+        </div>
+        <div class="img-hero-split" style="margin-bottom:1rem;">
+          <div class="img-hero-split-image">
+            <img src="hero-market.jpg"
+                 alt="Farmers market — wide view"
+                 loading="eager" decoding="sync" />
+          </div>
+          <div class="img-hero-split-panel">
+            <span class="maia-badge maia-badge-grass-green"
+                  style="align-self:flex-start;margin-bottom:1rem;">Local · Seasonal</span>
+            <h3>Start shopping local today.</h3>
+            <p>Connect with farmers in your area and get the freshest produce, harvested the same morning.</p>
+            <div style="display:flex;flex-direction:column;gap:0.625rem;">
+              <button class="maia-btn maia-btn-primary maia-press" style="width:100%;">Get Early Access</button>
+              <button class="maia-btn maia-btn-outline maia-press" style="width:100%;">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* Split: CSS grid — panel reflows below image on narrow screens */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-split"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-split-image"&gt;
+    &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…"
+         <span class="code-prop">loading</span>="eager" <span class="code-prop">decoding</span>="sync" /&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-split-panel"&gt;
+    <span class="code-comment">&lt;!-- badge, h3, p, then CTA buttons --&gt;</span>
+    &lt;<span class="code-selector">h3</span>&gt;Headline.&lt;/<span class="code-selector">h3</span>&gt;
+    &lt;<span class="code-selector">p</span>&gt;Supporting copy.&lt;/<span class="code-selector">p</span>&gt;
+    &lt;<span class="code-selector">button</span> <span class="code-prop">class</span>="maia-btn maia-btn-primary" <span class="code-prop">style</span>="width:100%;"&gt;Primary&lt;/<span class="code-selector">button</span>&gt;
+    &lt;<span class="code-selector">button</span> <span class="code-prop">class</span>="maia-btn maia-btn-outline" <span class="code-prop">style</span>="width:100%;"&gt;Secondary&lt;/<span class="code-selector">button</span>&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
       <!-- DEMO 2 — SECTION / EDITORIAL (21:9) -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Section Image — Editorial
@@ -2823,6 +3078,83 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="hero-market.jpg" <span class="code-prop">alt</span>="…"
        <span class="code-prop">loading</span>="lazy" <span class="code-prop">decoding</span>="async" /&gt;
 &lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 2b — SECTION IMAGE SIDE-BY-SIDE -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Section Image — Side-by-side
+          <span class="anim-tag">img-text-grid</span>
+          <span class="anim-tag">grid 1:1</span>
+          <span class="anim-tag">badge + headline + body + CTAs</span>
+          <span class="anim-tag">stacks on mobile</span>
+        </div>
+        <div class="img-text-grid" style="margin-bottom:1rem;">
+          <div class="img-ar" style="--ar:4/3;border-radius:var(--radius);">
+            <img src="hero-market.jpg" alt="Farmers market produce"
+                 loading="lazy" decoding="async" />
+          </div>
+          <div class="img-text-grid-body">
+            <span class="maia-badge maia-badge-light-green" style="align-self:flex-start;">Seasonal</span>
+            <h3>Grown within 50 miles.</h3>
+            <p>Every item is sourced from farms within a 50-mile radius. We verify provenance at intake and publish full supply-chain transparency reports monthly.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+              <button class="maia-btn maia-btn-primary maia-btn-sm maia-press">Shop Now</button>
+              <button class="maia-btn maia-btn-ghost maia-btn-sm maia-press">Our Story →</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* Image left, text right */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-text-grid"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar:4/3; border-radius:var(--radius);"&gt;
+    &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…" <span class="code-prop">loading</span>="lazy" /&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-text-grid-body"&gt;
+    &lt;<span class="code-selector">h3</span>&gt;Headline&lt;/<span class="code-selector">h3</span>&gt;
+    &lt;<span class="code-selector">p</span>&gt;Body copy.&lt;/<span class="code-selector">p</span>&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+
+<span class="code-comment">/* Text left, image right — swap DOM order */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-text-grid"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-text-grid-body"&gt;…&lt;/<span class="code-selector">div</span>&gt;  <span class="code-comment">&lt;!-- text first = left col --&gt;</span>
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar"&gt;…&lt;/<span class="code-selector">div</span>&gt;           <span class="code-comment">&lt;!-- img second = right col --&gt;</span>
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 2c — FIGURE + CAPTION -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Section Image — Figure + Caption
+          <span class="anim-tag">&lt;figure&gt;</span>
+          <span class="anim-tag">img-figure</span>
+          <span class="anim-tag">img-caption</span>
+          <span class="anim-tag">credit line</span>
+        </div>
+        <figure class="img-figure" style="margin-bottom:1rem;">
+          <div class="img-ar" style="--ar:21/9;border-radius:var(--radius);">
+            <img src="hero-market.jpg"
+                 alt="Vendors at the Riverside Farmers Market"
+                 loading="lazy" decoding="async" />
+          </div>
+          <figcaption class="img-caption">
+            <strong>Riverside Farmers Market</strong> — Weekly outdoor market featuring 40+ local vendors. Open every Saturday, 8am–2pm.
+            <span style="display:block;margin-top:0.25rem;opacity:0.65;">Photo: Jane Doe / Maia Studio</span>
+          </figcaption>
+        </figure>
+        <div class="code-block reveal">
+&lt;<span class="code-selector">figure</span> <span class="code-prop">class</span>="img-figure"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar:21/9; border-radius:var(--radius);"&gt;
+    &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…" <span class="code-prop">loading</span>="lazy" /&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+  &lt;<span class="code-selector">figcaption</span> <span class="code-prop">class</span>="img-caption"&gt;
+    &lt;<span class="code-selector">strong</span>&gt;Location name&lt;/<span class="code-selector">strong</span>&gt; — Description copy.
+    &lt;<span class="code-selector">span</span> <span class="code-prop">style</span>="display:block;margin-top:0.25rem;opacity:0.65;"&gt;
+      Photo: Photographer / Studio
+    &lt;/<span class="code-selector">span</span>&gt;
+  &lt;/<span class="code-selector">figcaption</span>&gt;
+&lt;/<span class="code-selector">figure</span>&gt;
         </div>
       </div>
 
@@ -3035,6 +3367,23 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       </div>
 
       <div class="divider"></div>
+
+      <!-- IMAGE COMPOSITION PATTERNS TABLE -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Image Composition Patterns</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Pattern</th><th>CSS</th><th>When to use</th><th>Mobile</th></tr></thead>
+            <tbody>
+              <tr><td>Image only</td><td><code>.img-hero</code> / <code>.img-ar</code></td><td>Image communicates standalone; no text needed</td><td>Height compresses; ratio holds</td></tr>
+              <tr><td>Text overlay — bottom</td><td><code>.img-hero-wrap</code> + <code>.img-hero-scrim</code> + <code>.img-hero-content</code></td><td>Marketing heroes, event banners, editorial covers with atmospheric photography</td><td>Wrap shrinks to 40dvh; content stays bottom-anchored</td></tr>
+              <tr><td>Split panel</td><td><code>.img-hero-split</code></td><td>Sign-up/auth heroes, landing page primary CTAs, feature intros requiring a form or bullet list</td><td>Stacks: image top (35dvh) + panel below at ≤600px</td></tr>
+              <tr><td>Image + text grid</td><td><code>.img-text-grid</code> + <code>.img-text-grid-body</code></td><td>Feature rows, "about" sections, editorial articles — when copy needs equal visual weight to image</td><td>Single column; image first by DOM order</td></tr>
+              <tr><td>Figure + caption</td><td><code>&lt;figure&gt;</code> + <code>.img-figure</code> + <code>.img-caption</code></td><td>Articles, press releases, documentation — anywhere attribution or context is needed below the image</td><td>Full width; caption wraps naturally</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <!-- TABLE 1 — ASPECT RATIOS BY IMAGE TYPE -->
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Aspect Ratios by Image Type</h3>
