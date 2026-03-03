@@ -5,6 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.14] — 2026-03-03
+
+### Changed
+- **Lineage\*Labs wordmark asterisk colours updated — mode-specific.**
+  - Light `*`: `#3DC683` → `var(--brand-highlight-navy)` `#0E1233`
+  - Dark `*`: `#3DC683` → `var(--brand-offset-green)` (`#A0D246` light-root / `#D5FD8D` dark-mode)
+- **Lineage\*Labs dark mode text token updated.**
+  - Dark text: `var(--brand-highlight-light)` → `var(--brand-surface)` (resolves to `#F0F0F0` in forced-dark context)
+- **Asterisk CSS selector split into per-mode rules** in `index.html`, `assets/logos/README.md`.
+- **`DESIGN-SYSTEM.md` §5 and `assets/logos/README.md` spec tables updated** to reflect all four token changes.
+
+---
+
 ## [2026.03.13] — 2026-03-02
 
 ### Changed

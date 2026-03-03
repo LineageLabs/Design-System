@@ -251,9 +251,15 @@
       color: var(--brand-highlight-blue);
       white-space: nowrap;
     }
+    .logo-text .logo-asterisk {
+      color: var(--brand-highlight-navy);
+    }
     .dark .logo-text {
       font-weight: 400;
-      color: var(--brand-highlight-light);
+      color: var(--brand-surface);
+    }
+    .dark .logo-text .logo-asterisk {
+      color: var(--brand-offset-green);
     }
     /* Forced dark variant for always-dark panels */
     .logo-text-dark {
@@ -263,12 +269,11 @@
       font-size: 64px;
       line-height: 82px;
       letter-spacing: -0.03em;
-      color: var(--brand-highlight-light);
+      color: var(--brand-surface);
       white-space: nowrap;
     }
-    .logo-text .logo-asterisk,
     .logo-text-dark .logo-asterisk {
-      color: #3DC683;
+      color: var(--brand-offset-green);
     }
 
     nav {
@@ -1421,7 +1426,7 @@
       <!-- ═══════════════ Lineage*Labs Wordmark ═══════════════ -->
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Lineage*Labs Wordmark</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Text wordmark in Lora. Weight 600 on light (<code>--brand-highlight-blue</code>), weight 400 on dark (<code>--brand-highlight-light</code>). The <code>*</code> uses <code>--brand-highlight-blue</code> as accent.
+        Text wordmark in Lora. Weight 600 on light (<code>--brand-highlight-blue</code>), weight 400 on dark (<code>--brand-surface</code>). The <code>*</code> uses <code>--brand-highlight-navy</code> on light, <code>--brand-offset-green</code> on dark.
       </p>
 
       <!-- Lineage*Labs — Light -->
@@ -1436,7 +1441,7 @@
 
       <!-- Lineage*Labs — Dark -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Dark Mode <span class="anim-tag">Lora 400</span> <span class="anim-tag">--brand-highlight-light</span></div>
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">Lora 400</span> <span class="anim-tag">--brand-surface</span></div>
         <div style="background:oklch(0.13 0.028 261.692);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:1.5rem;">
           <span class="logo-text-dark">Lineage<span class="logo-asterisk">*</span>Labs</span>
           <span class="logo-text-dark" style="font-size:36px;line-height:46px;">Lineage<span class="logo-asterisk">*</span>Labs</span>

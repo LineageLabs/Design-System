@@ -98,8 +98,8 @@ The `*` uses the brand offset green as an accent in both modes.
 
 | Property | Light Mode | Dark Mode |
 |----------|-----------|----------|
-| Text color | `#4751B0` (`var(--brand-highlight-blue)`) | `#F0F0F0` (`var(--brand-highlight-light)`) |
-| Asterisk (`*`) color | `#3DC683` (grass green) | `#3DC683` (grass green) |
+| Text color | `var(--brand-highlight-blue)` `#4751B0` | `var(--brand-surface)` `#F0F0F0` |
+| Asterisk (`*`) color | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-offset-green)` `#A0D246` / `#D5FD8D` dark |
 | Font | Lora, weight **600**, `-0.03em` letter-spacing | Lora, weight **400**, `-0.03em` letter-spacing |
 | Default size | `64px` / line-height `82px` | `64px` / line-height `82px` |
 
@@ -117,11 +117,17 @@ The `*` uses the brand offset green as an accent in both modes.
   color: var(--brand-highlight-blue); /* #4751B0 */
   white-space: nowrap;
 }
+.logo-text .logo-asterisk {
+  color: var(--brand-highlight-navy); /* #0E1233 */
+}
 
 /* Dark mode override (via .dark parent) */
 .dark .logo-text {
   font-weight: 400;
-  color: var(--brand-highlight-light); /* #F0F0F0 */
+  color: var(--brand-surface); /* #F0F0F0 in light root, resolves to near-white */
+}
+.dark .logo-text .logo-asterisk {
+  color: var(--brand-offset-green); /* #D5FD8D in dark mode */
 }
 
 /* Forced dark-mode wordmark (always-dark surfaces) */
@@ -132,14 +138,11 @@ The `*` uses the brand offset green as an accent in both modes.
   font-size: 64px;
   line-height: 82px;
   letter-spacing: -0.03em;
-  color: var(--brand-highlight-light); /* #F0F0F0 */
+  color: var(--brand-surface); /* #F0F0F0 when no .dark parent */
   white-space: nowrap;
 }
-
-/* Accent asterisk — same color in both modes */
-.logo-text .logo-asterisk,
 .logo-text-dark .logo-asterisk {
-  color: #3DC683;
+  color: var(--brand-offset-green); /* #A0D246 when no .dark parent */
 }
 ```
 
