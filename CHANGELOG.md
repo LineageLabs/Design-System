@@ -5,6 +5,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.33] — 2026-03-03
+
+### Fixed
+- **Lineage\*Labs logo asterisk green — correct primitive per surface context.** Three bugs corrected in `index.html`:
+  - `.logo-badge-dark .logo-badge-asterisk` was sharing a rule with `.logo-badge` and using adaptive `var(--brand-offset-green)`, which in light mode resolved to `#A0D246` (the dark, saturated green) on a `#0E1233` navy background. Separated into its own rule using `var(--brand-offset-green-dark)` (always `#D5FD8D`, the bright lime) since `.logo-badge-dark` is always on navy.
+  - `.logo-text-dark { color: var(--brand-surface) }` resolved to `#0E1233` in dark mode (same as the navy background → invisible text). Changed to `var(--brand-surface-light)` (always `#F0F0F0`).
+  - Removed redundant `.dark .logo-text .logo-asterisk` rule — `var(--brand-offset-green)` already switches automatically via the primitive system. Updated: `index.html`.
+
+---
+
 ## [2026.03.32] — 2026-03-03
 
 ### Changed
