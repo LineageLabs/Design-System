@@ -5,6 +5,95 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.32] — 2026-03-03
+
+### Changed
+- **Brand color swatches updated to display primitive names.** Each swatch that has a `-light` or `-dark` primitive now shows both the adaptive variable name (primary) and the primitive name (secondary, slightly dimmed via `.swatch-prim` class). Surfaces section split into "Surfaces — Light" and "Surfaces — Dark" panels; added missing `--brand-surface-grey-dark` (#252963) swatch. Updated: `index.html`.
+
+---
+
+## [2026.03.31] — 2026-03-03
+
+### Added
+- **Brand color primitive tokens.** Ten new immutable CSS custom properties — one per unique brand hex, suffixed `-light` or `-dark` — defined once in `:root` and never redefined in `.dark`: `--brand-surface-light` / `--brand-surface-dark`, `--brand-surface-grey-light` / `--brand-surface-grey-dark`, `--brand-offset-lavender-light` / `--brand-offset-lavender-dark`, `--brand-offset-green-light` / `--brand-offset-green-dark`, `--brand-offset-coral-light` / `--brand-offset-coral-dark`. Use these when an element needs a specific shade regardless of colour mode (e.g. forced-dark components without a `.dark` ancestor). Updated: `tokens/colors.css`, `index.html`.
+
+### Changed
+- **Brand semantic tokens now delegate to primitives via `var()`.** The 5 adaptive variables (`--brand-surface`, `--brand-surface-grey`, `--brand-offset-lavender`, `--brand-offset-green`, `--brand-offset-coral`) in both `:root` and `.dark` now reference the new primitives instead of holding literal hex values. Adaptive behaviour is identical; every unique hex now has its own unambiguous name. Updated: `tokens/colors.css`, `index.html`.
+- **Hardcoded `#D5FD8D` replaced with `var(--brand-offset-green-dark)`.** `.logo-text-dark .logo-asterisk` in `index.html` previously hardcoded the dark green because no named variable existed for it. Now uses the new primitive. Updated: `index.html`.
+- **`tokens/brand-colors.yaml` updated.** Added `css_var_light` and `css_var_dark` fields to all five dual-mode colors. Updated offset comments to document the three-variable pattern (adaptive + two primitives). Updated: `tokens/brand-colors.yaml`.
+- **`DESIGN-SYSTEM.md` §3 Brand Colors rewritten.** Replaced stale `--brand-highlight-light-green`, `--brand-highlight-grass-green`, `--brand-highlight-dark-green` references (these variables no longer exist) with the current `--brand-highlight-*` and `--brand-offset-*` system. Added "Two-Tier Token System" sub-section explaining when to use primitives vs adaptive tokens. Updated surface and offset tables to show both hex values and all three CSS variable names. Updated icons section rules to remove stale grass-green references. Updated wordmark table: asterisk dark column changed from hardcoded `#D5FD8D` to `var(--brand-offset-green-dark)`. Updated: `DESIGN-SYSTEM.md`.
+
+---
+
+## [2026.03.30] — 2026-03-03
+
+### Changed
+- **Wordmark reveal animation — glow phase removed.** `playWordmarkReveal` previously had a Phase 3 `text-shadow` pulse (`0 → 20px → 0`, `rgba` based on light/dark mode). Removed Phase 3 and the `glowColor` variable entirely. Animation now has two phases only: character stagger blur-in (Phase 1) and asterisk scale pop (Phase 2). Updated: `index.html`.
+
+### Fixed
+- **Wordmark replay inconsistency.** `resetWordmark` used `clearProps:"all"` on char `<span>` elements, which removed the `display:inline-block` style set by `splitWordmarkChars` directly on the DOM (not via GSAP). After reset, chars reverted to `display:inline`, causing GSAP `x`/`y` transforms to behave differently on replay versus the initial ScrollTrigger-driven play. Fix: use specific `clearProps:"opacity,filter,transform,x,y,scale"` on chars to preserve `display:inline-block`. Also added `gsap.killTweensOf([el, ...chars])` to cleanly stop in-progress tweens, and moved the `opacity:0` re-hide into `resetWordmark` (removing redundant `gsap.set` calls from both replay handlers). Updated: `index.html`.
+- **Wordmark anim-tags cleaned.** Removed `glow pulse` anim-tag badge from the Lineage*Labs Animated Reveal `comp-demo-label`. Removed Phase 3 row from the wordmark animation spec table. Updated: `index.html`.
+
+---
+
+## [2026.03.29] — 2026-03-03
+
+### Added
+- **Images section — hero and section image composition demos.** Expanded Demo 1 (Hero) with two new sub-demos: text overlay (`.img-hero-wrap` + `.img-hero-scrim` + `.img-hero-content`) and split panel (`.img-hero-split` grid). Expanded Demo 2 (Section Image) with side-by-side text grid (`.img-text-grid` + `.img-text-grid-body`) and figure+caption (`<figure>` + `.img-figure` + `.img-caption`). Added "Image Composition Patterns" rules table (5 rows) before the existing rules tables. Updated: `index.html`.
+- **New CSS utilities (13 classes):** `.img-hero-wrap`, `.img-hero-scrim`, `.img-hero-content`, `.img-hero-headline`, `.img-hero-sub`, `.img-hero-actions`, `.img-hero-split`, `.img-hero-split-image`, `.img-hero-split-panel`, `.img-text-grid`, `.img-text-grid-body`, `.img-figure`, `.img-caption`. Added responsive overrides at `max-width: 767px` and `max-width: 600px`. Updated: `index.html` `<style>` block.
+- **DESIGN-SYSTEM.md §11 — Images.** New section covering all CSS utilities, aspect ratio system, composition patterns, `object-position` focal points, border-radius rules, `loading`/`decoding` attributes, overlay gradient recipes, responsive behaviour, `overflow:hidden` rules, and `.maia-btn-outline` on dark backgrounds. File Map renumbered to §12.
+
+---
+
+## [2026.03.28] — 2026-03-03
+
+### Added
+- **Section 09 — Images.** New `<section id="images">` in `index.html` with 6 live demos (Hero/full-bleed, Section/editorial 21:9, Card cover 3-up grid with `object-position` variants, Aspect ratio reference for 5 ratios, Background with text overlay, Avatar row with 5 sizes + initials fallback), 7 rules tables (aspect ratios, `object-position`, border-radius, `loading`/`decoding`, responsive behaviour, overlay gradient recipes, `overflow: hidden` containment), shadcn `AspectRatio`/`Card`/`Avatar` mapping cards, and a full CSS class reference table.
+- **Image CSS utilities block.** Nine new utility classes added to `<style>` in `index.html`: `.img-hero`, `.img-fill`, `.img-ar` (+ nested `img`), `.img-avatar` (+ 5 size modifiers: xl/lg/md/sm/xs), `.img-avatar-initials`, `.img-overlay-wrap`, `.img-overlay`, `.img-overlay-content`. Responsive override `@media (max-width: 767px)` compresses hero to `40dvh` and collapses `.img-card-grid` to 1 column.
+- **Nav link — Images.** Added `<a href="#images">Images</a>` to main nav between Components and Get Started.
+
+### Changed
+- **Section labels renumbered.** Sections 09–13 incremented to 10–14: `#start` (09→10), `#mobile-example` (10→11), `#pitchdeck` (11→12), `#landing` (12→13), `#reviews` (13→14). Semantic IDs unchanged.
+
+---
+
+## [2026.03.27] — 2026-03-03
+
+### Fixed
+- **Logo animation asterisk — smoothed pop.** Replaced two-tween approach (`fromTo back.out(3)` + `to power2.out`) that produced a visible hitch at the join point with a single GSAP `keyframes` tween: `[scale 1.28 sine.out 280ms] → [scale 1 power2.inOut 420ms]` with `transformOrigin: "50% 50%"`. Scale peak reduced from 1.3 → 1.28. Updated `index.html` (GSAP script block).
+
+---
+
+## [2026.03.26] — 2026-03-03
+
+### Fixed
+- **Lineage\*Labs wordmark — forced-dark panels asterisk now correctly `#D5FD8D`.**
+  `.logo-text-dark .logo-asterisk` previously used `var(--brand-offset-green)` which resolves to `#A0D246` (the light-root value) because `.logo-text-dark` panels have no `.dark` ancestor. Hardcoded to `#D5FD8D` — the explicit dark value of `--brand-offset-green`. Updated: `index.html` (CSS), `assets/logos/README.md` (spec table + CSS block), `DESIGN-SYSTEM.md` (§5 table).
+
+---
+
+## [2026.03.25] — 2026-03-03
+
+### Changed
+- **Lineage\*Labs wordmark — light mode asterisk updated.**
+  - `*` color: `var(--brand-highlight-navy)` `#0E1233` → `var(--brand-offset-green)` `#A0D246`
+  - Both modes now use `--brand-offset-green` for the asterisk (light: `#A0D246`, dark: `#D5FD8D`)
+  - Updated: `index.html` (CSS + spec table), `assets/logos/README.md` (spec table + CSS block), `DESIGN-SYSTEM.md` (§5 summary table)
+
+---
+
+## [2026.03.24] — 2026-03-03
+
+### Changed
+- **Lineage\*Labs wordmark — light mode updated (Figma sync).**
+  - Weight: **600 → 400** (now identical to dark mode)
+  - Color: `var(--brand-highlight-blue)` `#4751B0` → `var(--brand-highlight-navy)` `#0E1233`
+  - Asterisk color unchanged — also `--brand-highlight-navy`; text and `*` share the same navy in light mode
+  - `.dark .logo-text` override simplified: `font-weight: 400` line removed (no longer needed since base is now 400)
+  - Updated: `index.html` (CSS, demo label, description paragraph, spec table), `assets/logos/README.md` (spec table + CSS block), `DESIGN-SYSTEM.md` (§5 summary table + intro line)
+
+---
+
 ## [2026.03.23] — 2026-03-03
 
 ### Fixed

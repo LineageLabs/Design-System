@@ -98,9 +98,9 @@ The `*` uses the brand offset green as an accent in both modes.
 
 | Property | Light Mode | Dark Mode |
 |----------|-----------|----------|
-| Text color | `var(--brand-highlight-blue)` `#4751B0` | `var(--brand-surface)` `#F0F0F0` |
-| Asterisk (`*`) color | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-offset-green)` `#A0D246` / `#D5FD8D` dark |
-| Font | Lora, weight **600**, `-0.03em` letter-spacing | Lora, weight **400**, `-0.03em` letter-spacing |
+| Text color | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-surface)` `#F0F0F0` |
+| Asterisk (`*`) color | `var(--brand-offset-green)` `#A0D246` | `#D5FD8D` (dark value of `--brand-offset-green`, hardcoded on `.logo-text-dark`) |
+| Font | Lora, weight **400**, `-0.03em` letter-spacing | Lora, weight **400**, `-0.03em` letter-spacing |
 | Default size | `64px` / line-height `82px` | `64px` / line-height `82px` |
 
 ### CSS Classes
@@ -110,20 +110,19 @@ The `*` uses the brand offset green as an accent in both modes.
 .logo-text {
   font-family: "Lora", Georgia, serif;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 64px;
   line-height: 82px;
   letter-spacing: -0.03em;
-  color: var(--brand-highlight-blue); /* #4751B0 */
+  color: var(--brand-highlight-navy); /* #0E1233 */
   white-space: nowrap;
 }
 .logo-text .logo-asterisk {
-  color: var(--brand-highlight-navy); /* #0E1233 */
+  color: var(--brand-offset-green); /* #A0D246 */
 }
 
 /* Dark mode override (via .dark parent) */
 .dark .logo-text {
-  font-weight: 400;
   color: var(--brand-surface); /* #F0F0F0 in light root, resolves to near-white */
 }
 .dark .logo-text .logo-asterisk {
@@ -142,7 +141,7 @@ The `*` uses the brand offset green as an accent in both modes.
   white-space: nowrap;
 }
 .logo-text-dark .logo-asterisk {
-  color: var(--brand-offset-green); /* #A0D246 when no .dark parent */
+  color: #D5FD8D; /* --brand-offset-green dark value — hardcoded because no .dark ancestor */
 }
 ```
 

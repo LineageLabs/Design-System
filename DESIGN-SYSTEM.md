@@ -185,21 +185,41 @@ Every font family in the Google Fonts `<link>` (or `next/font` import) must be a
 > **Rule:** These do NOT replace shadcn tokens. They are additional `--brand-*` CSS
 > custom properties used only when a design explicitly calls for brand treatment.
 
+### Two-Tier Token System
+
+Brand colors use a **two-tier** structure so every unique hex has its own unambiguous name:
+
+| Tier | Naming | Defined in | Behaviour |
+|------|--------|-----------|-----------|
+| **Primitive** | `--brand-offset-green-light`, `--brand-offset-green-dark` | `:root` only, never redefined | Always resolves to that exact hex regardless of colour mode. Use when an element is always on a dark/light surface with no `.dark` ancestor (e.g. a forced-dark card, logo variants). |
+| **Semantic / adaptive** | `--brand-offset-green` | `:root` + `.dark` override | References the appropriate primitive via `var()`. Automatically switches with `.dark`. Use for the majority of UI. |
+
+Colors that are **identical** in both modes (`--brand-highlight-blue`, `--brand-highlight-navy`, `--brand-highlight-light`, `--brand-surface-blue`, `--brand-offset-yellow`) are not split — they are single literal-hex variables with no primitive/dark variant.
+
 ### Surfaces
 
-| Name | Hex | CSS Variable | Context |
-|------|-----|-------------|---------|
-| Light Background | `#FAFAFA` | `--brand-surface` | Light theme pages |
-| Light Grey | `#EAEAEA` | `--brand-surface-grey` | Dividers, secondary cards |
-| Dark Background | `#151515` | `--brand-surface` (dark) | Dark theme pages |
+| Name | Hex (light) | Hex (dark) | Adaptive variable | Primitive variables |
+|------|-------------|-----------|-------------------|----------------------|
+| Background | `#F0F0F0` | `#0E1233` | `--brand-surface` | `--brand-surface-light` / `--brand-surface-dark` |
+| Grey | `#E4E4EE` | `#252963` | `--brand-surface-grey` | `--brand-surface-grey-light` / `--brand-surface-grey-dark` |
+| Blue (all modes) | `#4751B0` | — | `--brand-surface-blue` | — |
 
-### Highlights — Light & Dark (same values)
+### Highlights (same hex in both modes — no split)
 
 | Color | Hex | CSS Variable |
 |-------|-----|-------------|
-| Light Green | `#B9F7CE` | `--brand-highlight-light-green` |
-| Grass Green | `#3DC683` | `--brand-highlight-grass-green` |
-| Dark Green | `#15552E` | `--brand-highlight-dark-green` |
+| Blue | `#4751B0` | `--brand-highlight-blue` |
+| Navy | `#0E1233` | `--brand-highlight-navy` |
+| Light | `#F0F0F0` | `--brand-highlight-light` |
+
+### Offset Accents
+
+| Color | Hex (light) | Hex (dark) | Adaptive variable | Primitive variables |
+|-------|-------------|-----------|-------------------|----------------------|
+| Lavender | `#A6A1E2` | `#B4AFE7` | `--brand-offset-lavender` | `--brand-offset-lavender-light` / `--brand-offset-lavender-dark` |
+| Green | `#A0D246` | `#D5FD8D` | `--brand-offset-green` | `--brand-offset-green-light` / `--brand-offset-green-dark` |
+| Yellow (all modes) | `#FFD27D` | — | `--brand-offset-yellow` | — |
+| Coral | `#F0936B` | `#E99F80` | `--brand-offset-coral` | `--brand-offset-coral-light` / `--brand-offset-coral-dark` |
 
 ### Color Usage Philosophy
 
@@ -208,8 +228,9 @@ Every font family in the Google Fonts `<link>` (or `next/font` import) must be a
 | Tier | Colors | Rule |
 |------|--------|------|
 | **1. Neutrals (default)** | `--foreground`, `--muted-foreground`, `--border`, `--background`, surfaces, greys | Use for the vast majority of UI. Text, borders, backgrounds, cards, dividers. |
-| **2. Brand greens (purposeful)** | `--brand-highlight-light-green`, `--brand-highlight-grass-green`, `--brand-highlight-dark-green` | May be decorative (avatars, badges, accents) but must still serve a purpose — identity, emphasis, or visual hierarchy. Don't scatter brand color without intent. |
-| **3. Non-brand colors (functional only)** | `--destructive` (red), any other non-neutral color | Only when the color itself conveys meaning: errors, warnings, destructive actions, overdue states. Never purely decorative. |
+| **2. Brand highlights (purposeful)** | `--brand-highlight-blue`, `--brand-highlight-navy`, `--brand-highlight-light` | May be decorative (avatars, badges, accents) but must still serve a purpose — identity, emphasis, or visual hierarchy. Don't scatter brand color without intent. |
+| **3. Offset accents (sparing)** | `--brand-offset-lavender`, `--brand-offset-green`, `--brand-offset-yellow`, `--brand-offset-coral` | Use one per composition maximum. Each must earn its place — never two offsets competing in the same section. |
+| **4. Non-brand colors (functional only)** | `--destructive` (red), any other non-neutral color | Only when the color itself conveys meaning: errors, warnings, destructive actions, overdue states. Never purely decorative. |
 
 ### When to Use Brand Colors
 
@@ -217,7 +238,7 @@ Every font family in the Google Fonts `<link>` (or `next/font` import) must be a
 - Status badges, tags — highlight colors for special emphasis
 - Illustrated content — brand palette for custom illustrations
 - Avatars, branded accents — decorative but purposeful identity touches
-- Gradient accents using brand green palette
+- Gradient accents using the brand highlight pair (navy + blue)
 - Any element the design **explicitly marks** as "brand colored"
 
 ### When NOT to Use
@@ -227,6 +248,9 @@ Every font family in the Google Fonts `<link>` (or `next/font` import) must be a
 - Borders — use `--border`
 - Error states — use `--destructive`
 - Functional indicators where color conveys status (e.g. priority levels) — use neutrals or semantic tokens, not brand colors
+- Two offset colors in the same visual section
+- `--brand-highlight-light` on light backgrounds (insufficient contrast)
+- `--brand-highlight-navy` on dark backgrounds (insufficient contrast)
 - Anything not explicitly marked as brand-colored in the design
 
 **Full spec:** [`tokens/brand-colors.yaml`](tokens/brand-colors.yaml)
@@ -458,13 +482,13 @@ Animation:
 - Static badges: `*` shows `--brand-offset-lavender` via CSS (no JS needed)
 
 #### Lineage\*Labs Wordmark
-Text wordmark. Lora, brand blue on light / near-white on dark. The `*` uses navy on light, offset green on dark.
+Text wordmark. Lora 400, navy on light / near-white on dark. The `*` uses navy on light, offset green on dark.
 
 | Property | Light | Dark |
 |----------|-------|------|
-| Text | `var(--brand-highlight-blue)` `#4751B0` | `var(--brand-surface)` `#F0F0F0` |
-| Asterisk | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-offset-green)` `#A0D246` / `#D5FD8D` |
-| Font | Lora **600**, `-0.03em` | Lora **400**, `-0.03em` |
+| Text | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-surface)` `#F0F0F0` |
+| Asterisk | `var(--brand-offset-green)` `#A0D246` | `var(--brand-offset-green-dark)` `#D5FD8D` |
+| Font | Lora **400**, `-0.03em` | Lora **400**, `-0.03em` |
 | Default size | `64px` / `82px` line-height | same |
 
 Animation — three phases (~1s total):
@@ -970,7 +994,7 @@ Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific ico
 1. **One treatment per context.** All icons in the same context (e.g. a quick-action grid) must use the same color and background. Do not mix brand, primary, and neutral tints across sibling icons.
 2. **`currentColor` by default.** Icons should inherit their color from the parent element, not set an explicit stroke/fill color. This ensures they adapt to light/dark mode and state changes (hover, active, disabled) automatically.
 3. **Neutral backgrounds for icon containers.** When an icon sits inside a tinted container (e.g. a quick-action tile), use `--muted-foreground` at 10% opacity. Do not use brand colors or `--primary` for icon container backgrounds — keep them uniform.
-4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-grass-green` at 12% bg + `--brand-highlight-grass-green` stroke). But this is the exception, not the default.
+4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-blue` at 12% bg + `--brand-highlight-blue` stroke). But this is the exception, not the default.
 5. **Consistent sizing.** Within a row or grid of icons, all icons must use the same width/height and viewBox. Don't mix 18px and 20px icons in the same context.
 6. **Stroke weight by context.** The `1.5` default above is the fallback for uncategorized contexts. When a recognized context applies, it takes precedence: Inline / toolbar — `1.5` standard, `1.75` emphasized. Quick-action tile — `2`. FAB — `2.5`. Navigation bar — `1.5`. Do not mix weights within a single context.
 
@@ -995,7 +1019,7 @@ Icons adapt automatically when using `currentColor` — no additional work requi
 **Common dark mode icon bugs:**
 1. Hardcoded `stroke="#333"` — invisible on dark backgrounds. Fix: use `currentColor`.
 2. Hardcoded container `background: rgba(0,0,0,0.1)` — invisible in dark mode. Fix: use `color-mix(in srgb, var(--muted-foreground) 10%, transparent)`.
-3. Brand color icons that don't change — `--brand-highlight-grass-green` (#3DC683) is the same in both modes by design, so it remains visible on both light and dark. No fix needed.
+3. Brand highlight icons — `--brand-highlight-blue` (#4751B0) and `--brand-highlight-navy` (#0E1233) are the same in both modes, so they remain visible on both surfaces by design. No fix needed.
 
 ---
 
@@ -1025,7 +1049,166 @@ Icons adapt automatically when using `currentColor` — no additional work requi
 
 ---
 
-## 11. File Map
+## 11. Images
+
+Rules for every image type used across the design system — hero, section/editorial, card cover, avatar, and overlay compositions.
+
+---
+
+### CSS Utility Classes
+
+| Class | Applied to | Key properties |
+|---|---|---|
+| `.img-hero` | `<img>` directly | `height:60dvh` · `object-fit:cover` · `object-position:28% center` |
+| `.img-fill` | `<img>` inside sized container | `width:100%` · `height:100%` · `object-fit:cover` |
+| `.img-ar` | Container `<div>` | `aspect-ratio:var(--ar,16/9)` · `overflow:hidden` |
+| `.img-avatar` | Container `<div>` | `border-radius:50%` · `overflow:hidden` · `display:flex` |
+| `.img-avatar-{xl\|lg\|md\|sm\|xs}` | Same as `.img-avatar` | 64 / 48 / 36 / 28 / 20px |
+| `.img-avatar-initials` | `<span>` inside `.img-avatar` | Poppins 600 · `var(--muted-foreground)` |
+| `.img-hero-wrap` | Container `<div>` | `height:60dvh` · `position:relative` · `overflow:hidden` |
+| `.img-hero-scrim` | `<div>` inside `.img-hero-wrap` | Black RGBA gradient `to top` |
+| `.img-hero-content` | `<div>` inside `.img-hero-wrap` | `position:absolute` · flex column · `justify-content:flex-end` |
+| `.img-hero-headline` | `<h2>` inside `.img-hero-content` | Lora · `clamp(1.5rem, 3.5vw, 2.75rem)` · weight 700 |
+| `.img-hero-sub` | `<p>` inside `.img-hero-content` | `0.95rem` · `opacity:0.85` |
+| `.img-hero-actions` | `<div>` inside `.img-hero-content` | flex · `flex-wrap:wrap` · `gap:0.75rem` |
+| `.img-hero-split` | Container `<div>` | grid `1fr min(46%, 460px)` · `height:60dvh` |
+| `.img-hero-split-image` | First grid child | `position:relative` · `overflow:hidden` |
+| `.img-hero-split-panel` | Second grid child | `background:var(--card)` · flex column · centered |
+| `.img-text-grid` | Container `<div>` | grid `1fr 1fr` · `gap:2rem` · `align-items:center` |
+| `.img-text-grid-body` | `<div>` (text child) | flex column · `gap:0.75rem` |
+| `.img-overlay-wrap` | Container `<div>` | `position:relative` · `overflow:hidden` |
+| `.img-overlay` | `<div>` inside `.img-overlay-wrap` | Navy gradient scrim · `pointer-events:none` |
+| `.img-overlay-content` | `<div>` inside `.img-overlay-wrap` | `position:absolute;bottom:0` · white text |
+| `.img-figure` | `<figure>` element | `margin:0` |
+| `.img-caption` | `<figcaption>` | `0.8rem` · `var(--muted-foreground)` · top border |
+
+---
+
+### Aspect Ratios by Image Type
+
+| Type | Ratio | CSS | Notes |
+|---|---|---|---|
+| Hero / Full-bleed | Variable height | `.img-hero` · `height: 60dvh` | Height in dvh units, not a fixed ratio |
+| Section / editorial | 21 : 9 | `.img-ar` · `--ar: 21/9` | Wide editorial break between sections |
+| Card cover (default) | 16 : 9 | `.maia-card-image-area` | Override inline for 4:3 or 1:1 |
+| Blog thumbnail | 4 : 3 | `.img-ar` · `--ar: 4/3` | Compact; good for sidebars |
+| Square / product | 1 : 1 | `.img-ar` · `--ar: 1/1` | Product shots, avatar grids |
+| Portrait / profile | 3 : 4 | `.img-ar` · `--ar: 3/4` | Team cards, author bios |
+| Avatar | 1:1 circular | `.img-avatar.img-avatar-{size}` | 50% border-radius on container |
+
+---
+
+### Composition Patterns
+
+| Pattern | CSS | When to use | Mobile |
+|---|---|---|---|
+| Image only | `.img-hero` / `.img-ar` | Image communicates standalone | Height compresses; ratio holds |
+| Text overlay — bottom | `.img-hero-wrap` + `.img-hero-scrim` + `.img-hero-content` | Marketing heroes, editorial covers | Wrap shrinks to 40dvh; content stays bottom-anchored |
+| Split panel | `.img-hero-split` | Sign-up heroes, landing CTAs, forms | Stacks: image top (35dvh) + panel below at ≤600px |
+| Image + text grid | `.img-text-grid` | Feature rows, "about" sections | Single column; image first by DOM order |
+| Figure + caption | `<figure>` + `.img-figure` + `.img-caption` | Articles, press, documentation | Full width; caption wraps naturally |
+
+---
+
+### `object-position` Focal Point System
+
+| Value | Effect | When to use |
+|---|---|---|
+| `center center` | Default · geometric centre | Symmetric subjects |
+| `28% center` | Left-of-centre | `hero-market.jpg` — subject occupies left third |
+| `60% center` | Right-of-centre | Subject right, space left for overlay text |
+| `center top` | Upper portion visible | Faces, sky-dominant landscapes |
+| `center bottom` | Lower portion visible | Ground-level subjects, food dishes |
+
+---
+
+### Border-radius Rules
+
+**Cardinal rule: never put `border-radius` on `<img>`. Apply it to the container with `overflow: hidden`.**
+
+| Type | Container radius | `<img>` radius |
+|---|---|---|
+| Hero / full-bleed | `0` | `0` |
+| Section / editorial | `var(--radius)` | `0` |
+| Card cover | `1rem` via `.maia-card-image` | `0` |
+| Avatar | `50%` via `.img-avatar` | `0` |
+
+---
+
+### `loading` and `decoding` Attributes
+
+| Image type | `loading` | `decoding` | Reason |
+|---|---|---|---|
+| Hero (above fold) | `eager` | `sync` | LCP element — must load immediately |
+| Section / card | `lazy` | `async` | Below fold — avoids main-thread jank |
+| Avatar in header | `eager` | `async` | In viewport but small |
+| Avatar in content | `lazy` | `async` | Below fold |
+
+---
+
+### Overlay Gradient Recipes
+
+```css
+/* Navy to-top — default brand overlay */
+.img-overlay {
+  background: linear-gradient(
+    to top,
+    var(--brand-highlight-navy) 0%,
+    color-mix(in srgb, var(--brand-highlight-navy) 60%, transparent) 40%,
+    transparent 75%
+  );
+}
+
+/* Generic dark scrim — photo-agnostic (hero text overlay) */
+.img-hero-scrim {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.72) 0%,
+    rgba(0,0,0,0.32) 45%,
+    transparent 80%
+  );
+}
+```
+
+Use **navy** when the overlay is brand-contextual (card editorial callouts).
+Use **black RGBA** when the image may be any photography (hero text overlays).
+
+---
+
+### Responsive Behaviour
+
+| Pattern | Desktop (≥768px) | Mobile (<768px) |
+|---|---|---|
+| `.img-hero` height | `60dvh` | `40dvh` |
+| `.img-hero-wrap` height | `60dvh` | `40dvh` |
+| `.img-hero-split` | Grid: image left + panel right | Stacks at ≤600px |
+| `aspect-ratio` containers | Ratio maintained | Ratio maintained (inherently responsive) |
+| `.img-text-grid` | 1:1 columns | Single column |
+| Card grid | 3 columns | 1 column (`.img-card-grid`) |
+| Avatar sizes | Fixed px | Fixed px — never scale with `vw` |
+
+---
+
+### `overflow: hidden` Rules
+
+Always on **containers** (`.img-ar`, `.img-avatar`, `.img-overlay-wrap`, `.maia-card-image`). Never on the `<img>` itself. Never on layout or content containers that might clip shadows, focus rings, or tooltips.
+
+---
+
+### `maia-btn-outline` on Dark Backgrounds
+
+The `.maia-btn-outline` class sets shape only; color is context-dependent. When placed on a dark image or scrim, override inline:
+
+```html
+<button class="maia-btn maia-btn-outline"
+        style="color:#fff; box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.55);">
+  Secondary CTA
+</button>
+```
+
+---
+
+## 12. File Map
 
 | File | Purpose |
 |------|---------|

@@ -29,16 +29,29 @@
       --ring: oklch(0.707 0.022 261.325);
       --destructive: oklch(0.577 0.245 27.325);
 
-      --brand-surface: #F0F0F0;
-      --brand-surface-grey: #E4E4EE;
-      --brand-surface-blue: #4751B0;
-      --brand-highlight-blue: #4751B0;
-      --brand-highlight-navy: #0E1233;
+      /* Brand primitives — unique name per hex, never redefined in .dark */
+      --brand-surface-light:          #F0F0F0;
+      --brand-surface-dark:           #0E1233;
+      --brand-surface-grey-light:     #E4E4EE;
+      --brand-surface-grey-dark:      #252963;
+      --brand-offset-lavender-light:  #A6A1E2;
+      --brand-offset-lavender-dark:   #B4AFE7;
+      --brand-offset-green-light:     #A0D246;
+      --brand-offset-green-dark:      #D5FD8D;
+      --brand-offset-coral-light:     #F0936B;
+      --brand-offset-coral-dark:      #E99F80;
+
+      /* Brand semantics — adaptive, reference primitives */
+      --brand-surface:         var(--brand-surface-light);
+      --brand-surface-grey:    var(--brand-surface-grey-light);
+      --brand-surface-blue:    #4751B0;
+      --brand-highlight-blue:  #4751B0;
+      --brand-highlight-navy:  #0E1233;
       --brand-highlight-light: #F0F0F0;
-      --brand-offset-lavender: #A6A1E2;
-      --brand-offset-green: #A0D246;
-      --brand-offset-yellow: #FFD27D;
-      --brand-offset-coral: #F0936B;
+      --brand-offset-lavender: var(--brand-offset-lavender-light);
+      --brand-offset-green:    var(--brand-offset-green-light);
+      --brand-offset-yellow:   #FFD27D;
+      --brand-offset-coral:    var(--brand-offset-coral-light);
 
       --chart-1: oklch(0.646 0.222 41.116);
       --chart-2: oklch(0.6 0.118 184.704);
@@ -62,16 +75,12 @@
       --ring: oklch(0.551 0.027 264.364);
       --destructive: oklch(0.704 0.191 22.216);
 
-      --brand-surface: #0E1233;
-      --brand-surface-grey: #252963;
-      --brand-surface-blue: #4751B0;
-      --brand-highlight-blue: #4751B0;
-      --brand-highlight-navy: #0E1233;
-      --brand-highlight-light: #F0F0F0;
-      --brand-offset-lavender: #B4AFE7;
-      --brand-offset-green: #D5FD8D;
-      --brand-offset-yellow: #FFD27D;
-      --brand-offset-coral: #E99F80;
+      /* Brand semantics — dark mode overrides reference dark primitives */
+      --brand-surface:         var(--brand-surface-dark);
+      --brand-surface-grey:    var(--brand-surface-grey-dark);
+      --brand-offset-lavender: var(--brand-offset-lavender-dark);
+      --brand-offset-green:    var(--brand-offset-green-dark);
+      --brand-offset-coral:    var(--brand-offset-coral-dark);
 
       --chart-1: oklch(0.488 0.243 264.376);
       --chart-2: oklch(0.696 0.17 162.48);
@@ -244,18 +253,17 @@
     .logo-text {
       font-family: "Lora", Georgia, serif;
       font-style: normal;
-      font-weight: 600;
+      font-weight: 400;
       font-size: 64px;
       line-height: 82px;
       letter-spacing: -0.03em;
-      color: var(--brand-highlight-blue);
+      color: var(--brand-highlight-navy);
       white-space: nowrap;
     }
     .logo-text .logo-asterisk {
-      color: var(--brand-highlight-navy);
+      color: var(--brand-offset-green);
     }
     .dark .logo-text {
-      font-weight: 400;
       color: var(--brand-surface);
     }
     .dark .logo-text .logo-asterisk {
@@ -273,7 +281,7 @@
       white-space: nowrap;
     }
     .logo-text-dark .logo-asterisk {
-      color: var(--brand-offset-green);
+      color: var(--brand-offset-green-dark);
     }
 
     nav {
@@ -438,6 +446,15 @@
       font-family: "Geist Mono", "SF Mono", Consolas, monospace;
       color: var(--muted-foreground);
       margin-top: 0.15rem;
+    }
+
+    /* Primitive token name — shown below the adaptive var, visually secondary */
+    .swatch-prim {
+      font-size: 0.62rem;
+      font-family: "Geist Mono", "SF Mono", Consolas, monospace;
+      color: var(--muted-foreground);
+      opacity: 0.65;
+      margin-top: 0.2rem;
     }
 
     /* =========================================================
@@ -1119,6 +1136,274 @@
       margin-top: 0.75rem;
     }
 
+    /* =========================================================
+       IMAGE SYSTEM UTILITIES
+       ========================================================= */
+
+    /* Hero — standalone <img>, no container needed */
+    .img-hero {
+      display: block;
+      width: 100%;
+      height: 60dvh;
+      min-height: 280px;
+      object-fit: cover;
+      object-position: 28% center;
+    }
+
+    /* Fill — img fills an explicitly-sized/positioned container */
+    .img-fill {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Aspect-ratio wrapper — mirrors shadcn AspectRatio component.
+       Set ratio via --ar custom property inline: style="--ar: 16/9" */
+    .img-ar {
+      position: relative;
+      width: 100%;
+      aspect-ratio: var(--ar, 16/9);
+      overflow: hidden;
+      background: var(--muted);
+    }
+    .img-ar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Avatar container — circular, overflow: hidden, bg fallback */
+    .img-avatar {
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .img-avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .img-avatar-xl { width: 64px; height: 64px; }
+    .img-avatar-lg { width: 48px; height: 48px; }
+    .img-avatar-md { width: 36px; height: 36px; }
+    .img-avatar-sm { width: 28px; height: 28px; }
+    .img-avatar-xs { width: 20px; height: 20px; }
+    .img-avatar-initials {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 0.75em;
+      color: var(--muted-foreground);
+      user-select: none;
+      line-height: 1;
+    }
+
+    /* Overlay pattern: wrap → img + overlay div + content div */
+    .img-overlay-wrap { position: relative; overflow: hidden; }
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        var(--brand-highlight-navy) 0%,
+        color-mix(in srgb, var(--brand-highlight-navy) 60%, transparent) 40%,
+        transparent 75%
+      );
+      pointer-events: none;
+    }
+    .img-overlay-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      color: #fff;
+    }
+    .img-overlay-content h4 {
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.25rem;
+    }
+    .img-overlay-content p {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+      .img-hero { height: 40dvh; }
+      .img-card-grid { grid-template-columns: 1fr !important; }
+      .img-hero-wrap { height: 40dvh; }
+      .img-text-grid  { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .img-hero-split {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
+      }
+      .img-hero-split-image { height: 35dvh; }
+      .img-hero-split-panel {
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+    }
+
+    /* =========================================================
+       HERO COMPOSITION UTILITIES
+       ========================================================= */
+
+    /* Wrapper: owns height; .img-fill inside fills it */
+    .img-hero-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 60dvh;
+      min-height: 280px;
+    }
+
+    /* Generic dark scrim — rgba-based, works on any photography */
+    .img-hero-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.72) 0%,
+        rgba(0,0,0,0.32) 45%,
+        transparent 80%
+      );
+      pointer-events: none;
+    }
+
+    /* Absolute text layer inside .img-hero-wrap */
+    .img-hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      color: #fff;
+    }
+
+    /* Display headline — Lora */
+    .img-hero-headline {
+      font-family: "Lora", Georgia, serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 0.75rem;
+      max-width: 22ch;
+    }
+
+    /* Sub-copy */
+    .img-hero-sub {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      line-height: 1.5;
+      margin: 0 0 1.5rem;
+      max-width: 46ch;
+    }
+
+    /* CTA row */
+    .img-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* Split: image left, card panel right */
+    .img-hero-split {
+      display: grid;
+      grid-template-columns: 1fr min(46%, 460px);
+      height: 60dvh;
+      min-height: 320px;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+    .img-hero-split-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .img-hero-split-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 28% center;
+    }
+    .img-hero-split-panel {
+      background: var(--card);
+      border-left: 1px solid var(--border);
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
+    }
+    .img-hero-split-panel h3 {
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(1rem, 2vw, 1.375rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 0 0.75rem;
+    }
+    .img-hero-split-panel p {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+      margin: 0 0 1.5rem;
+    }
+
+    /* =========================================================
+       SECTION IMAGE + TEXT COMPOSITIONS
+       ========================================================= */
+
+    /* 1:1 side-by-side grid */
+    .img-text-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .img-text-grid-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .img-text-grid-body h3 {
+      font-family: "Poppins", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .img-text-grid-body p {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Figure + caption */
+    .img-figure { margin: 0; }
+    .img-caption {
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+      line-height: 1.5;
+      margin-top: 0.625rem;
+      padding-top: 0.625rem;
+      border-top: 1px solid var(--border);
+    }
+    .img-caption strong { color: var(--foreground); }
+
     /* Field — label + input + description + error */
     .maia-field {
       display: flex; flex-direction: column; gap: 0.375rem;
@@ -1201,7 +1486,7 @@
       letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--muted-foreground);
       margin-bottom: 0.75rem;
-      display: flex; align-items: center; gap: 0.5rem;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
     }
     .comp-demo-label .anim-tag {
       font-family: "Geist Mono", monospace;
@@ -1303,6 +1588,7 @@
       <a href="#motion">Motion</a>
       <a href="#animations">Animations</a>
       <a href="#components">Components</a>
+      <a href="#images">Images</a>
       <a href="#start">Get Started</a>
       <a href="#mobile-example">Mobile Example</a>
       <a href="#pitchdeck">Pitch Deck</a>
@@ -1402,7 +1688,7 @@
 
       <!-- way*ID — Animated -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">center stagger</span> <span class="anim-tag">glow pulse</span></div>
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">back.out(1.7)</span> <span class="anim-tag">center stagger</span></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
@@ -1426,12 +1712,12 @@
       <!-- ═══════════════ Lineage*Labs Wordmark ═══════════════ -->
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Lineage*Labs Wordmark</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Text wordmark in Lora. Weight 600 on light (<code>--brand-highlight-blue</code>), weight 400 on dark (<code>--brand-surface</code>). The <code>*</code> uses <code>--brand-highlight-navy</code> on light, <code>--brand-offset-green</code> on dark.
+        Text wordmark in Lora. Weight 400 on both modes. Light: <code>--brand-highlight-navy</code> text + asterisk. Dark: <code>--brand-surface</code> text, <code>--brand-offset-green</code> asterisk.
       </p>
 
       <!-- Lineage*Labs — Light -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Light Mode <span class="anim-tag">Lora 600</span> <span class="anim-tag">--brand-highlight-blue</span></div>
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">Lora 400</span> <span class="anim-tag">--brand-highlight-navy</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;gap:1.5rem;">
           <span class="logo-text">Lineage<span class="logo-asterisk">*</span>Labs</span>
           <span class="logo-text" style="font-size:36px;line-height:46px;">Lineage<span class="logo-asterisk">*</span>Labs</span>
@@ -1451,7 +1737,7 @@
 
       <!-- Lineage*Labs — Animated -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">left stagger</span> <span class="anim-tag">asterisk pop</span> <span class="anim-tag">glow pulse</span></div>
+        <div class="comp-demo-label">Animated Reveal <span class="anim-tag">left stagger</span> <span class="anim-tag">asterisk pop</span></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
@@ -1556,16 +1842,17 @@
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Text color</td>
-                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-blue</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#4751B0;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#0E1233;vertical-align:middle;margin-left:0.25rem;"></span></td>
                 <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F0F0F0;border:1px solid #ccc;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Asterisk color</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>--brand-highlight-blue</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#4751B0;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-offset-green</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#A0D246;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-offset-green</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#A0D246;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Font</td>
-                <td style="padding:0.5rem 0.75rem;">Lora, <strong>600</strong> weight, <code>-0.03em</code> letter-spacing</td>
+                <td style="padding:0.5rem 0.75rem;">Lora, <strong>400</strong> weight, <code>-0.03em</code> letter-spacing</td>
                 <td style="padding:0.5rem 0.75rem;">Lora, <strong>400</strong> weight, <code>-0.03em</code> letter-spacing</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
@@ -1576,8 +1863,7 @@
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">
                   Phase 1: <code>chars stagger 0.04s from left, blur 6→0 + x -16→0 + y 8→0, power2.out, 400ms</code><br>
-                  Phase 2: <code>asterisk scale pop 1→1.3→1, back.out(3) + power2.out, 450ms</code><br>
-                  Phase 3: <code>text-shadow glow pulse 0→20px→0, power2.out→in, 600ms</code>
+                  Phase 2: <code>asterisk scale pop 1→1.28→1, sine.out + power2.inOut, 700ms (keyframes)</code>
                 </td>
               </tr>
             </tbody>
@@ -1600,29 +1886,33 @@
         <div class="swatch"><div class="swatch-color" style="background:#0E1233;"></div><div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#0E1233</div><div class="swatch-var">--brand-highlight-navy</div></div></div>
         <div class="swatch"><div class="swatch-color" style="background:#F0F0F0;border-bottom:1px solid #E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Light</div><div class="swatch-hex">#F0F0F0</div><div class="swatch-var">--brand-highlight-light</div></div></div>
       </div>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Surfaces</h3>
-      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="swatch"><div class="swatch-color" style="background:#F0F0F0;border-bottom:1px solid #E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#F0F0F0</div><div class="swatch-var">--brand-surface</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#E4E4EE</div><div class="swatch-var">--brand-surface-grey</div></div></div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Surfaces — Light</h3>
+      <div class="swatch-grid reveal" style="margin-bottom:0.75rem;">
+        <div class="swatch"><div class="swatch-color" style="background:#F0F0F0;border-bottom:1px solid #E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#F0F0F0</div><div class="swatch-var">--brand-surface-light</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#E4E4EE</div><div class="swatch-var">--brand-surface-grey-light</div></div></div>
         <div class="swatch"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info"><div class="swatch-name">Surface Blue</div><div class="swatch-hex">#4751B0</div><div class="swatch-var">--brand-surface-blue</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#0E1233;"></div><div class="swatch-info" style="color:#fff;background:#252963;"><div class="swatch-name">Surface Dark</div><div class="swatch-hex" style="color:#B4AFE7;">#0E1233</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface (dark)</div></div></div>
+      </div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Surfaces — Dark</h3>
+      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;background:#0E1233;padding:1rem;border-radius:var(--radius);border:1px solid #252963;">
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#0E1233;border-bottom:1px solid #252963;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Surface</div><div class="swatch-hex" style="color:#B4AFE7;">#0E1233</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface-dark</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#252963;border-bottom:1px solid #3a3d6e;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Surface Grey</div><div class="swatch-hex" style="color:#B4AFE7;">#252963</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface-grey-dark</div></div></div>
       </div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Offset Accents — Light surface</h3>
       <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="swatch"><div class="swatch-color" style="background:#A6A1E2;"></div><div class="swatch-info"><div class="swatch-name">Lavender</div><div class="swatch-hex">#A6A1E2</div><div class="swatch-var">--brand-offset-lavender</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#A0D246;"></div><div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#A0D246</div><div class="swatch-var">--brand-offset-green</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#A6A1E2;"></div><div class="swatch-info"><div class="swatch-name">Lavender</div><div class="swatch-hex">#A6A1E2</div><div class="swatch-var">--brand-offset-lavender-light</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#A0D246;"></div><div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#A0D246</div><div class="swatch-var">--brand-offset-green-light</div></div></div>
         <div class="swatch"><div class="swatch-color" style="background:#FFD27D;"></div><div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#FFD27D</div><div class="swatch-var">--brand-offset-yellow</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F0936B;"></div><div class="swatch-info"><div class="swatch-name">Coral</div><div class="swatch-hex">#F0936B</div><div class="swatch-var">--brand-offset-coral</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F0936B;"></div><div class="swatch-info"><div class="swatch-name">Coral</div><div class="swatch-hex">#F0936B</div><div class="swatch-var">--brand-offset-coral-light</div></div></div>
       </div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights + Offsets — Dark / Blue surface</h3>
       <div class="swatch-grid reveal" style="background:#0E1233;padding:1rem;border-radius:var(--radius);border:1px solid #252963;">
         <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Blue</div><div class="swatch-hex" style="color:#B4AFE7;">#4751B0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-highlight-blue</div></div></div>
         <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#F0F0F0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Light</div><div class="swatch-hex" style="color:#B4AFE7;">#F0F0F0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-highlight-light</div></div></div>
         <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Surface Blue</div><div class="swatch-hex" style="color:#B4AFE7;">#4751B0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface-blue</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#B4AFE7;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Lavender</div><div class="swatch-hex" style="color:#B4AFE7;">#B4AFE7</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-lavender</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#D5FD8D;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Green</div><div class="swatch-hex" style="color:#B4AFE7;">#D5FD8D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-green</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#B4AFE7;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Lavender</div><div class="swatch-hex" style="color:#B4AFE7;">#B4AFE7</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-lavender-dark</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#D5FD8D;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Green</div><div class="swatch-hex" style="color:#B4AFE7;">#D5FD8D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-green-dark</div></div></div>
         <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#FFD27D;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Yellow</div><div class="swatch-hex" style="color:#B4AFE7;">#FFD27D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-yellow</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#E99F80;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Coral</div><div class="swatch-hex" style="color:#B4AFE7;">#E99F80</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-coral</div></div></div>
+        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#E99F80;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Coral</div><div class="swatch-hex" style="color:#B4AFE7;">#E99F80</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-coral-dark</div></div></div>
       </div>
       <div class="divider"></div>
       <div class="card-grid">
@@ -2639,9 +2929,660 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     <!-- TOAST CONTAINER (portal) -->
     <div class="maia-toast-container" id="toast-container"></div>
 
+    <!-- IMAGES -->
+    <section id="images">
+      <p class="section-label">Section 09</p>
+      <h2 class="section-title">Images</h2>
+      <p class="section-desc">
+        Patterns, CSS utilities, aspect ratios, focal points, loading attributes, overlay recipes,
+        and shadcn <code>AspectRatio</code> / <code>Card</code> / <code>Avatar</code> mappings.
+        All demos use <code>hero-market.jpg</code>.
+      </p>
+
+      <!-- DEMO 1 — HERO / FULL-BLEED -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Hero / Full-bleed
+          <span class="anim-tag">height: 60dvh</span>
+          <span class="anim-tag">object-fit: cover</span>
+          <span class="anim-tag">border-radius: 0</span>
+          <span class="anim-tag">loading="eager"</span>
+        </div>
+        <div style="overflow:hidden;border-radius:0;margin-bottom:1rem;">
+          <img class="img-hero" src="hero-market.jpg"
+               alt="Two people selecting produce at a farmers market"
+               loading="eager" decoding="sync" />
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* .img-hero — standalone &lt;img&gt;, no container needed */</span>
+<span class="code-selector">.img-hero</span> {
+  <span class="code-prop">display</span>: block;
+  <span class="code-prop">width</span>: 100%;
+  <span class="code-prop">height</span>: 60dvh;
+  <span class="code-prop">min-height</span>: 280px;
+  <span class="code-prop">object-fit</span>: cover;
+  <span class="code-prop">object-position</span>: 28% center; <span class="code-comment">/* focal point left-of-centre */</span>
+}
+@media (max-width: 767px) {
+  <span class="code-selector">.img-hero</span> { <span class="code-prop">height</span>: 40dvh; }
+}
+        </div>
+        <div class="code-block reveal" style="margin-top:0.75rem;">
+&lt;<span class="code-selector">img</span> <span class="code-prop">class</span>="img-hero"
+     <span class="code-prop">src</span>="hero-market.jpg"
+     <span class="code-prop">alt</span>="Descriptive alt text"
+     <span class="code-prop">loading</span>="eager"
+     <span class="code-prop">decoding</span>="sync" /&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 1b — HERO WITH TEXT OVERLAY -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Hero — Text Overlay
+          <span class="anim-tag">img-hero-wrap</span>
+          <span class="anim-tag">img-hero-scrim</span>
+          <span class="anim-tag">img-hero-content</span>
+          <span class="anim-tag">Lora headline + CTAs</span>
+        </div>
+        <div class="img-hero-wrap" style="margin-bottom:1rem;">
+          <img class="img-fill" src="hero-market.jpg"
+               alt="Two people selecting produce at a farmers market"
+               loading="eager" decoding="sync"
+               style="object-position:28% center;" />
+          <div class="img-hero-scrim"></div>
+          <div class="img-hero-content">
+            <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;margin-bottom:0.5rem;display:block;">Fresh &amp; Local</span>
+            <h2 class="img-hero-headline">The market, at your doorstep.</h2>
+            <p class="img-hero-sub">Seasonal produce from regional growers, delivered every Thursday.</p>
+            <div class="img-hero-actions">
+              <button class="maia-btn maia-btn-primary maia-press">Get Started</button>
+              <button class="maia-btn maia-btn-outline maia-press"
+                      style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.55);">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* .img-hero-wrap owns the height; .img-fill fills it */</span>
+<span class="code-comment">/* Use .img-fill — NOT .img-hero — inside the wrap */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-wrap"&gt;
+  &lt;<span class="code-selector">img</span> <span class="code-prop">class</span>="img-fill" <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…"
+       <span class="code-prop">loading</span>="eager" <span class="code-prop">decoding</span>="sync"
+       <span class="code-prop">style</span>="object-position:28% center;" /&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-scrim"&gt;&lt;/<span class="code-selector">div</span>&gt;   <span class="code-comment">&lt;!-- dark gradient, bottom-up --&gt;</span>
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-content"&gt;
+    &lt;<span class="code-selector">span</span>&gt;Eyebrow label&lt;/<span class="code-selector">span</span>&gt;
+    &lt;<span class="code-selector">h2</span> <span class="code-prop">class</span>="img-hero-headline"&gt;Headline copy.&lt;/<span class="code-selector">h2</span>&gt;
+    &lt;<span class="code-selector">p</span> <span class="code-prop">class</span>="img-hero-sub"&gt;Supporting sub-copy.&lt;/<span class="code-selector">p</span>&gt;
+    &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-actions"&gt;
+      &lt;<span class="code-selector">button</span> <span class="code-prop">class</span>="maia-btn maia-btn-primary"&gt;Primary CTA&lt;/<span class="code-selector">button</span>&gt;
+      <span class="code-comment">&lt;!-- Outline on dark bg: override color + box-shadow --&gt;</span>
+      &lt;<span class="code-selector">button</span> <span class="code-prop">class</span>="maia-btn maia-btn-outline"
+              <span class="code-prop">style</span>="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.55);"&gt;
+        Secondary CTA
+      &lt;/<span class="code-selector">button</span>&gt;
+    &lt;/<span class="code-selector">div</span>&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 1c — HERO WITH SPLIT PANEL -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Hero — Split Panel
+          <span class="anim-tag">img-hero-split</span>
+          <span class="anim-tag">grid 1fr + min(46%, 460px)</span>
+          <span class="anim-tag">card panel</span>
+          <span class="anim-tag">stacks ≤600px</span>
+        </div>
+        <div class="img-hero-split" style="margin-bottom:1rem;">
+          <div class="img-hero-split-image">
+            <img src="hero-market.jpg"
+                 alt="Farmers market — wide view"
+                 loading="eager" decoding="sync" />
+          </div>
+          <div class="img-hero-split-panel">
+            <span class="maia-badge maia-badge-grass-green"
+                  style="align-self:flex-start;margin-bottom:1rem;">Local · Seasonal</span>
+            <h3>Start shopping local today.</h3>
+            <p>Connect with farmers in your area and get the freshest produce, harvested the same morning.</p>
+            <div style="display:flex;flex-direction:column;gap:0.625rem;">
+              <button class="maia-btn maia-btn-primary maia-press" style="width:100%;">Get Early Access</button>
+              <button class="maia-btn maia-btn-outline maia-press" style="width:100%;">Learn More</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* Split: CSS grid — panel reflows below image on narrow screens */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-split"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-split-image"&gt;
+    &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…"
+         <span class="code-prop">loading</span>="eager" <span class="code-prop">decoding</span>="sync" /&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-hero-split-panel"&gt;
+    <span class="code-comment">&lt;!-- badge, h3, p, then CTA buttons --&gt;</span>
+    &lt;<span class="code-selector">h3</span>&gt;Headline.&lt;/<span class="code-selector">h3</span>&gt;
+    &lt;<span class="code-selector">p</span>&gt;Supporting copy.&lt;/<span class="code-selector">p</span>&gt;
+    &lt;<span class="code-selector">button</span> <span class="code-prop">class</span>="maia-btn maia-btn-primary" <span class="code-prop">style</span>="width:100%;"&gt;Primary&lt;/<span class="code-selector">button</span>&gt;
+    &lt;<span class="code-selector">button</span> <span class="code-prop">class</span>="maia-btn maia-btn-outline" <span class="code-prop">style</span>="width:100%;"&gt;Secondary&lt;/<span class="code-selector">button</span>&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 2 — SECTION / EDITORIAL (21:9) -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Section Image — Editorial
+          <span class="anim-tag">aspect-ratio: 21/9</span>
+          <span class="anim-tag">border-radius: var(--radius)</span>
+          <span class="anim-tag">loading="lazy"</span>
+        </div>
+        <div class="img-ar" style="--ar:21/9;border-radius:var(--radius);margin-bottom:1rem;">
+          <img src="hero-market.jpg" alt="Farmers market — editorial wide"
+               loading="lazy" decoding="async" />
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* .img-ar — aspect-ratio wrapper. Set --ar inline. */</span>
+<span class="code-selector">.img-ar</span> {
+  <span class="code-prop">position</span>: relative;
+  <span class="code-prop">width</span>: 100%;
+  <span class="code-prop">aspect-ratio</span>: var(--ar, 16/9);
+  <span class="code-prop">overflow</span>: hidden;
+  <span class="code-prop">background</span>: var(--muted); <span class="code-comment">/* placeholder while loading */</span>
+}
+<span class="code-selector">.img-ar img</span> {
+  <span class="code-prop">display</span>: block;
+  <span class="code-prop">width</span>: 100%; <span class="code-prop">height</span>: 100%;
+  <span class="code-prop">object-fit</span>: cover;
+}
+        </div>
+        <div class="code-block reveal" style="margin-top:0.75rem;">
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar:21/9; border-radius:var(--radius);"&gt;
+  &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="hero-market.jpg" <span class="code-prop">alt</span>="…"
+       <span class="code-prop">loading</span>="lazy" <span class="code-prop">decoding</span>="async" /&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 2b — SECTION IMAGE SIDE-BY-SIDE -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Section Image — Side-by-side
+          <span class="anim-tag">img-text-grid</span>
+          <span class="anim-tag">grid 1:1</span>
+          <span class="anim-tag">badge + headline + body + CTAs</span>
+          <span class="anim-tag">stacks on mobile</span>
+        </div>
+        <div class="img-text-grid" style="margin-bottom:1rem;">
+          <div class="img-ar" style="--ar:4/3;border-radius:var(--radius);">
+            <img src="hero-market.jpg" alt="Farmers market produce"
+                 loading="lazy" decoding="async" />
+          </div>
+          <div class="img-text-grid-body">
+            <span class="maia-badge maia-badge-light-green" style="align-self:flex-start;">Seasonal</span>
+            <h3>Grown within 50 miles.</h3>
+            <p>Every item is sourced from farms within a 50-mile radius. We verify provenance at intake and publish full supply-chain transparency reports monthly.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+              <button class="maia-btn maia-btn-primary maia-btn-sm maia-press">Shop Now</button>
+              <button class="maia-btn maia-btn-ghost maia-btn-sm maia-press">Our Story →</button>
+            </div>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* Image left, text right */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-text-grid"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar:4/3; border-radius:var(--radius);"&gt;
+    &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…" <span class="code-prop">loading</span>="lazy" /&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-text-grid-body"&gt;
+    &lt;<span class="code-selector">h3</span>&gt;Headline&lt;/<span class="code-selector">h3</span>&gt;
+    &lt;<span class="code-selector">p</span>&gt;Body copy.&lt;/<span class="code-selector">p</span>&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+
+<span class="code-comment">/* Text left, image right — swap DOM order */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-text-grid"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-text-grid-body"&gt;…&lt;/<span class="code-selector">div</span>&gt;  <span class="code-comment">&lt;!-- text first = left col --&gt;</span>
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar"&gt;…&lt;/<span class="code-selector">div</span>&gt;           <span class="code-comment">&lt;!-- img second = right col --&gt;</span>
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 2c — FIGURE + CAPTION -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Section Image — Figure + Caption
+          <span class="anim-tag">&lt;figure&gt;</span>
+          <span class="anim-tag">img-figure</span>
+          <span class="anim-tag">img-caption</span>
+          <span class="anim-tag">credit line</span>
+        </div>
+        <figure class="img-figure" style="margin-bottom:1rem;">
+          <div class="img-ar" style="--ar:21/9;border-radius:var(--radius);">
+            <img src="hero-market.jpg"
+                 alt="Vendors at the Riverside Farmers Market"
+                 loading="lazy" decoding="async" />
+          </div>
+          <figcaption class="img-caption">
+            <strong>Riverside Farmers Market</strong> — Weekly outdoor market featuring 40+ local vendors. Open every Saturday, 8am–2pm.
+            <span style="display:block;margin-top:0.25rem;opacity:0.65;">Photo: Jane Doe / Maia Studio</span>
+          </figcaption>
+        </figure>
+        <div class="code-block reveal">
+&lt;<span class="code-selector">figure</span> <span class="code-prop">class</span>="img-figure"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar:21/9; border-radius:var(--radius);"&gt;
+    &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…" <span class="code-prop">loading</span>="lazy" /&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+  &lt;<span class="code-selector">figcaption</span> <span class="code-prop">class</span>="img-caption"&gt;
+    &lt;<span class="code-selector">strong</span>&gt;Location name&lt;/<span class="code-selector">strong</span>&gt; — Description copy.
+    &lt;<span class="code-selector">span</span> <span class="code-prop">style</span>="display:block;margin-top:0.25rem;opacity:0.65;"&gt;
+      Photo: Photographer / Studio
+    &lt;/<span class="code-selector">span</span>&gt;
+  &lt;/<span class="code-selector">figcaption</span>&gt;
+&lt;/<span class="code-selector">figure</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 3 — CARD COVER 3-UP GRID (16:9) -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Card Cover — 3-up Grid
+          <span class="anim-tag">aspect-ratio: 16/9</span>
+          <span class="anim-tag">shadcn: AspectRatio + Card</span>
+          <span class="anim-tag">object-position variants</span>
+        </div>
+        <div class="img-card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:1rem;margin-bottom:1rem;">
+          <div class="maia-card-image">
+            <div class="maia-card-image-area" style="padding:0;">
+              <img src="hero-market.jpg" alt="Farmers market — left focal point"
+                   style="width:100%;height:100%;object-fit:cover;object-position:28% center;"
+                   loading="lazy" decoding="async" />
+            </div>
+            <div class="maia-card-image-body">
+              <h4>Left Focal Point</h4>
+              <p><code>object-position: 28% center</code> — subject left of centre.</p>
+            </div>
+          </div>
+          <div class="maia-card-image">
+            <div class="maia-card-image-area" style="padding:0;">
+              <img src="hero-market.jpg" alt="Farmers market — right focal point"
+                   style="width:100%;height:100%;object-fit:cover;object-position:60% center;"
+                   loading="lazy" decoding="async" />
+            </div>
+            <div class="maia-card-image-body">
+              <h4>Right Focal Point</h4>
+              <p><code>object-position: 60% center</code> — space left for overlay text.</p>
+            </div>
+          </div>
+          <div class="maia-card-image">
+            <div class="maia-card-image-area" style="padding:0;">
+              <img src="hero-market.jpg" alt="Farmers market — top focal point"
+                   style="width:100%;height:100%;object-fit:cover;object-position:center top;"
+                   loading="lazy" decoding="async" />
+            </div>
+            <div class="maia-card-image-body">
+              <h4>Top Focal Point</h4>
+              <p><code>object-position: center top</code> — upper portion. Suits faces.</p>
+            </div>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* Card cover — real &lt;img&gt; replaces SVG placeholder */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="maia-card-image"&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="maia-card-image-area" <span class="code-prop">style</span>="padding:0;"&gt;
+    &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…"
+         <span class="code-prop">style</span>="width:100%;height:100%;object-fit:cover;object-position:28% center;"
+         <span class="code-prop">loading</span>="lazy" <span class="code-prop">decoding</span>="async" /&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="maia-card-image-body"&gt;…&lt;/<span class="code-selector">div</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 4 — ASPECT RATIO REFERENCE -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Aspect Ratio Reference
+          <span class="anim-tag">21/9</span>
+          <span class="anim-tag">16/9</span>
+          <span class="anim-tag">4/3</span>
+          <span class="anim-tag">1/1</span>
+          <span class="anim-tag">3/4</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(140px,100%),1fr));gap:1rem;margin-bottom:1rem;">
+          <div>
+            <div class="img-ar" style="--ar:21/9;border-radius:var(--radius);">
+              <img src="hero-market.jpg" alt="21:9 ratio" loading="lazy" decoding="async" />
+            </div>
+            <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:0.5rem;font-family:'Geist Mono','SF Mono',Consolas,monospace;">21 / 9</p>
+          </div>
+          <div>
+            <div class="img-ar" style="--ar:16/9;border-radius:var(--radius);">
+              <img src="hero-market.jpg" alt="16:9 ratio" loading="lazy" decoding="async" />
+            </div>
+            <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:0.5rem;font-family:'Geist Mono','SF Mono',Consolas,monospace;">16 / 9</p>
+          </div>
+          <div>
+            <div class="img-ar" style="--ar:4/3;border-radius:var(--radius);">
+              <img src="hero-market.jpg" alt="4:3 ratio" loading="lazy" decoding="async" />
+            </div>
+            <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:0.5rem;font-family:'Geist Mono','SF Mono',Consolas,monospace;">4 / 3</p>
+          </div>
+          <div>
+            <div class="img-ar" style="--ar:1/1;border-radius:var(--radius);">
+              <img src="hero-market.jpg" alt="1:1 ratio" loading="lazy" decoding="async" />
+            </div>
+            <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:0.5rem;font-family:'Geist Mono','SF Mono',Consolas,monospace;">1 / 1</p>
+          </div>
+          <div>
+            <div class="img-ar" style="--ar:3/4;border-radius:var(--radius);">
+              <img src="hero-market.jpg" alt="3:4 ratio" loading="lazy" decoding="async" />
+            </div>
+            <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:0.5rem;font-family:'Geist Mono','SF Mono',Consolas,monospace;">3 / 4</p>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* All ratios — one class, one property */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar: 21/9;"&gt;&lt;<span class="code-selector">img</span> … /&gt;&lt;/<span class="code-selector">div</span>&gt;
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar: 16/9;"&gt;&lt;<span class="code-selector">img</span> … /&gt;&lt;/<span class="code-selector">div</span>&gt;
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar:  4/3;"&gt;&lt;<span class="code-selector">img</span> … /&gt;&lt;/<span class="code-selector">div</span>&gt;
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar:  1/1;"&gt;&lt;<span class="code-selector">img</span> … /&gt;&lt;/<span class="code-selector">div</span>&gt;
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-ar" <span class="code-prop">style</span>="--ar:  3/4;"&gt;&lt;<span class="code-selector">img</span> … /&gt;&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <!-- DEMO 5 — BACKGROUND WITH TEXT OVERLAY -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Background with Text Overlay
+          <span class="anim-tag">linear-gradient to-top</span>
+          <span class="anim-tag">--brand-highlight-navy</span>
+          <span class="anim-tag">color-mix</span>
+        </div>
+        <div style="max-width:560px;margin-bottom:1rem;">
+          <div class="img-overlay-wrap img-ar" style="--ar:16/9;border-radius:var(--radius);">
+            <img src="hero-market.jpg" alt="Farmers market with overlay"
+                 loading="lazy" decoding="async" />
+            <div class="img-overlay"></div>
+            <div class="img-overlay-content">
+              <h4>Fresh from the Farm</h4>
+              <p>Seasonal produce sourced directly from local growers. Updated weekly.</p>
+            </div>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* Overlay structure */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-overlay-wrap img-ar" <span class="code-prop">style</span>="--ar:16/9; border-radius:var(--radius);"&gt;
+  &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="photo.jpg" <span class="code-prop">alt</span>="…" <span class="code-prop">loading</span>="lazy" <span class="code-prop">decoding</span>="async" /&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-overlay"&gt;&lt;/<span class="code-selector">div</span>&gt;
+  &lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-overlay-content"&gt;
+    &lt;<span class="code-selector">h4</span>&gt;Heading&lt;/<span class="code-selector">h4</span>&gt;
+    &lt;<span class="code-selector">p</span>&gt;Supporting copy&lt;/<span class="code-selector">p</span>&gt;
+  &lt;/<span class="code-selector">div</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+        <div class="code-block reveal" style="margin-top:0.75rem;">
+<span class="code-comment">/* Gradient recipe — navy to transparent, bottom-up */</span>
+<span class="code-selector">.img-overlay</span> {
+  <span class="code-prop">background</span>: linear-gradient(
+    to top,
+    var(--brand-highlight-navy) 0%,
+    color-mix(in srgb, var(--brand-highlight-navy) 60%, transparent) 40%,
+    transparent 75%
+  );
+}
+        </div>
+      </div>
+
+      <!-- DEMO 6 — AVATAR / THUMBNAIL -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Avatar / Thumbnail
+          <span class="anim-tag">border-radius: 50%</span>
+          <span class="anim-tag">5 sizes</span>
+          <span class="anim-tag">initials fallback</span>
+          <span class="anim-tag">shadcn: Avatar</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:1.5rem;margin-bottom:1rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+            <div class="img-avatar img-avatar-xl">
+              <img src="hero-market.jpg" alt="User avatar XL" loading="lazy" decoding="async" />
+            </div>
+            <span style="font-size:0.7rem;color:var(--muted-foreground);font-family:'Geist Mono','SF Mono',Consolas,monospace;">xl · 64px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+            <div class="img-avatar img-avatar-lg">
+              <img src="hero-market.jpg" alt="User avatar LG" loading="lazy" decoding="async" />
+            </div>
+            <span style="font-size:0.7rem;color:var(--muted-foreground);font-family:'Geist Mono','SF Mono',Consolas,monospace;">lg · 48px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+            <div class="img-avatar img-avatar-md">
+              <img src="hero-market.jpg" alt="User avatar MD" loading="lazy" decoding="async" />
+            </div>
+            <span style="font-size:0.7rem;color:var(--muted-foreground);font-family:'Geist Mono','SF Mono',Consolas,monospace;">md · 36px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+            <div class="img-avatar img-avatar-sm">
+              <img src="hero-market.jpg" alt="User avatar SM" loading="lazy" decoding="async" />
+            </div>
+            <span style="font-size:0.7rem;color:var(--muted-foreground);font-family:'Geist Mono','SF Mono',Consolas,monospace;">sm · 28px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+            <div class="img-avatar img-avatar-xs">
+              <img src="hero-market.jpg" alt="User avatar XS" loading="lazy" decoding="async" />
+            </div>
+            <span style="font-size:0.7rem;color:var(--muted-foreground);font-family:'Geist Mono','SF Mono',Consolas,monospace;">xs · 20px</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+            <div class="img-avatar img-avatar-xl" style="background:var(--brand-surface-grey);">
+              <span class="img-avatar-initials">JD</span>
+            </div>
+            <span style="font-size:0.7rem;color:var(--muted-foreground);font-family:'Geist Mono','SF Mono',Consolas,monospace;">initials fallback</span>
+          </div>
+        </div>
+        <div class="code-block reveal">
+<span class="code-comment">/* Image avatar */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-avatar img-avatar-lg"&gt;
+  &lt;<span class="code-selector">img</span> <span class="code-prop">src</span>="user.jpg" <span class="code-prop">alt</span>="Jane Doe"
+       <span class="code-prop">loading</span>="lazy" <span class="code-prop">decoding</span>="async" /&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+
+<span class="code-comment">/* Initials fallback — no &lt;img&gt; */</span>
+&lt;<span class="code-selector">div</span> <span class="code-prop">class</span>="img-avatar img-avatar-lg" <span class="code-prop">style</span>="background:var(--brand-surface-grey);"&gt;
+  &lt;<span class="code-selector">span</span> <span class="code-prop">class</span>="img-avatar-initials"&gt;JD&lt;/<span class="code-selector">span</span>&gt;
+&lt;/<span class="code-selector">div</span>&gt;
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- IMAGE COMPOSITION PATTERNS TABLE -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Image Composition Patterns</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Pattern</th><th>CSS</th><th>When to use</th><th>Mobile</th></tr></thead>
+            <tbody>
+              <tr><td>Image only</td><td><code>.img-hero</code> / <code>.img-ar</code></td><td>Image communicates standalone; no text needed</td><td>Height compresses; ratio holds</td></tr>
+              <tr><td>Text overlay — bottom</td><td><code>.img-hero-wrap</code> + <code>.img-hero-scrim</code> + <code>.img-hero-content</code></td><td>Marketing heroes, event banners, editorial covers with atmospheric photography</td><td>Wrap shrinks to 40dvh; content stays bottom-anchored</td></tr>
+              <tr><td>Split panel</td><td><code>.img-hero-split</code></td><td>Sign-up/auth heroes, landing page primary CTAs, feature intros requiring a form or bullet list</td><td>Stacks: image top (35dvh) + panel below at ≤600px</td></tr>
+              <tr><td>Image + text grid</td><td><code>.img-text-grid</code> + <code>.img-text-grid-body</code></td><td>Feature rows, "about" sections, editorial articles — when copy needs equal visual weight to image</td><td>Single column; image first by DOM order</td></tr>
+              <tr><td>Figure + caption</td><td><code>&lt;figure&gt;</code> + <code>.img-figure</code> + <code>.img-caption</code></td><td>Articles, press releases, documentation — anywhere attribution or context is needed below the image</td><td>Full width; caption wraps naturally</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 1 — ASPECT RATIOS BY IMAGE TYPE -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Aspect Ratios by Image Type</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Type</th><th>Ratio</th><th>CSS</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Hero / Full-bleed</td><td>Variable height</td><td><code>.img-hero</code> · <code>height: 60dvh</code></td><td>Height in dvh units, not a fixed ratio</td></tr>
+              <tr><td>Section / editorial</td><td>21 : 9</td><td><code>.img-ar</code> · <code>--ar: 21/9</code></td><td>Wide editorial break between sections</td></tr>
+              <tr><td>Card cover (default)</td><td>16 : 9</td><td><code>.maia-card-image-area</code></td><td>Override inline for 4:3 or 1:1</td></tr>
+              <tr><td>Blog thumbnail</td><td>4 : 3</td><td><code>.img-ar</code> · <code>--ar: 4/3</code></td><td>Compact, good for sidebars</td></tr>
+              <tr><td>Square / product</td><td>1 : 1</td><td><code>.img-ar</code> · <code>--ar: 1/1</code></td><td>Product shots, avatar grids</td></tr>
+              <tr><td>Portrait / profile</td><td>3 : 4</td><td><code>.img-ar</code> · <code>--ar: 3/4</code></td><td>Team cards, author bios</td></tr>
+              <tr><td>Avatar</td><td>1:1 circular</td><td><code>.img-avatar.img-avatar-{size}</code></td><td>50% border-radius on container</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 2 — OBJECT-POSITION FOCAL POINT -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;"><code>object-position</code> Focal Point System</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Value</th><th>Effect</th><th>When to use</th></tr></thead>
+            <tbody>
+              <tr><td><code>center center</code></td><td>Default · geometric centre</td><td>Symmetric subjects, products</td></tr>
+              <tr><td><code>28% center</code></td><td>Left-of-centre</td><td><code>hero-market.jpg</code> default — subject occupies left third</td></tr>
+              <tr><td><code>60% center</code></td><td>Right-of-centre</td><td>Subject right, space left for text overlay</td></tr>
+              <tr><td><code>center top</code></td><td>Upper portion visible</td><td>Faces, sky-dominant landscapes</td></tr>
+              <tr><td><code>center bottom</code></td><td>Lower portion visible</td><td>Ground-level subjects, food dishes</td></tr>
+              <tr><td><code>50% 20%</code></td><td>Custom fine-tune</td><td>When keyword values are insufficient</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 3 — BORDER-RADIUS BY IMAGE TYPE -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Border-radius by Image Type</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Type</th><th>Container radius</th><th><code>&lt;img&gt;</code> radius</th><th>Rule</th></tr></thead>
+            <tbody>
+              <tr><td>Hero / full-bleed</td><td><code>0</code></td><td><code>0</code></td><td>Bleeds edge-to-edge, no radius</td></tr>
+              <tr><td>Section / editorial</td><td><code>var(--radius)</code></td><td><code>0</code></td><td>Radius on <code>.img-ar</code> container only</td></tr>
+              <tr><td>Card cover</td><td><code>1rem</code> via <code>.maia-card-image</code></td><td><code>0</code></td><td><code>overflow:hidden</code> on card clips the image</td></tr>
+              <tr><td>Avatar</td><td><code>50%</code> via <code>.img-avatar</code></td><td><code>0</code></td><td>Container is circular; image fills it</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="reveal" style="border-left:3px solid var(--border);padding:1rem 1.25rem;border-radius:0 var(--radius) var(--radius) 0;background:var(--muted);margin-bottom:1.5rem;">
+        <p style="font-size:0.82rem;line-height:1.6;margin:0;color:var(--foreground);">
+          <strong>Cardinal rule:</strong> never put <code>border-radius</code> on <code>&lt;img&gt;</code>. Apply it to the container with <code>overflow: hidden</code>.
+          This prevents pixel gaps in scaled states and avoids double-radius artefacts.
+        </p>
+      </div>
+
+      <!-- TABLE 4 — LOADING AND DECODING ATTRIBUTES -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;"><code>loading</code> and <code>decoding</code> Attributes</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Image type</th><th><code>loading</code></th><th><code>decoding</code></th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td>Hero (above fold)</td><td><code>eager</code></td><td><code>sync</code></td><td>LCP element — must load immediately, no deferral</td></tr>
+              <tr><td>Section / card</td><td><code>lazy</code></td><td><code>async</code></td><td>Below fold — async avoids main-thread jank</td></tr>
+              <tr><td>Avatar in header</td><td><code>eager</code></td><td><code>async</code></td><td>In viewport but small — async decode is safe</td></tr>
+              <tr><td>Avatar in content</td><td><code>lazy</code></td><td><code>async</code></td><td>Below fold; defer both</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 5 — RESPONSIVE BEHAVIOUR -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Responsive Behaviour</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Pattern</th><th>Desktop (≥768px)</th><th>Mobile (&lt;768px)</th></tr></thead>
+            <tbody>
+              <tr><td>Hero height</td><td><code>60dvh</code></td><td><code>40dvh</code> (via media query)</td></tr>
+              <tr><td><code>aspect-ratio</code> containers</td><td>Ratio maintained</td><td>Ratio maintained — inherently responsive</td></tr>
+              <tr><td>3-up card grid</td><td>3 columns</td><td>1 column via <code>.img-card-grid</code></td></tr>
+              <tr><td>Avatar sizes</td><td>Fixed px</td><td>Fixed px — never scale with <code>vw</code></td></tr>
+              <tr><td>Section image</td><td>Full container width</td><td>Full container width, ratio intact</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 6 — OVERLAY GRADIENT RECIPES -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Overlay Gradient Recipes</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Recipe</th><th>CSS value</th><th>Use</th></tr></thead>
+            <tbody>
+              <tr><td>Navy to-top (default)</td><td><code>linear-gradient(to top, var(--brand-highlight-navy) 0%, color-mix(in srgb, var(--brand-highlight-navy) 60%, transparent) 40%, transparent 75%)</code></td><td>Card overlays, editorial callouts</td></tr>
+              <tr><td>Navy full scrim</td><td><code>linear-gradient(to top, var(--brand-highlight-navy) 0%, color-mix(…80%) 60%, transparent 100%)</code></td><td>Busy hero images needing heavy scrim</td></tr>
+              <tr><td>Subtle vignette</td><td><code>radial-gradient(ellipse at center, transparent 50%, color-mix(…40%, transparent) 100%)</code></td><td>Edge-darkening decorative backgrounds</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABLE 7 — OVERFLOW: HIDDEN CONTAINMENT -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;"><code>overflow: hidden</code> Containment</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Where</th><th><code>overflow: hidden</code>?</th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td><code>.img-ar</code>, <code>.img-avatar</code>, <code>.img-overlay-wrap</code>, <code>.maia-card-image</code></td><td>Yes — always</td><td>Clips image to container, enforces border-radius</td></tr>
+              <tr><td><code>&lt;img&gt;</code> element itself</td><td>Never</td><td>No meaningful overflow; apply to wrapper</td></tr>
+              <tr><td>Layout / content containers</td><td>No</td><td>Would clip shadows, focus rings, tooltips</td></tr>
+              <tr><td>Scrollable regions</td><td>Use <code>overflow-y: auto</code></td><td>Never hide content in scrollable areas</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- SHADCN COMPONENT MAPPING -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">shadcn Component Mapping</h3>
+      <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:1rem;margin-bottom:1.5rem;">
+        <div style="border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;">
+          <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted-foreground);margin:0 0 0.5rem;">shadcn</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:600;margin:0 0 0.5rem;">AspectRatio</p>
+          <p style="font-size:0.8rem;color:var(--muted-foreground);margin:0 0 0.75rem;line-height:1.5;">Radix UI wrapper that applies <code>aspect-ratio</code> + <code>overflow: hidden</code>.</p>
+          <p style="font-size:0.75rem;font-weight:600;margin:0 0 0.25rem;">This system →</p>
+          <p style="font-size:0.75rem;margin:0;"><code>.img-ar</code> with <code>--ar</code> custom property</p>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;">
+          <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted-foreground);margin:0 0 0.5rem;">shadcn</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:600;margin:0 0 0.5rem;">Card (image variant)</p>
+          <p style="font-size:0.8rem;color:var(--muted-foreground);margin:0 0 0.75rem;line-height:1.5;">Card with top image area at 16:9, body below. Interactive with hover elevation.</p>
+          <p style="font-size:0.75rem;font-weight:600;margin:0 0 0.25rem;">This system →</p>
+          <p style="font-size:0.75rem;margin:0;"><code>.maia-card-image</code> + <code>.maia-card-image-area</code></p>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;">
+          <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted-foreground);margin:0 0 0.5rem;">shadcn</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:600;margin:0 0 0.5rem;">Avatar</p>
+          <p style="font-size:0.8rem;color:var(--muted-foreground);margin:0 0 0.75rem;line-height:1.5;">Circular container with image, 50% radius, <code>overflow: hidden</code>, initials fallback.</p>
+          <p style="font-size:0.75rem;font-weight:600;margin:0 0 0.25rem;">This system →</p>
+          <p style="font-size:0.75rem;margin:0;"><code>.img-avatar.img-avatar-{size}</code> + <code>.img-avatar-initials</code></p>
+        </div>
+      </div>
+
+      <!-- CSS CLASS REFERENCE -->
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">CSS Class Reference</h3>
+      <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
+        <div class="table-scroll">
+          <table class="token-table">
+            <thead><tr><th>Class</th><th>Applied to</th><th>Key properties</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><code>.img-hero</code></td><td><code>&lt;img&gt;</code> directly</td><td><code>height:60dvh</code> · <code>object-fit:cover</code> · <code>object-position:28% center</code></td><td>No container needed; 40dvh on mobile</td></tr>
+              <tr><td><code>.img-fill</code></td><td><code>&lt;img&gt;</code> inside sized container</td><td><code>width:100%</code> · <code>height:100%</code> · <code>object-fit:cover</code></td><td>Container must have explicit dimensions</td></tr>
+              <tr><td><code>.img-ar</code></td><td>Container <code>&lt;div&gt;</code></td><td><code>aspect-ratio:var(--ar,16/9)</code> · <code>overflow:hidden</code></td><td>Set ratio via <code>style="--ar:4/3"</code></td></tr>
+              <tr><td><code>.img-avatar</code></td><td>Container <code>&lt;div&gt;</code></td><td><code>border-radius:50%</code> · <code>overflow:hidden</code> · <code>display:flex</code></td><td>Always pair with a size modifier</td></tr>
+              <tr><td><code>.img-avatar-{xl|lg|md|sm|xs}</code></td><td>Same container as <code>.img-avatar</code></td><td><code>width/height</code>: 64/48/36/28/20px</td><td>Fixed px — never scale with viewport</td></tr>
+              <tr><td><code>.img-avatar-initials</code></td><td><code>&lt;span&gt;</code> inside <code>.img-avatar</code></td><td>Poppins 600 · <code>0.75em</code> · <code>var(--muted-foreground)</code></td><td>Fallback when image unavailable</td></tr>
+              <tr><td><code>.img-overlay-wrap</code></td><td>Container <code>&lt;div&gt;</code></td><td><code>position:relative</code> · <code>overflow:hidden</code></td><td>Parent of image + overlay + content layers</td></tr>
+              <tr><td><code>.img-overlay</code></td><td><code>&lt;div&gt;</code> inside <code>.img-overlay-wrap</code></td><td><code>position:absolute;inset:0</code> · gradient background</td><td><code>pointer-events:none</code> — passes clicks through</td></tr>
+              <tr><td><code>.img-overlay-content</code></td><td><code>&lt;div&gt;</code> inside <code>.img-overlay-wrap</code></td><td><code>position:absolute;bottom:0</code> · <code>padding:1.5rem</code> · <code>color:#fff</code></td><td>Text layer above gradient</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
     <!-- GET STARTED -->
     <section id="start">
-      <p class="section-label">Section 09</p>
+      <p class="section-label">Section 10</p>
       <h2 class="section-title">Get Started</h2>
       <p class="section-desc">Set up a new project with shadcn/ui Maia + Gray theme.</p>
       <div class="step-list reveal">
@@ -2682,7 +3623,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     <!-- MOBILE EXAMPLE -->
     <section id="mobile-example">
-      <p class="section-label">Section 10</p>
+      <p class="section-label">Section 11</p>
       <h2 class="section-title">Mobile Example</h2>
       <p class="section-desc">
         A realistic mobile app — "Focus" — built entirely from design system components.
@@ -2807,7 +3748,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     <!-- PITCH DECK EXAMPLE -->
     <section id="pitchdeck">
-      <p class="section-label">Section 11</p>
+      <p class="section-label">Section 12</p>
       <h2 class="section-title">Pitch Deck Slide</h2>
       <p class="section-desc">
         A Series A pitch slide for "Aria" — a fictional AI payments startup. Dark navy background,
@@ -2912,7 +3853,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     <!-- LANDING PAGE EXAMPLE -->
     <section id="landing">
-      <p class="section-label">Section 12</p>
+      <p class="section-label">Section 13</p>
       <h2 class="section-title">Startup Landing Page</h2>
       <p class="section-desc">
         Above-the-fold hero for "Aria" — light mode. Full nav + eyebrow badge, Lora
@@ -3018,7 +3959,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     <!-- REVIEWS EXAMPLE -->
     <section id="reviews">
-      <p class="section-label">Section 13</p>
+      <p class="section-label">Section 14</p>
       <h2 class="section-title">Customer Review Platform</h2>
       <p class="section-desc">
         A mobile review screen for "Trustflow" — showing the Aria product page with a rating summary,
@@ -3306,8 +4247,6 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
     }
 
     function playWordmarkReveal(el, chars) {
-      const isDark = el.classList.contains("logo-text-dark");
-      const glowColor = isDark ? "rgba(240, 240, 240, 0.2)" : "rgba(71, 81, 176, 0.25)";
       const asteriskIdx = chars.findIndex((c) => c.classList.contains("logo-asterisk"));
       const tl = gsap.timeline();
 
@@ -3325,33 +4264,28 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             stagger:0.04 },
         );
 
-      /* Phase 2: Asterisk gets a special scale pop after its stagger position */
+      /* Phase 2: Asterisk scale pop — single keyframes tween for a seamless grow→settle */
       if (asteriskIdx !== -1) {
         const asteriskDelay = asteriskIdx * 0.04;
-        tl.fromTo(chars[asteriskIdx],
-          { scale:1 },
-          { scale:1.3, duration:0.2, ease:"back.out(3)" },
-          asteriskDelay + 0.25
-        ).to(chars[asteriskIdx],
-          { scale:1, duration:0.25, ease:"power2.out" }
-        );
+        tl.to(chars[asteriskIdx], {
+          keyframes: [
+            { scale:1.28, duration:0.28, ease:"sine.out" },
+            { scale:1,    duration:0.42, ease:"power2.inOut" }
+          ],
+          transformOrigin:"50% 50%"
+        }, asteriskDelay + 0.25);
       }
-
-      /* Phase 3: Subtle text-shadow glow pulse */
-      tl.fromTo(el,
-        { textShadow:"0 0 0px " + glowColor },
-        { textShadow:"0 0 20px " + glowColor, duration:0.3, ease:"power2.out" },
-        "-=0.3"
-      ).to(el,
-        { textShadow:"0 0 0px transparent", duration:0.3, ease:"power2.in" }
-      );
 
       return tl;
     }
 
     function resetWordmark(el, chars) {
+      gsap.killTweensOf([el, ...chars]);
+      /* Clear only animation props on chars — preserves display:inline-block
+         set by splitWordmarkChars (clearProps:"all" would wipe it, breaking replay) */
+      chars.forEach((c) => gsap.set(c, { clearProps:"opacity,filter,transform,x,y,scale" }));
       gsap.set(el, { clearProps:"all" });
-      chars.forEach((c) => gsap.set(c, { clearProps:"all" }));
+      gsap.set(el, { opacity:0 }); /* pre-hide so playWordmarkReveal starts from hidden */
     }
 
     const llLightEl = document.querySelector(".ll-anim-light");
@@ -3363,12 +4297,10 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 
     document.getElementById("ll-anim-light-replay").addEventListener("click", () => {
       resetWordmark(llLightEl, llLightChars);
-      gsap.set(llLightEl, { opacity:0 });
       playWordmarkReveal(llLightEl, llLightChars);
     });
     document.getElementById("ll-anim-dark-replay").addEventListener("click", () => {
       resetWordmark(llDarkEl, llDarkChars);
-      gsap.set(llDarkEl, { opacity:0 });
       playWordmarkReveal(llDarkEl, llDarkChars);
     });
 
