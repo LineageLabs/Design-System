@@ -1576,7 +1576,7 @@
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">
                   Phase 1: <code>chars stagger 0.04s from left, blur 6→0 + x -16→0 + y 8→0, power2.out, 400ms</code><br>
-                  Phase 2: <code>asterisk scale pop 1→1.3→1, back.out(3) + power2.out, 450ms</code><br>
+                  Phase 2: <code>asterisk scale pop 1→1.28→1, sine.out + power2.inOut, 700ms (keyframes)</code><br>
                   Phase 3: <code>text-shadow glow pulse 0→20px→0, power2.out→in, 600ms</code>
                 </td>
               </tr>
@@ -3325,16 +3325,16 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             stagger:0.04 },
         );
 
-      /* Phase 2: Asterisk gets a special scale pop after its stagger position */
+      /* Phase 2: Asterisk scale pop — single keyframes tween for a seamless grow→settle */
       if (asteriskIdx !== -1) {
         const asteriskDelay = asteriskIdx * 0.04;
-        tl.fromTo(chars[asteriskIdx],
-          { scale:1 },
-          { scale:1.3, duration:0.2, ease:"back.out(3)" },
-          asteriskDelay + 0.25
-        ).to(chars[asteriskIdx],
-          { scale:1, duration:0.25, ease:"power2.out" }
-        );
+        tl.to(chars[asteriskIdx], {
+          keyframes: [
+            { scale:1.28, duration:0.28, ease:"sine.out" },
+            { scale:1,    duration:0.42, ease:"power2.inOut" }
+          ],
+          transformOrigin:"50% 50%"
+        }, asteriskDelay + 0.25);
       }
 
       /* Phase 3: Subtle text-shadow glow pulse */
