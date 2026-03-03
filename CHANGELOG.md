@@ -5,6 +5,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.24] — 2026-03-03
+
+### Changed
+- **Lineage\*Labs wordmark — light mode updated (Figma sync).**
+  - Weight: **600 → 400** (now identical to dark mode)
+  - Color: `var(--brand-highlight-blue)` `#4751B0` → `var(--brand-highlight-navy)` `#0E1233`
+  - Asterisk color unchanged — also `--brand-highlight-navy`; text and `*` share the same navy in light mode
+  - `.dark .logo-text` override simplified: `font-weight: 400` line removed (no longer needed since base is now 400)
+  - Updated: `index.html` (CSS, demo label, description paragraph, spec table), `assets/logos/README.md` (spec table + CSS block), `DESIGN-SYSTEM.md` (§5 summary table + intro line)
+
+---
+
 ## [2026.03.23] — 2026-03-03
 
 ### Fixed
