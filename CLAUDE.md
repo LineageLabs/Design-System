@@ -72,8 +72,11 @@ When you modify any file in this repo (tokens, animations, components, docs, ass
 # 1. Set up your framework (Next.js, Vite, etc.)
 # 2. Install shadcn/ui with Gray base color, Maia style
 npx shadcn@latest init  # Choose: Gray base color, Maia style
+#    ⚠ Svelte: use shadcn-svelte instead — https://www.shadcn-svelte.com/
+#      npx shadcn-svelte@latest init
 # 3. Install dependencies
 npm install gsap hugeicons-react
+#    ⚠ Svelte: use @hugeicons/svelte instead of hugeicons-react
 # 4. Add Lora + Poppins via Google Fonts
 #    Lora: ital,wght@0,400;0,700;1,400 | Poppins: wght@600;700;800
 # 5. Copy tokens/colors.css into your global stylesheet

@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.34] — 2026-03-04
+
+### Added
+- **Svelte framework guidance.** `DESIGN-SYSTEM.md` Section 1 now includes a "Framework Variants" table mapping React vs. Svelte installs for UI components (`shadcn-svelte`) and icons (`@hugeicons/svelte`). Section 9 (Icons) adds a "Svelte Projects" subsection with install/import snippets. `CLAUDE.md` "Starting a New Project" code block adds inline `⚠ Svelte:` callouts for both the shadcn-svelte CLI and the icon package swap.
+
+---
+
 ## [2026.03.33] — 2026-03-03
 
 ### Fixed
