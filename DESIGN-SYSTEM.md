@@ -19,6 +19,17 @@
 | **Icons** | [Hugeicons](https://hugeicons.com/) | Default icon library. |
 | **Border Radius** | Large (`--radius: 0.875rem`) | Maia style — soft and rounded. |
 
+### Framework Variants
+
+The table above assumes a React-based project. For other frameworks, swap the framework-specific packages:
+
+| Framework | UI Components | Icons |
+|-----------|--------------|-------|
+| **React** (default) | [shadcn/ui](https://ui.shadcn.com/) — `npx shadcn@latest init` | `npm install hugeicons-react` |
+| **Svelte** | [shadcn-svelte](https://www.shadcn-svelte.com/) — `npx shadcn-svelte@latest init` | `npm install @hugeicons/svelte` |
+
+Everything else — CSS tokens, GSAP, fonts, Tailwind — is framework-agnostic and requires no changes.
+
 ### Theme Configuration
 
 Generated from: `shadcn/create`
@@ -974,6 +985,17 @@ Fixed-height containers (`height: 100vh` + `overflow: hidden`) are the most comm
 | Default Stroke | `1.5` (fallback — see stroke-weight rules below) |
 
 Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific icon is not available in Hugeicons.
+
+#### Svelte Projects
+
+Use the official Svelte package instead of `hugeicons-react`:
+
+| Setting | Value |
+|---------|-------|
+| Install | `npm install @hugeicons/svelte` |
+| Import | `import { IconName } from "@hugeicons/svelte"` |
+
+All icon names, sizes, stroke weights, and color rules from this section apply equally to the Svelte package.
 
 ### Icon Color & Background Guide
 
