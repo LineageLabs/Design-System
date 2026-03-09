@@ -5,6 +5,68 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.03.39] — 2026-03-09
+
+### Changed
+- **way\*ID badge: removed border/outline.** `.logo-badge` and `.logo-badge-dark` no longer have `border`, `padding`, or `border-radius`. The logo is now plain text.
+- **way\*ID asterisk color: green → blue.** `*` now uses `--brand-offset-blue-light` (`#006CDB`) in light mode and `--brand-offset-blue-dark` (`#2886E6`) in dark mode. Previously used `--brand-offset-green`.
+
+### Removed
+- **way\*ID asterisk color cycling animation.** The `startAsteriskCycle()` GSAP function and `badgeCycles` Map have been removed from `index.html`. The `*` is now static blue — no post-reveal animation. Updated `assets/logos/README.md` and `DESIGN-SYSTEM.md`.
+
+---
+
+## [2026.03.38] — 2026-03-09
+
+### Changed
+- **way\*ID logo badge: `font-weight` 600 → 700, `letter-spacing` -0.08em → -0.07em, `line-height` 22px → 1.5.** Updated `.logo-badge` and `.logo-badge-dark` in `index.html`, spec table in `DESIGN-SYSTEM.md`, CSS snippets and spec table in `assets/logos/README.md`.
+
+### Fixed
+- **Stale `#F0F0F0` hex references in `assets/logos/README.md`.** Updated to `#FAFAFA` to match current `--brand-highlight-light` value (changed in [2026.03.36]).
+
+---
+
+## [2026.03.37] — 2026-03-09
+
+### Added
+- **`.maia-btn-default` button variant.** New default button using frosted `--brand-highlight-light` surface — 50% opacity in light mode, 10% in dark mode. Hover bumps to 65% / 18%. Text uses `--foreground`. Intended as the standard button choice unless context calls for a specific variant. Added to `index.html` (CSS + demo), `components/shadcn-customizations.yaml`, and `DESIGN-SYSTEM.md` style overrides table.
+
+---
+
+## [2026.03.36] — 2026-03-09
+
+### Changed
+- **`--brand-highlight-light`** `#F0F0F0` → `#FAFAFA`. Updated in `tokens/colors.css`, `tokens/brand-colors.yaml`, `DESIGN-SYSTEM.md`, `index.html`, `example-mobile.html`, `example-pitchdeck.html`.
+
+### Removed
+- **`--brand-highlight-blue` (`#4751B0`).** Token removed entirely. All 60+ references across `index.html`, `example-mobile.html`, `example-pitchdeck.html`, `example-landing.html`, `example-reviews.html` migrated to `var(--brand-offset-blue)`. Removed from `tokens/colors.css`, `tokens/brand-colors.yaml`, `DESIGN-SYSTEM.md`, and Tailwind `@theme` mapping.
+
+### Added
+- **`.h0-alt` and `.h1-alt` CSS classes.** Poppins Light (300) alternates for display and page-title headings. Same sizing as `.h0` / `h1` but with a lighter, sans-serif personality. Added to `index.html` (CSS + typography demo), `DESIGN-SYSTEM.md` (Font Stack table, CSS Setup, Installation snippet), and `CLAUDE.md` (Google Fonts weight list). Poppins 300 weight added to Google Fonts link.
+
+---
+
+## [2026.03.35] — 2026-03-09
+
+### Removed
+- **`--brand-surface-grey-light`, `--brand-surface-grey-dark`, `--brand-surface-grey`.** Grey surface tokens removed from `tokens/colors.css`, `tokens/brand-colors.yaml`, `DESIGN-SYSTEM.md`, `index.html`, and `example-mobile.html`.
+- **`--brand-surface-blue`.** Blue surface token removed from all files. The `--brand-highlight-blue` token (`#4751B0`) remains for accent use.
+
+### Changed
+- **`--brand-surface-light`** `#F0F0F0` → `#E8E5DE`. Updated across all token files, docs, and demo pages.
+- **`--brand-offset-coral-light`** `#F0936B` → `#FF7236`. Updated in `tokens/colors.css`, `tokens/brand-colors.yaml`, `DESIGN-SYSTEM.md`, `index.html`, `example-mobile.html`.
+- **`--brand-offset-coral-dark`** `#E99F80` → `#FF814C`. Updated in same files.
+- **`--brand-offset-yellow`** `#FFD27D` → `#F8BC4D`. Updated in all files.
+- **`--brand-offset-lavender-light`** `#A6A1E2` → `#7267E2`. Updated in all files including `example-pitchdeck.html`.
+- **`--background` now uses brand surfaces.** Light mode: `#FAFAFA` → `#E8E5DE` (= `--brand-surface-light`). Dark mode: `oklch(0.13 0.028 261.692)` → `#0E1233` (= `--brand-surface-dark`). Applied in `tokens/colors.css`, `index.html`, `example-mobile.html`, and `DESIGN-SYSTEM.md`.
+
+### Added
+- **`--brand-offset-blue-light`** `#006CDB` — new blue offset primitive.
+- **`--brand-offset-blue-dark`** `#2886E6` — new blue offset primitive.
+- **`--brand-offset-blue`** — new adaptive semantic token, switches between light/dark primitives. Added to `tokens/colors.css`, `tokens/brand-colors.yaml`, `DESIGN-SYSTEM.md`, `index.html`, `example-mobile.html`.
+
+---
+
 ## [2026.03.34] — 2026-03-04
 
 ### Added

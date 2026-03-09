@@ -78,7 +78,7 @@ npx shadcn@latest init  # Choose: Gray base color, Maia style
 npm install gsap hugeicons-react
 #    ⚠ Svelte: use @hugeicons/svelte instead of hugeicons-react
 # 4. Add Lora + Poppins via Google Fonts
-#    Lora: ital,wght@0,400;0,700;1,400 | Poppins: wght@600;700;800
+#    Lora: ital,wght@0,400;0,700;1,400 | Poppins: wght@300;600;700;800
 # 5. Copy tokens/colors.css into your global stylesheet
 # 6. Set Lora on h0/h1 and Poppins on h2-h4 in your CSS
 # 7. Import animation presets where needed

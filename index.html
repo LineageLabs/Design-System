@@ -6,7 +6,7 @@
   <title>Design System Reference</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <style>
@@ -15,7 +15,7 @@
        ========================================================= */
     :root {
       --radius: 0.875rem;
-      --background: #FAFAFA;
+      --background: #E8E5DE;
       --foreground: oklch(0.13 0.028 261.692);
       --card: oklch(1 0 0);
       --card-foreground: oklch(0.13 0.028 261.692);
@@ -30,28 +30,26 @@
       --destructive: oklch(0.577 0.245 27.325);
 
       /* Brand primitives — unique name per hex, never redefined in .dark */
-      --brand-surface-light:          #F0F0F0;
+      --brand-surface-light:          #E8E5DE;
       --brand-surface-dark:           #0E1233;
-      --brand-surface-grey-light:     #E4E4EE;
-      --brand-surface-grey-dark:      #252963;
-      --brand-offset-lavender-light:  #A6A1E2;
+      --brand-offset-lavender-light:  #7267E2;
       --brand-offset-lavender-dark:   #B4AFE7;
       --brand-offset-green-light:     #A0D246;
       --brand-offset-green-dark:      #D5FD8D;
-      --brand-offset-coral-light:     #F0936B;
-      --brand-offset-coral-dark:      #E99F80;
+      --brand-offset-coral-light:     #FF7236;
+      --brand-offset-coral-dark:      #FF814C;
+      --brand-offset-blue-light:      #006CDB;
+      --brand-offset-blue-dark:       #2886E6;
 
       /* Brand semantics — adaptive, reference primitives */
       --brand-surface:         var(--brand-surface-light);
-      --brand-surface-grey:    var(--brand-surface-grey-light);
-      --brand-surface-blue:    #4751B0;
-      --brand-highlight-blue:  #4751B0;
       --brand-highlight-navy:  #0E1233;
-      --brand-highlight-light: #F0F0F0;
+      --brand-highlight-light: #FAFAFA;
       --brand-offset-lavender: var(--brand-offset-lavender-light);
       --brand-offset-green:    var(--brand-offset-green-light);
-      --brand-offset-yellow:   #FFD27D;
+      --brand-offset-yellow:   #F8BC4D;
       --brand-offset-coral:    var(--brand-offset-coral-light);
+      --brand-offset-blue:     var(--brand-offset-blue-light);
 
       --chart-1: oklch(0.646 0.222 41.116);
       --chart-2: oklch(0.6 0.118 184.704);
@@ -61,7 +59,7 @@
     }
 
     .dark {
-      --background: oklch(0.13 0.028 261.692);
+      --background: #0E1233;
       --foreground: oklch(0.985 0.002 247.839);
       --card: oklch(0.21 0.034 264.665);
       --card-foreground: oklch(0.985 0.002 247.839);
@@ -77,10 +75,10 @@
 
       /* Brand semantics — dark mode overrides reference dark primitives */
       --brand-surface:         var(--brand-surface-dark);
-      --brand-surface-grey:    var(--brand-surface-grey-dark);
       --brand-offset-lavender: var(--brand-offset-lavender-dark);
       --brand-offset-green:    var(--brand-offset-green-dark);
       --brand-offset-coral:    var(--brand-offset-coral-dark);
+      --brand-offset-blue:     var(--brand-offset-blue-dark);
 
       --chart-1: oklch(0.488 0.243 264.376);
       --chart-2: oklch(0.696 0.17 162.48);
@@ -127,6 +125,20 @@
       font-size: clamp(3.5rem, 8vw, 6rem);
       line-height: 1.0;
       letter-spacing: -0.03em;
+    }
+    /* Alternate display headings — Poppins Light (300) */
+    .h0-alt {
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+    }
+    .h1-alt {
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.2;
     }
     code {
       font-family: "Geist Mono", "SF Mono", "Fira Code", Consolas, monospace;
@@ -208,47 +220,39 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.125rem 0.7rem;
-      border-radius: var(--radius);
       background: transparent;
       color: var(--brand-highlight-navy);
       font-family: "Poppins", sans-serif;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 15px;
-      line-height: 22px;
-      letter-spacing: -0.08em;
+      line-height: 1.5;
+      letter-spacing: -0.07em;
       white-space: nowrap;
       flex-shrink: 0;
-      border: 1.5px solid var(--brand-highlight-navy);
     }
     .dark .logo-badge {
-      background: transparent;
       color: var(--brand-highlight-light);
-      border: 1px solid var(--brand-highlight-light);
     }
     /* Forced dark variant — for always-dark preview panels */
     .logo-badge-dark {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.125rem 0.7rem;
-      border-radius: var(--radius);
       background: transparent;
       color: var(--brand-highlight-light);
       font-family: "Poppins", sans-serif;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 15px;
-      line-height: 22px;
-      letter-spacing: -0.08em;
+      line-height: 1.5;
+      letter-spacing: -0.07em;
       white-space: nowrap;
       flex-shrink: 0;
-      border: 1px solid var(--brand-highlight-light);
     }
-    /* Asterisk accent — offset green by default; animated badges cycle through all 4 */
-    /* .logo-badge is on a light background → adaptive green (light: #A0D246, dark: #D5FD8D) */
-    .logo-badge .logo-badge-asterisk { color: var(--brand-offset-green); }
-    /* .logo-badge-dark is always on navy (#0E1233) → always use the bright green primitive */
-    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-green-dark); }
+    /* Asterisk accent — blue, mode-dependent */
+    .logo-badge .logo-badge-asterisk { color: var(--brand-offset-blue-light); }
+    .dark .logo-badge .logo-badge-asterisk { color: var(--brand-offset-blue-dark); }
+    /* .logo-badge-dark is always on navy → always use the dark blue primitive */
+    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-blue-dark); }
     .logo-wordmark { font-weight: 700; }
 
     /* Lineage*Labs text wordmark */
@@ -343,8 +347,8 @@
       letter-spacing: -0.03em;
     }
 
-    .hero-title .accent-grass-green  { color: var(--brand-highlight-blue); }
-    .hero-title .accent-dark-green { color: var(--brand-highlight-blue); }
+    .hero-title .accent-grass-green  { color: var(--brand-offset-blue); }
+    .hero-title .accent-dark-green { color: var(--brand-offset-blue); }
 
     .hero-sub {
       font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -493,7 +497,7 @@
     .token-table tr:hover td, .comp-table tr:hover td { background: var(--muted); }
 
     .duration-bar-wrap { display: flex; align-items: center; gap: 0.75rem; }
-    .duration-bar { height: 6px; border-radius: 999px; background: var(--brand-highlight-blue); flex-shrink: 0; }
+    .duration-bar { height: 6px; border-radius: 999px; background: var(--brand-offset-blue); flex-shrink: 0; }
 
     .easing-badge {
       display: inline-block;
@@ -527,7 +531,7 @@
       cursor: pointer;
       transition: border-color 0.15s ease-out;
     }
-    .demo-card:hover { border-color: var(--brand-highlight-blue); }
+    .demo-card:hover { border-color: var(--brand-offset-blue); }
 
     .demo-box {
       width: 48px; height: 48px;
@@ -537,7 +541,7 @@
     }
     .demo-label { font-size: 0.8rem; font-weight: 600; text-align: center; }
     .demo-sublabel { font-size: 0.7rem; color: var(--muted-foreground); text-align: center; }
-    .play-hint { font-size: 0.7rem; color: var(--brand-highlight-blue); font-weight: 500; }
+    .play-hint { font-size: 0.7rem; color: var(--brand-offset-blue); font-weight: 500; }
 
     /* =========================================================
        HOVER DEMO
@@ -596,9 +600,9 @@
       margin: 0.1rem;
     }
     .pill-entrance {
-      background: color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
-      color: var(--brand-highlight-blue);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-offset-blue) 12%, transparent);
+      color: var(--brand-offset-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-offset-blue) 30%, transparent);
     }
     .pill-exit {
       background: color-mix(in srgb, var(--brand-highlight-navy) 12%, transparent);
@@ -687,19 +691,19 @@
 
     /* Feature badge (anim-tag) dark mode — boost contrast */
     .dark .comp-demo-label .anim-tag {
-      background: color-mix(in srgb, var(--brand-highlight-blue) 18%, transparent);
+      background: color-mix(in srgb, var(--brand-offset-blue) 18%, transparent);
       color: var(--brand-highlight-light);
-      border-color: color-mix(in srgb, var(--brand-highlight-blue) 40%, transparent);
+      border-color: color-mix(in srgb, var(--brand-offset-blue) 40%, transparent);
     }
 
     /* Badge light-green dark mode — swap to light text on tinted bg */
     .dark .maia-badge-light-green {
       background: color-mix(in srgb, var(--brand-highlight-navy) 50%, transparent);
       color: var(--brand-highlight-light);
-      border-color: color-mix(in srgb, var(--brand-highlight-blue) 35%, transparent);
+      border-color: color-mix(in srgb, var(--brand-offset-blue) 35%, transparent);
     }
     .code-block .cm { color: oklch(0.6 0 0); }
-    .code-block .kw { color: var(--brand-highlight-blue); }
+    .code-block .kw { color: var(--brand-offset-blue); }
     .code-block .st { color: var(--brand-highlight-light); }
     .code-block .fn { color: var(--brand-highlight-navy); }
 
@@ -769,6 +773,20 @@
     .maia-btn-destructive:hover {
       filter: brightness(1.15);
       box-shadow: 0 4px 15px color-mix(in srgb, var(--destructive) 30%, transparent);
+    }
+    .maia-btn-default {
+      background: color-mix(in srgb, var(--brand-highlight-light) 50%, transparent);
+      color: var(--foreground);
+    }
+    .maia-btn-default:hover {
+      background: color-mix(in srgb, var(--brand-highlight-light) 65%, transparent);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .dark .maia-btn-default {
+      background: color-mix(in srgb, var(--brand-highlight-light) 10%, transparent);
+    }
+    .dark .maia-btn-default:hover {
+      background: color-mix(in srgb, var(--brand-highlight-light) 18%, transparent);
     }
     .maia-btn-ghost { background: transparent; color: var(--foreground); }
     .maia-btn-ghost:hover { background: var(--muted); box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
@@ -883,9 +901,9 @@
       border: 1px solid color-mix(in srgb, var(--brand-highlight-light) 40%, transparent);
     }
     .maia-badge-grass-green {
-      background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent);
-      color: var(--brand-highlight-blue);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-offset-blue) 15%, transparent);
+      color: var(--brand-offset-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-offset-blue) 30%, transparent);
     }
     .maia-badge-dark-green {
       background: var(--brand-highlight-navy);
@@ -1495,9 +1513,9 @@
       font-size: 0.65rem;
       padding: 0.1rem 0.4rem;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
-      color: var(--brand-highlight-blue);
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-offset-blue) 12%, transparent);
+      color: var(--brand-offset-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-offset-blue) 30%, transparent);
       letter-spacing: 0; text-transform: none;
     }
     .comp-demo-area {
@@ -1550,7 +1568,7 @@
     }
     .container-demo-gutter {
       flex: 0 0 1.5rem;
-      background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent);
+      background: color-mix(in srgb, var(--brand-offset-blue) 15%, transparent);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1631,12 +1649,16 @@
       <p class="section-label">Section 01</p>
       <h2 class="section-title">Typography</h2>
       <p class="section-desc">
-        <strong>Lora</strong> (serif) for h0–h1, <strong>Poppins</strong> for h2–h4,
+        <strong>Lora</strong> (serif) for h0–h1, <strong>Poppins</strong> for h2–h4 (and light-weight alternates h0-alt / h1-alt),
         <strong>system UI</strong> for body text and UI, <strong>Geist Mono</strong> for code.
       </p>
       <div class="type-preview reveal">
         <div class="type-row"><span class="type-label">h0</span><span class="h0">The quick brown</span></div>
         <div class="type-row"><span class="type-label">h1</span><h1 style="font-weight:700;">The quick brown fox</h1></div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="type-row"><span class="type-label">h0-alt</span><span class="h0-alt">The quick brown</span></div>
+        <div class="type-row"><span class="type-label">h1-alt</span><span class="h1-alt">The quick brown fox</span></div>
+        <div style="height:1px;background:var(--border);"></div>
         <div class="type-row"><span class="type-label">h2</span><h2 style="font-weight:700;">The quick brown fox</h2></div>
         <div class="type-row"><span class="type-label">h3</span><h3 style="font-size:1.25rem;font-weight:700;">The quick brown fox jumps</h3></div>
         <div class="type-row"><span class="type-label">h4</span><h4 style="font-size:1rem;font-weight:600;">The quick brown fox jumps over</h4></div>
@@ -1646,7 +1668,7 @@
       </div>
       <div class="card-grid" style="margin-top:1.5rem;">
         <div class="card reveal"><div class="card-title">Display &amp; H1 Font</div><div class="card-sub"><strong>Lora</strong> (serif) · 400–700<br>h0 (400) and h1 (700) only</div></div>
-        <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 600–800<br>h2–h4 only</div></div>
+        <div class="card reveal"><div class="card-title">Headline Font</div><div class="card-sub"><strong>Poppins</strong> · 300, 600–800<br>h2–h4 + h0-alt / h1-alt (300)</div></div>
         <div class="card reveal"><div class="card-title">Body Font</div><div class="card-sub"><strong>System UI</strong> · 400–700<br>All body, buttons, inputs</div></div>
         <div class="card reveal"><div class="card-title">Code Font</div><div class="card-sub"><strong>Geist Mono</strong> · 400<br>Code blocks, inline <code>code</code></div></div>
         <div class="card reveal"><div class="card-title">Icons</div><div class="card-sub"><strong>Hugeicons</strong><br><code>npm i hugeicons-react</code></div></div>
@@ -1665,16 +1687,16 @@
       <!-- ═══════════════ way*ID Badge ═══════════════ -->
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">way*ID Badge</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Pill-shaped badge with navy background / light text. Inverts in dark mode.
+        Plain text wordmark — no border, no background. Navy text on light, near-white on dark. The <code>*</code> uses brand offset blue.
       </p>
 
       <!-- way*ID — Light -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge" style="font-size:22px;padding:0.2rem 1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge" style="font-size:22px;">way<span class="logo-badge-asterisk">*</span>ID</span>
           <span class="logo-badge" style="font-size:15px;">way<span class="logo-badge-asterisk">*</span>ID</span>
-          <span class="logo-badge" style="font-size:12px;padding:0.1rem 0.5rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge" style="font-size:12px;">way<span class="logo-badge-asterisk">*</span>ID</span>
         </div>
       </div>
 
@@ -1682,9 +1704,9 @@
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
         <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge-dark" style="font-size:22px;padding:0.2rem 1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge-dark" style="font-size:22px;">way<span class="logo-badge-asterisk">*</span>ID</span>
           <span class="logo-badge-dark" style="font-size:15px;">way<span class="logo-badge-asterisk">*</span>ID</span>
-          <span class="logo-badge-dark" style="font-size:12px;padding:0.1rem 0.5rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge-dark" style="font-size:12px;">way<span class="logo-badge-asterisk">*</span>ID</span>
         </div>
       </div>
 
@@ -1695,14 +1717,14 @@
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;padding:0.25rem 1.1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;">way<span class="logo-badge-asterisk">*</span>ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
           </div>
           <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;padding:0.25rem 1.1rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;">way<span class="logo-badge-asterisk">*</span>ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
@@ -1884,41 +1906,34 @@
       </p>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights</h3>
       <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="swatch"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info"><div class="swatch-name">Blue</div><div class="swatch-hex">#4751B0</div><div class="swatch-var">--brand-highlight-blue</div></div></div>
         <div class="swatch"><div class="swatch-color" style="background:#0E1233;"></div><div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#0E1233</div><div class="swatch-var">--brand-highlight-navy</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F0F0F0;border-bottom:1px solid #E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Light</div><div class="swatch-hex">#F0F0F0</div><div class="swatch-var">--brand-highlight-light</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FAFAFA;border-bottom:1px solid var(--border);"></div><div class="swatch-info"><div class="swatch-name">Light</div><div class="swatch-hex">#FAFAFA</div><div class="swatch-var">--brand-highlight-light</div></div></div>
       </div>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Surfaces — Light</h3>
-      <div class="swatch-grid reveal" style="margin-bottom:0.75rem;">
-        <div class="swatch"><div class="swatch-color" style="background:#F0F0F0;border-bottom:1px solid #E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#F0F0F0</div><div class="swatch-var">--brand-surface-light</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#E4E4EE;"></div><div class="swatch-info"><div class="swatch-name">Surface Grey</div><div class="swatch-hex">#E4E4EE</div><div class="swatch-var">--brand-surface-grey-light</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info"><div class="swatch-name">Surface Blue</div><div class="swatch-hex">#4751B0</div><div class="swatch-var">--brand-surface-blue</div></div></div>
-      </div>
-      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Surfaces — Dark</h3>
-      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;background:#0E1233;padding:1rem;border-radius:var(--radius);border:1px solid #252963;">
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#0E1233;border-bottom:1px solid #252963;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Surface</div><div class="swatch-hex" style="color:#B4AFE7;">#0E1233</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface-dark</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#252963;border-bottom:1px solid #3a3d6e;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Surface Grey</div><div class="swatch-hex" style="color:#B4AFE7;">#252963</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface-grey-dark</div></div></div>
+      <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Surfaces</h3>
+      <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
+        <div class="swatch"><div class="swatch-color" style="background:#E8E5DE;border-bottom:1px solid var(--border);"></div><div class="swatch-info"><div class="swatch-name">Surface Light</div><div class="swatch-hex">#E8E5DE</div><div class="swatch-var">--brand-surface-light</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0E1233;"></div><div class="swatch-info" style="background:#1a1e4a;color:#fff;"><div class="swatch-name">Surface Dark</div><div class="swatch-hex" style="color:#B4AFE7;">#0E1233</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface-dark</div></div></div>
       </div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Offset Accents — Light surface</h3>
       <div class="swatch-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="swatch"><div class="swatch-color" style="background:#A6A1E2;"></div><div class="swatch-info"><div class="swatch-name">Lavender</div><div class="swatch-hex">#A6A1E2</div><div class="swatch-var">--brand-offset-lavender-light</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7267E2;"></div><div class="swatch-info"><div class="swatch-name">Lavender</div><div class="swatch-hex">#7267E2</div><div class="swatch-var">--brand-offset-lavender-light</div></div></div>
         <div class="swatch"><div class="swatch-color" style="background:#A0D246;"></div><div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#A0D246</div><div class="swatch-var">--brand-offset-green-light</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FFD27D;"></div><div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#FFD27D</div><div class="swatch-var">--brand-offset-yellow</div></div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F0936B;"></div><div class="swatch-info"><div class="swatch-name">Coral</div><div class="swatch-hex">#F0936B</div><div class="swatch-var">--brand-offset-coral-light</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F8BC4D;"></div><div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#F8BC4D</div><div class="swatch-var">--brand-offset-yellow</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF7236;"></div><div class="swatch-info"><div class="swatch-name">Coral</div><div class="swatch-hex">#FF7236</div><div class="swatch-var">--brand-offset-coral-light</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#006CDB;"></div><div class="swatch-info"><div class="swatch-name">Blue</div><div class="swatch-hex">#006CDB</div><div class="swatch-var">--brand-offset-blue-light</div></div></div>
       </div>
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;color:var(--muted-foreground);">Highlights + Offsets — Dark / Blue surface</h3>
-      <div class="swatch-grid reveal" style="background:#0E1233;padding:1rem;border-radius:var(--radius);border:1px solid #252963;">
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Blue</div><div class="swatch-hex" style="color:#B4AFE7;">#4751B0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-highlight-blue</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#F0F0F0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Light</div><div class="swatch-hex" style="color:#B4AFE7;">#F0F0F0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-highlight-light</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#4751B0;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Surface Blue</div><div class="swatch-hex" style="color:#B4AFE7;">#4751B0</div><div class="swatch-var" style="color:#B4AFE7;">--brand-surface-blue</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#B4AFE7;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Lavender</div><div class="swatch-hex" style="color:#B4AFE7;">#B4AFE7</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-lavender-dark</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#D5FD8D;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Green</div><div class="swatch-hex" style="color:#B4AFE7;">#D5FD8D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-green-dark</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#FFD27D;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Yellow</div><div class="swatch-hex" style="color:#B4AFE7;">#FFD27D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-yellow</div></div></div>
-        <div class="swatch" style="border-color:#252963;"><div class="swatch-color" style="background:#E99F80;"></div><div class="swatch-info" style="background:#252963;color:#fff;"><div class="swatch-name">Coral</div><div class="swatch-hex" style="color:#B4AFE7;">#E99F80</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-coral-dark</div></div></div>
+      <div class="swatch-grid reveal" style="background:#0E1233;padding:1rem;border-radius:var(--radius);border:1px solid #1a1e4a;">
+        <div class="swatch" style="border-color:#1a1e4a;"><div class="swatch-color" style="background:#FAFAFA;"></div><div class="swatch-info" style="background:#1a1e4a;color:#fff;"><div class="swatch-name">Light</div><div class="swatch-hex" style="color:#B4AFE7;">#FAFAFA</div><div class="swatch-var" style="color:#B4AFE7;">--brand-highlight-light</div></div></div>
+        <div class="swatch" style="border-color:#1a1e4a;"><div class="swatch-color" style="background:#B4AFE7;"></div><div class="swatch-info" style="background:#1a1e4a;color:#fff;"><div class="swatch-name">Lavender</div><div class="swatch-hex" style="color:#B4AFE7;">#B4AFE7</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-lavender-dark</div></div></div>
+        <div class="swatch" style="border-color:#1a1e4a;"><div class="swatch-color" style="background:#D5FD8D;"></div><div class="swatch-info" style="background:#1a1e4a;color:#fff;"><div class="swatch-name">Green</div><div class="swatch-hex" style="color:#B4AFE7;">#D5FD8D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-green-dark</div></div></div>
+        <div class="swatch" style="border-color:#1a1e4a;"><div class="swatch-color" style="background:#F8BC4D;"></div><div class="swatch-info" style="background:#1a1e4a;color:#fff;"><div class="swatch-name">Yellow</div><div class="swatch-hex" style="color:#B4AFE7;">#F8BC4D</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-yellow</div></div></div>
+        <div class="swatch" style="border-color:#1a1e4a;"><div class="swatch-color" style="background:#FF814C;"></div><div class="swatch-info" style="background:#1a1e4a;color:#fff;"><div class="swatch-name">Coral</div><div class="swatch-hex" style="color:#B4AFE7;">#FF814C</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-coral-dark</div></div></div>
+        <div class="swatch" style="border-color:#1a1e4a;"><div class="swatch-color" style="background:#2886E6;"></div><div class="swatch-info" style="background:#1a1e4a;color:#fff;"><div class="swatch-name">Blue</div><div class="swatch-hex" style="color:#B4AFE7;">#2886E6</div><div class="swatch-var" style="color:#B4AFE7;">--brand-offset-blue-dark</div></div></div>
       </div>
       <div class="divider"></div>
       <div class="card-grid">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-offset-blue);"><div class="card-title">When to use</div><div class="card-sub">Hero sections, marketing headings, CTAs, status badges, illustrations, gradient accents — any element the design <em>explicitly</em> marks as brand colored.</div></div>
         <div class="card" style="border-left:3px solid var(--destructive);"><div class="card-title">When NOT to use</div><div class="card-sub">Buttons, inputs, cards, body text, borders, error states, focus rings — use shadcn semantic tokens for all standard UI.</div></div>
       </div>
 
@@ -1962,19 +1977,19 @@
         <table class="token-table">
           <thead><tr><th>Token</th><th>rem</th><th>px</th><th>Tailwind</th><th style="width:40%;">Visual</th></tr></thead>
           <tbody>
-            <tr><td><code>0.5</code></td><td>0.125</td><td>2</td><td>0.5</td><td><div style="width:2px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>1</code></td><td>0.25</td><td>4</td><td>1</td><td><div style="width:4px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>2</code></td><td>0.5</td><td>8</td><td>2</td><td><div style="width:8px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>3</code></td><td>0.75</td><td>12</td><td>3</td><td><div style="width:12px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>4</code></td><td>1</td><td>16</td><td>4</td><td><div style="width:16px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>5</code></td><td>1.25</td><td>20</td><td>5</td><td><div style="width:20px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>6</code></td><td>1.5</td><td>24</td><td>6</td><td><div style="width:24px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>8</code></td><td>2</td><td>32</td><td>8</td><td><div style="width:32px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>10</code></td><td>2.5</td><td>40</td><td>10</td><td><div style="width:40px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>12</code></td><td>3</td><td>48</td><td>12</td><td><div style="width:48px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>16</code></td><td>4</td><td>64</td><td>16</td><td><div style="width:64px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>20</code></td><td>5</td><td>80</td><td>20</td><td><div style="width:80px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
-            <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-highlight-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>0.5</code></td><td>0.125</td><td>2</td><td>0.5</td><td><div style="width:2px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>1</code></td><td>0.25</td><td>4</td><td>1</td><td><div style="width:4px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>2</code></td><td>0.5</td><td>8</td><td>2</td><td><div style="width:8px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>3</code></td><td>0.75</td><td>12</td><td>3</td><td><div style="width:12px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>4</code></td><td>1</td><td>16</td><td>4</td><td><div style="width:16px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>5</code></td><td>1.25</td><td>20</td><td>5</td><td><div style="width:20px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>6</code></td><td>1.5</td><td>24</td><td>6</td><td><div style="width:24px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>8</code></td><td>2</td><td>32</td><td>8</td><td><div style="width:32px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>10</code></td><td>2.5</td><td>40</td><td>10</td><td><div style="width:40px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>12</code></td><td>3</td><td>48</td><td>12</td><td><div style="width:48px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>16</code></td><td>4</td><td>64</td><td>16</td><td><div style="width:64px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>20</code></td><td>5</td><td>80</td><td>20</td><td><div style="width:80px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
+            <tr><td><code>24</code></td><td>6</td><td>96</td><td>24</td><td><div style="width:96px;height:12px;background:var(--brand-offset-blue);border-radius:2px;"></div></td></tr>
           </tbody>
         </table>
         </div>
@@ -2048,7 +2063,7 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
       <div class="card-grid reveal">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">4px grid</div><div class="card-sub">All spacing is a multiple of 4px (0.25rem). No arbitrary values like 0.3rem or 7px.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-offset-blue);"><div class="card-title">4px grid</div><div class="card-sub">All spacing is a multiple of 4px (0.25rem). No arbitrary values like 0.3rem or 7px.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Generous by default</div><div class="card-sub">Maia style. Cards get <code>p-6</code> not <code>p-4</code>. Sections get <code>mb-20</code> not <code>mb-12</code>. When in doubt, size up.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Gap over margin</div><div class="card-sub">Use flexbox/grid <code>gap</code> for layout spacing. Avoid margin for sibling separation.</div></div>
         <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">44px touch targets</div><div class="card-sub">Interactive elements must be &ge;44&times;44px. Use padding or <code>min-height</code> to reach this.</div></div>
@@ -2072,7 +2087,7 @@
           <tbody>
             <tr><td><code>mobile</code></td><td>0px</td><td>(default)</td><td>Base styles — all CSS starts here</td></tr>
             <tr><td><code>sm</code></td><td>640px</td><td><code>sm:</code></td><td>Large phones landscape — rarely needed</td></tr>
-            <tr style="background:color-mix(in srgb, var(--brand-highlight-blue) 8%, transparent);"><td><code>md</code></td><td><strong>768px</strong></td><td><code>md:</code></td><td><strong>Primary breakpoint</strong> — layout shifts here</td></tr>
+            <tr style="background:color-mix(in srgb, var(--brand-offset-blue) 8%, transparent);"><td><code>md</code></td><td><strong>768px</strong></td><td><code>md:</code></td><td><strong>Primary breakpoint</strong> — layout shifts here</td></tr>
             <tr><td><code>lg</code></td><td>1024px</td><td><code>lg:</code></td><td>Desktop — full multi-column layouts</td></tr>
             <tr><td><code>xl</code></td><td>1280px</td><td><code>xl:</code></td><td>Wide desktop — optional refinement</td></tr>
           </tbody>
@@ -2117,10 +2132,10 @@
           <thead><tr><th>Element</th><th>Mobile → Desktop</th><th>Changes?</th></tr></thead>
           <tbody>
             <tr><td>Component padding</td><td>Same everywhere</td><td style="color:var(--muted-foreground);">No</td></tr>
-            <tr><td>Page gutter</td><td>1.5rem → 2rem</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — at md:</td></tr>
-            <tr><td>Section spacing</td><td>May compress one step</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — below md:</td></tr>
-            <tr><td>Grid columns</td><td>1 → 2 → 3</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Yes — at md: and lg:</td></tr>
-            <tr><td>Headlines</td><td>Fluid via clamp()</td><td style="color:var(--brand-highlight-blue);font-weight:600;">Fluid</td></tr>
+            <tr><td>Page gutter</td><td>1.5rem → 2rem</td><td style="color:var(--brand-offset-blue);font-weight:600;">Yes — at md:</td></tr>
+            <tr><td>Section spacing</td><td>May compress one step</td><td style="color:var(--brand-offset-blue);font-weight:600;">Yes — below md:</td></tr>
+            <tr><td>Grid columns</td><td>1 → 2 → 3</td><td style="color:var(--brand-offset-blue);font-weight:600;">Yes — at md: and lg:</td></tr>
+            <tr><td>Headlines</td><td>Fluid via clamp()</td><td style="color:var(--brand-offset-blue);font-weight:600;">Fluid</td></tr>
             <tr><td>Body text</td><td>1rem fixed</td><td style="color:var(--muted-foreground);">No</td></tr>
             <tr><td>Touch targets</td><td>44px minimum</td><td style="color:var(--muted-foreground);">No</td></tr>
           </tbody>
@@ -2164,7 +2179,7 @@
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;" class="reveal mobile-compact-grid">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);">
+        <div class="card" style="border-left:3px solid var(--brand-offset-blue);">
           <div class="card-title">Compresses on mobile</div>
           <div class="card-sub" style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.5rem;line-height:1.7;">
             <span>&#x2022; Section spacing (one step down)</span>
@@ -2188,11 +2203,11 @@
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Guidelines</h3>
       <div class="card-grid reveal">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-offset-blue);"><div class="card-title">Mobile-first CSS</div><div class="card-sub">Default styles target mobile. Override upward with <code>md:</code> and <code>lg:</code>. Never write desktop-first CSS.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Layout shifts at md:</div><div class="card-sub">768px is where single-column becomes multi-column. Sidebars appear. Navigation expands.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Fluid typography</div><div class="card-sub">Use <code>clamp()</code> for h0–h2. No breakpoint-based <code>font-size</code> changes. Body stays at <code>1rem</code>.</div></div>
         <div class="card" style="border-left:3px solid var(--foreground);"><div class="card-title">Fixed component padding</div><div class="card-sub">Buttons, cards, inputs keep the same padding at every screen size. Only page-level spacing adapts.</div></div>
-        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins and large gaps (<code>gap-lg</code>, <code>gap-xl</code>) each drop one step below <code>md:</code>.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-offset-blue);"><div class="card-title">Section spacing compresses</div><div class="card-sub">Section margins and large gaps (<code>gap-lg</code>, <code>gap-xl</code>) each drop one step below <code>md:</code>.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Restructure, don't hide</div><div class="card-sub">If content matters on desktop, show it on mobile. Change layout (stack, reorder), not visibility.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">Grid: 1 → 2 → 3 columns</div><div class="card-sub"><code>grid-cols-1</code> → <code>md:grid-cols-2</code> → <code>lg:grid-cols-3</code>. Standard pattern for card grids.</div></div>
       </div>
@@ -2285,7 +2300,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       </div>
 
       <div class="card-grid reveal" style="margin-bottom:2rem;">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">min-height not height</div><div class="card-sub"><code>min-height: 100dvh</code> lets content grow. <code>height: 100vh</code> clips it.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-offset-blue);"><div class="card-title">min-height not height</div><div class="card-sub"><code>min-height: 100dvh</code> lets content grow. <code>height: 100vh</code> clips it.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-light);"><div class="card-title">Slides scroll on mobile</div><div class="card-sub">Carousel/slide containers need <code>overflow-y: auto</code> below <code>md:</code>. Content that fits on desktop rarely fits on a phone.</div></div>
         <div class="card" style="border-left:3px solid var(--brand-highlight-navy);"><div class="card-title">dvh not vh</div><div class="card-sub"><code>100vh</code> includes browser chrome on mobile. <code>100dvh</code> adjusts dynamically. Always provide <code>vh</code> fallback.</div></div>
       </div>
@@ -2302,7 +2317,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         </table>
         </div>
       </div>
-      <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Mobile sidebar pattern</div><div class="card-sub">Use a shadcn <code>Sheet</code> component (entrance: <code>slideInLeft</code>, exit: <code>slideOutLeft</code>) triggered by a hamburger button. Sheet width: <code>min(280px, calc(100vw - 3rem))</code>. Do not stack the sidebar below content — it pushes critical content below the fold.</div></div>
+      <div class="card reveal" style="border-left:3px solid var(--brand-offset-blue);"><div class="card-title">Mobile sidebar pattern</div><div class="card-sub">Use a shadcn <code>Sheet</code> component (entrance: <code>slideInLeft</code>, exit: <code>slideOutLeft</code>) triggered by a hamburger button. Sheet width: <code>min(280px, calc(100vw - 3rem))</code>. Do not stack the sidebar below content — it pushes critical content below the fold.</div></div>
     </section>
 
     <!-- MOTION TOKENS -->
@@ -2396,7 +2411,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 
       <h3 style="font-size:0.875rem;font-weight:700;margin-top:2rem;margin-bottom:0.75rem;">CSS Transitions vs. GSAP</h3>
       <div class="card-grid reveal" style="margin-bottom:1.5rem;">
-        <div class="card" style="border-left:3px solid var(--brand-highlight-blue);"><div class="card-title">Use CSS Transitions for</div><div class="card-sub">Simple hover/focus/active states. Effects limited to <code>transform</code>, <code>opacity</code>, <code>box-shadow</code>. Anything reversible by removing a CSS class.</div></div>
+        <div class="card" style="border-left:3px solid var(--brand-offset-blue);"><div class="card-title">Use CSS Transitions for</div><div class="card-sub">Simple hover/focus/active states. Effects limited to <code>transform</code>, <code>opacity</code>, <code>box-shadow</code>. Anything reversible by removing a CSS class.</div></div>
         <div class="card" style="border-left:3px solid var(--primary);"><div class="card-title">Use GSAP for</div><div class="card-sub">Component mount/unmount (Dialog, Sheet, Toast). Multi-step sequences or timelines. Scroll-triggered animations. Anything needing JS callbacks or <code>ScrollTrigger</code>.</div></div>
       </div>
       <div class="reveal" style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;">
@@ -2438,7 +2453,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
       <div class="card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
         <div class="logo" id="logo-demo" style="font-size:1.1rem;gap:0.6rem;">
-          <span class="logo-badge logo-icon-demo" style="font-size:18px;padding:0.15rem 0.85rem;">way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge logo-icon-demo" style="font-size:18px;">way<span class="logo-badge-asterisk">*</span>ID</span>
           <span class="logo-wordmark logo-wordmark-demo" style="font-size:1.1rem;">Lineage HQ</span>
         </div>
         <button class="theme-toggle" id="logo-replay-btn">Replay logo reveal</button>
@@ -2460,6 +2475,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Button <span class="anim-tag">rounded-4xl (pill)</span> <span class="anim-tag">press: scale(0.97)</span></div>
         <div class="comp-demo-area">
+          <button class="maia-btn maia-btn-default maia-press">Default</button>
           <button class="maia-btn maia-btn-primary maia-press">Primary</button>
           <button class="maia-btn maia-btn-secondary maia-press">Secondary</button>
           <button class="maia-btn maia-btn-outline maia-press">Outline</button>
@@ -2467,9 +2483,9 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           <button class="maia-btn maia-btn-ghost maia-press">Ghost</button>
         </div>
         <div class="comp-demo-area" style="margin-top:0.5rem;">
-          <button class="maia-btn maia-btn-primary maia-btn-sm maia-press">Small</button>
-          <button class="maia-btn maia-btn-primary maia-press">Default</button>
-          <button class="maia-btn maia-btn-primary maia-btn-lg maia-press">Large</button>
+          <button class="maia-btn maia-btn-default maia-btn-sm maia-press">Small</button>
+          <button class="maia-btn maia-btn-default maia-press">Default</button>
+          <button class="maia-btn maia-btn-default maia-btn-lg maia-press">Large</button>
         </div>
       </div>
 
@@ -3598,16 +3614,14 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
 <span class="kw">h1</span>, <span class="kw">.h0</span> { <span class="fn">font-family</span>: <span class="st">"Lora"</span>, Georgia, serif; }
 <span class="kw">h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
         <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Copy brand tokens</div><div class="code-block"><span class="kw">:root</span> {
-  <span class="fn">--brand-surface</span>: <span class="st">#F0F0F0</span>;
-  <span class="fn">--brand-surface-grey</span>: <span class="st">#E4E4EE</span>;
-  <span class="fn">--brand-surface-blue</span>: <span class="st">#4751B0</span>;
-  <span class="fn">--brand-highlight-blue</span>: <span class="st">#4751B0</span>;
+  <span class="fn">--brand-surface</span>: <span class="st">#E8E5DE</span>;
   <span class="fn">--brand-highlight-navy</span>: <span class="st">#0E1233</span>;
-  <span class="fn">--brand-highlight-light</span>: <span class="st">#F0F0F0</span>;
-  <span class="fn">--brand-offset-lavender</span>: <span class="st">#A6A1E2</span>;
+  <span class="fn">--brand-highlight-light</span>: <span class="st">#FAFAFA</span>;
+  <span class="fn">--brand-offset-lavender</span>: <span class="st">#7267E2</span>;
   <span class="fn">--brand-offset-green</span>: <span class="st">#A0D246</span>;
-  <span class="fn">--brand-offset-yellow</span>: <span class="st">#FFD27D</span>;
-  <span class="fn">--brand-offset-coral</span>: <span class="st">#F0936B</span>;
+  <span class="fn">--brand-offset-yellow</span>: <span class="st">#F8BC4D</span>;
+  <span class="fn">--brand-offset-coral</span>: <span class="st">#FF7236</span>;
+  <span class="fn">--brand-offset-blue</span>: <span class="st">#006CDB</span>;
 }</div></div></div>
         <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Import animation presets</div><div class="code-block"><span class="kw">import</span> { <span class="fn">ENTRANCE</span>, <span class="fn">EXIT</span>, <span class="fn">HOVER</span> } <span class="kw">from</span> <span class="st">"@/design-system/animations/presets"</span>;</div></div></div>
       </div>
@@ -3686,7 +3700,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             </div>
           </div>
 
-          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-blue);">
             <div class="card-title">Animation patterns</div>
             <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
               <span>&#x2022; Staggered entrance sequence on load</span>
@@ -3799,7 +3813,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             </div>
           </div>
 
-          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-blue);">
             <div class="card-title">Design decisions</div>
             <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
               <span>&#x2022; Dark navy bg &mdash; authority + brand depth</span>
@@ -3905,7 +3919,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             </div>
           </div>
 
-          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-blue);">
             <div class="card-title">Design decisions</div>
             <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
               <span>&#x2022; Hero photo anchors human context; copy stays minimal</span>
@@ -4015,7 +4029,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
             </div>
           </div>
 
-          <div class="card reveal" style="border-left:3px solid var(--brand-highlight-blue);">
+          <div class="card reveal" style="border-left:3px solid var(--brand-offset-blue);">
             <div class="card-title">Design decisions</div>
             <div class="card-sub" style="margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem;line-height:1.8;">
               <span>&#x2022; 1 font family &mdash; no headings warrant Lora/Poppins</span>
@@ -4130,68 +4144,20 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
       });
     }
 
-    /* Badge reveal + asterisk colour cycling */
-    const badgeCycles = new Map(); /* tracks active asterisk cycles per badge element */
-
-    /* Cycles the * through the 4 brand offset accent tokens after the reveal */
-    function startAsteriskCycle(badgeEl) {
-      const asteriskEl = badgeEl.querySelector(".logo-badge-asterisk");
-      if (!asteriskEl) return null;
-
-      const tokens = [
-        "--brand-offset-lavender",
-        "--brand-offset-green",
-        "--brand-offset-yellow",
-        "--brand-offset-coral",
-      ];
-      let index = 0;
-      let call = null;
-
-      function getToken(token) {
-        return getComputedStyle(document.documentElement).getPropertyValue(token).trim();
-      }
-
-      if (reducedMotion) {
-        /* CSS already sets --brand-offset-green; nothing to override */
-        return null;
-      }
-
-      function cycle() {
-        const color = getToken(tokens[index]);
-        gsap.to(asteriskEl, { color, duration: 0.35, ease: "power2.inOut" });
-        index = (index + 1) % tokens.length;
-        call = gsap.delayedCall(1.4, cycle);
-      }
-
-      cycle();
-      return { kill: () => { if (call) call.kill(); } };
-    }
-
+    /* Badge reveal (simple scale+fade, no asterisk colour cycling) */
     function playBadgeReveal(badgeEl) {
       if (reducedMotion) {
         gsap.set(badgeEl, { opacity: 1 });
-        const c = startAsteriskCycle(badgeEl);
-        if (c) badgeCycles.set(badgeEl, c);
         return;
       }
       gsap.fromTo(badgeEl,
         { scale: 0.94, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)",
-          onComplete() {
-            const c = startAsteriskCycle(badgeEl);
-            if (c) badgeCycles.set(badgeEl, c);
-          }
-        }
+        { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" }
       );
     }
 
     function resetBadge(badgeEl) {
-      const cycle = badgeCycles.get(badgeEl);
-      if (cycle) { cycle.kill(); badgeCycles.delete(badgeEl); }
       gsap.set(badgeEl, { clearProps: "all" });
-      /* Reset * colour back to CSS-defined default (removes GSAP inline override) */
-      const asteriskEl = badgeEl.querySelector(".logo-badge-asterisk");
-      if (asteriskEl) gsap.set(asteriskEl, { clearProps: "color" });
     }
 
     /* Animation section (existing simple reveal) */
