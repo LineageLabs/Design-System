@@ -6,53 +6,51 @@ Two logo variants are in use. Both have light/dark mode treatments and animated 
 
 ## Variant 1 — way\*ID Badge
 
-An outline pill badge. Transparent background with navy border + text in light mode; light border + text in dark mode.
+Plain text wordmark — no border, no background. Navy text on light; near-white on dark. The `*` uses brand offset blue.
 
 ### Spec
 
 | Property | Light Mode | Dark Mode |
 |----------|-----------|----------|
 | Background | transparent | transparent |
-| Text color | `--brand-highlight-navy` (`#0E1233`) | `--brand-highlight-light` (`#F0F0F0`) |
-| Border | `1.5px solid --brand-highlight-navy` | `1px solid --brand-highlight-light` |
-| Border radius | `var(--radius)` (0.875rem) | `var(--radius)` (0.875rem) |
-| Font | Poppins, weight 600, `-0.08em` letter-spacing | same |
+| Text color | `--brand-highlight-navy` (`#0E1233`) | `--brand-highlight-light` (`#FAFAFA`) |
+| Asterisk (`*`) color | `--brand-offset-blue-light` (`#006CDB`) | `--brand-offset-blue-dark` (`#2886E6`) |
+| Font | Poppins, weight 700, `-0.07em` letter-spacing | same |
 | Default size | `15px` | same |
 
 ### CSS Classes
 
 ```css
-/* Light mode badge */
+/* Light mode */
 .logo-badge {
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.08em;
-  padding: 0.125rem 0.7rem;
-  border-radius: var(--radius);
-  background: transparent;
+  font-weight: 700;
+  letter-spacing: -0.07em;
   color: var(--brand-highlight-navy);
-  border: 1.5px solid var(--brand-highlight-navy);
   white-space: nowrap;
+}
+.logo-badge .logo-badge-asterisk {
+  color: var(--brand-offset-blue-light); /* #006CDB */
 }
 
 /* Dark mode override (via .dark parent) */
 .dark .logo-badge {
-  background: transparent;
   color: var(--brand-highlight-light);
-  border: 1px solid var(--brand-highlight-light);
+}
+.dark .logo-badge .logo-badge-asterisk {
+  color: var(--brand-offset-blue-dark); /* #2886E6 */
 }
 
-/* Forced dark-mode badge (always-dark surfaces) */
+/* Forced dark-mode (always-dark surfaces) */
 .logo-badge-dark {
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.08em;
-  padding: 0.125rem 0.7rem;
-  border-radius: var(--radius);
-  background: transparent;
+  font-weight: 700;
+  letter-spacing: -0.07em;
   color: var(--brand-highlight-light);
-  border: 1px solid var(--brand-highlight-light);
   white-space: nowrap;
+}
+.logo-badge-dark .logo-badge-asterisk {
+  color: var(--brand-offset-blue-dark); /* #2886E6 */
 }
 ```
 
@@ -70,21 +68,15 @@ The `.logo-badge-asterisk` span gets `color: var(--brand-offset-lavender)` from 
 
 ### Animated Reveal (GSAP)
 
-Simple reveal + continuous post-reveal asterisk cycle:
+Simple scale + fade reveal. No post-reveal animation — the `*` stays static blue.
 
 1. **Badge fades in** — `scale 0.94→1`, `opacity 0→1`, `back.out(1.7)`, 300ms
-2. **`*` color cycle** — after reveal, cycles `--brand-offset-lavender → green → yellow → coral` every 1.4s with a 350ms `power2.inOut` crossfade; re-reads CSS vars each step for live dark/light mode compat
 
 ```js
-// Animate the badge element directly — no char splitting needed
 gsap.fromTo(badgeEl,
   { scale: 0.94, opacity: 0 },
-  { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)",
-    onComplete() { startAsteriskCycle(badgeEl); }
-  }
+  { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" }
 );
-// startAsteriskCycle() targets badgeEl.querySelector(".logo-badge-asterisk")
-// and reads --brand-offset-* CSS vars each cycle step
 ```
 
 ---
@@ -98,7 +90,7 @@ The `*` uses the brand offset green as an accent in both modes.
 
 | Property | Light Mode | Dark Mode |
 |----------|-----------|----------|
-| Text color | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-surface)` `#F0F0F0` |
+| Text color | `var(--brand-highlight-navy)` `#0E1233` | `var(--brand-surface)` `#FAFAFA` |
 | Asterisk (`*`) color | `var(--brand-offset-green)` `#A0D246` | `#D5FD8D` (dark value of `--brand-offset-green`, hardcoded on `.logo-text-dark`) |
 | Font | Lora, weight **400**, `-0.03em` letter-spacing | Lora, weight **400**, `-0.03em` letter-spacing |
 | Default size | `64px` / line-height `82px` | `64px` / line-height `82px` |
@@ -123,7 +115,7 @@ The `*` uses the brand offset green as an accent in both modes.
 
 /* Dark mode override (via .dark parent) */
 .dark .logo-text {
-  color: var(--brand-surface); /* #F0F0F0 in light root, resolves to near-white */
+  color: var(--brand-surface); /* #FAFAFA in light root, resolves to near-white */
 }
 .dark .logo-text .logo-asterisk {
   color: var(--brand-offset-green); /* #D5FD8D in dark mode */
@@ -137,7 +129,7 @@ The `*` uses the brand offset green as an accent in both modes.
   font-size: 64px;
   line-height: 82px;
   letter-spacing: -0.03em;
-  color: var(--brand-surface); /* #F0F0F0 when no .dark parent */
+  color: var(--brand-surface); /* #FAFAFA when no .dark parent */
   white-space: nowrap;
 }
 .logo-text-dark .logo-asterisk {

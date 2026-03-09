@@ -66,6 +66,8 @@ Generated from: `shadcn/create`
 |------|-------------|-------------|-------|
 | **Display** (h0) | `"Lora", Georgia, serif` | 400 | Hero / landing display text — huge, light-weight |
 | **H1** | `"Lora", Georgia, serif` | 700 | Page-level titles and hero headings |
+| **Display alt** (h0-alt) | `"Poppins", sans-serif` | 300 | Alternate hero display — Poppins light, same sizing as h0 |
+| **H1 alt** (h1-alt) | `"Poppins", sans-serif` | 300 | Alternate page title — Poppins light, same sizing as h1 |
 | **Headlines** (h2–h4) | `"Poppins", sans-serif` | 600–800 | Section headers, card titles, sub-headings |
 | **Body / UI** | `system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"` | 400–700 | All body text, buttons, inputs, labels, navigation |
 | **Code** | `"Geist Mono", "SF Mono", "Fira Code", Consolas, monospace` | 400 | Code blocks, inline code, terminal |
@@ -73,10 +75,10 @@ Generated from: `shadcn/create`
 ### Installation
 
 ```html
-<!-- Google Fonts — Lora (h0, h1) + Poppins (h2–h4) -->
+<!-- Google Fonts — Lora (h0, h1) + Poppins (h2–h4, h0-alt, h1-alt) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
 ```
 
 ### CSS Setup
@@ -101,6 +103,21 @@ h2, h3, h4 {
   font-size: clamp(3.5rem, 8vw, 6rem);
   line-height: 1.0;
   letter-spacing: -0.03em;
+}
+
+/* Poppins Light alternates — same sizing as h0/h1, different personality */
+.h0-alt {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+}
+.h1-alt {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.2;
 }
 ```
 
@@ -205,32 +222,32 @@ Brand colors use a **two-tier** structure so every unique hex has its own unambi
 | **Primitive** | `--brand-offset-green-light`, `--brand-offset-green-dark` | `:root` only, never redefined | Always resolves to that exact hex regardless of colour mode. Use when an element is always on a dark/light surface with no `.dark` ancestor (e.g. a forced-dark card, logo variants). |
 | **Semantic / adaptive** | `--brand-offset-green` | `:root` + `.dark` override | References the appropriate primitive via `var()`. Automatically switches with `.dark`. Use for the majority of UI. |
 
-Colors that are **identical** in both modes (`--brand-highlight-blue`, `--brand-highlight-navy`, `--brand-highlight-light`, `--brand-surface-blue`, `--brand-offset-yellow`) are not split — they are single literal-hex variables with no primitive/dark variant.
+Colors that are **identical** in both modes (`--brand-highlight-navy`, `--brand-highlight-light`, `--brand-offset-yellow`) are not split — they are single literal-hex variables with no primitive/dark variant.
 
 ### Surfaces
 
 | Name | Hex (light) | Hex (dark) | Adaptive variable | Primitive variables |
 |------|-------------|-----------|-------------------|----------------------|
-| Background | `#F0F0F0` | `#0E1233` | `--brand-surface` | `--brand-surface-light` / `--brand-surface-dark` |
-| Grey | `#E4E4EE` | `#252963` | `--brand-surface-grey` | `--brand-surface-grey-light` / `--brand-surface-grey-dark` |
-| Blue (all modes) | `#4751B0` | — | `--brand-surface-blue` | — |
+| Background | `#E8E5DE` | `#0E1233` | `--brand-surface` | `--brand-surface-light` / `--brand-surface-dark` |
+
+> **`--background` uses brand surfaces.** In light mode `--background: #E8E5DE` (= `--brand-surface-light`). In dark mode `--background: #0E1233` (= `--brand-surface-dark`).
 
 ### Highlights (same hex in both modes — no split)
 
 | Color | Hex | CSS Variable |
 |-------|-----|-------------|
-| Blue | `#4751B0` | `--brand-highlight-blue` |
 | Navy | `#0E1233` | `--brand-highlight-navy` |
-| Light | `#F0F0F0` | `--brand-highlight-light` |
+| Light | `#FAFAFA` | `--brand-highlight-light` |
 
 ### Offset Accents
 
 | Color | Hex (light) | Hex (dark) | Adaptive variable | Primitive variables |
 |-------|-------------|-----------|-------------------|----------------------|
-| Lavender | `#A6A1E2` | `#B4AFE7` | `--brand-offset-lavender` | `--brand-offset-lavender-light` / `--brand-offset-lavender-dark` |
+| Lavender | `#7267E2` | `#B4AFE7` | `--brand-offset-lavender` | `--brand-offset-lavender-light` / `--brand-offset-lavender-dark` |
 | Green | `#A0D246` | `#D5FD8D` | `--brand-offset-green` | `--brand-offset-green-light` / `--brand-offset-green-dark` |
-| Yellow (all modes) | `#FFD27D` | — | `--brand-offset-yellow` | — |
-| Coral | `#F0936B` | `#E99F80` | `--brand-offset-coral` | `--brand-offset-coral-light` / `--brand-offset-coral-dark` |
+| Yellow (all modes) | `#F8BC4D` | — | `--brand-offset-yellow` | — |
+| Coral | `#FF7236` | `#FF814C` | `--brand-offset-coral` | `--brand-offset-coral-light` / `--brand-offset-coral-dark` |
+| Blue | `#006CDB` | `#2886E6` | `--brand-offset-blue` | `--brand-offset-blue-light` / `--brand-offset-blue-dark` |
 
 ### Color Usage Philosophy
 
@@ -239,8 +256,8 @@ Colors that are **identical** in both modes (`--brand-highlight-blue`, `--brand-
 | Tier | Colors | Rule |
 |------|--------|------|
 | **1. Neutrals (default)** | `--foreground`, `--muted-foreground`, `--border`, `--background`, surfaces, greys | Use for the vast majority of UI. Text, borders, backgrounds, cards, dividers. |
-| **2. Brand highlights (purposeful)** | `--brand-highlight-blue`, `--brand-highlight-navy`, `--brand-highlight-light` | May be decorative (avatars, badges, accents) but must still serve a purpose — identity, emphasis, or visual hierarchy. Don't scatter brand color without intent. |
-| **3. Offset accents (sparing)** | `--brand-offset-lavender`, `--brand-offset-green`, `--brand-offset-yellow`, `--brand-offset-coral` | Use one per composition maximum. Each must earn its place — never two offsets competing in the same section. |
+| **2. Brand highlights (purposeful)** | `--brand-highlight-navy`, `--brand-highlight-light` | May be decorative (avatars, badges, accents) but must still serve a purpose — identity, emphasis, or visual hierarchy. Don't scatter brand color without intent. |
+| **3. Offset accents (sparing)** | `--brand-offset-lavender`, `--brand-offset-green`, `--brand-offset-yellow`, `--brand-offset-coral`, `--brand-offset-blue` | Use one per composition maximum. Each must earn its place — never two offsets competing in the same section. |
 | **4. Non-brand colors (functional only)** | `--destructive` (red), any other non-neutral color | Only when the color itself conveys meaning: errors, warnings, destructive actions, overdue states. Never purely decorative. |
 
 ### When to Use Brand Colors
@@ -277,7 +294,7 @@ The Gray base color uses blue-tinted neutrals (OKLCH hue ~261–265). Key values
 
 | Token | Light (OKLCH) | Dark (OKLCH) |
 |-------|--------------|-------------|
-| `--background` | `oklch(1 0 0)` | `oklch(0.13 0.028 261.692)` |
+| `--background` | `#E8E5DE` | `#0E1233` |
 | `--foreground` | `oklch(0.13 0.028 261.692)` | `oklch(0.985 0.002 247.839)` |
 | `--primary` | `oklch(0.21 0.034 264.665)` | `oklch(0.928 0.006 264.531)` |
 | `--card` | `oklch(1 0 0)` | `oklch(0.21 0.034 264.665)` |
@@ -477,20 +494,17 @@ Two logo variants — both have light/dark treatments and animated GSAP reveals.
 Full spec and CSS classes: [`assets/logos/README.md`](assets/logos/README.md)
 
 #### way\*ID Badge
-Outline pill badge. Transparent background; navy border + text in light mode, light border + text in dark mode.
+Plain text wordmark — no border, no background. Navy text on light; near-white on dark. The `*` uses brand offset blue.
 
 | Property | Light | Dark |
 |----------|-------|------|
-| Background | transparent | transparent |
 | Text | `--brand-highlight-navy` | `--brand-highlight-light` |
-| Border | `1.5px solid --brand-highlight-navy` | `1px solid --brand-highlight-light` |
-| Radius | `var(--radius)` (0.875rem) | same |
-| Font | Poppins 600, `-0.08em` | same |
+| Asterisk (`*`) | `--brand-offset-blue-light` (`#006CDB`) | `--brand-offset-blue-dark` (`#2886E6`) |
+| Font | Poppins 700, `-0.07em` | same |
 
 Animation:
 - Reveal: `scale 0.94→1`, `opacity 0→1`, `back.out(1.7)`, 300ms
-- Post-reveal: `*` cycles `--brand-offset-lavender → green → yellow → coral` every 1.4s; re-reads CSS vars each step for dark mode compat
-- Static badges: `*` shows `--brand-offset-lavender` via CSS (no JS needed)
+- No post-reveal animation — `*` stays static blue
 
 #### Lineage\*Labs Wordmark
 Text wordmark. Lora 400, navy on light / near-white on dark. The `*` uses navy on light, offset green on dark.
@@ -566,6 +580,7 @@ Key characteristics:
 
 | Component | What Changes | Value |
 |-----------|-------------|-------|
+| `Button` | Default variant | `default` — frosted `--brand-highlight-light` at 50% (light) / 10% (dark). Use unless context requires a specific variant. |
 | `Button` | Hover transition | `150ms ease-out` |
 | `Button` | Active state | `scale(0.97)` press effect |
 | `Card` | Default shadow | `shadow-sm` |
@@ -1041,7 +1056,7 @@ Icons adapt automatically when using `currentColor` — no additional work requi
 **Common dark mode icon bugs:**
 1. Hardcoded `stroke="#333"` — invisible on dark backgrounds. Fix: use `currentColor`.
 2. Hardcoded container `background: rgba(0,0,0,0.1)` — invisible in dark mode. Fix: use `color-mix(in srgb, var(--muted-foreground) 10%, transparent)`.
-3. Brand highlight icons — `--brand-highlight-blue` (#4751B0) and `--brand-highlight-navy` (#0E1233) are the same in both modes, so they remain visible on both surfaces by design. No fix needed.
+3. Brand highlight icons — `--brand-highlight-navy` (#0E1233) and `--brand-offset-blue` are the same/similar in both modes, so they remain visible on both surfaces by design. No fix needed.
 
 ---
 

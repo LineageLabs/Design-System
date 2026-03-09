@@ -15,7 +15,7 @@
        ============================================================ */
     :root {
       --radius: 0.875rem;
-      --background: #FAFAFA;
+      --background: #E8E5DE;
       --foreground: oklch(0.13 0.028 261.692);
       --card: oklch(1 0 0);
       --card-foreground: oklch(0.13 0.028 261.692);
@@ -29,16 +29,15 @@
       --input: oklch(0.928 0.006 264.531);
       --ring: oklch(0.707 0.022 261.325);
       --destructive: oklch(0.577 0.245 27.325);
-      --brand-surface: #F0F0F0;
-      --brand-surface-grey: #E4E4EE;
-      --brand-surface-blue: #4751B0;
-      --brand-highlight-blue: #4751B0;
+      --brand-surface: #E8E5DE;
       --brand-highlight-navy: #0E1233;
-      --brand-highlight-light: #F0F0F0;
-      --brand-offset-lavender: #A6A1E2;
+      --brand-highlight-light: #FAFAFA;
+      --brand-offset-lavender: #7267E2;
       --brand-offset-green: #A0D246;
-      --brand-offset-yellow: #FFD27D;
-      --brand-offset-coral: #F0936B;
+      --brand-offset-blue: #006CDB;
+      --brand-offset-yellow: #F8BC4D;
+      --brand-offset-coral: #FF7236;
+      --brand-offset-blue: #006CDB;
     }
     .dark {
       --background: oklch(0.13 0.028 261.692);
@@ -55,16 +54,16 @@
       --input: oklch(1 0 0 / 15%);
       --ring: oklch(0.551 0.027 264.364);
       --destructive: oklch(0.704 0.191 22.216);
+      --background: #0E1233;
       --brand-surface: #0E1233;
-      --brand-surface-grey: #252963;
-      --brand-surface-blue: #4751B0;
-      --brand-highlight-blue: #4751B0;
       --brand-highlight-navy: #0E1233;
-      --brand-highlight-light: #F0F0F0;
+      --brand-highlight-light: #FAFAFA;
       --brand-offset-lavender: #B4AFE7;
       --brand-offset-green: #D5FD8D;
-      --brand-offset-yellow: #FFD27D;
-      --brand-offset-coral: #E99F80;
+      --brand-offset-blue: #2886E6;
+      --brand-offset-yellow: #F8BC4D;
+      --brand-offset-coral: #FF814C;
+      --brand-offset-blue: #2886E6;
     }
 
     /* ============================================================
@@ -152,7 +151,7 @@
     }
     .maia-badge-default { background: var(--secondary); color: var(--secondary-foreground); }
     .maia-badge-light-green { background: color-mix(in srgb, var(--brand-offset-lavender) 20%, transparent); color: var(--brand-highlight-navy); border: 1px solid color-mix(in srgb, var(--brand-offset-lavender) 35%, transparent); }
-    .maia-badge-grass-green { background: color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent); color: var(--brand-highlight-blue); border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent); }
+    .maia-badge-grass-green { background: color-mix(in srgb, var(--brand-offset-blue) 15%, transparent); color: var(--brand-offset-blue); border: 1px solid color-mix(in srgb, var(--brand-offset-blue) 30%, transparent); }
     .maia-badge-dark-green { background: var(--brand-highlight-navy); color: var(--brand-highlight-light); border: 1px solid var(--brand-highlight-navy); }
 
     /* Cards */
@@ -275,7 +274,7 @@
     .notif-badge {
       position: absolute; top: 5px; right: 5px;
       width: 8px; height: 8px; border-radius: 9999px;
-      background: var(--brand-highlight-blue);
+      background: var(--brand-offset-blue);
       border: 1.5px solid var(--brand-surface);
     }
 
@@ -527,7 +526,7 @@
           </svg>
         </button>
         <button class="icon-btn" id="avatarBtn" aria-label="Profile" style="padding:0;">
-          <div style="width:32px;height:32px;border-radius:9999px;background:var(--brand-highlight-blue);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:var(--brand-highlight-light);letter-spacing:0.02em;">A</div>
+          <div style="width:32px;height:32px;border-radius:9999px;background:var(--brand-offset-blue);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:var(--brand-highlight-light);letter-spacing:0.02em;">A</div>
         </button>
       </div>
     </div>
