@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.04.0] — 2026-04-25
+
+### Changed
+- **Brand wordmark: `way*ID` → `Way*ID`.** Updated visible logo text in `index.html`, spec headings in `DESIGN-SYSTEM.md`, and HTML/CSS examples in `assets/logos/README.md`. Capital `W` is the new canonical spelling. Historical changelog entries are left untouched as point-in-time records.
+
+---
+
 ## [2026.03.39] — 2026-03-09
 
 ### Changed

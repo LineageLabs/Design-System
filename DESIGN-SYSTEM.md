@@ -493,7 +493,7 @@ All classes in `animations/transitions.css` include a `@media (prefers-reduced-m
 Two logo variants — both have light/dark treatments and animated GSAP reveals.
 Full spec and CSS classes: [`assets/logos/README.md`](assets/logos/README.md)
 
-#### way\*ID Badge
+#### Way\*ID Badge
 Plain text wordmark — no border, no background. Navy text on light; near-white on dark. The `*` uses brand offset blue.
 
 | Property | Light | Dark |

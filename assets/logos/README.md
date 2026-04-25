@@ -4,7 +4,7 @@ Two logo variants are in use. Both have light/dark mode treatments and animated 
 
 ---
 
-## Variant 1 — way\*ID Badge
+## Variant 1 — Way\*ID Badge
 
 Plain text wordmark — no border, no background. Navy text on light; near-white on dark. The `*` uses brand offset blue.
 
@@ -58,10 +58,10 @@ Plain text wordmark — no border, no background. Navy text on light; near-white
 
 ```html
 <!-- Light background — * wrapped for colour accent -->
-<span class="logo-badge">way<span class="logo-badge-asterisk">*</span>ID</span>
+<span class="logo-badge">Way<span class="logo-badge-asterisk">*</span>ID</span>
 
 <!-- Dark background -->
-<span class="logo-badge-dark">way<span class="logo-badge-asterisk">*</span>ID</span>
+<span class="logo-badge-dark">Way<span class="logo-badge-asterisk">*</span>ID</span>
 ```
 
 The `.logo-badge-asterisk` span gets `color: var(--brand-offset-lavender)` from CSS automatically. No JS needed for static usage.
@@ -186,8 +186,8 @@ Both variants scale with font-size. Documented sizes in use:
 | `36px` | Medium placements |
 | `24px` | Small / compact placements |
 | `16px` | Minimum readable size |
-| `22px` | Badge default (way\*ID) |
-| `15px` | Badge standard (way\*ID) |
+| `22px` | Badge default (Way\*ID) |
+| `15px` | Badge standard (Way\*ID) |
 | `12px` | Badge minimum — never smaller |
 
 ---
@@ -197,7 +197,7 @@ Both variants scale with font-size. Documented sizes in use:
 | Rule | Detail |
 |------|--------|
 | **Clear space** | Maintain at least 1× the logo height as clear space on all sides |
-| **Minimum size** | `way*ID` badge: `12px` minimum. `Lineage*Labs`: `16px` minimum |
+| **Minimum size** | `Way*ID` badge: `12px` minimum. `Lineage*Labs`: `16px` minimum |
 | **No modifications** | Never rotate, stretch, recolor, add shadows, or apply effects |
 | **Mode matching** | Always use the light variant on light backgrounds and dark on dark. Never mix |
 | **Asterisk intact** | The `*` character and its grass green color is part of the brand — never remove or recolor it |
