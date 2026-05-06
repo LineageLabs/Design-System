@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.05.0] — 2026-05-06
+
+### Added
+- **Lineage Labs and Way*ID PNG logos.** Added `assets/logos/lineage-labs.png`, `assets/logos/lineage-logo.png`, `assets/logos/wayID-dark-logo.png`, and `assets/logos/wayID-light-logo.png` for use in contexts where SVG is not supported.
+
+---
+
 ## [2026.04.0] — 2026-04-25
 
 ### Changed
