@@ -41,10 +41,10 @@
       --radius:           0.875rem;
 
       /* Brand colors */
-      --brand-highlight-blue:  #4751B0;
       --brand-highlight-navy:  #0E1233;
-      --brand-highlight-light: #F0F0F0;
-      --brand-offset-lavender: #A6A1E2;
+      --brand-highlight-light: #FAFAFA;
+      --brand-offset-blue:     #006CDB;
+      --brand-offset-lavender: #7267E2;
       --brand-offset-green:    #A0D246;
     }
 
@@ -195,8 +195,8 @@
       inset: 0;
       background:
         radial-gradient(ellipse 70% 60% at 50% 50%,
-          color-mix(in srgb, var(--brand-highlight-blue) 50%, transparent) 0%,
-          color-mix(in srgb, var(--brand-highlight-blue) 15%, transparent) 45%,
+          color-mix(in srgb, var(--brand-offset-blue) 50%, transparent) 0%,
+          color-mix(in srgb, var(--brand-offset-blue) 15%, transparent) 45%,
           transparent 75%),
         radial-gradient(ellipse 50% 40% at 55% 45%,
           color-mix(in srgb, var(--brand-offset-lavender) 20%, transparent) 0%,
@@ -209,10 +209,10 @@
       width: 225px;
       height: 225px;
       border-radius: 50%;
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 40%, transparent);
+      border: 1px solid color-mix(in srgb, var(--brand-offset-blue) 40%, transparent);
       box-shadow:
-        0 0 50px color-mix(in srgb, var(--brand-highlight-blue) 25%, transparent),
-        inset 0 0 50px color-mix(in srgb, var(--brand-highlight-blue) 12%, transparent);
+        0 0 50px color-mix(in srgb, var(--brand-offset-blue) 25%, transparent),
+        inset 0 0 50px color-mix(in srgb, var(--brand-offset-blue) 12%, transparent);
     }
 
     .glow-ring-outer {
@@ -220,7 +220,7 @@
       width: 300px;
       height: 300px;
       border-radius: 50%;
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 18%, transparent);
+      border: 1px solid color-mix(in srgb, var(--brand-offset-blue) 18%, transparent);
     }
 
     /* Logo badge centre */

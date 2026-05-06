@@ -33,8 +33,8 @@
       --border:           oklch(0.928 0.006 264.531);
       --ring:             oklch(0.707 0.022 261.325);
       --radius:           0.875rem;
-      --brand-highlight-blue:  #4751B0;
       --brand-highlight-navy:  #0E1233;
+      --brand-offset-blue:     #006CDB;
       --brand-offset-green:    #A0D246;
     }
 
@@ -80,7 +80,7 @@
       color: var(--foreground);
     }
 
-    .nav-badge .asterisk { color: var(--brand-highlight-blue); }
+    .nav-badge .asterisk { color: var(--brand-offset-blue); }
 
     .nav-links {
       display: flex;
@@ -151,9 +151,9 @@
       gap: 0.4rem;
       padding: 0.2rem 0.625rem;
       border-radius: 9999px;
-      border: 1px solid color-mix(in srgb, var(--brand-highlight-blue) 30%, transparent);
-      background: color-mix(in srgb, var(--brand-highlight-blue) 6%, transparent);
-      color: var(--brand-highlight-blue);
+      border: 1px solid color-mix(in srgb, var(--brand-offset-blue) 30%, transparent);
+      background: color-mix(in srgb, var(--brand-offset-blue) 6%, transparent);
+      color: var(--brand-offset-blue);
       font-size: 0.65rem;
       font-weight: 600;
       letter-spacing: 0.04em;
@@ -165,7 +165,7 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: var(--brand-highlight-blue);
+      background: var(--brand-offset-blue);
       flex-shrink: 0;
     }
 
@@ -199,7 +199,7 @@
       align-items: center;
       padding: 0.45rem 1.125rem;
       border-radius: 9999px;
-      background: var(--brand-highlight-blue);
+      background: var(--brand-offset-blue);
       color: #FAFAFA;
       font-size: 0.8rem;
       font-weight: 600;

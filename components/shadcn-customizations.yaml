@@ -165,7 +165,14 @@ style_overrides:
   Button:
     hover_transition: "transition-fast (150ms ease-out)"
     active_state: "hover-press (scale 0.97)"
-    notes: "Add snappy hover feedback. Apply via cn() or wrapper."
+    default_variant: "default"
+    default_surface_light: "color-mix(in srgb, var(--brand-highlight-light) 50%, transparent)"
+    default_surface_dark: "color-mix(in srgb, var(--brand-highlight-light) 10%, transparent)"
+    notes: >
+      The 'default' variant is the standard button — use unless the UI context
+      calls for a specific variant (primary, destructive, etc.). Frosted
+      --brand-highlight-light surface at 50% in light mode, 10% in dark mode.
+      Add snappy hover feedback. Apply via cn() or wrapper.
 
   Card:
     default_shadow: "shadow-sm"

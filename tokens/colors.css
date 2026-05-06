@@ -22,7 +22,7 @@
 :root {
   --radius: 0.875rem;
 
-  --background: #FAFAFA;
+  --background: #E8E5DE;
   --foreground: oklch(0.13 0.028 261.692);
 
   --card: oklch(1 0 0);
@@ -70,7 +70,7 @@
    ============================================================================= */
 
 .dark {
-  --background: oklch(0.13 0.028 261.692);
+  --background: #0E1233;
   --foreground: oklch(0.985 0.002 247.839);
 
   --card: oklch(0.21 0.034 264.665);
@@ -130,16 +130,16 @@
    e.g. elements that are always on a dark surface without a .dark ancestor.
    ─────────────────────────────────────────────────────────────────────────── */
 :root {
-  --brand-surface-light:          #F0F0F0;
+  --brand-surface-light:          #E8E5DE;
   --brand-surface-dark:           #0E1233;
-  --brand-surface-grey-light:     #E4E4EE;
-  --brand-surface-grey-dark:      #252963;
-  --brand-offset-lavender-light:  #A6A1E2;
+  --brand-offset-lavender-light:  #7267E2;
   --brand-offset-lavender-dark:   #B4AFE7;
   --brand-offset-green-light:     #A0D246;
   --brand-offset-green-dark:      #D5FD8D;
-  --brand-offset-coral-light:     #F0936B;
-  --brand-offset-coral-dark:      #E99F80;
+  --brand-offset-coral-light:     #FF7236;
+  --brand-offset-coral-dark:      #FF814C;
+  --brand-offset-blue-light:      #006CDB;
+  --brand-offset-blue-dark:       #2886E6;
 }
 
 /* ── Brand color semantics (adaptive) ──────────────────────────────────────────
@@ -150,33 +150,31 @@
 /* Brand colors — light mode */
 :root {
   --brand-surface:      var(--brand-surface-light);
-  --brand-surface-grey: var(--brand-surface-grey-light);
-  --brand-surface-blue: #4751B0;          /* blue-mode page background — same in all modes */
 
-  /* Highlight pair — identical in both modes, no primitives needed */
-  --brand-highlight-blue: #4751B0;        /* primary accent */
+  /* Highlights — identical in both modes, no primitives needed */
   --brand-highlight-navy: #0E1233;        /* dark anchor */
-  --brand-highlight-light: #F0F0F0;       /* near-white — use on dark/blue surfaces */
+  --brand-highlight-light: #FAFAFA;       /* near-white — use on dark/blue surfaces */
 
   /* Offset accents — adaptive, reference light primitives */
   --brand-offset-lavender: var(--brand-offset-lavender-light);
   --brand-offset-green:    var(--brand-offset-green-light);
-  --brand-offset-yellow:   #FFD27D;       /* same in both modes, no primitive needed */
+  --brand-offset-yellow:   #F8BC4D;       /* same in both modes, no primitive needed */
   --brand-offset-coral:    var(--brand-offset-coral-light);
+  --brand-offset-blue:     var(--brand-offset-blue-light);
 }
 
 .dark {
   --brand-surface:      var(--brand-surface-dark);
-  --brand-surface-grey: var(--brand-surface-grey-dark);
 
-  /* Highlight pair — same values as light, no overrides needed */
-  /* --brand-highlight-blue, --brand-highlight-navy, --brand-highlight-light unchanged */
+  /* Highlights — same values as light, no overrides needed */
+  /* --brand-highlight-navy, --brand-highlight-light unchanged */
 
   /* Offset accents — reference dark primitives for higher contrast */
   --brand-offset-lavender: var(--brand-offset-lavender-dark);
   --brand-offset-green:    var(--brand-offset-green-dark);
-  /* --brand-offset-yellow: #FFD27D — unchanged */
+  /* --brand-offset-yellow: #F8BC4D — unchanged */
   --brand-offset-coral:    var(--brand-offset-coral-dark);
+  --brand-offset-blue:     var(--brand-offset-blue-dark);
 }
 
 /* =============================================================================
@@ -222,10 +220,13 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --color-brand-surface: var(--brand-surface);
-  --color-brand-surface-grey: var(--brand-surface-grey);
-  --color-brand-highlight-light-green: var(--brand-highlight-light-green);
-  --color-brand-highlight-grass-green: var(--brand-highlight-grass-green);
-  --color-brand-highlight-dark-green: var(--brand-highlight-dark-green);
+  --color-brand-highlight-navy: var(--brand-highlight-navy);
+  --color-brand-highlight-light: var(--brand-highlight-light);
+  --color-brand-offset-lavender: var(--brand-offset-lavender);
+  --color-brand-offset-green: var(--brand-offset-green);
+  --color-brand-offset-yellow: var(--brand-offset-yellow);
+  --color-brand-offset-coral: var(--brand-offset-coral);
+  --color-brand-offset-blue: var(--brand-offset-blue);
 
   --radius-sm: calc(var(--radius) - 0.25rem);
   --radius-md: var(--radius);
