@@ -1,0 +1,112 @@
+/* =============================================================================
+   Design System — Shared component & typography base.
+   Imported by each consuming app's app.css AFTER tokens/colors.css.
+   Carries the canonical type scale, the Maia frosted button surface (required
+   by the shadcn Button `default` variant), focus ring, and global resets.
+   Source of truth: previously duplicated in each app's app.css.
+   ============================================================================= */
+
+/* --- Global resets (DS §9). NOTE: no `scrollbar-gutter: stable` — it reserves a
+   gutter that leaves a dead strip beside fixed/full-width chrome. --- */
+html {
+	overflow-x: clip;
+}
+img,
+video,
+svg,
+canvas,
+iframe {
+	max-width: 100%;
+	height: auto;
+}
+pre {
+	overflow-x: auto;
+}
+
+/* --- Body base --- */
+body {
+	font-family:
+		'Geist Sans', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol';
+	background-color: var(--background);
+	color: var(--foreground);
+	overflow-wrap: break-word;
+	min-height: 100dvh;
+}
+
+/* --- Typography (DS §3): Lora display, Poppins headings --- */
+.h0 {
+	font-family: 'Lora', Georgia, serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: clamp(3.5rem, 8vw, 6rem);
+	line-height: 1;
+	letter-spacing: -0.03em;
+}
+.h0-alt {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 300;
+	font-size: clamp(3.5rem, 8vw, 6rem);
+	line-height: 1;
+	letter-spacing: -0.03em;
+}
+.h1-alt {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 300;
+	font-size: clamp(2rem, 4vw, 2.75rem);
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+}
+h1 {
+	font-family: 'Lora', Georgia, serif;
+	font-weight: 700;
+	font-style: normal; /* Lora is never italic — DS §3 */
+	font-size: clamp(2rem, 4vw, 2.75rem);
+}
+h2,
+h3,
+h4 {
+	font-family: 'Poppins', sans-serif;
+}
+h2 {
+	font-size: clamp(1.5rem, 3vw, 1.75rem);
+}
+
+/* --- Button default variant surface (Maia frosted). The shadcn Button
+   `default` variant references `.btn-surface-default`. --- */
+.btn-surface-default {
+	background-color: color-mix(in srgb, var(--brand-highlight-light) 50%, transparent);
+}
+.btn-surface-default:hover {
+	background-color: color-mix(in srgb, var(--brand-highlight-light) 65%, transparent);
+}
+:is(.dark .btn-surface-default) {
+	background-color: color-mix(in srgb, var(--brand-highlight-light) 10%, transparent);
+}
+:is(.dark .btn-surface-default):hover {
+	background-color: color-mix(in srgb, var(--brand-highlight-light) 15%, transparent);
+}
+
+/* --- Focus ring (accessibility) --- */
+:focus-visible {
+	outline: 2px solid var(--ring);
+	outline-offset: 2px;
+}
+
+/* --- Interactive cursor --- */
+button,
+[role='button'],
+a,
+select,
+summary,
+[type='button'],
+[type='submit'],
+[type='reset'] {
+	cursor: pointer;
+}
+
+/* --- GSAP reveal initial state (must be global, applied before mount) --- */
+.reveal {
+	opacity: 0;
+	transform: translateY(24px);
+}
