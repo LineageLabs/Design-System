@@ -28,3 +28,19 @@ App `app.css` must `@import` (in order): `tokens/colors.css`,
 
 `bits-ui`, `clsx`, `tailwind-merge`, `tailwind-variants`. `dropdown-menu`
 (not yet promoted) additionally needs `@lucide/svelte`.
+
+## Layering: core vs. optional accent modules
+
+Component CSS is split so apps share the core while opting into per-product
+visual variations:
+
+- **`components.css` — core (always import).** Type scale, `.btn-surface-default`,
+  focus ring, resets. Both way.je and way.space import this.
+- **`blueprint.css` — optional accent module (opt-in).** way.space's "technical
+  blueprint" motif: monospace eyebrows (`.mono-label`, used for numbered section
+  eyebrows like `01 / Featured`), inline code (`.mono-code`), dot-grid backgrounds
+  (`.hex-dots`), ruler-tick separators (`.hex-rule`), corner crosshairs
+  (`.hex-plus`). **way.space imports it; way.je does not.**
+
+To give a product a distinct look, add a new optional module here and import it
+only in that app — do not redefine classes ad-hoc in an app's `app.css`.
