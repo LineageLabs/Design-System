@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.06.0] — 2026-06-22
+
+### Added
+- **`StepProgress` — segmented step progress bar.** New `components/ui/step-progress/` component for multi-step user flows (wizards, onboarding, checkout): one `rounded-full` segment per step filled up to the current step, an optional `Step N of M` caption, and optional phase-group labels beneath. Neutral-only (`--foreground` / `--foreground/15`) per the minimal-color philosophy; `role="progressbar"` with full `aria-value*`. Exports a pure `stepProgressState({ current, total, groups })` helper for testing/derivation. Documented in `DESIGN-SYSTEM.md` §6.
+
+---
+
 ## [2026.05.0] — 2026-05-06
 
 ### Added

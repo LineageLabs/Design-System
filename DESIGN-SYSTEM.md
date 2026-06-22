@@ -558,6 +558,7 @@ Key characteristics:
 | Avatar | `rounded-full` | `rounded-full` |
 | Select | `rounded-4xl` (pill) | `rounded-md` |
 | Textarea | `rounded-xl` | `rounded-md` |
+| StepProgress (segment) | `rounded-full` | `rounded-full` |
 
 ### Animation Assignments
 
@@ -663,6 +664,32 @@ A wrapper pattern that composes label + input + description + error message into
 5. Use `htmlFor` / `id` to link label to input for accessibility.
 
 **Full spec:** [`components/shadcn-customizations.yaml`](components/shadcn-customizations.yaml)
+
+### Step Progress
+
+A segmented progress bar for **multi-step user flows** (wizards, onboarding, checkout). This is a
+Design System addition (not a shadcn component). It renders one segment per step, filled up to the
+current step, with an optional `Step N of M` caption and optional phase-group labels beneath.
+
+| Setting | Value |
+|---------|-------|
+| Component | `components/ui/step-progress` — `import { StepProgress } from "$lib/components/ui/step-progress"` |
+| Segment | `flex-1`, `h-1.5`, `rounded-full`; `gap-1` between segments |
+| Completed / current fill | `bg-foreground` (current adds `ring-1 ring-foreground/30` to stand out from done) |
+| Upcoming track | `bg-foreground/15` |
+| Caption | `0.75rem` (`text-xs`), `var(--muted-foreground)` — `Step N of M` (+ optional `· label`) |
+| Group labels | `text-xs`; each label's `flex-basis` is proportional to its step count; the active group is `text-foreground font-medium` |
+| Transition | `transition-colors` only — color animation is reduced-motion safe (no transform) |
+| A11y | `role="progressbar"` + `aria-valuemin={0}` / `aria-valuemax={total}` / `aria-valuenow={current}` + `aria-valuetext` |
+
+**Props:** `current` (1-based, clamped to `[1, total]`), `total`, `label?` (current-step name appended
+to caption), `groups?: { label: string; steps: number }[]`, `showCaption?` (default `true`), `class?`.
+
+**Rules:**
+1. Read-only **indicator**, not a navigation control — pair it with separate Back/Next controls.
+2. Neutral only (`--foreground` / `--muted-foreground`) per the minimal-color philosophy — no brand colors.
+3. The pure `stepProgressState({ current, total, groups })` helper is exported for derivation and unit testing.
+4. `groups` should tile the steps in order (`sum(steps) === total`); labels lay out proportionally to their step counts.
 
 ---
 
