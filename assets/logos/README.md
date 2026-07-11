@@ -79,6 +79,31 @@ gsap.fromTo(badgeEl,
 );
 ```
 
+### Square Social Lockup (1:1)
+
+A three-line, square-format lockup of the Way\*ID wordmark for social media profile avatars
+(X, LinkedIn, Instagram, etc.). The wordmark stacks `Way` / `*` / `ID`, centered, with the `*`
+on its own line as a pivot and generous clear space so it survives a circular crop.
+
+| Property | Dark | Light |
+|----------|------|-------|
+| Background | navy `#0E1233` | sand `#E8E5DE` |
+| Text color | `#FAFAFA` | `#0E1233` |
+| Asterisk (`*`) color | `#2886E6` | `#006CDB` |
+| Font | Poppins 700, `-0.07em` tracking | same |
+| Asterisk placement | own centered line (pivot), ~1.5× scale | same |
+
+The `*` sits on its own centered line as a blue pivot between `Way` and `ID`. Files:
+
+```
+assets/logos/wayID-square-dark.png           # 1024×1024 master
+assets/logos/wayID-square-light.png          # 1024×1024 master
+assets/logos/png/512/wayID-square-dark.png   # 512×512
+assets/logos/png/512/wayID-square-light.png  # 512×512
+```
+
+Masters downscale cleanly to any platform avatar size (400×400, 320×320, etc.).
+
 ---
 
 ## Variant 2 — Lineage\*Labs Wordmark

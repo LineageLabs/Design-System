@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.07.0] — 2026-07-11
+
+### Added
+- **Way*ID square social-profile logos.** Added 1:1 three-line lockup PNGs for social media avatars: `assets/logos/wayID-square-dark.png` and `assets/logos/wayID-square-light.png` (1024×1024 masters), with 512×512 copies in `assets/logos/png/512/`. The wordmark stacks across three lines — `Way` / `*` / `ID` (capital `W`, per the canonical `Way*ID` spelling) — set in Poppins 700 with `-0.07em` tracking. The `*` sits on its own centered line as a pivot, enlarged ~1.5×, in brand offset blue (`#006CDB` light / `#2886E6` dark). Dark variant: navy `#0E1233` background, near-white `#FAFAFA` text. Light variant: sand `#E8E5DE` background, navy `#0E1233` text. Documented in `assets/logos/README.md`.
+
+---
+
 ## [2026.06.0] — 2026-06-22
 
 ### Added
