@@ -4,7 +4,7 @@
   <defs>
     <mask id="waymark-cut">
       <!-- White reveals, black hides. The disc is revealed... -->
-      <circle cx="50" cy="50" r="48" fill="white"/>
+      <circle cx="50" cy="50" r="48" fill="#FAFAFA"/>
       <!-- ...then the mark, painted black, is cut out of it. -->
       <g fill="none" stroke="black" stroke-width="12" stroke-linecap="butt">
         <line x1="76" y1="37" x2="24" y2="67"/>
@@ -14,5 +14,5 @@
       <circle cx="50" cy="23" r="8.5" fill="black"/>
     </mask>
   </defs>
-  <circle cx="50" cy="50" r="48" fill="white" mask="url(#waymark-cut)"/>
+  <circle cx="50" cy="50" r="48" fill="#FAFAFA" mask="url(#waymark-cut)"/>
 </svg>
