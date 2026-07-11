@@ -5,6 +5,23 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.07.1] — 2026-07-11
+
+### Added
+- **The Way mark — new shared brand symbol.** A single flat mark (three `currentColor` strokes — an X crossing plus a descender — topped by one offset-blue point) that serves as the shared symbol for **Way\*ID** and **Way\*Space** and stands in for the `*` in both wordmarks. Vectored from the `wayid-logo-hard/preview.html` "Junction" concept. New SVG assets: `assets/logos/svg/way-mark.svg` (navy strokes `#0E1233` + blue point `#006CDB`, light surface), `assets/logos/svg/way-mark-dark.svg` (near-white strokes `#FAFAFA` + blue point `#2886E6`), and `assets/logos/svg/way-mark-mono.svg` (`currentColor` strokes + point). Geometry: `viewBox 0 0 100 100`, `stroke-width 12`, `stroke-linecap butt`, point `r 8.5`.
+- **`.way-mark` inline component (index.html).** New CSS (`.way-mark` at `0.92em` square, plus `.way-mark-dot`, `.dark`/`.logo-badge-dark` point overrides, and `--onnavy` / `--mono` showcase modifiers) that embeds the mark inline in the wordmarks — strokes inherit the text color, the point stays brand offset blue per mode. Inside the wordmark the mark is raised (`transform: translateY(-0.16em)`) and pulled tighter to the words (`margin: 0 -0.05em`) via a badge-scoped rule (`.logo-badge .way-mark`, `.logo-badge-dark .way-mark`), so the standalone symbol/scale demos keep their own centering.
+- **Way\*Space wordmark.** New sibling wordmark for `way.space` in the index.html Logo section (light + dark, three sizes each), reusing the same Way mark and Poppins 700 / `-0.07em` treatment as Way\*ID.
+- **Way mark showcase + scales in index.html.** New "The Way mark" subsection with four symbol tiles (Brand · light/dark, Monotone · navy/light) and a favicon-safe scale row (64 / 32 / 24 / 16px).
+- **Full Way\*ID wordmark PNG lockups.** Added hard-edge renders `assets/logos/wayID-wordmark-transparent.png`, `wayID-wordmark-white.png`, and `wayID-wordmark-beige.png` (the complete wordmark with the mark, for raster contexts).
+- **Way mark favicon (solid circle).** New `assets/logos/svg/way-mark-favicon.svg` — the mark reversed out of a solid navy disc (`#0E1233`, near-white strokes `#FAFAFA`, offset-blue point `#2886E6`), mark filling ~65% of the disc (`scale 0.96`) so it reads at 16px. Rasterized to `assets/logos/icons/favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, plus a 512 master in `assets/logos/png/512/way-mark-favicon.png`. Wired into `index.html`'s `<head>` (`rel="icon"` SVG + PNG fallbacks + `apple-touch-icon`) and showcased in a new "Favicon" block in the Logo section (64 / 32 / 16 on light and dark, with the `<link>` snippet). Documented in `DESIGN-SYSTEM.md` §10 and `assets/logos/README.md`.
+
+### Changed
+- **Way\*ID wordmark now uses the Way mark in place of the text `*`.** All 10 `Way*ID` instances in `index.html` (including the site header and the animated/scroll-reveal demos) now embed the inline mark SVG instead of `Way<span class="logo-badge-asterisk">*</span>ID`. The now-unused `.logo-badge-asterisk` color rules were removed.
+- **Corrected the Way\*ID spec table (index.html).** Retitled to "Way\*ID & Way\*Space Wordmark" and fixed stale rows: removed the border / `9999px` pill / `Poppins 600` / `-0.08em` and the obsolete "asterisk color-cycling" post-reveal; now documents Poppins 700 / `-0.07em`, the mark point tokens (`--brand-offset-blue-light` / `-dark`), inline mark size (`0.92em`), and "no post-reveal".
+- **Logo docs rewritten around the shared mark.** `DESIGN-SYSTEM.md` (§Logo Animation, §10 Assets & Logos) and `assets/logos/README.md` now lead with "The Way mark", describe the asterisk-as-mark wordmarks and Way\*Space, list the new SVG/PNG files, and update the usage rules (new "Mark intact" rule for Way\*ID / Way\*Space; the green `*` rule now scoped to Lineage\*Labs).
+
+---
+
 ## [2026.07.0] — 2026-07-11
 
 ### Added

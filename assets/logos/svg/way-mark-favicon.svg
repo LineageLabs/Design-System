@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Way mark">
+  <!-- Favicon lockup — the Way mark reversed out of a solid navy disc.
+       Near-white strokes + brighter offset-blue point. The mark is centered on the
+       disc at ~65% fill (scale 0.96) so it survives down to 16px. -->
+  <circle cx="50" cy="50" r="50" fill="#0E1233"/>
+  <g transform="translate(2, 3.68) scale(0.96)">
+    <g fill="none" stroke="#FAFAFA" stroke-width="12" stroke-linecap="butt">
+      <line x1="76" y1="37" x2="24" y2="67"/>
+      <line x1="24" y1="37" x2="76" y2="67"/>
+      <line x1="50" y1="52" x2="50" y2="82"/>
+    </g>
+    <circle cx="50" cy="23" r="8.5" fill="#2886E6"/>
+  </g>
+</svg>

@@ -490,21 +490,36 @@ All classes in `animations/transitions.css` include a `@media (prefers-reduced-m
 
 ### Logo Animation
 
-Two logo variants — both have light/dark treatments and animated GSAP reveals.
+One shared symbol, two wordmark families — all have light/dark treatments and animated GSAP reveals.
 Full spec and CSS classes: [`assets/logos/README.md`](assets/logos/README.md)
 
-#### Way\*ID Badge
-Plain text wordmark — no border, no background. Navy text on light; near-white on dark. The `*` uses brand offset blue.
+#### The Way mark (symbol)
+The shared brand symbol for **Way\*ID** and **Way\*Space** — a single flat mark built from three brand strokes
+(an X crossing plus a descender) topped by one offset-blue point. It reads as a junction of ways with a verified
+point above, and it stands in for the `*` in both wordmarks. Strokes inherit `currentColor`; the point uses brand
+offset blue. Vector source: `assets/logos/svg/way-mark.svg` (light), `way-mark-dark.svg`, `way-mark-mono.svg`.
+
+| Property | Light | Dark |
+|----------|-------|------|
+| Strokes (`currentColor`) | `--brand-highlight-navy` (`#0E1233`) | `--brand-highlight-light` (`#FAFAFA`) |
+| Point | `--brand-offset-blue-light` (`#006CDB`) | `--brand-offset-blue-dark` (`#2886E6`) |
+| Geometry | `viewBox 0 0 100 100`, `stroke-width 12`, `stroke-linecap butt` | same |
+| Inline size | `0.92em` square, scales with the wordmark | same |
+
+#### Way\*ID & Way\*Space Wordmarks
+Plain text wordmarks — no border, no background. Navy text on light; near-white on dark. The Way mark replaces the
+`*`: its strokes follow the text color, its point stays brand offset blue. Both wordmarks are identical in treatment
+and share the same mark; only the trailing word (`ID` / `Space`) differs.
 
 | Property | Light | Dark |
 |----------|-------|------|
 | Text | `--brand-highlight-navy` | `--brand-highlight-light` |
-| Asterisk (`*`) | `--brand-offset-blue-light` (`#006CDB`) | `--brand-offset-blue-dark` (`#2886E6`) |
+| Mark point | `--brand-offset-blue-light` (`#006CDB`) | `--brand-offset-blue-dark` (`#2886E6`) |
 | Font | Poppins 700, `-0.07em` | same |
 
 Animation:
 - Reveal: `scale 0.94→1`, `opacity 0→1`, `back.out(1.7)`, 300ms
-- No post-reveal animation — `*` stays static blue
+- No post-reveal animation — the mark and its point stay static
 
 #### Lineage\*Labs Wordmark
 Text wordmark. Lora 400, navy on light / near-white on dark. The `*` uses navy on light, offset green on dark.
@@ -1089,10 +1104,47 @@ Icons adapt automatically when using `currentColor` — no additional work requi
 
 ## 10. Assets & Logos
 
+### The Way mark
+
+The shared symbol for **Way\*ID** and **Way\*Space**. Ships as scalable SVG, and is embedded inline in the
+wordmarks in place of the `*` (see §Logo Animation).
+
+| File | Use |
+|------|-----|
+| `assets/logos/svg/way-mark.svg` | Brand, light surface — navy strokes + blue point |
+| `assets/logos/svg/way-mark-dark.svg` | Brand, dark surface — near-white strokes + blue point |
+| `assets/logos/svg/way-mark-mono.svg` | Single-color (`currentColor` for strokes and point) |
+| `assets/logos/svg/way-mark-favicon.svg` | **Favicon** — mark reversed out of a solid navy disc |
+| `assets/logos/wayID-wordmark-transparent.png` | Full Way\*ID lockup, transparent (hard-edge render) |
+| `assets/logos/wayID-wordmark-white.png` | Full Way\*ID lockup on white |
+| `assets/logos/wayID-wordmark-beige.png` | Full Way\*ID lockup on sand `#E8E5DE` |
+
+#### Favicon (solid circle)
+
+For favicons and app icons the Way mark is reversed out of a **solid navy disc** (`--brand-highlight-navy`) —
+near-white strokes, offset-blue point — so it holds contrast on any browser tab, light or dark. The mark fills
+~65% of the disc so it survives down to 16px. Scalable SVG plus PNG fallbacks:
+
+| File | Size |
+|------|------|
+| `assets/logos/svg/way-mark-favicon.svg` | scalable (primary) |
+| `assets/logos/icons/favicon-32.png` | 32×32 |
+| `assets/logos/icons/favicon-16.png` | 16×16 |
+| `assets/logos/icons/apple-touch-icon.png` | 180×180 |
+| `assets/logos/icons/icon-192.png`, `icon-512.png` | PWA |
+
+```html
+<link rel="icon" type="image/svg+xml" href="assets/logos/svg/way-mark-favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logos/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/logos/icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/logos/icons/apple-touch-icon.png">
+```
+
 ### Required Logo Variants
 
 | Variant | Pattern | Description |
 |---------|---------|-------------|
+| Way mark (symbol) | `svg/way-mark*.svg` | Icon-only — the `*` symbol for Way\*ID / Way\*Space |
 | Primary | `logo-primary.*` | Full-color, default use |
 | Mono Light | `logo-mono-light.*` | White for dark backgrounds |
 | Mono Dark | `logo-mono-dark.*` | Dark for light backgrounds |

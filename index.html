@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Design System Reference</title>
+  <!-- Way mark favicon — solid navy disc, scalable SVG with PNG fallbacks -->
+  <link rel="icon" type="image/svg+xml" href="assets/logos/svg/way-mark-favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logos/icons/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/icons/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
@@ -248,11 +253,32 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-    /* Asterisk accent — blue, mode-dependent */
-    .logo-badge .logo-badge-asterisk { color: var(--brand-offset-blue-light); }
-    .dark .logo-badge .logo-badge-asterisk { color: var(--brand-offset-blue-dark); }
+    /* ── The Way mark ──────────────────────────────────────────────
+       Inline symbol that stands in for the * in the Way*ID / Way*Space
+       wordmarks. Strokes inherit currentColor (the wordmark text color);
+       the verified point uses brand offset blue, mode-dependent. */
+    .way-mark {
+      display: inline-block;
+      width: 0.92em;
+      height: 0.92em;
+      vertical-align: -0.15em;
+      flex-shrink: 0;
+    }
+    /* In the wordmarks the badge is inline-flex (align-items:center), so the mark is
+       vertically centered — nudge it up and pull it tighter to the words. Scoped to the
+       wordmark so the standalone symbol/scale demos keep their own centering. */
+    .logo-badge .way-mark,
+    .logo-badge-dark .way-mark {
+      transform: translateY(-0.16em);
+      margin: 0 -0.05em;
+    }
+    .way-mark .way-mark-dot { fill: var(--brand-offset-blue-light); }
+    .dark .way-mark .way-mark-dot { fill: var(--brand-offset-blue-dark); }
     /* .logo-badge-dark is always on navy → always use the dark blue primitive */
-    .logo-badge-dark .logo-badge-asterisk { color: var(--brand-offset-blue-dark); }
+    .logo-badge-dark .way-mark .way-mark-dot { fill: var(--brand-offset-blue-dark); }
+    /* Showcase modifiers */
+    .way-mark--onnavy .way-mark-dot { fill: var(--brand-offset-blue-dark); }  /* mark shown on a fixed navy tile */
+    .way-mark--mono   .way-mark-dot { fill: currentColor; }                    /* single-color: point matches strokes */
     .logo-wordmark { font-weight: 700; }
 
     /* Lineage*Labs text wordmark */
@@ -1596,7 +1622,7 @@
 
   <header class="site-header">
     <a href="#" class="logo">
-      <span class="logo-badge">Way<span class="logo-badge-asterisk">*</span>ID</span>
+      <span class="logo-badge">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
       <span class="logo-wordmark">Design System</span>
     </a>
     <nav>
@@ -1680,23 +1706,99 @@
       <p class="section-label">Section 02</p>
       <h2 class="section-title">Logo</h2>
       <p class="section-desc">
-        Two logo variants: the <strong>Way*ID</strong> pill badge and the <strong>Lineage*Labs</strong> text wordmark.
-        Both have distinct light and dark mode treatments and animated GSAP reveals.
+        One symbol, two wordmarks. <strong>The Way mark</strong> — a verified point above a junction of ways —
+        is the shared brand symbol for <strong>Way*ID</strong> and <strong>Way*Space</strong>; it stands in for the
+        <code>*</code> in both wordmarks. <strong>Lineage*Labs</strong> keeps its own Lora text wordmark.
+        Every variant has distinct light and dark treatments and animated GSAP reveals.
       </p>
 
-      <!-- ═══════════════ Way*ID Badge ═══════════════ -->
-      <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Way*ID Badge</h3>
+      <!-- ═══════════════ The Way mark (symbol) ═══════════════ -->
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">The Way mark</h3>
       <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
-        Plain text wordmark — no border, no background. Navy text on light, near-white on dark. The <code>*</code> uses brand offset blue.
+        A single flat mark built from three brand strokes plus one offset-blue point — five ways meet at a crossing,
+        a verified point stands at the sixth. Strokes inherit <code>currentColor</code>; the point is
+        <code>--brand-offset-blue</code>. Source: <code>assets/logos/svg/way-mark*.svg</code>.
+      </p>
+
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Symbol <span class="anim-tag">brand</span> <span class="anim-tag">monotone</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(150px,100%),1fr));gap:0.75rem;">
+          <!-- Brand · light -->
+          <div style="background:var(--background);color:var(--brand-highlight-navy);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:0.9rem;">
+            <svg class="way-mark" style="width:76px;height:76px;margin:0;vertical-align:middle;" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>
+            <span style="font-size:0.7rem;opacity:0.6;">Brand · light</span>
+          </div>
+          <!-- Brand · dark -->
+          <div style="background:var(--brand-highlight-navy);color:var(--brand-highlight-light);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:0.9rem;">
+            <svg class="way-mark way-mark--onnavy" style="width:76px;height:76px;margin:0;vertical-align:middle;" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>
+            <span style="font-size:0.7rem;opacity:0.55;">Brand · dark</span>
+          </div>
+          <!-- Monotone · navy -->
+          <div style="background:var(--background);color:var(--brand-highlight-navy);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:0.9rem;">
+            <svg class="way-mark way-mark--mono" style="width:76px;height:76px;margin:0;vertical-align:middle;" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>
+            <span style="font-size:0.7rem;opacity:0.6;">Monotone · navy</span>
+          </div>
+          <!-- Monotone · light -->
+          <div style="background:var(--brand-highlight-navy);color:var(--brand-highlight-light);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:0.9rem;">
+            <svg class="way-mark way-mark--mono" style="width:76px;height:76px;margin:0;vertical-align:middle;" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>
+            <span style="font-size:0.7rem;opacity:0.55;">Monotone · light</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Way mark — sizes -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Scales <span class="anim-tag">favicon-safe</span></div>
+        <div style="background:var(--background);border-radius:1rem;padding:1.75rem 2rem;box-shadow:0 0 0 1px var(--border);color:var(--brand-highlight-navy);display:flex;align-items:flex-end;gap:2.5rem;flex-wrap:wrap;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><svg class="way-mark" style="width:64px;height:64px;margin:0;vertical-align:middle;" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg><span style="font-size:0.7rem;opacity:0.55;">64</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><svg class="way-mark" style="width:32px;height:32px;margin:0;vertical-align:middle;" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg><span style="font-size:0.7rem;opacity:0.55;">32</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><svg class="way-mark" style="width:24px;height:24px;margin:0;vertical-align:middle;" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg><span style="font-size:0.7rem;opacity:0.55;">24</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><svg class="way-mark" style="width:16px;height:16px;margin:0;vertical-align:middle;" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg><span style="font-size:0.7rem;opacity:0.55;">16 · favicon</span></div>
+        </div>
+      </div>
+
+      <!-- Way mark — favicon (solid circle) -->
+      <h3 style="font-size:1rem;font-weight:700;margin:2rem 0 0.5rem;font-family:'Poppins',sans-serif;">Favicon</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
+        For favicons and app icons the mark is reversed out of a solid navy disc (<code>--brand-highlight-navy</code>) — near-white strokes, offset-blue point — so it holds contrast on any browser tab, light or dark. The mark fills ~65% of the disc so it stays legible at 16px. Source: <code>assets/logos/svg/way-mark-favicon.svg</code>.
+      </p>
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Solid circle <span class="anim-tag">navy disc</span> <span class="anim-tag">16px-safe</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div style="background:var(--background);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:flex-end;justify-content:center;gap:2rem;flex-wrap:wrap;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><img src="assets/logos/svg/way-mark-favicon.svg" alt="Way mark favicon" width="64" height="64" style="display:block;border-radius:50%;"><span style="font-size:0.7rem;color:var(--muted-foreground);">64</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><img src="assets/logos/svg/way-mark-favicon.svg" alt="Way mark favicon" width="32" height="32" style="display:block;border-radius:50%;"><span style="font-size:0.7rem;color:var(--muted-foreground);">32</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><img src="assets/logos/svg/way-mark-favicon.svg" alt="Way mark favicon" width="16" height="16" style="display:block;border-radius:50%;"><span style="font-size:0.7rem;color:var(--muted-foreground);">16</span></div>
+          </div>
+          <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:flex-end;justify-content:center;gap:2rem;flex-wrap:wrap;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><img src="assets/logos/svg/way-mark-favicon.svg" alt="Way mark favicon on dark" width="64" height="64" style="display:block;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,0.12);"><span style="font-size:0.7rem;color:oklch(0.707 0.022 261.325);">64</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><img src="assets/logos/svg/way-mark-favicon.svg" alt="Way mark favicon on dark" width="32" height="32" style="display:block;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,0.12);"><span style="font-size:0.7rem;color:oklch(0.707 0.022 261.325);">32</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.65rem;"><img src="assets/logos/svg/way-mark-favicon.svg" alt="Way mark favicon on dark" width="16" height="16" style="display:block;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,0.12);"><span style="font-size:0.7rem;color:oklch(0.707 0.022 261.325);">16</span></div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;overflow-x:auto;">
+          <pre style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:0.72rem;line-height:1.6;color:var(--muted-foreground);background:color-mix(in srgb,var(--muted) 50%,transparent);padding:1rem 1.25rem;border-radius:0.75rem;"><code>&lt;link rel="icon" type="image/svg+xml" href="assets/logos/svg/way-mark-favicon.svg"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="assets/logos/icons/favicon-32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="assets/logos/icons/favicon-16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="assets/logos/icons/apple-touch-icon.png"&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="divider" style="margin:2.5rem 0;"></div>
+
+      <!-- ═══════════════ Way*ID Wordmark ═══════════════ -->
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Way*ID Wordmark</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
+        Plain text wordmark — no border, no background. Navy text on light, near-white on dark. The Way mark replaces the <code>*</code>: its strokes follow the text color, its point stays brand offset blue.
       </p>
 
       <!-- Way*ID — Light -->
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
         <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge" style="font-size:22px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
-          <span class="logo-badge" style="font-size:15px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
-          <span class="logo-badge" style="font-size:12px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge" style="font-size:22px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
+          <span class="logo-badge" style="font-size:15px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
+          <span class="logo-badge" style="font-size:12px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
         </div>
       </div>
 
@@ -1704,9 +1806,9 @@
       <div class="comp-demo-section reveal">
         <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
         <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
-          <span class="logo-badge-dark" style="font-size:22px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
-          <span class="logo-badge-dark" style="font-size:15px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
-          <span class="logo-badge-dark" style="font-size:12px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge-dark" style="font-size:22px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
+          <span class="logo-badge-dark" style="font-size:15px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
+          <span class="logo-badge-dark" style="font-size:12px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
         </div>
       </div>
 
@@ -1717,17 +1819,45 @@
           <div style="background:var(--background);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.05em;">Light</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
+              <span class="logo-badge logo-anim-light-badge" id="logo-anim-light" style="font-size:22px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-light-replay">Replay</button>
           </div>
           <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem 2rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
             <div style="font-size:0.7rem;font-weight:600;color:oklch(0.707 0.022 261.325);text-transform:uppercase;letter-spacing:0.05em;">Dark</div>
             <div style="min-height:40px;display:flex;align-items:center;justify-content:center;">
-              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
+              <span class="logo-badge-dark logo-anim-dark-badge" id="logo-anim-dark" style="font-size:22px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
             </div>
             <button class="theme-toggle" id="logo-anim-dark-replay" style="border-color:rgba(255,255,255,0.1);background:oklch(0.21 0.034 264.665);color:oklch(0.985 0.002 247.839);">Replay</button>
           </div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin:2.5rem 0;"></div>
+
+      <!-- ═══════════════ Way*Space Wordmark ═══════════════ -->
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.5rem;font-family:'Poppins',sans-serif;">Way*Space Wordmark</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
+        The sibling wordmark for <code>way.space</code>. Identical treatment to Way*ID — Poppins 700, <code>-0.07em</code> tracking — sharing the same Way mark in place of the <code>*</code>. One symbol ties the two products together.
+      </p>
+
+      <!-- Way*Space — Light -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Light Mode <span class="anim-tag">default</span></div>
+        <div style="background:var(--background);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px var(--border);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+          <span class="logo-badge" style="font-size:22px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>Space</span>
+          <span class="logo-badge" style="font-size:15px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>Space</span>
+          <span class="logo-badge" style="font-size:12px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>Space</span>
+        </div>
+      </div>
+
+      <!-- Way*Space — Dark -->
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Dark Mode <span class="anim-tag">inverted</span></div>
+        <div style="background:var(--brand-highlight-navy);border-radius:1rem;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,255,255,0.08);display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+          <span class="logo-badge-dark" style="font-size:22px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>Space</span>
+          <span class="logo-badge-dark" style="font-size:15px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>Space</span>
+          <span class="logo-badge-dark" style="font-size:12px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>Space</span>
         </div>
       </div>
 
@@ -1805,7 +1935,7 @@
 
       <!-- Spec table — Way*ID -->
       <div class="comp-demo-section reveal">
-        <div class="comp-demo-label">Spec Reference — Way*ID Badge</div>
+        <div class="comp-demo-label">Spec Reference — Way*ID &amp; Way*Space Wordmark</div>
         <div style="overflow-x:auto;">
           <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
             <thead>
@@ -1822,28 +1952,28 @@
                 <td style="padding:0.5rem 0.75rem;">transparent</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Text color</td>
+                <td style="padding:0.5rem 0.75rem;">Text &amp; mark strokes <span style="opacity:0.6;">(currentColor)</span></td>
                 <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#0E1233;vertical-align:middle;margin-left:0.25rem;"></span></td>
                 <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#F0F0F0;border:1px solid #ccc;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Border</td>
-                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-navy</code> (1.5px solid)</td>
-                <td style="padding:0.5rem 0.75rem;"><code>--brand-highlight-light</code> (1px solid)</td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:0.5rem 0.75rem;">Radius</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>9999px</code> (pill)</td>
+                <td style="padding:0.5rem 0.75rem;">Way mark point</td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-offset-blue-light</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#006CDB;vertical-align:middle;margin-left:0.25rem;"></span></td>
+                <td style="padding:0.5rem 0.75rem;"><code>--brand-offset-blue-dark</code> <span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#2886E6;vertical-align:middle;margin-left:0.25rem;"></span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
                 <td style="padding:0.5rem 0.75rem;">Font</td>
-                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 600 weight, <code>-0.08em</code> letter-spacing</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2">Poppins, 700 weight, <code>-0.07em</code> letter-spacing</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:0.5rem 0.75rem;">Way mark size &amp; position</td>
+                <td style="padding:0.5rem 0.75rem;" colspan="2"><code>0.92em</code> square; in the wordmark, raised <code>translateY(-0.16em)</code> and tightened <code>margin:0 -0.05em</code> against the words — scales inline</td>
               </tr>
               <tr>
                 <td style="padding:0.5rem 0.75rem;">Animation</td>
                 <td style="padding:0.5rem 0.75rem;" colspan="2">
                   Reveal: <code>scale 0.94→1, opacity 0→1, back.out(1.7), 300ms</code><br>
-                  Post-reveal: <code>* cycles lavender → green → yellow → coral every 1.4s (power2.inOut crossfade)</code>
+                  No post-reveal — the mark and its point stay static.
                 </td>
               </tr>
             </tbody>
@@ -2453,7 +2583,7 @@ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       <h3 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem;">Logo Reveal</h3>
       <div class="card reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
         <div class="logo" id="logo-demo" style="font-size:1.1rem;gap:0.6rem;">
-          <span class="logo-badge logo-icon-demo" style="font-size:18px;">Way<span class="logo-badge-asterisk">*</span>ID</span>
+          <span class="logo-badge logo-icon-demo" style="font-size:18px;">Way<svg class="way-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="butt"><line x1="76" y1="37" x2="24" y2="67"/><line x1="24" y1="37" x2="76" y2="67"/><line x1="50" y1="52" x2="50" y2="82"/></g><circle class="way-mark-dot" cx="50" cy="23" r="8.5"/></svg>ID</span>
           <span class="logo-wordmark logo-wordmark-demo" style="font-size:1.1rem;">Lineage HQ</span>
         </div>
         <button class="theme-toggle" id="logo-replay-btn">Replay logo reveal</button>
