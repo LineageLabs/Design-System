@@ -26,8 +26,9 @@ App `app.css` must `@import` (in order): `tokens/colors.css`,
 
 ## Deps
 
-`bits-ui`, `clsx`, `tailwind-merge`, `tailwind-variants`. `dropdown-menu`
-(not yet promoted) additionally needs `@lucide/svelte`.
+`bits-ui`, `clsx`, `tailwind-merge`, `tailwind-variants`, and `@lucide/svelte`
+(the icon set — see DESIGN-SYSTEM.md §9; `dropdown-menu`, not yet promoted,
+already relies on it). Add `simple-icons` too if the app renders brand logos.
 
 ## Layering: core vs. optional accent modules
 

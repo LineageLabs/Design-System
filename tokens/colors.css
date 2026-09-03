@@ -6,7 +6,7 @@
  * SECTION 1: shadcn/ui Gray base color theme (Maia style)
  *            Source: shadcn-ui/ui apps/v4/registry/themes.ts (exact values)
  *            Config: base=radix, style=maia, baseColor=gray, theme=gray,
- *                    radius=large, font=geist, iconLibrary=hugeicons
+ *                    radius=large, font=geist, iconLibrary=lucide
  *            Format: OKLCH (Tailwind v4 / shadcn current standard)
  *
  * SECTION 2: Brand color custom properties (use ONLY when explicitly specified)

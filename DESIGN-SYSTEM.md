@@ -16,7 +16,8 @@
 | **Body Font** | System UI (native font stack) | Default for all body text, UI elements. No install required. |
 | **Display / H1 Font** | [Lora](https://fonts.google.com/specimen/Lora) | Serif. Used for h0 and h1 only. |
 | **Headline Font** | [Poppins](https://fonts.google.com/specimen/Poppins) | Sans-serif. Used for h2–h4 only. |
-| **Icons** | [Hugeicons](https://hugeicons.com/) | Default icon library. |
+| **Icons** | [Lucide](https://lucide.dev/) | Default icon library. |
+| **Brand marks** | [Simple Icons](https://simpleicons.org/) | Third-party logos only — Lucide ships none. |
 | **Border Radius** | Large (`--radius: 0.875rem`) | Maia style — soft and rounded. |
 
 ### Framework Variants
@@ -25,8 +26,10 @@ The table above assumes a React-based project. For other frameworks, swap the fr
 
 | Framework | UI Components | Icons |
 |-----------|--------------|-------|
-| **React** (default) | [shadcn/ui](https://ui.shadcn.com/) — `npx shadcn@latest init` | `npm install hugeicons-react` |
-| **Svelte** | [shadcn-svelte](https://www.shadcn-svelte.com/) — `npx shadcn-svelte@latest init` | `npm install @hugeicons/svelte` |
+| **React** (default) | [shadcn/ui](https://ui.shadcn.com/) — `npx shadcn@latest init` | `npm install lucide-react` |
+| **Svelte** | [shadcn-svelte](https://www.shadcn-svelte.com/) — `npx shadcn-svelte@latest init` | `npm install @lucide/svelte` |
+
+Brand marks come from the framework-agnostic `simple-icons` package in either case (see §9).
 
 Everything else — CSS tokens, GSAP, fonts, Tailwind — is framework-agnostic and requires no changes.
 
@@ -41,7 +44,7 @@ Generated from: `shadcn/create`
 | Base Color | **Gray** — Blue-tinted neutral (hue ~262 OKLCH) |
 | Theme | Gray |
 | Font | System UI (body) + **Lora (h0–h1)** + **Poppins (h2–h4)** |
-| Icon Library | Hugeicons |
+| Icon Library | Lucide |
 | Radius | Large (`0.875rem`) |
 | Menu Accent | Subtle |
 | Menu Color | Default |
@@ -54,7 +57,7 @@ Generated from: `shadcn/create`
 4. **Respect reduced motion.** Every animation checks `prefers-reduced-motion`.
 5. **Never edit shadcn source.** Customise via CSS overrides, Tailwind composition, or wrapper components.
 6. **System UI for body, Lora for h0–h1, Poppins for h2–h4.** h0 is Lora 400 (display); h1 is Lora 700. h2–h4 use Poppins 600–800. Body/UI uses the native system font stack — no install required.
-7. **Use Hugeicons.** Default icon set for all UI elements and illustrations.
+7. **Use Lucide.** Default icon set for all UI elements and illustrations. Brand/vendor logos — which Lucide deliberately excludes — come from Simple Icons.
 
 ---
 
@@ -1031,28 +1034,85 @@ Fixed-height containers (`height: 100vh` + `overflow: hidden`) are the most comm
 
 ## 9. Icons
 
-### Hugeicons
+### Lucide
 
 | Setting | Value |
 |---------|-------|
-| Library | [Hugeicons](https://hugeicons.com/) |
-| Install | `npm install hugeicons-react` |
-| Import | `import { IconName } from "hugeicons-react"` |
+| Library | [Lucide](https://lucide.dev/) |
+| Install | `npm install lucide-react` |
+| Import | `import { IconName } from "lucide-react"` |
 | Default Size | `20px` (matches shadcn button icon sizing) |
-| Default Stroke | `1.5` (fallback — see stroke-weight rules below) |
+| Default Stroke | `2` (Lucide's own default — the weight the set is drawn at) |
 
-Use Hugeicons for all icons in the UI. Fallback to Lucide only if a specific icon is not available in Hugeicons.
+Use Lucide for every icon in the UI. It is also what shadcn/ui ships with, so an icon
+pulled in by a shadcn component and one you add by hand are the same set, at the same
+weight, with no second dependency.
+
+Lucide carries **no brand or vendor logos** by design. Those come from Simple Icons —
+see "Brand marks" below. Do not substitute a generic Lucide glyph for a brand mark.
+
+Lucide stamps `aria-hidden="true"` itself when no a11y prop is passed, so decorative
+icons need no extra attribute.
 
 #### Svelte Projects
 
-Use the official Svelte package instead of `hugeicons-react`:
+Use the official Svelte package instead of `lucide-react`:
 
 | Setting | Value |
 |---------|-------|
-| Install | `npm install @hugeicons/svelte` |
-| Import | `import { IconName } from "@hugeicons/svelte"` |
+| Install | `npm install @lucide/svelte` |
+| Import | `import Sun from "@lucide/svelte/icons/sun"` |
 
-All icon names, sizes, stroke weights, and color rules from this section apply equally to the Svelte package.
+**Import per icon, not from the barrel.** `@lucide/svelte` carries ~1,900 icons; the
+deep path (`@lucide/svelte/icons/<kebab-name>`) is what keeps them out of the bundle,
+and it keeps dev-server cold starts fast.
+
+**Svelte icons are components, not path data.** An icon carried as data — a nav model,
+a `kind → icon` map — needs a capitalised binding before it renders: `{@const Icon =
+item.icon}` as the immediate child of a block, or a `$derived` in `<script>`. A module
+that holds such a map is therefore Svelte-importing, which matters if a server-only
+file imports from it.
+
+All sizes, stroke weights, and color rules in this section apply equally to both packages.
+
+### Brand marks — Simple Icons
+
+| Setting | Value |
+|---------|-------|
+| Library | [Simple Icons](https://simpleicons.org/) |
+| Install | `npm install simple-icons` |
+| Import | `import { siGithub } from "simple-icons"` |
+| Shape | 24×24 viewBox, **filled** path — no stroke, so no stroke weight |
+
+For third-party logos only: GitHub, X, Bluesky, Google, vendor marks. Anything generic
+is a Lucide icon — reach for Simple Icons only when the glyph *is* somebody's brand.
+
+Simple Icons ships **path data, not components**, so each app wraps it once (way.space:
+`src/lib/components/BrandIcon.svelte`) rather than inlining `<path d>` per call site:
+
+```svelte
+<svg
+  role={title ? 'img' : undefined}
+  aria-hidden={title ? undefined : 'true'}
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  fill="currentColor"
+>
+  {#if title}<title>{title}</title>{/if}
+  <path d={icon.path} />
+</svg>
+```
+
+Accessibility: a brand mark inside an already-labelled link or button is **decorative** —
+`aria-hidden`, no `role`. Only a standalone mark takes `role="img"` plus a `<title>`.
+Never both `role="img"` and `aria-hidden` on one element; that pair contradicts, and an
+audit flags `role="img"` with no accessible name.
+
+The package has no per-icon JS entry point — the named export off the barrel is the only
+route, and it tree-shakes correctly (verify in your build output if the budget is tight).
+`fill="currentColor"` keeps brand marks monochrome and theme-adaptive; use a brand's own
+colour (`icon.hex`) only where the design explicitly calls for it.
 
 ### Icon Color & Background Guide
 
@@ -1075,7 +1135,7 @@ All icon names, sizes, stroke weights, and color rules from this section apply e
 3. **Neutral backgrounds for icon containers.** When an icon sits inside a tinted container (e.g. a quick-action tile), use `--muted-foreground` at 10% opacity. Do not use brand colors or `--primary` for icon container backgrounds — keep them uniform.
 4. **Brand-colored icons only by explicit design decision.** If a design marks a specific icon as brand-colored, apply brand color to the icon stroke *and* use a matching brand tint for the container (e.g. `--brand-highlight-blue` at 12% bg + `--brand-highlight-blue` stroke). But this is the exception, not the default.
 5. **Consistent sizing.** Within a row or grid of icons, all icons must use the same width/height and viewBox. Don't mix 18px and 20px icons in the same context.
-6. **Stroke weight by context.** The `1.5` default above is the fallback for uncategorized contexts. When a recognized context applies, it takes precedence: Inline / toolbar — `1.5` standard, `1.75` emphasized. Quick-action tile — `2`. FAB — `2.5`. Navigation bar — `1.5`. Do not mix weights within a single context.
+6. **One stroke weight: Lucide's default of `2`.** The set is drawn at 2 and shadcn ships it at 2, so vary `size` per context and leave `strokeWidth` alone. The earlier per-context ladder (`1.5` inline, `1.75` emphasized, `2` tile, `2.5` FAB) was calibrated to Hugeicons' lighter `1.5` default and no longer applies — carrying it over produces a set at two weights, which reads as an accident rather than emphasis. A heavier weight is an explicit design decision for a single deliberate element (a FAB may go to `2.5`), never a per-context default, and never mixed within one context.
 
 #### Dark Mode
 

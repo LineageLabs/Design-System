@@ -18,14 +18,14 @@ and logo assets so every project stays consistent.
 | **Body Font** | System UI (native font stack) |
 | **Display / H1 Font** | Lora (h0, h1, and display-level text — serif) |
 | **Headline Font** | Poppins (h2–h4 and section-level elevated text) |
-| **Icons** | Hugeicons |
+| **Icons** | Lucide (brand marks: Simple Icons) |
 
 ## Cardinal Rules
 
 1. **Use shadcn/ui as-is.** Install via their CLI. Use the **Gray** base color theme with **Maia** style. Do not rebuild components from scratch.
 2. **Brand colors are additive.** They do NOT replace `--primary`, `--background`, or any shadcn semantic token. Apply them only when the design explicitly calls for brand colors.
 3. **System UI for body and utility; Lora or Poppins for anything elevated above body.** System UI covers paragraphs, subtitles, nav links, buttons, inputs, labels, badges, captions. Any text that commands structural hierarchy — card titles, section headings, prominent display figures, hero headlines — should use Poppins (section-heading level, h2–h4) or Lora (display level, h0–h1). Do not default to bold System UI where a heading font should speak. All three families may coexist on one screen. **Lora is never italic** — always upright (normal) only.
-4. **Hugeicons for icons.** Use `hugeicons-react` as the default icon library. Fallback to Lucide only if unavailable.
+4. **Lucide for icons.** Use `lucide-react` (React) or `@lucide/svelte` (Svelte) as the default icon library — it is also what shadcn/ui ships with, so there is no second icon dependency. In Svelte, import per icon (`@lucide/svelte/icons/sun`), not from the barrel. Lucide carries no brand/vendor logos by design: those come from `simple-icons`, wrapped once per app, and only for glyphs that genuinely are somebody's brand. Stroke weight is Lucide's default of `2` everywhere — vary size, not weight.
 5. **GSAP for animation.** Use the presets in `animations/presets.js`. Do not invent new easing or duration values — use the tokens in `tokens/motion.yaml`.
 6. **Respect reduced motion.** Every GSAP animation must check `prefers-reduced-motion` and fall back to instant or no animation.
 7. **Never edit shadcn source.** Customise through CSS variable overrides, Tailwind utility composition, or wrapper components.
@@ -75,8 +75,10 @@ npx shadcn@latest init  # Choose: Gray base color, Maia style
 #    ⚠ Svelte: use shadcn-svelte instead — https://www.shadcn-svelte.com/
 #      npx shadcn-svelte@latest init
 # 3. Install dependencies
-npm install gsap hugeicons-react
-#    ⚠ Svelte: use @hugeicons/svelte instead of hugeicons-react
+npm install gsap lucide-react simple-icons
+#    ⚠ Svelte: use @lucide/svelte instead of lucide-react
+#      (import per icon: @lucide/svelte/icons/<kebab-name>)
+#    simple-icons is brand/vendor logos only — Lucide ships none
 # 4. Add Lora + Poppins via Google Fonts
 #    Lora: ital,wght@0,400;0,700;1,400 | Poppins: wght@300;600;700;800
 # 5. Copy tokens/colors.css into your global stylesheet

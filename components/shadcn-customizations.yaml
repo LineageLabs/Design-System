@@ -10,7 +10,7 @@
 #   - Base Color: Gray (blue-tinted neutrals)
 #   - Radius: Large (--radius: 0.875rem)
 #   - Font: System UI (body) + Lora (h0, h1) + Poppins (h2-h4)
-#   - Icons: Hugeicons
+#   - Icons: Lucide (brand marks: Simple Icons)
 #
 # Rules:
 #   1. Never edit files inside components/ui/ directly — shadcn CLI must remain updatable
@@ -29,7 +29,7 @@ general_rules:
   - "Use system UI font stack for all body text and UI elements"
   - "Use Lora (weight 400) for .h0 display text, Lora (weight 700) for h1"
   - "Use Poppins (weight 600-800) for h2-h4 headings only"
-  - "Use Hugeicons as the default icon library"
+  - "Use Lucide as the default icon library — brand/vendor logos come from Simple Icons"
 
 # ==============================================================================
 # TYPOGRAPHY
@@ -60,12 +60,16 @@ typography:
 # ==============================================================================
 
 icons:
-  library: "Hugeicons"
-  package: "hugeicons-react"
+  library: "Lucide"
+  package: "lucide-react"           # Svelte: @lucide/svelte (import per icon)
   default_size: "20px"
-  default_stroke: 1.5
-  fallback: "Lucide (only if icon unavailable in Hugeicons)"
-  notes: "Use Hugeicons consistently. Match icon weight to surrounding text weight."
+  default_stroke: 2                 # Lucide's own default — do not vary per context
+  brand_marks:
+    library: "Simple Icons"
+    package: "simple-icons"
+    scope: "Third-party logos ONLY (GitHub, X, Bluesky, vendors) — Lucide ships none"
+    shape: "24x24 filled path, no stroke; wrap once per app rather than inlining"
+  notes: "Use Lucide consistently, at stroke 2. Vary size per context, never weight. Same set shadcn/ui ships with, so no second icon dependency."
 
 # ==============================================================================
 # MAIA STYLE

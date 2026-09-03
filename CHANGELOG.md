@@ -5,6 +5,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.09.0] — 2026-09-03
+
+### Changed
+- **Icon library is now Lucide; Hugeicons is retired.** [Lucide](https://lucide.dev/) replaces Hugeicons as the default icon set across the system — `lucide-react` (React) / `@lucide/svelte` (Svelte). It is the set **shadcn/ui already ships with**, so an icon pulled in by a shadcn component and one added by hand are now the same family at the same weight, instead of two icon dependencies drawn to different rules. Updated in `DESIGN-SYSTEM.md` (§1 stack table, Framework Variants, Theme Configuration, Cardinal Rule 7, §9 Icons), `CLAUDE.md` (config table, Cardinal Rule 4, install block), `components/shadcn-customizations.yaml`, `components/README.md`, `tokens/colors.css` (`iconLibrary=` stamp), `index.html`, and `example-mobile.html`. The old "fallback to Lucide only if unavailable" escape hatch is gone — there is nothing to fall back from.
+- **Stroke weight collapses to a single value: Lucide's default `2`.** §9 Rule 6's per-context ladder (`1.5` inline, `1.75` emphasized, `2` quick-action tile, `2.5` FAB) was calibrated to Hugeicons' lighter `1.5` default and does not transfer: applied to Lucide it yields a set rendering at two weights, which reads as an accident rather than emphasis. Vary `size` per context and leave `strokeWidth` alone; a heavier weight is now an explicit one-off design decision, never a per-context default. Default Stroke in the §9 table moves `1.5` → `2`.
+
+### Added
+- **Simple Icons for brand marks (§9, new subsection).** Lucide deliberately carries no third-party logos, so [Simple Icons](https://simpleicons.org/) (`simple-icons`) is now the documented source for brand/vendor marks — GitHub, X, Bluesky, and the like — and only for glyphs that genuinely are somebody's brand; anything generic stays a Lucide icon. The package ships path data rather than components, so the section prescribes wrapping it once per app (way.space: `BrandIcon.svelte`) instead of inlining `<path d>` per call site, with `fill="currentColor"` for theme adaptation. Includes the accessibility rule the way.space review surfaced: a mark inside an already-labelled link is decorative (`aria-hidden`, no `role`); only a standalone mark takes `role="img"` **plus** a `<title>` — never `role="img"` and `aria-hidden` together.
+- **Svelte icon guidance (§9).** Import per icon (`@lucide/svelte/icons/<kebab-name>`), never the barrel — ~1,900 icons otherwise enter the module graph. And a note that Svelte Lucide icons are *components*, not path data: an icon carried as data (a nav model, a `kind → icon` map) needs a capitalised binding (`{@const Icon = item.icon}`, or a `$derived`) before it renders, which also makes any module holding such a map Svelte-importing.
+
+---
+
 ## [2026.07.1] — 2026-07-11
 
 ### Added
