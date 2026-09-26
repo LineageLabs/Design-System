@@ -17,6 +17,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.09.0] — 2026-09-26
+
+### Added
+- **Avatar standing ring.** New `.img-avatar-ring-{proven|curated|member}` pattern in `DESIGN-SYSTEM.md` §11 — a two-stop `box-shadow` ring around `.img-avatar` (2px `--card` gap, then a 2px ring) marking a person's standing: proven (`--brand-offset-green`), curated (`--brand-offset-lavender`), or member (1px `color-mix(in srgb, var(--foreground) 10%, transparent)` hairline). No new color tokens — reuses the existing adaptive brand-offset set. Requires a `title`/`sr-only` label and a visible badge alongside the ring; color is never the only carrier of standing. Originated in way.space's `BuilderAvatar` component (builders redesign, 2026-09-26). Logged as Decision 003 in `docs/DECISIONS.md`.
+
+---
+
 ## [2026.07.1] — 2026-07-11
 
 ### Added

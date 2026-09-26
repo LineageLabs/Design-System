@@ -37,6 +37,22 @@ Record significant design decisions here so future contributors (human or LLM) u
 
 ---
 
+## 003 — Avatar Standing Ring
+
+**Date:** 2026-09-26
+**Decision:** Encode a person's standing (proven / curated / member) on an avatar as a `box-shadow` ring — never a border, and never color alone.
+
+**Rationale:**
+- way.space's builder directory needed one glanceable mark that travels across a directory, a profile page, and forum cards, so readers learn what "proven" or "curated" means once and recognise it everywhere.
+- A `box-shadow` ring with a 2px `--card`-colored gap doesn't shift avatar layout the way a border would, and reuses the existing adaptive brand-offset tokens (green for proven, lavender for curated) instead of adding new color tokens.
+- Color is never sufficient on its own (rule 8): the ring must be backed by a `title`/`sr-only` label and a visible badge elsewhere on the surface.
+
+**Consequences:**
+- Any avatar carrying a standing signal uses the three ring variants (`proven` / `curated` / `member`) documented in `DESIGN-SYSTEM.md` §11, not a bespoke border treatment.
+- The hairline "member" ring is the default/unstated state — it must not be omitted just because it's the least visually loud.
+
+---
+
 ## Template
 
 ```
