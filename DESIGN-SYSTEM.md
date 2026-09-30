@@ -607,6 +607,26 @@ Key characteristics:
 | `Input` | Focus ring | `ring-2 ring-offset-2 ring-ring` |
 | `Badge` (brand) | Brand variant | `--brand-highlight-*` (only when specified) |
 
+### Toast (Action Feedback)
+
+**Rule: results of an action float; standing conditions stay inline.** The outcome of something the user just did — saved, approved, archived, failed to save — is a transient toast anchored to the viewport. It is never markup in page flow. Content that re-renders or auto-advances after an action (a list that selects the next row, a panel that reloads) would otherwise carry the message onto the wrong item. way.space learned this when "Approved — X" rendered inside the *next* row's detail pane.
+
+| Aspect | Convention |
+|--------|-----------|
+| **Anchor** | Viewport-fixed, bottom-right on desktop. On a phone it spans the full width with the 16px gutter. Keep it clear of sticky chrome, such as a save bar at the foot or filter bars at the top. |
+| **Content** | A verb plus the affected item in bold ("Approved **Foo**"), with optional one-line detail such as the server's message or a count. Name the item: a bare "Saved" is ambiguous once the page has moved on. |
+| **Undo** | Offer **Undo** wherever an inverse action exists (approve → un-approve, archive → restore). Undo *is* the confirmation, so it runs without the inverse's usual confirm dialog, then reports its own outcome as a toast. Bind the action target when the toast is created, because the toast outlives the page that raised it. |
+| **Timing** | Success 5s; warning, or any toast with Undo, 8s; **errors stay until dismissed**. Timers pause while the stack is hovered or focused. |
+| **Stacking** | Newest nearest the anchor, with a small cap (4). Over the cap, drop the oldest *expiring* toast, never a sticky error. A later success for the same item clears that item's earlier error. |
+| **Accessibility** | Two live regions, **always rendered** (a region inserted together with its first message is often not announced). Errors go in `role="alert"`, everything else in `role="status" aria-live="polite"`. Every toast has a Dismiss button, and Escape dismisses the focused one. Focus then moves to the next toast or back to where it came from, never to `<body>`. |
+| **Motion** | A short entrance (see Animation Assignments). Off under `prefers-reduced-motion`. |
+| **Style** | Card surface (`bg-card`, `ring-1 ring-foreground/10`, `shadow-lg`) with a status icon tinted by an offset accent: green for success, yellow for warning, coral for error. Token-only, so dark mode needs nothing extra. The width is clamped per §8 (`max-width: calc(100vw - 3rem)`). Dense tool UIs (admin consoles) use card radius; brochure surfaces may use the Maia pill. |
+| **Clicks** | The stack container is `pointer-events: none` and each toast `pointer-events: auto`, so the gaps between toasts never swallow clicks meant for the page beneath. |
+
+**What stays inline:** a validation error rendered in its own slot **beside the inputs** the user still has to fix, field-level notices, dirty/unsaved state bars, and read-only or truncation notices. A failure that would otherwise show as a page-level banner away from its form floats as a sticky error toast.
+
+Reference implementation: way.space `AdminToaster.svelte` + `toasts.svelte.ts` (Svelte 5 runes store, one host mounted in the admin layout). React projects should reach for shadcn/ui's `Sonner` and apply the rules above.
+
 ### Chart
 
 shadcn/ui includes a `Chart` component backed by [Recharts](https://recharts.org/). Use the five semantic chart color tokens (`--chart-1` through `--chart-5`) defined in the Gray theme.
