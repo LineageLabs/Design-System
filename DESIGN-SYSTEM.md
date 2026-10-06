@@ -1391,6 +1391,28 @@ Always on **containers** (`.img-ar`, `.img-avatar`, `.img-overlay-wrap`, `.maia-
 
 ---
 
+### Avatar Standing Ring
+
+A two-stop `box-shadow` ring around `.img-avatar` that signals a person's standing without adding a border that shifts layout. Originated in way.space's `BuilderAvatar` component (builders redesign, 2026-09-26); documented here as a reusable pattern for any avatar that carries a credibility or curation state.
+
+| State | Ring color | Meaning |
+|---|---|---|
+| Proven | `--brand-offset-green` | Passes the credibility write gate (verified human, or a builder graded B or better) |
+| Curated | `--brand-offset-lavender` | A notable person curated from public sources, not a signed-up member |
+| Member | `color-mix(in srgb, var(--foreground) 10%, transparent)` (1px hairline) | Signed up, not yet proven |
+
+```css
+.img-avatar-ring-proven  { box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--brand-offset-green); }
+.img-avatar-ring-curated { box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--brand-offset-lavender); }
+.img-avatar-ring-member  { box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent); }
+```
+
+The 2px gap in `--card` before the ring keeps it from touching the avatar image at any size. Colors are the existing brand-offset tokens (adaptive light/dark) — no new tokens.
+
+**Accessibility rule: the ring is never the only carrier of standing.** Pair it with a `title` attribute ("Proven builder" / "Curated profile" / "Member") and matching `sr-only` text, and pair every ringed avatar with a visible badge elsewhere on the surface (a verified checkmark, a grade chip, or a "Curated" chip) — color alone must never be the only signal.
+
+---
+
 ### `maia-btn-outline` on Dark Backgrounds
 
 The `.maia-btn-outline` class sets shape only; color is context-dependent. When placed on a dark image or scrim, override inline:
