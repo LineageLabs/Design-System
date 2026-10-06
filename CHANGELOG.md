@@ -15,6 +15,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.09.1] — 2026-09-30
+
+### Added
+- **Toast (Action Feedback) convention (`DESIGN-SYSTEM.md` §6, new subsection).** The rule is that results of an action float and standing conditions stay inline. It covers: viewport anchor (bottom-right; full-width with the 16px gutter on a phone); content (verb plus the affected item in bold); Undo for any action with an inverse, bound at creation because the toast outlives the page; timing (success 5s, warning/Undo 8s, errors sticky until dismissed, paused on hover/focus); a stack cap of 4 that never drops a sticky error; a11y (two always-rendered live regions, `role="alert"` for errors and polite `role="status"` for the rest, Dismiss button, Escape, focus never dropped to `<body>`); reduced motion; card style with offset-accent status icons; and a `pointer-events: none` container with interactive toasts. Origin: way.space #761 (`AdminToaster.svelte`).
+- **Decision 004 (`docs/DECISIONS.md`)**: action results float as toasts; standing conditions stay inline.
+
+---
+
 ## [2026.09.0] — 2026-09-03
 
 ### Changed
@@ -24,6 +32,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 ### Added
 - **Simple Icons for brand marks (§9, new subsection).** Lucide deliberately carries no third-party logos, so [Simple Icons](https://simpleicons.org/) (`simple-icons`) is now the documented source for brand/vendor marks — GitHub, X, Bluesky, and the like — and only for glyphs that genuinely are somebody's brand; anything generic stays a Lucide icon. The package ships path data rather than components, so the section prescribes wrapping it once per app (way.space: `BrandIcon.svelte`) instead of inlining `<path d>` per call site, with `fill="currentColor"` for theme adaptation. Includes the accessibility rule the way.space review surfaced: a mark inside an already-labelled link is decorative (`aria-hidden`, no `role`); only a standalone mark takes `role="img"` **plus** a `<title>` — never `role="img"` and `aria-hidden` together.
 - **Svelte icon guidance (§9).** Import per icon (`@lucide/svelte/icons/<kebab-name>`), never the barrel — ~1,900 icons otherwise enter the module graph. And a note that Svelte Lucide icons are *components*, not path data: an icon carried as data (a nav model, a `kind → icon` map) needs a capitalised binding (`{@const Icon = item.icon}`, or a `$derived`) before it renders, which also makes any module holding such a map Svelte-importing.
+
+---
+
+## [2026.09.0] — 2026-09-26
+
+### Added
+- **Avatar standing ring.** New `.img-avatar-ring-{proven|curated|member}` pattern in `DESIGN-SYSTEM.md` §11 — a two-stop `box-shadow` ring around `.img-avatar` (2px `--card` gap, then a 2px ring) marking a person's standing: proven (`--brand-offset-green`), curated (`--brand-offset-lavender`), or member (1px `color-mix(in srgb, var(--foreground) 10%, transparent)` hairline). No new color tokens — reuses the existing adaptive brand-offset set. Requires a `title`/`sr-only` label and a visible badge alongside the ring; color is never the only carrier of standing. Originated in way.space's `BuilderAvatar` component (builders redesign, 2026-09-26). Logged as Decision 003 in `docs/DECISIONS.md`.
 
 ---
 

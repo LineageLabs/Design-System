@@ -37,7 +37,40 @@ Record significant design decisions here so future contributors (human or LLM) u
 
 ---
 
-## 004 — Self-Hosted Fonts, and Lora Italic for Display Emphasis
+## 003 — Avatar Standing Ring
+
+**Date:** 2026-09-26
+**Decision:** Encode a person's standing (proven / curated / member) on an avatar as a `box-shadow` ring — never a border, and never color alone.
+
+**Rationale:**
+- way.space's builder directory needed one glanceable mark that travels across a directory, a profile page, and forum cards, so readers learn what "proven" or "curated" means once and recognise it everywhere.
+- A `box-shadow` ring with a 2px `--card`-colored gap doesn't shift avatar layout the way a border would, and reuses the existing adaptive brand-offset tokens (green for proven, lavender for curated) instead of adding new color tokens.
+- Color is never sufficient on its own (rule 8): the ring must be backed by a `title`/`sr-only` label and a visible badge elsewhere on the surface.
+
+**Consequences:**
+- Any avatar carrying a standing signal uses the three ring variants (`proven` / `curated` / `member`) documented in `DESIGN-SYSTEM.md` §11, not a bespoke border treatment.
+- The hairline "member" ring is the default/unstated state — it must not be omitted just because it's the least visually loud.
+
+---
+
+## 004 — Action Results Float as Toasts; Standing Conditions Stay Inline
+
+**Date:** 2026-09-30
+**Decision:** The result of a user action (success, warning, failure) is shown as a viewport-anchored, transient toast, never as a banner in page flow. Inline messaging is reserved for standing conditions: validation errors beside the inputs they concern, field-level notices, dirty-state bars and read-only notices. Error toasts stay until dismissed, and an Undo is offered wherever an inverse action exists.
+
+**Rationale:**
+- An in-flow banner belongs to whatever content is on screen when it renders. After an action that reloads or auto-advances, that content is often a different item. way.space's proposal queue showed "Approved — X" inside the *next* row's pane (way.space #761).
+- A floating message survives the post-action data reload and row change without being tied to either.
+- Undo is a lighter safeguard than a confirm dialog for reversible actions, and it keeps a queue workflow fast.
+
+**Consequences:**
+- Projects mount one toast host per shell and push to it from action handlers. They do not render result markup per page.
+- Full conventions (timing, stacking, a11y, style) live in `DESIGN-SYSTEM.md` §6 "Toast (Action Feedback)".
+- Decision number 003 is claimed by the open avatar-standing-ring PR (#9).
+
+---
+
+## 005 — Self-Hosted Fonts, and Lora Italic for Display Emphasis
 
 **Date:** 2026-10-06
 **Decision:** Web fonts (Lora, Poppins, JetBrains Mono) are redistributed from this repo's `fonts/` directory and served from each app's own origin. No app loads anything from `fonts.googleapis.com` / `fonts.gstatic.com`. At the same time the "Lora is never italic" rule is replaced: display headlines stay upright, but a word or two of `<em>` emphasis inside them is set in the real Lora italic face, which `fonts/fonts.css` now ships.
@@ -55,7 +88,7 @@ Record significant design decisions here so future contributors (human or LLM) u
 - Lora italic is `<em>` inside `.h0` / `h1` only — never a whole headline, never Poppins. `components.css` carries the explicit `.h0 em, h1 em` rule.
 - Refreshing a font version is a repo change (`fonts/README.md` recipe), not a CDN drift.
 
----
+
 
 ## Template
 
