@@ -53,6 +53,21 @@ Record significant design decisions here so future contributors (human or LLM) u
 
 ---
 
+## 004 — Action Results Float as Toasts; Standing Conditions Stay Inline
+
+**Date:** 2026-09-30
+**Decision:** The result of a user action (success, warning, failure) is shown as a viewport-anchored, transient toast, never as a banner in page flow. Inline messaging is reserved for standing conditions: validation errors beside the inputs they concern, field-level notices, dirty-state bars and read-only notices. Error toasts stay until dismissed, and an Undo is offered wherever an inverse action exists.
+
+**Rationale:**
+- An in-flow banner belongs to whatever content is on screen when it renders. After an action that reloads or auto-advances, that content is often a different item. way.space's proposal queue showed "Approved — X" inside the *next* row's pane (way.space #761).
+- A floating message survives the post-action data reload and row change without being tied to either.
+- Undo is a lighter safeguard than a confirm dialog for reversible actions, and it keeps a queue workflow fast.
+
+**Consequences:**
+- Projects mount one toast host per shell and push to it from action handlers. They do not render result markup per page.
+- Full conventions (timing, stacking, a11y, style) live in `DESIGN-SYSTEM.md` §6 "Toast (Action Feedback)".
+- Decision number 003 is claimed by the open avatar-standing-ring PR (#9).
+
 ## Template
 
 ```

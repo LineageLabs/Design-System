@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.09.1] — 2026-09-30
+
+### Added
+- **Toast (Action Feedback) convention (`DESIGN-SYSTEM.md` §6, new subsection).** The rule is that results of an action float and standing conditions stay inline. It covers: viewport anchor (bottom-right; full-width with the 16px gutter on a phone); content (verb plus the affected item in bold); Undo for any action with an inverse, bound at creation because the toast outlives the page; timing (success 5s, warning/Undo 8s, errors sticky until dismissed, paused on hover/focus); a stack cap of 4 that never drops a sticky error; a11y (two always-rendered live regions, `role="alert"` for errors and polite `role="status"` for the rest, Dismiss button, Escape, focus never dropped to `<body>`); reduced motion; card style with offset-accent status icons; and a `pointer-events: none` container with interactive toasts. Origin: way.space #761 (`AdminToaster.svelte`).
+- **Decision 004 (`docs/DECISIONS.md`)**: action results float as toasts; standing conditions stay inline.
+
+---
+
 ## [2026.09.0] — 2026-09-03
 
 ### Changed
