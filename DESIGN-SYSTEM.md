@@ -69,20 +69,30 @@ Generated from: `shadcn/create`
 |------|-------------|-------------|-------|
 | **Display** (h0) | `"Lora", Georgia, serif` | 400 | Hero / landing display text — huge, light-weight |
 | **H1** | `"Lora", Georgia, serif` | 700 | Page-level titles and hero headings |
+| **Display emphasis** (`<em>` inside h0 / h1) | `"Lora", Georgia, serif` — *italic* | 400–700 | A word or two of a display headline, in the real Lora italic face — see "Lora italic" below |
 | **Display alt** (h0-alt) | `"Poppins", sans-serif` | 300 | Alternate hero display — Poppins light, same sizing as h0 |
 | **H1 alt** (h1-alt) | `"Poppins", sans-serif` | 300 | Alternate page title — Poppins light, same sizing as h1 |
 | **Headlines** (h2–h4) | `"Poppins", sans-serif` | 600–800 | Section headers, card titles, sub-headings |
 | **Body / UI** | `system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"` | 400–700 | All body text, buttons, inputs, labels, navigation |
 | **Code** | `"Geist Mono", "SF Mono", "Fira Code", Consolas, monospace` | 400 | Code blocks, inline code, terminal |
+| **Blueprint mono** (optional module) | `"JetBrains Mono", ui-monospace, monospace` | 400–500 | Only with `components/blueprint.css` — `.mono-label` eyebrows, `.mono-code`, `.hex-plus` |
 
 ### Installation
 
-```html
-<!-- Google Fonts — Lora (h0, h1) + Poppins (h2–h4, h0-alt, h1-alt) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
+Fonts are **self-hosted** from `fonts/` — never loaded from Google Fonts (Rule 6). Import the
+declarations from the app's global stylesheet; the bundler hashes the `.woff2` files into its
+immutable asset directory. `fonts/README.md` has provenance, subsets, licences and the refresh recipe.
+
+```css
+/* Lora (h0, h1 — upright + italic) + Poppins (h2–h4, h0-alt, h1-alt) */
+@import "./design-system/fonts/fonts.css";
+/* Only when the app also imports components/blueprint.css */
+@import "./design-system/fonts/fonts-blueprint.css";
 ```
+
+Static HTML links the stylesheet instead: `<link rel="stylesheet" href="fonts/fonts.css">`.
+Preload the one or two files the first viewport needs (usually Lora upright + italic, latin):
+`<link rel="preload" as="font" type="font/woff2" crossorigin href="…/lora-latin-normal.woff2">`.
 
 ### CSS Setup
 
@@ -122,6 +132,22 @@ h2, h3, h4 {
   font-size: clamp(2rem, 4vw, 2.75rem);
   line-height: 1.2;
 }
+```
+
+### Lora italic
+
+Display headlines may carry **italic emphasis on a word or two** — `Agent tools you can <em>actually
+trust.</em>` — set in the **real Lora italic face** that `fonts/fonts.css` ships (`font-style: italic`,
+variable 400–700). The rules:
+
+- The heading itself stays upright (`.h0` / `h1` declare `font-style: normal`); only the `<em>` is italic.
+- Emphasis is a word or two, never the whole headline, and never on `h2`–`h4` (Poppins ships upright only).
+- `<em>` is the element — it is semantic emphasis, so no `<i>` or an italic utility class.
+- Do not synthesise: if a page loads Lora, it loads both the upright and the italic file. A synthetic
+  slant (the browser skewing the upright) is what this rule replaces.
+
+```html
+<h1 class="h0">A catalogue that filters slop <em>at the source.</em></h1>
 ```
 
 > **`.h0` is the canonical display-scale class.** A `.hero-title` class was used in earlier project files; as of `[2026.02.19]` it was aligned to identical values as `.h0` and is no longer part of the design system. In all new code, use `.h0` directly.
@@ -202,11 +228,20 @@ Text that rises above body level — through prominent size, display weight, or 
 
 #### Rule 5 — Web Font Loads Must Be Justified
 
-Every font family in the Google Fonts `<link>` (or `next/font` import) must be actively used by at least one visible semantic element on that specific page. If no `h2`–`h4` appears on a standalone screen, omit Poppins from the font load. If no `h1` or `.h0` appears, omit Lora. On the design system reference page (which demonstrates the full type scale), all families may be loaded.
+Every font family an app declares (the `fonts/fonts.css` import, or a `next/font` import) must be actively used by at least one visible semantic element. A declared `@font-face` costs nothing until a matching family is rendered, so the rule bites on what a page *renders*: if no `h2`–`h4` appears on a standalone screen, nothing on it should set Poppins; if no `h1` or `.h0` appears, nothing should set Lora. Import `fonts/fonts-blueprint.css` (JetBrains Mono) only alongside `components/blueprint.css`. On the design system reference page (which demonstrates the full type scale), all families may be loaded.
 
 ```
-✅ example-mobile.html: loads Lora only — h1 greeting present, no h2–h4 on screen
-❌ example-mobile.html: loads Poppins even though no h2–h4 appears — wasted network request
+✅ example-mobile.html: renders Lora only — h1 greeting present, no h2–h4 on screen
+❌ example-mobile.html: styles a label in Poppins even though no h2–h4 appears — a wasted font download
+```
+
+#### Rule 6 — Fonts Are Self-Hosted
+
+Web fonts ship from `fonts/` on the app's own origin. **Never add a `fonts.googleapis.com` / `fonts.gstatic.com` `<link>` or `preconnect`.** A Google Fonts load sends every visitor's IP address and user agent to Google before any consent — held to breach the GDPR in LG München I, 20 January 2022 (3 O 17493/20) — and buys nothing in return: browsers partition caches per site, so the shared CDN never hits, while the request adds two third-party connections and a render-blocking stylesheet. A privacy policy can then also state truthfully that typefaces load from the site itself.
+
+```
+✅ @import "./design-system/fonts/fonts.css";  →  hashed .woff2 files under /_app/immutable/
+❌ <link href="https://fonts.googleapis.com/css2?family=Lora…" rel="stylesheet">
 ```
 
 ---

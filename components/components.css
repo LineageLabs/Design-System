@@ -60,8 +60,14 @@ body {
 h1 {
 	font-family: 'Lora', Georgia, serif;
 	font-weight: 700;
-	font-style: normal; /* Lora is never italic — DS §3 */
+	font-style: normal; /* upright heading; only an <em> inside is italic — DS §2 "Lora italic" */
 	font-size: clamp(2rem, 4vw, 2.75rem);
+}
+/* Display emphasis: a word or two of a Lora headline in the REAL Lora italic face
+   (fonts/fonts.css ships it). The heading stays upright. */
+.h0 em,
+h1 em {
+	font-style: italic;
 }
 h2,
 h3,
