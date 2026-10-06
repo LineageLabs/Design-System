@@ -88,6 +88,22 @@ Record significant design decisions here so future contributors (human or LLM) u
 - Lora italic is `<em>` inside `.h0` / `h1` only — never a whole headline, never Poppins. `components.css` carries the explicit `.h0 em, h1 em` rule.
 - Refreshing a font version is a repo change (`fonts/README.md` recipe), not a CDN drift.
 
+---
+
+## 006 — Header Facts as One Equal-Height Pill Row; Third-Party Logos Always Tiled
+
+**Date:** 2026-10-06
+**Decision:** A detail page's headline facts (score, community vote, canonical links) render as one row of pills that share a fixed-height shell and a 32px icon slot. An action that edits a fact (voting) lives inside that fact's pill. Every third-party logo renders inside one always-light, `object-contain`, padded tile, with an in-tile fallback.
+
+**Rationale:**
+- way.space's tool page had a score pill and a vote tally at different heights and treatments, a separate vote block further down the page, and outbound links buried in a sidebar. Visitors read the taller element as the more important fact, and the duplicated tally read as two numbers. One shell makes equal weight structural rather than a matter of discipline.
+- Scraped logos arrive as square marks, favicons and transparent SVGs. Cropping (`object-cover`) cut off wordmarks. A dark tile in dark mode swallowed dark marks. A single tile fixes both for every surface at once.
+
+**Consequences:**
+- New header facts join the row as pills; they don't become freestanding badges.
+- Any surface showing a third-party logo uses the tile, at one of four fixed sizes.
+- Full conventions: `DESIGN-SYSTEM.md` §6 "Fact Pill Row (Page Header)" and §11 "Third-Party Logo Tile".
+
 
 
 ## Template
