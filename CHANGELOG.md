@@ -5,6 +5,24 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.10.1] — 2026-10-06
+
+### Added
+- **Fact Pill Row, a page-header pattern (`DESIGN-SYSTEM.md` §6, new subsection).** A detail page's headline facts (score, vote tally, canonical links) are one `flex-wrap` row of pills sharing a fixed-height shell (`h-11 rounded-full bg-card ring-1 ring-foreground/10`) and a 32px decorative icon slot, so they are pixel-equal. An action that edits a fact (vote toggles with `aria-pressed`) sits inside that fact's pill after a hairline divider, and only for people allowed to act. Link pills are ordered website-first for hosted products and repo-first for code. Labels use `min-w-0 truncate`, so nothing overflows at 320px. Origin: way.space `HeroPill` (#591/#592).
+- **Third-Party Logo Tile (`DESIGN-SYSTEM.md` §11, new subsection).** Every third-party logo sits in one tile:
+  - always light in both themes, via `var(--brand-highlight-light)`, never a literal `#fff`
+  - `ring-1 ring-foreground/10`, about 12% padding
+  - `object-contain`, never `object-cover`
+  - radius scaled to size, and a fixed 32 / 40 / 56–64 / 80–96px scale
+  - an in-tile fallback dot
+  - not-live tools dim the mark, not the tile
+  - alt text rules: `"{Name} logo"` standalone, `alt=""` next to the name.
+
+  Origin: way.space `ToolLogo` (#458).
+- **Decision 006 (`docs/DECISIONS.md`)**: header facts render as one equal-height pill row; third-party logos are always tiled.
+
+---
+
 ## [2026.10.0] — 2026-10-06
 
 ### Added

@@ -662,6 +662,20 @@ Key characteristics:
 
 Reference implementation: way.space `AdminToaster.svelte` + `toasts.svelte.ts` (Svelte 5 runes store, one host mounted in the admin layout). React projects should reach for shadcn/ui's `Sonner` and apply the rules above.
 
+### Fact Pill Row (Page Header)
+
+A detail page's header can show the few facts and actions a visitor came for: a score, a community vote, the canonical outbound links. Show them as **one row of pills at exactly equal height**, so no single fact outranks the others by accident of markup. Originated in way.space's tool-page `HeroPill` (2026-10-03).
+
+| Aspect | Rule |
+|---|---|
+| **Shell** | One shared component: `inline-flex h-11 max-w-full items-center gap-2.5 rounded-full bg-card ring-1 ring-foreground/10`. The **fixed height** is what makes the pills pixel-equal, however different their contents. |
+| **Icon slot** | Every pill leads with the same 32px (`size-8`) round icon slot. Use a Lucide icon, or a Simple Icons brand mark via the brand-icon wrapper. The slot is decorative (`aria-hidden`); the label text carries the meaning. |
+| **Content** | One fact per pill. Example: a score (grade chip + number + "?" explainer link), a vote tally (percentage **with** its rater count), or an outbound link (mark + repo name or domain + external-link glyph). |
+| **Inline actions** | An action that edits the pill's own fact lives **inside** that pill, after a hairline divider (`border-l border-foreground/10`). Example: 👍/👎 toggles with `aria-pressed` next to the tally. Show it only to people allowed to act. Everyone else gets the read-only pill plus a one-line hint under the row ("Log in to vote"). Never render the same fact twice on the page. |
+| **Links** | A link pill is the whole pill (`<a>`), with `target="_blank" rel="noopener noreferrer"` for outbound links. Order canonical links by what the product *is*: website first for hosted products, repository first for code. |
+| **Wrapping** | The row is `flex-wrap`. Labels inside a pill are `min-w-0 truncate` with a max width, so nothing overflows at 320px. |
+| **Secondary facts** | Counts that aren't pills (discussion count, own-vote confirmation, an action error) go on one quiet text line directly under the row. |
+
 ### Chart
 
 shadcn/ui includes a `Chart` component backed by [Recharts](https://recharts.org/). Use the five semantic chart color tokens (`--chart-1` through `--chart-5`) defined in the Gray theme.
@@ -1445,6 +1459,24 @@ A two-stop `box-shadow` ring around `.img-avatar` that signals a person's standi
 The 2px gap in `--card` before the ring keeps it from touching the avatar image at any size. Colors are the existing brand-offset tokens (adaptive light/dark) — no new tokens.
 
 **Accessibility rule: the ring is never the only carrier of standing.** Pair it with a `title` attribute ("Proven builder" / "Curated profile" / "Member") and matching `sr-only` text, and pair every ringed avatar with a visible badge elsewhere on the surface (a verified checkmark, a grade chip, or a "Curated" chip) — color alone must never be the only signal.
+
+### Third-Party Logo Tile
+
+Logos you do not control — scraped product marks, favicons, transparent SVGs — always sit in **one tile**, never as a bare `<img>`. Third-party marks come in every shape and are drawn for light backgrounds, so framing them uniformly is what keeps a grid of them from looking like a ransom note. Originated in way.space's `ToolLogo` component (2026-10-03), which frames every catalogue tool logo.
+
+| Aspect | Rule |
+|---|---|
+| **Surface** | Always light in **both** themes: `background: var(--brand-highlight-light)`. A dark-mode tile would swallow dark marks. Use the token, never a literal `#fff`. |
+| **Edge** | `ring-1 ring-foreground/10`, which reads in light and dark mode. |
+| **Fit** | `object-contain`, **never** `object-cover`. Cropping cuts off wordmarks and non-square marks. |
+| **Padding** | About 12% of the tile on each side, so edge-to-edge marks and favicons sit at the same visual weight. |
+| **Radius** | Scales with size: `rounded-lg` at 32px, `rounded-xl` at 40px, `rounded-2xl` at 56–64px, `rounded-3xl` at 80–96px. The image inherits the radius. |
+| **Sizes** | A fixed scale: 32 / 40 / 56–64 / 80–96px. Pick one per surface (list chip / card / page header / hero); don't invent in-between sizes. |
+| **Fallback** | No logo, or a load error: a neutral or accent dot **inside the same tile**. The frame never disappears, so rows stay aligned. |
+| **Not-live** | Dim the mark (`opacity-50`), not the tile. |
+| **Alt text** | `"{Name} logo"` when the mark stands alone. Use `alt=""` when the name is already adjacent text, as in cards and rows. |
+
+Our own brand marks (the Way mark, wordmarks) are not third-party logos and do not use this tile.
 
 ---
 
