@@ -5,6 +5,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.10.0] — 2026-10-06
+
+### Added
+- **Self-hosted web fonts (`fonts/`).** Lora (upright + italic, variable 400–700), Poppins (300/600/700/800) and JetBrains Mono (variable, for the blueprint module) ship as `latin` + `latin-ext` woff2 files with their OFL licences, declared in `fonts/fonts.css` (core) and `fonts/fonts-blueprint.css` (optional, with `components/blueprint.css`). `fonts/README.md` carries provenance (the woff2 instances Google Fonts serves — Lora v37, Poppins v24, JetBrains Mono v24), the subset choice and the refresh recipe. New **§2 Rule 6 — Fonts Are Self-Hosted**: never a `fonts.googleapis.com` / `fonts.gstatic.com` `<link>` or `preconnect`. A Google Fonts load sends every visitor's IP and user agent to Google before any consent (LG München I, 3 O 17493/20) and, with per-site cache partitioning, buys nothing back. Installation snippet, Rule 5, `CLAUDE.md` step 4 and config table, `index.html` and the three example pages all switch to the local stylesheet. Logged as Decision 004. Originated in way.space #847 (way.je tracks the same change in way-id#400).
+
+### Changed
+- **Lora italic is back — as display emphasis only.** The `[2026.02.x]` "Lora is never italic" rule is replaced by §2 "Lora italic": a display headline (`.h0` / `h1`) stays upright, but a word or two inside it may be `<em>` set in the **real Lora italic face** that `fonts/fonts.css` now ships — never a synthetic slant, never a whole headline, never on Poppins `h2`–`h4`. This is the house style way.space and way.je already use in hero headlines ("Agent tools you can *actually trust.*"); until now both loaded only upright Lora and let the browser skew it. `components/components.css` gains an explicit `.h0 em, h1 em { font-style: italic }`; the h1 comment, Font Stack table, `CLAUDE.md` Cardinal Rule 3 and config table are updated.
+
+---
+
 ## [2026.09.0] — 2026-09-03
 
 ### Changed

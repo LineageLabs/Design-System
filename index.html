@@ -9,9 +9,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/icons/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/logos/icons/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/icons/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
+  <!-- Self-hosted fonts (DS §2 Rule 6) — never Google Fonts -->
+  <link rel="stylesheet" href="fonts/fonts.css">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <style>
@@ -3739,8 +3738,8 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint</div></div></
         <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Install shadcn/ui (Maia style, Gray base)</div><div class="code-block">npx shadcn@latest init
 <span class="cm"># Choose: Gray base color, Maia style, Large radius</span></div></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Install GSAP + Lucide</div><div class="code-block">npm install gsap lucide-react simple-icons</div></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Lora + Poppins for headlines</div><div class="code-block"><span class="cm">/* Google Fonts */</span>
-<span class="cm">/* Lora: ital,wght@0,400;0,700;1,400 | Poppins: wght@600;700;800 */</span>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Add Lora + Poppins for headlines</div><div class="code-block"><span class="cm">/* Self-hosted — never Google Fonts (§2 Rule 6) */</span>
+<span class="kw">@import</span> <span class="st">"./design-system/fonts/fonts.css"</span>;
 <span class="kw">h1</span>, <span class="kw">.h0</span> { <span class="fn">font-family</span>: <span class="st">"Lora"</span>, Georgia, serif; }
 <span class="kw">h2, h3, h4</span> { <span class="fn">font-family</span>: <span class="st">"Poppins"</span>, sans-serif; }</div></div></div>
         <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Copy brand tokens</div><div class="code-block"><span class="kw">:root</span> {
