@@ -20,6 +20,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
   Origin: way.space `ToolLogo` (#458).
 - **Decision 006 (`docs/DECISIONS.md`)**: header facts render as one equal-height pill row; third-party logos are always tiled.
+## [2026.10.1] — 2026-10-13
+
+### Added
+- **Entity Shapes (`DESIGN-SYSTEM.md` §11, new subsection; new Cardinal Rule 8).** The frame's shape says what it holds: software (tools, apps, frameworks, products) sits in a rounded-square logo tile; participants (people, builders **and organizations**) are always circles (`.img-avatar`). Fallbacks keep the shape (in-tile dot vs. initials in the circle). Unframed Simple Icons glyphs and our own marks are exempt. The §11 Border-radius table gains a software-logo row, and the Avatar row now reads "person or organization". `index.html` gains an "Entity Shapes" demo (6b) next to Avatar / Thumbnail; `CLAUDE.md` gains Cardinal Rule 10, and `components/shadcn-customizations.yaml` scopes `Avatar: rounded-full` to participants. Logged as Decision 007. Originated in way.space (LineageLabs/way-space#915).
 
 ---
 

@@ -93,7 +93,7 @@ maia_style:
     Dialog: "rounded-4xl + ring-1 ring-foreground/5"
     Badge: "rounded-4xl (pill)"
     Accordion: "rounded-2xl"
-    Avatar: "rounded-full"
+    Avatar: "rounded-full (participants only: people, builders, organizations; software logos use the rounded-square logo tile, DESIGN-SYSTEM.md §11 Entity Shapes)"
   available_radius_presets:
     none: "0"
     small: "0.45rem"
