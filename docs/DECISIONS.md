@@ -88,6 +88,24 @@ Record significant design decisions here so future contributors (human or LLM) u
 - Lora italic is `<em>` inside `.h0` / `h1` only — never a whole headline, never Poppins. `components.css` carries the explicit `.h0 em, h1 em` rule.
 - Refreshing a font version is a repo change (`fonts/README.md` recipe), not a CDN drift.
 
+---
+
+## 007 — Software Is a Rounded Square, a Participant Is a Circle
+
+**Date:** 2026-10-13
+**Decision:** The frame around an entity's image encodes what it is. Software (tools, apps, frameworks, products) always renders in a rounded-square logo tile. Participants (people, builders and organizations) always render as circles.
+
+**Rationale:**
+- way.space lists software and the people who build it side by side: cards, relation rows, forum threads, "Built by" lines. A consistent shape lets a reader separate the two before reading a name.
+- The split was already almost true in practice (the tool logo tile and `BuilderAvatar`), but organization logos were circles on one surface and rounded squares on another. A written rule settles the edge case.
+- Organizations count as participants because they act: they build, publish and maintain software. A logo drawn as a mark doesn't make the organization software.
+
+**Consequences:**
+- The third-party logo tile is the software frame. An organization's logo or GitHub org avatar uses `.img-avatar`, even though it is a third-party logo.
+- Fallbacks keep the shape: a dot inside the tile for software, initials inside the circle for participants.
+- Unframed monochrome brand glyphs (Simple Icons) and our own marks carry no shape signal and are exempt.
+- Full conventions: `DESIGN-SYSTEM.md` §11 "Entity Shapes".
+
 
 
 ## Template

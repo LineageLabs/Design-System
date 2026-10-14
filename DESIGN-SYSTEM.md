@@ -58,6 +58,7 @@ Generated from: `shadcn/create`
 5. **Never edit shadcn source.** Customise via CSS overrides, Tailwind composition, or wrapper components.
 6. **System UI for body, Lora for h0–h1, Poppins for h2–h4.** h0 is Lora 400 (display); h1 is Lora 700. h2–h4 use Poppins 600–800. Body/UI uses the native system font stack — no install required.
 7. **Use Lucide.** Default icon set for all UI elements and illustrations. Brand/vendor logos — which Lucide deliberately excludes — come from Simple Icons.
+8. **Shape says what it is.** Software (tools, apps, products) sits in a rounded square; participants (people and organizations) are always circles. See §11 "Entity Shapes".
 
 ---
 
@@ -1362,7 +1363,8 @@ Rules for every image type used across the design system — hero, section/edito
 | Hero / full-bleed | `0` | `0` |
 | Section / editorial | `var(--radius)` | `0` |
 | Card cover | `1rem` via `.maia-card-image` | `0` |
-| Avatar | `50%` via `.img-avatar` | `0` |
+| Avatar (person or organization) | `50%` via `.img-avatar` | `0` |
+| Software logo (tool, app, product) | Rounded square, scaling with size (`rounded-lg` at 32px → `rounded-3xl` at 96px) | inherits |
 
 ---
 
@@ -1423,6 +1425,30 @@ Use **black RGBA** when the image may be any photography (hero text overlays).
 ### `overflow: hidden` Rules
 
 Always on **containers** (`.img-ar`, `.img-avatar`, `.img-overlay-wrap`, `.maia-card-image`). Never on the `<img>` itself. Never on layout or content containers that might clip shadows, focus rings, or tooltips.
+
+---
+
+### Entity Shapes
+
+**The frame's shape says what kind of thing it holds.** A reader should tell software from
+the people behind it at a glance, before reading a single name.
+
+| Entity | Shape | How |
+|---|---|---|
+| **Software**: a tool, app, framework, product or anything else in a catalog | Rounded square | A logo tile: always light, hairline ring, about 12% padding, `object-fit: contain`, radius scaling with size (`rounded-lg` at 32px, `rounded-xl` at 40px, `rounded-2xl` at 56–64px, `rounded-3xl` at 80–96px) |
+| **Participant**: a person, a builder, or an organization | Circle | `.img-avatar` (`border-radius: 50%`, `object-fit: cover`), plus the standing ring below where standing applies |
+
+Rules:
+
+1. **Organizations are participants.** A company or GitHub org is a circle, even though its mark is a logo: it builds software, it isn't software.
+2. **Never mix the two.** Don't round a software logo into a circle to "soften" a row, and don't square off an avatar to match a grid of tools. If a row holds both, the shapes stay different, which is the point.
+3. **The fallback keeps the shape.** No image, or a load error: a software tile shows an in-tile dot; a participant shows initials in the same circle. The frame never disappears and never changes shape.
+4. **Monochrome brand marks are exempt.** A Simple Icons glyph drawn inline next to a name (§9 "Brand marks") has no frame at all, so it carries no shape signal.
+5. **Our own marks are exempt.** The Way mark and the wordmarks are brand, not entities.
+
+Originated in way.space (2026-10-13), where `ToolLogo` frames every catalog entry and
+`BuilderAvatar` every builder, and a test pins every other avatar and organization logo to
+`rounded-full`.
 
 ---
 
