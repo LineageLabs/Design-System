@@ -122,6 +122,22 @@ Record significant design decisions here so future contributors (human or LLM) u
 - Unframed monochrome brand glyphs (Simple Icons) and our own marks carry no shape signal and are exempt.
 - Full conventions: `DESIGN-SYSTEM.md` §11 "Entity Shapes".
 
+## 008 — Badges Say "Listed", Never "Featured"; One Badge per Host
+
+**Date:** 2026-10-15
+**Decision:** The catalog ships two embeddable badges: a 20px shields-style README badge and a 54px Product Hunt-style website card. Both say *listed* plus a grade, and never *featured* or any endorsement word. The website card's text is pre-outlined, never a web font.
+
+**Rationale:**
+- Product Hunt's "Featured on" works because Product Hunt curates its featured list. The catalog lists tools; it doesn't feature them. "Featured", or *trusted, vetted, certified*, would claim an endorsement the catalog doesn't make.
+- A README and a website are different hosts. GitHub swaps themes through `<picture>`, and a shields pill reads as native next to other README badges. A landing page has neither convention, and its owner wants a recognizable card in a theme they choose.
+- An SVG in `<img>` loads no fonts. A badge that names Poppins renders in a fallback face on every site that embeds it. Every string on the card comes from a closed vocabulary, so it can be outlined once.
+
+**Consequences:**
+- Grade colors reuse the OG mapping (A green · B blue · C yellow · D coral). On the card, color is confined to the grade chip.
+- A failed or throttled lookup claims nothing. The card falls back to the bare wordmark, never `LISTED ON`.
+- A new string on the card means regenerating its outlines, not hand-editing paths.
+- Full conventions: `DESIGN-SYSTEM.md` §10 "Embeddable Badges". Originated in way.space (LineageLabs/way-space#943, LineageLabs/way-space#944).
+
 
 
 ## Template

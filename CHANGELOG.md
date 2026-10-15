@@ -5,6 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.10.2] — 2026-10-15
+
+### Added
+- **Embeddable Badges (`DESIGN-SYSTEM.md` §10, new subsection).** Two badges, one per host:
+  - the **README badge**: a 20px shields-style twin with the Way mark + `way.space`; light/dark via `<picture>`.
+  - the **website card**: a 54px Product Hunt-style card with the Way mark in a disc, a `LISTED ON` eyebrow over the Way\*Space wordmark, a hairline divider and the grade in a small chip. Light (white), paper (`#E8E5DE`) and dark (navy) themes, chosen by the embedder.
+
+  Rules: say "listed", never "featured" or any endorsement word; grade colors follow the OG mapping (A green · B blue · C yellow · D coral); a failed lookup never claims a state; no web fonts (the card's text is pre-outlined Poppins); links carry `utm_source=badge` plus a per-host `utm_medium`.
+- **Reference renders in `assets/badges/`** (`readme-*.svg`, `card-*.svg`), shown in a new "Embeddable badges" demo at the end of the `index.html` Logo section. §12 File Map lists the folder.
+- **Decision 008 (`docs/DECISIONS.md`)**: badges say "listed", never "featured"; one badge per host. Originated in way.space (LineageLabs/way-space#943, LineageLabs/way-space#944).
+
+---
+
 ## [2026.10.1] — 2026-10-06
 
 ### Added

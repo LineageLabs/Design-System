@@ -2023,6 +2023,54 @@
           </table>
         </div>
       </div>
+
+      <!-- ═══════════════ Embeddable badges ═══════════════ -->
+      <h3 style="font-size:1rem;font-weight:700;margin:2.5rem 0 0.5rem;font-family:'Poppins',sans-serif;">Embeddable badges</h3>
+      <p style="font-size:0.8rem;color:var(--muted-foreground);margin-bottom:1.25rem;line-height:1.5;">
+        The brand on someone else's page, one badge per host. They say <strong>listed</strong> plus a grade, never
+        <em>featured</em>. Color stays in the grade, and the card's text is pre-outlined because an SVG in
+        <code>&lt;img&gt;</code> can't load fonts. Source: <code>assets/badges/</code>; rules in DESIGN-SYSTEM.md §10.
+      </p>
+
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">README badge <span class="anim-tag">20px</span> <span class="anim-tag">light · dark</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:0.75rem;">
+          <div style="background:#ffffff;border-radius:1rem;padding:1.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
+            <img src="assets/badges/readme-light.svg" alt="way.space: grade A, light README badge" height="20">
+            <span style="font-size:0.7rem;color:#6b6e80;">Light · grade A</span>
+          </div>
+          <div style="background:#0d1117;border-radius:1rem;padding:1.5rem;display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
+            <img src="assets/badges/readme-dark.svg" alt="way.space: grade A, dark README badge" height="20">
+            <span style="font-size:0.7rem;color:#8a8d9c;">Dark (GitHub) · grade A</span>
+          </div>
+          <div style="background:#ffffff;border-radius:1rem;padding:1.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
+            <img src="assets/badges/readme-listed.svg" alt="way.space: listed, README badge" height="20">
+            <span style="font-size:0.7rem;color:#6b6e80;">No grade · listed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-demo-section reveal">
+        <div class="comp-demo-label">Website card <span class="anim-tag">54px</span> <span class="anim-tag">light · paper · dark</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:0.75rem;">
+          <div style="background:#ffffff;border-radius:1rem;padding:1.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:0.75rem;overflow-x:auto;">
+            <img src="assets/badges/card-light.svg" alt="Listed on way.space, grade A, light card" height="54">
+            <span style="font-size:0.7rem;color:#6b6e80;">Light · grade A</span>
+          </div>
+          <div style="background:#f7f5f0;border-radius:1rem;padding:1.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:0.75rem;overflow-x:auto;">
+            <img src="assets/badges/card-paper.svg" alt="Listed on way.space, grade B, paper card" height="54">
+            <span style="font-size:0.7rem;color:#6b6e80;">Paper · grade B</span>
+          </div>
+          <div style="background:#111318;border-radius:1rem;padding:1.5rem;display:flex;flex-direction:column;align-items:center;gap:0.75rem;overflow-x:auto;">
+            <img src="assets/badges/card-dark.svg" alt="Listed on way.space, grade A+, dark card" height="54">
+            <span style="font-size:0.7rem;color:#8a8d9c;">Dark · grade A+</span>
+          </div>
+          <div style="background:#ffffff;border-radius:1rem;padding:1.5rem;box-shadow:0 0 0 1px var(--border);display:flex;flex-direction:column;align-items:center;gap:0.75rem;overflow-x:auto;">
+            <img src="assets/badges/card-listed.svg" alt="Listed on way.space, no grade, light card" height="54">
+            <span style="font-size:0.7rem;color:#6b6e80;">No grade · the grade column drops</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- BRAND COLORS -->
