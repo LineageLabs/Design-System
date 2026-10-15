@@ -136,7 +136,8 @@ Record significant design decisions here so future contributors (human or LLM) u
 - Grade colors reuse the OG mapping (A green · B blue · C yellow · D coral). On the card, color is confined to the grade chip.
 - A failed or throttled lookup claims nothing. The card falls back to the bare wordmark, never `LISTED ON`.
 - A new string on the card means regenerating its outlines, not hand-editing paths.
-- Full conventions: `DESIGN-SYSTEM.md` §10 "Embeddable Badges". Originated in way.space (LineageLabs/way-space#943, LineageLabs/way-space#944).
+- Badges come with claiming a tool. The snippets live on a page only the tool's verified maintainers can open, never on a public page; the badge images stay public so existing embeds keep working.
+- Full conventions: `DESIGN-SYSTEM.md` §10 "Embeddable Badges". Originated in way.space (LineageLabs/way-space#943, LineageLabs/way-space#944, LineageLabs/way-space#945).
 
 
 

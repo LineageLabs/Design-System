@@ -12,9 +12,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
   - the **README badge**: a 20px shields-style twin with the Way mark + `way.space`; light/dark via `<picture>`.
   - the **website card**: a 54px Product Hunt-style card with the Way mark in a disc, a `LISTED ON` eyebrow over the Way\*Space wordmark, a hairline divider and the grade in a small chip. Light (white), paper (`#E8E5DE`) and dark (navy) themes, chosen by the embedder.
 
-  Rules: say "listed", never "featured" or any endorsement word; grade colors follow the OG mapping (A green · B blue · C yellow · D coral); a failed lookup never claims a state; no web fonts (the card's text is pre-outlined Poppins); links carry `utm_source=badge` plus a per-host `utm_medium`.
+  Rules: say "listed", never "featured" or any endorsement word; grade colors follow the OG mapping (A green · B blue · C yellow · D coral); a failed lookup never claims a state; no web fonts (the card's text is pre-outlined Poppins); links carry `utm_source=badge` plus a per-host `utm_medium` and `utm_campaign`. Badges come with claiming a tool: their snippets live on a maintainer-only page, never on a public one.
 - **Reference renders in `assets/badges/`** (`readme-*.svg`, `card-*.svg`), shown in a new "Embeddable badges" demo at the end of the `index.html` Logo section. §12 File Map lists the folder.
-- **Decision 008 (`docs/DECISIONS.md`)**: badges say "listed", never "featured"; one badge per host. Originated in way.space (LineageLabs/way-space#943, LineageLabs/way-space#944).
+- **Decision 008 (`docs/DECISIONS.md`)**: badges say "listed", never "featured"; one badge per host. Originated in way.space (LineageLabs/way-space#943, LineageLabs/way-space#944, LineageLabs/way-space#945).
 
 ---
 

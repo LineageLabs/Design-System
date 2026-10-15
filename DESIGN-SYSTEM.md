@@ -1276,6 +1276,11 @@ Badges are the brand appearing on someone else's page: a tool's README or its ow
 the catalog. There are two, one per host. Both are server-rendered SVGs served as `<img>`. Reference renders
 are in `assets/badges/`.
 
+**Who gets them.** Badges come with claiming a tool. Their snippets live on a page only the tool's verified
+maintainers can open (on way.space, `/tool/{slug}/badge`, reached from a "Your badges" box in the tool page's
+sidebar). Never put a badge snippet on a public page. The badge images themselves stay public, so a badge
+someone already embedded keeps working.
+
 | Badge | Host | Shape | Themes |
 |-------|------|-------|--------|
 | **README badge** | GitHub READMEs, docs | 20px shields-style twin, `rx=4` | light · dark, swapped by `<picture>` + `prefers-color-scheme` |
@@ -1305,12 +1310,12 @@ Color lives only in the chip, so the card sits quietly against any site's palett
 4. **No web fonts.** An SVG loaded through `<img>` can't fetch fonts. The README badge uses the system stack
    (`Verdana, Geneva, DejaVu Sans`). The website card's text is **pre-outlined Poppins paths**, generated once
    from the closed set of strings it can show. Never reference `@font-face` in a badge.
-5. **Link back with UTM tags.** `utm_source=badge`, plus `utm_medium=readme` or `utm_medium=website`, so the two
-   hosts show up as separate traffic sources.
+5. **Link back with UTM tags.** `utm_source=badge`, plus `utm_medium=readme` + `utm_campaign=grade-badge` or
+   `utm_medium=website` + `utm_campaign=website-badge`, so the two hosts show up as separate sources and campaigns.
 
 ```html
 <!-- Website card -->
-<a href="https://way.space/tool/{slug}?utm_source=badge&utm_medium=website&utm_campaign=grade-badge">
+<a href="https://way.space/tool/{slug}?utm_source=badge&utm_medium=website&utm_campaign=website-badge">
   <img src="https://way.space/badge/tool/{slug}.svg?style=card&theme=light" alt="{Name} on way.space" height="54">
 </a>
 ```
