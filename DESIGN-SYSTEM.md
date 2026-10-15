@@ -1270,6 +1270,51 @@ near-white strokes, offset-blue point — so it holds contrast on any browser ta
 <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/icons/apple-touch-icon.png">
 ```
 
+### Embeddable Badges
+
+Badges are the brand appearing on someone else's page: a tool's README or its own website, linking back to
+the catalog. There are two, one per host. Both are server-rendered SVGs served as `<img>`. Reference renders
+are in `assets/badges/`.
+
+| Badge | Host | Shape | Themes |
+|-------|------|-------|--------|
+| **README badge** | GitHub READMEs, docs | 20px shields-style twin, `rx=4` | light · dark, swapped by `<picture>` + `prefers-color-scheme` |
+| **Website card** | The tool's own site (footer, landing page) | 54px card, `rx=10`, hairline border | light (white) · paper (`#E8E5DE`) · dark (navy), chosen by whoever embeds it |
+
+**README badge.** The left segment is the Way mark plus `way.space` on navy. In the dark theme it flips to
+paper, because navy disappears on GitHub's `#0d1117`. The right segment carries the state.
+
+**Website card.** Modeled on Product Hunt's "Featured on" badge. Left to right:
+- the Way mark reversed out of a 36px disc (the favicon treatment: navy disc on light and paper, paper disc on dark)
+- a `LISTED ON` eyebrow (Poppins 600, 8.5px, `+1.1px` tracking, muted) over the Way\*Space wordmark (Poppins 700, 19px, `-0.07em`, the Way mark in place of the `*`)
+- a hairline divider
+- a `GRADE` eyebrow over the grade in a small chip (24×18, 30×18 for `A+`, `rx=6`).
+
+Color lives only in the chip, so the card sits quietly against any site's palette.
+
+**Rules (both badges):**
+1. **Say "listed", never "featured".** The catalog lists tools; it does not select them. A badge never says
+   *featured, safe, trusted, endorsed, vetted* or *certified*. The states are a grade from the closed
+   vocabulary, `listed` (no grade), or `not listed` (unknown tool).
+2. **Grade colors follow the OG mapping:** A+/A `--brand-offset-green` with navy text, B `--brand-offset-blue`
+   with white text (`#2886E6` on a dark surface), C `--brand-offset-yellow` with navy text, D
+   `--brand-offset-coral` with navy text. Neutral states are gray.
+3. **Never a fake state.** If the lookup is throttled or fails, the badge must not claim anything. The README
+   badge falls back to its gray `listed`. The website card drops the eyebrow and shows the bare wordmark,
+   because `LISTED ON` is a stronger claim.
+4. **No web fonts.** An SVG loaded through `<img>` can't fetch fonts. The README badge uses the system stack
+   (`Verdana, Geneva, DejaVu Sans`). The website card's text is **pre-outlined Poppins paths**, generated once
+   from the closed set of strings it can show. Never reference `@font-face` in a badge.
+5. **Link back with UTM tags.** `utm_source=badge`, plus `utm_medium=readme` or `utm_medium=website`, so the two
+   hosts show up as separate traffic sources.
+
+```html
+<!-- Website card -->
+<a href="https://way.space/tool/{slug}?utm_source=badge&utm_medium=website&utm_campaign=grade-badge">
+  <img src="https://way.space/badge/tool/{slug}.svg?style=card&theme=light" alt="{Name} on way.space" height="54">
+</a>
+```
+
 ### Required Logo Variants
 
 | Variant | Pattern | Description |
@@ -1536,4 +1581,5 @@ The `.maia-btn-outline` class sets shape only; color is context-dependent. When 
 | `components/shadcn-customizations.yaml` | What we change from shadcn defaults |
 | `CHANGELOG.md` | Version history — what changed and when |
 | `assets/logos/README.md` | Logo variants, sizes, naming conventions |
+| `assets/badges/*.svg` | Reference renders of the README badge and website card (§10 "Embeddable Badges") |
 | `docs/DECISIONS.md` | Design decision log |
