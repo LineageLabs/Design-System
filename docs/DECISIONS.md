@@ -124,6 +124,27 @@ Record significant design decisions here so future contributors (human or LLM) u
 
 
 
+## 009 — Directory Cards Color by Standing Only; List State Lives in the URL
+
+**Date:** 2026-11-20
+**Decision:** On a profile card, color (the band) encodes the person's standing and nothing else, and the card prints no popularity counts. A person's name on the card is set in Lora. Views, filters and pages of a list are plain links whose state is in the URL.
+
+**Rationale:**
+- way.space's builders directory tried per-person band colors, avatar-derived tints and no band at all. Arbitrary color read as decoration and competed with the one thing color is reserved for in this system: meaning. Standing is the meaning a credibility-gated directory has to show.
+- Star and follower counts turn a who's-who into a leaderboard and put newcomers off being listed. They can order the list without being printed.
+- The Lora name gives a person the same display treatment a page gives its `h1`, and tells people from the Poppins-titled software cards at a glance. It is a narrow exception to §2 Rule 1, written down so it does not spread to other card titles.
+- A view switch, filter or pager built from links works without JavaScript, can be shared and crawled, and survives a reload. Client-only state gave none of these.
+
+**Consequences:**
+- A new standing needs a band color, a pill label and a ring together, never one of them alone.
+- No decorative color, star counts or rank on directory cards.
+- The default view and page one keep the clean URL.
+- Full conventions: `DESIGN-SYSTEM.md` §6 "Profile Card", "View Switch", "Directory List (A–Z)", "Pagination"; §8 "Faceted list layout".
+
+*Number 008 is taken by the embeddable-badges decision in PR #14.*
+
+
+
 ## Template
 
 ```
