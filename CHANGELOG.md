@@ -5,6 +5,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions use cal
 
 ---
 
+## [2026.11.0] — 2026-11-20
+
+### Added
+- **Profile Card (`DESIGN-SYSTEM.md` §6, new subsection).** One person in a directory grid: a 56px band whose color encodes standing only (green verified human, blue proven builder, neutral otherwise; the offset accent mixed 38% into the raised surface so it adapts in dark mode), a status pill top right that repeats the band in words, the circular avatar overlapping the band, name / mono handle / short line / two-line bio, up to three "Known for" rows, and one stretched link with no nested interactive elements. No stars, scores or rank on the card. Origin: way.space `BuilderCard` (LineageLabs/way-space#970).
+- **Invitation Tile (§6).** A dashed-outline last cell that invites the reader to join the grid; one per grid, never a filled card.
+- **View Switch (§6).** A segmented pill of plain links with `aria-current="page"` when the view lives in the URL; `role="tablist"` only for in-place panels.
+- **Directory List, A–Z (§6).** Surname-first groups, a letter jump strip with inert pills for empty letters, Lora letter headings over a 2px rule, dotted-leader rows with a fixed shrink order (the name never truncates), two CSS columns from `md`, never paginated. Origin: way.space `BuilderPhoneBook`.
+- **Explainer Popover (§6).** A 20px ⓘ button opening a native `popover="auto"` with the label and one plain-language sentence; closes on scroll and resize; distinct from `Tooltip`. Origin: way.space `FacetHint` (LineageLabs/way-space#463).
+- **Pagination (§6).** A link-only pill pager with a fixed-width page window, `rel="prev"`/`rel="next"`, and the page in the URL. Origin: way.space `Pagination`.
+- **Faceted list layout (§8 Layout Patterns).** Sticky 16rem filter aside on the grid item itself, internal scroll for tall filter lists, a "Filters (n)" disclosure above the results below `lg` (not a `Sheet`), all state in the URL.
+- **Headline punctuation (§2, new subsection).** A full stop on a sentence-headline, never on a label; labels are sentence case, never raw slugs. A way.space rule since LineageLabs/way-space#141, now shared.
+- **Decision 009 (`docs/DECISIONS.md`)**: a directory card's color encodes standing only, and list state lives in the URL.
+
+### Changed
+- **§2 Rule 1 gains one exception.** A person's name on a profile card, and the letter headings of an A–Z directory list, are set in Lora while staying `h3` / `h2`. Tool, product and section card titles stay Poppins.
 ## [2026.10.2] — 2026-10-15
 
 ### Added

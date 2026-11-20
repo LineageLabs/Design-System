@@ -167,6 +167,17 @@ code, pre {
 }
 ```
 
+### Headline punctuation
+
+A full stop belongs on a **sentence-headline** and never on a **label**.
+
+| Text | Full stop | Examples |
+|---|---|---|
+| A headline that reads as a sentence or a claim | Yes, inside the `<em>` when the emphasis ends the line | "Agent tools you can *actually trust.*", "The people behind the *agent stack.*" |
+| A short label: section title, eyebrow, card title, nav item, button | Never | "Featured tools", "Browse by kind", "Known for" |
+
+Apply it on every page of a product: a mix of "Featured tools." and "Featured builders" reads as a typo. Labels are **sentence case** ("Data wrangling", not "Data Wrangling" or a raw slug like `data-wrangling`); only eyebrows are uppercase, and they get that from CSS, not from the source text.
+
 ### Font Usage Rules
 
 These rules define which elements are permitted to use each font family. Font families are used purposefully by role — not for arbitrary visual contrast. Visual hierarchy within a family is built through weight, size, colour, and spacing.
@@ -188,6 +199,8 @@ Any screen may use up to all three families when the content hierarchy genuinely
 ❌ Lora on a nav label — nav links are body/utility scale
 ❌ System UI on a card title at 1.25rem / 700 — heading-level content, use Poppins
 ```
+
+**One exception: a person's name on a profile card is set in Lora.** The name is the display line of that card, the way an `h1` is the display line of a page, and the serif separates a person from the Poppins titles of the software cards beside it. The element stays an `h3` (heading level is semantic, the font is the role). This applies to the name on a profile card and to the letter headings of an A–Z directory list, and to nothing else: tool, product and section card titles stay Poppins. See §6 "Profile Card".
 
 #### Rule 2 — Elevated Text Uses Heading Fonts; Body Text Does Not
 
@@ -677,6 +690,78 @@ A detail page's header can show the few facts and actions a visitor came for: a 
 | **Wrapping** | The row is `flex-wrap`. Labels inside a pill are `min-w-0 truncate` with a max width, so nothing overflows at 320px. |
 | **Secondary facts** | Counts that aren't pills (discussion count, own-vote confirmation, an action error) go on one quiet text line directly under the row. |
 
+### Profile Card
+
+One person in a directory grid. Originated in way.space's `BuilderCard` (2026-11-14). The card should make a reader want to be listed, so it shows who the person is and what they are known for, and nothing that ranks them.
+
+| Aspect | Rule |
+|---|---|
+| **Shell** | `rounded-3xl bg-card ring-1 ring-foreground/10 overflow-hidden`, a flex column so cards in one grid row end level. Hover is `shadow-md`; keyboard focus shows as `focus-within:ring-2 ring-ring` on the whole card. |
+| **Band** | A 56px (`h-14`) color band across the top. **The band color encodes the person's standing and nothing else**: green for a verified human, blue for a proven builder, the neutral raised surface for everyone else. Never pick a color per person, from the avatar, or for decoration. Mix the offset accent into the raised-section surface (`color-mix(in srgb, var(--brand-offset-green) 38%, <raised surface>)`) so the tint follows that surface in dark mode. |
+| **Status pill** | Top right of the band: `rounded-full bg-card/85 text-[11px] font-semibold`, with a Lucide `check` for the verified state. The pill repeats the band's meaning in words, so the color is never the only signal. No pill when there is no standing to state. |
+| **Avatar** | A circle (§11 Entity Shapes) with its standing ring, overlapping the band by half (`-mt-8` on a 64px avatar). Give the avatar wrapper `position: relative` so it paints above the band. |
+| **Text** | Name (`h3`, Lora, `text-xl`; see §2 Rule 1), handle in mono `text-xs`, one short line of what they do (`text-sm font-medium`), then a bio clamped to two lines. |
+| **Known for** | Up to three projects under an eyebrow, each a row of an `xs` software logo tile plus the name, pushed to the foot with `mt-auto`. |
+| **One link** | The name's `<a>` is stretched over the card (`after:absolute after:inset-0`). Everything else is plain text: no nested links or buttons, so the card is one tab stop and one accessible name. |
+| **Leave out** | Popularity counts (stars, followers), scores and rank. They may order the list upstream but are not printed on the card. |
+| **Grid** | `grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-5`. |
+
+### Invitation Tile
+
+The last cell of a directory grid can invite the reader to join it: a dashed outline in place of a card (`rounded-3xl border-2 border-dashed border-foreground/15`, the same radius as its neighbors, `min-h-48`, centered content), holding a Lucide `plus`, one bold line ("Your profile here") and one muted line that states the real requirement. The whole tile is one link to the sign-up path. One per grid, always last, and never styled as a filled card, so it cannot be mistaken for an entry.
+
+### View Switch
+
+Two or three views of the same list (cards and list, for example) switch through a segmented pill.
+
+| Aspect | Rule |
+|---|---|
+| **Shell** | `inline-flex rounded-full bg-card p-1 ring-1 ring-foreground/10`, with `role="group"` and an `aria-label` ("View"). |
+| **Segments** | `h-8 rounded-full px-3.5 text-sm font-medium`, a 16px Lucide icon plus a text label. The active segment is `bg-primary text-primary-foreground`; the others are `text-muted-foreground hover:text-foreground`. |
+| **Links, not buttons** | When the view lives in the URL (`?view=list`), each segment is a plain `<a>` and the active one carries `aria-current="page"`. The switch then works without JavaScript and each view can be linked and crawled. Use `role="tablist"` only for panels that swap in place without a URL change. |
+| **Default** | The default view has the clean URL; the parameter appears only for the alternative. |
+
+### Directory List (A–Z)
+
+The dense counterpart of a card grid, for finding a known name. Originated in way.space's `BuilderPhoneBook` (2026-11-14).
+
+| Aspect | Rule |
+|---|---|
+| **Order** | Grouped by the initial of the sort name, with people filed surname first ("Hashimoto, Mitchell"). One section per letter that has entries; names that do not start with a letter go under `#`. |
+| **Jump strip** | A `flex-wrap` row of 32px letter pills above the list. Letters with entries are anchors (`ring-1 ring-foreground/10`); letters without are inert `<span aria-disabled="true">` in `text-muted-foreground/50`. Plain fragment links, no JavaScript. |
+| **Letter heading** | An `h2` set in Lora, `text-2xl`, over a 2px rule (`border-b-2 border-foreground/80`). Give each section a `scroll-margin-top` equal to the sticky header height so a jump does not land under the header. |
+| **Row** | One link per row, baseline-aligned: the name (`font-semibold`), a dotted leader (`flex-1 border-b border-dotted border-foreground/30`, `aria-hidden`), one muted fact, then the handle in mono `text-xs`. |
+| **Shrink order** | The name never truncates. When the row is too narrow the muted fact gives way first (`shrink-[999] truncate`), then the handle; a name too long for the column wraps (`break-words`). |
+| **Columns** | `md:columns-2 gap-x-10`, each letter section `break-inside-avoid`. One column below `md`. |
+| **Length** | The list shows everyone. It is not paginated, because the jump strip only works when every letter is on the page. |
+
+### Explainer Popover
+
+A filter option or label whose meaning a newcomer cannot guess gets an ⓘ button that opens a one-line explanation. Originated in way.space's `FacetHint` (2026-10-13).
+
+| Aspect | Rule |
+|---|---|
+| **Trigger** | A real `<button type="button">`: 20px (`size-5`) round, a 13px Lucide `info`, `text-muted-foreground/70` rising to `text-foreground` on hover, with `aria-label="About {label}"`. Never hover-only, so it works on touch and keyboard. |
+| **Surface** | The native `popover="auto"` attribute, wired with `popovertarget`. It renders in the top layer, so it cannot be clipped by a scrolling sidebar and does not shift layout; Escape and click-outside close it; only one is open at a time. |
+| **Style** | `rounded-2xl bg-card p-3 text-xs leading-relaxed shadow-lg ring-1 ring-foreground/10`, width `max-w-[min(18rem,calc(100vw-1.5rem))]` (§8 overlay clamp). |
+| **Content** | The option's label in `font-medium`, then one plain-language sentence. No links or actions inside. Source the text from the same definition the product uses to classify, so the explanation cannot drift from the rule. |
+| **Position** | Beside the button; below it when the viewport has no room to the side; clamped to a 12px viewport margin. Close it on scroll and on resize, since a fixed popover would drift off its anchor. |
+
+Use the shadcn `Tooltip` for a name on an icon-only control and this popover for an explanation a reader has to read.
+
+### Pagination
+
+Bounded lists page through a row of pills. Originated in way.space's `Pagination`.
+
+| Aspect | Rule |
+|---|---|
+| **Controls** | `h-8 min-w-8 rounded-full px-3 text-xs font-medium ring-1 ring-foreground/10`. Pages are `bg-card`; the current page is `bg-foreground text-background` with `aria-current="page"`. |
+| **Window** | First and last page, the current page and one neighbor on each side, with `…` for an elided run (a single skipped page is shown as its number). The control keeps the same width however long the list grows. |
+| **Links only** | Every control is an `<a>`. Prev and Next carry `rel="prev"` / `rel="next"`, and at either end they render as inert, dimmed `<span>`s. Paging works without JavaScript and every page is crawlable. |
+| **Wrapper** | `<nav aria-label="…">` with a label that names the list, centered under it. A single page renders nothing. |
+| **State** | The page number lives in the URL. Page one has the clean URL. |
+| **Scroll** | Turning a page scrolls to the top of the list. A master/detail tool, where the pager turns one pane beside a detail pane, keeps the scroll position. |
+
 ### Chart
 
 shadcn/ui includes a `Chart` component backed by [Recharts](https://recharts.org/). Use the five semantic chart color tokens (`--chart-1` through `--chart-5`) defined in the Gray theme.
@@ -925,6 +1010,16 @@ Aligned with Tailwind CSS v4 defaults:
 | `md:` (768px) | Side-by-side — sidebar 280px fixed, content fills remaining width |
 
 **Mobile sidebar pattern:** Use a shadcn `Sheet` component (entrance: `slideInLeft`, exit: `slideOutLeft`) triggered by a hamburger button. Sheet width: `min(280px, calc(100vw - 3rem))`. Do not stack the sidebar below content — it pushes critical content below the fold.
+
+**Faceted list layout** (a catalog with filters): the exception to the rule above. The filters are content, not navigation, so below `lg` they collapse into a "Filters (n)" disclosure pill **above** the results (n = active filter count) and not into a `Sheet`.
+
+| Aspect | Rule |
+|---|---|
+| **Grid** | `grid items-start gap-6 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-8`. The results column is `min-w-0`. |
+| **Sticky** | `position: sticky` goes on the `<aside>` grid item itself, offset below the site header. On a nested element the containing block is the short aside and sticky has nowhere to travel. No ancestor between the aside and the page may be `overflow: hidden`, or it becomes the scroll container and sticky stops working. |
+| **Tall filter lists** | Cap the aside at the viewport height minus the sticky offset and scroll it internally with the scrollbar track hidden, so every option is reachable on a short screen. |
+| **State** | Every filter and the page number live in the URL, each option is a link or a form control that submits without JavaScript, and a filter change returns to page one. |
+| **Labels** | Sentence-case option labels, never raw slugs (§2 "Headline punctuation"). Options a newcomer cannot guess get an Explainer Popover (§6). |
 
 ### Typography
 
